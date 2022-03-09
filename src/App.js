@@ -7,6 +7,8 @@ import Signup from "../src/Components/UI/Modal/Signup";
 import MobileNavigationBar from "../src/Components/UI/Navigation/MobileNavigationBar";
 import MobileNavigationBarBottom from "../src/Components/UI/Navigation/MobileNavigationBarBottom";
 import "./App.css";
+import Footer from "./Components/UI/Footer/Footer";
+import BodyWrapper from "./Components/UI/Wrapper/BodyWrapper";
 
 const App = () => {
   const { showLoginModal, showSignupModal } = useModal();
@@ -17,7 +19,10 @@ const App = () => {
       <DesktopNavigationBar />
       <MobileNavigationBar />
       <MobileNavigationBarBottom />
-      <LandingPage />
+      <BodyWrapper>
+        <LandingPage />
+      </BodyWrapper>
+      <Footer />
     </>
   );
 };

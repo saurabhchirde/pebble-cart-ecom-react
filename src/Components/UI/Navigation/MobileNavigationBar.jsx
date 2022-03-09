@@ -1,3 +1,4 @@
+import React from "react";
 import NavbarLoginButton from "./NavbarLoginButton/NavbarLoginButton";
 import SearchBar from "./SearchBar/SearchBar";
 import logoIcon from "../../../Data/logo/icon.svg";

@@ -1,3 +1,4 @@
+import React from "react";
 import logoLight from "../../../Data/logo/logo-light.svg";
 import BadgeIconButton from "../Button/BadgeIconButton";
 import SearchBar from "./SearchBar/SearchBar";
@@ -14,7 +15,7 @@ const DesktopNavigationBar = () => {
 
         <SearchBar
           searchWrapper="search-container"
-          micIcon="fas fa-microphone"
+          micIcon="hide"
           searchIcon="fas fa-search"
           placeholder="Search"
           onChange={() => {}}

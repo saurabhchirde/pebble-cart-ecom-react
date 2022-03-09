@@ -1,3 +1,4 @@
+import React from "react";
 import "./WishlistPage.css";
 
 const WishlistPage = () => {
