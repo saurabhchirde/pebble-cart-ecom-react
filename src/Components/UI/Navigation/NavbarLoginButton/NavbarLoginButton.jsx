@@ -16,6 +16,7 @@ const NavbarLoginButton = () => {
       setShowSignupModal(false);
     }
   };
+
   return (
     <>
       <Button

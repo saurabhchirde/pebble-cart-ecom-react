@@ -14,8 +14,8 @@ const App = () => {
   const { showLoginModal, showSignupModal } = useModal();
   return (
     <>
-      {showLoginModal && <Login />}
-      {showSignupModal && <Signup />}
+      {showLoginModal === true ? <Login /> : false}
+      {showSignupModal === true ? <Signup /> : false}
       <DesktopNavigationBar />
       <MobileNavigationBar />
       <MobileNavigationBarBottom />
