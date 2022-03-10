@@ -9,9 +9,13 @@ import MobileNavigationBarBottom from "../src/Components/UI/Navigation/MobileNav
 import "./App.css";
 import Footer from "./Components/UI/Footer/Footer";
 import BodyWrapper from "./Components/UI/Wrapper/BodyWrapper";
+import ProductListingPage from "./Pages/ProductListing/ProductListingPage";
+import { usePageProvider } from "./Context/PageContext";
 
 const App = () => {
   const { showLoginModal, showSignupModal } = useModal();
+  const { state } = usePageProvider();
+
   return (
     <>
       {showLoginModal === true ? <Login /> : false}
@@ -20,7 +24,8 @@ const App = () => {
       <MobileNavigationBar />
       <MobileNavigationBarBottom />
       <BodyWrapper>
-        <LandingPage />
+        {state.landingPage ? <LandingPage /> : false}
+        {state.productListingPage ? <ProductListingPage /> : false}
       </BodyWrapper>
       <Footer />
     </>
