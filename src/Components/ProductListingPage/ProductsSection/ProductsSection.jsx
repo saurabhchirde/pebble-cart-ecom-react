@@ -6,8 +6,8 @@ import { allProductList } from "../../../Data/productList/allProductList";
 import ProductsCard from "./ProductsCard/ProductsCard";
 
 const ProductsSection = () => {
-  const { cart, setCart } = useCart();
-  const { wishlist, setWishlist } = useWishlist();
+  const { setCart } = useCart();
+  const { setWishlist } = useWishlist();
   const { state, dispatch } = useFilter();
 
   const onAddCartClickHandler = (item) => {
@@ -15,15 +15,12 @@ const ProductsSection = () => {
       return [...oldCart, item];
     });
   };
-  // console.log(cart);
 
   const onAddWishlistHandler = (item) => {
     setWishlist((oldWishlist) => {
       return [...oldWishlist, item];
     });
   };
-  // console.log(wishlist);
-  // console.log(state.products);
 
   return (
     <>

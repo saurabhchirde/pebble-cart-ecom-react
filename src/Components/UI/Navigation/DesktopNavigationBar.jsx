@@ -10,7 +10,6 @@ import { useWishlist } from "../../../Context/WishlistContext";
 const DesktopNavigationBar = () => {
   const { cart } = useCart();
   const { wishlist } = useWishlist();
-  // console.log(cart.length);
 
   return (
     <>
@@ -32,7 +31,7 @@ const DesktopNavigationBar = () => {
           <NavbarLoginButton />
           <BadgeIconButton
             btnWrapper="badge-container"
-            btnClassName="btn badge-icon-btn-md"
+            btnClassName="btn badge-icon-btn-lg"
             icon="far fa-heart"
             badgeClassName="badge-on-icon"
             badgeValue={wishlist.length}
@@ -40,7 +39,7 @@ const DesktopNavigationBar = () => {
           />
           <BadgeIconButton
             btnWrapper="badge-container"
-            btnClassName="btn badge-icon-btn-md"
+            btnClassName="btn badge-icon-btn-lg"
             icon="fas fa-shopping-cart"
             badgeClassName="badge-on-icon"
             badgeValue={cart.length}

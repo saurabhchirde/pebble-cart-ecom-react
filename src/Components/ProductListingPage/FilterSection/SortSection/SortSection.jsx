@@ -3,8 +3,7 @@ import { useFilter } from "../../../../Context/FilterContext";
 import InputTypeTwo from "../../../UI/Input/InputTypeTwo";
 
 const SortSection = () => {
-  const { state, dispatch } = useFilter();
-  // console.log(state);
+  const { dispatch } = useFilter();
 
   return (
     <div className="sort">
@@ -13,7 +12,7 @@ const SortSection = () => {
         inputWrapper="radio-input"
         type="radio"
         name="sort"
-        label="Newest Arrival"
+        label="New Arrival"
         onClick={() => {
           dispatch({ type: "Newest" });
         }}

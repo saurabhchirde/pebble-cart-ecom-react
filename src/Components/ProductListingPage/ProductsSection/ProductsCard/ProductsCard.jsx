@@ -1,5 +1,4 @@
 import React from "react";
-// import { useWishlist } from "../../../../Context/WishlistContext";
 
 const ProductsCard = (props) => {
   const addCartClick = () => {
@@ -61,8 +60,8 @@ const ProductsCard = (props) => {
           </div>
         </div>
         {!props.inStock ? (
-          <div class="overlay-area-type-1">
-            <h1 class="card-title">SOLD OUT</h1>
+          <div className="overlay-area-type-1">
+            <h1 className="card-title">SOLD OUT</h1>
           </div>
         ) : (
           true
