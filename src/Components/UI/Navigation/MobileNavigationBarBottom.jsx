@@ -1,9 +1,11 @@
 import React from "react";
+import { useCart } from "../../../Context/CartContext";
 import BadgeIconButton from "../Button/BadgeIconButton";
 import IconButton from "../Button/IconButton";
 import "./MobileNavigationBarBottom.css";
 
 const MobileNavigationBarBottom = () => {
+  const { cart } = useCart();
   return (
     <>
       <nav className="mobile-navigation-bar-bottom dark-nav-bar">
@@ -26,7 +28,7 @@ const MobileNavigationBarBottom = () => {
             btnClassName="btn badge-icon-btn-md"
             icon="fas fa-shopping-cart"
             badgeClassName="badge-on-icon"
-            badgeValue="1"
+            badgeValue={cart.length}
             onClick={() => {}}
           />
         </a>

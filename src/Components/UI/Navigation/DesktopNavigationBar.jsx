@@ -4,8 +4,14 @@ import BadgeIconButton from "../Button/BadgeIconButton";
 import SearchBar from "./SearchBar/SearchBar";
 import NavbarLoginButton from "./NavbarLoginButton/NavbarLoginButton";
 import NavbarAvatar from "./Avatar/NavbarAvatar";
+import { useCart } from "../../../Context/CartContext";
+import { useWishlist } from "../../../Context/WishlistContext";
 
 const DesktopNavigationBar = () => {
+  const { cart } = useCart();
+  const { wishlist } = useWishlist();
+  // console.log(cart.length);
+
   return (
     <>
       <nav className="desktop-navigation-bar dark-nav-bar">
@@ -29,7 +35,7 @@ const DesktopNavigationBar = () => {
             btnClassName="btn badge-icon-btn-md"
             icon="far fa-heart"
             badgeClassName="badge-on-icon"
-            badgeValue="3"
+            badgeValue={wishlist.length}
             onClick={() => {}}
           />
           <BadgeIconButton
@@ -37,7 +43,7 @@ const DesktopNavigationBar = () => {
             btnClassName="btn badge-icon-btn-md"
             icon="fas fa-shopping-cart"
             badgeClassName="badge-on-icon"
-            badgeValue="1"
+            badgeValue={cart.length}
             label="Cart"
             onClick={() => {}}
           />
