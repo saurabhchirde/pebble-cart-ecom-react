@@ -1,11 +1,6 @@
 import React from "react";
 import Button from "../../UI/Button/Button";
 import IconButton from "../../UI/Button/IconButton";
-import BrandSection from "./BrandSection/BrandSection";
-import CategorySection from "./CategorySection/CategorySection";
-import OutOfStock from "./OutOfStock/OutOfStock";
-import PriceSection from "./PriceSection/PriceSection";
-import RatingSection from "./RatingSection/RatingSection";
 import SortSection from "./SortSection/SortSection";
 
 const FilterSection = () => {
@@ -30,12 +25,7 @@ const FilterSection = () => {
           <h2>Filter</h2>
           <Button type="reset" label="Clear" />
         </div>
-        <PriceSection />
-        <CategorySection />
-        <BrandSection />
-        <RatingSection />
         <SortSection />
-        <OutOfStock />
       </form>
     </>
   );
