@@ -1,4 +1,3 @@
-import React from "react";
 import DesktopNavigationBar from "../src/Components/UI/Navigation/DesktopNavigationBar";
 import LandingPage from "./Pages/Landing/LandingPage";
 import { useModal } from "./Context/ModalContext";

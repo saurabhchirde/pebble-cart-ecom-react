@@ -1,4 +1,3 @@
-import React from "react";
 import { useFilter } from "../../../../Context/FilterContext";
 import InputTypeTwo from "../../../UI/Input/InputTypeTwo";
 

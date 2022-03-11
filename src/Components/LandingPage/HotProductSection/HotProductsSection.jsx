@@ -1,4 +1,3 @@
-import React from "react";
 import { usePageProvider } from "../../../Context/PageContext";
 import {
   actionCamera,

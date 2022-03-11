@@ -1,4 +1,3 @@
-import React from "react";
 import logoLight from "../../../Data/logo/logo-light.svg";
 import BadgeIconButton from "../Button/BadgeIconButton";
 import SearchBar from "./SearchBar/SearchBar";

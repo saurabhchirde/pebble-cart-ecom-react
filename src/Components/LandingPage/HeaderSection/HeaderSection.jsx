@@ -1,4 +1,3 @@
-import React from "react";
 import HeaderBanner from "./HeaderBanner/HeaderBanner";
 import SquareCards from "./SquareCards/SquareCards";
 import {

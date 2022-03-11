@@ -1,4 +1,3 @@
-import React from "react";
 import { usePageProvider } from "../../../Context/PageContext";
 import { canon6dCamera } from "../../../Data/Img/Products/ProductImages";
 import RecommendedBanner from "./RecommendedBanner/RecommendedBanner";
