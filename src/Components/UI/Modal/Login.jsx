@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useModal } from "../../../Context/ModalContext";
 import Button from "../Button/Button";
-import Input from "../Input/Input";
+import InputTypeOne from "../Input/InputTypeOne";
 import "./Login.css";
 
 const Login = () => {
@@ -52,7 +52,7 @@ const Login = () => {
           <i className="fas fa-times"></i>
         </a>
         <form onSubmit={onLoginSubmitHandler}>
-          <Input
+          <InputTypeOne
             type="email"
             name="email"
             required="required"
@@ -64,7 +64,7 @@ const Login = () => {
             onChange={onModalInputHandler}
             value={inputField.email}
           />
-          <Input
+          <InputTypeOne
             type="password"
             name="password"
             required="required"

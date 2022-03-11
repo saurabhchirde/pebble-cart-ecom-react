@@ -1,4 +1,3 @@
-import React from "react";
 import { useCart } from "../../../Context/CartContext";
 import { useFilter } from "../../../Context/FilterContext";
 import { useWishlist } from "../../../Context/WishlistContext";

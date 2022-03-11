@@ -1,4 +1,3 @@
-import React from "react";
 import HeaderSection from "../../Components/LandingPage/HeaderSection/HeaderSection";
 import HotProductsSection from "../../Components/LandingPage/HotProductSection/HotProductsSection";
 import RecommendedSection from "../../Components/LandingPage/RecommendedSection/RecommendedSection";

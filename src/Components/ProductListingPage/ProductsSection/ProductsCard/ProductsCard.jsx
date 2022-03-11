@@ -1,5 +1,3 @@
-import React from "react";
-
 const ProductsCard = (props) => {
   const addCartClick = () => {
     props.onAddCartClick(props);
