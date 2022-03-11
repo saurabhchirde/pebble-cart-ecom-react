@@ -1,5 +1,3 @@
-import React from "react";
-
 const RecommendedBanner = (props) => {
   return (
     <>
@@ -9,10 +7,15 @@ const RecommendedBanner = (props) => {
           <h1>{props.title}</h1>
           <p>{props.description}</p>
           <a>
-            <button className="btn primary-btn-md">{props.btnLabel}</button>
+            <button onClick={props.onbtnClick} className="btn primary-btn-md">
+              {props.btnLabel}
+            </button>
           </a>
           <a>
-            <button className="btn primary-text-btn-md">
+            <button
+              onClick={props.onReadMoreClick}
+              className="btn primary-text-btn-md"
+            >
               {props.readMoreLabel}
             </button>
           </a>
