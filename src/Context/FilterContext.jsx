@@ -1,36 +1,47 @@
 import { createContext, useContext, useReducer } from "react";
-import { allProductList } from "../Data/productList/allProductList";
-import { sortByPrice } from "../Components/ProductListingPage/FilterSection/SortSection/sortByPrice";
-
-const filterContext = createContext(null);
 
 const reducer = (state, action) => {
-  //   console.log(state);
   switch (action.type) {
     //   sort
     case "Newest":
       return {
-        products: sortByPrice(state.products, "Newest"),
+        ...state,
+        sort: action.payload,
       };
 
     case "LowToHigh":
       return {
-        products: sortByPrice(state.products, "LowToHigh"),
+        ...state,
+        sort: action.payload,
       };
 
     case "HighToLow":
       return {
-        products: sortByPrice(state.products, "HighToLow"),
+        ...state,
+        sort: action.payload,
       };
+
+    case "Clear":
+      return { sort: "", byStock: false, byRating: 0, bySearch: "" };
 
     default:
       return state;
   }
 };
 
+const filterContext = createContext({
+  sort: "",
+  byStock: false,
+  byRating: 0,
+  bySearch: "",
+});
+
 const FilterProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, {
-    products: allProductList,
+    sort: "",
+    byStock: false,
+    byRating: 0,
+    bySearch: "",
   });
   return (
     <filterContext.Provider value={{ state, dispatch }}>

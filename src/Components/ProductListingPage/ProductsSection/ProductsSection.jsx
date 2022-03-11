@@ -4,11 +4,12 @@ import { useFilter } from "../../../Context/FilterContext";
 import { useWishlist } from "../../../Context/WishlistContext";
 import { allProductList } from "../../../Data/productList/allProductList";
 import ProductsCard from "./ProductsCard/ProductsCard";
+import { sortData } from "../sortData";
 
 const ProductsSection = () => {
   const { setCart } = useCart();
   const { setWishlist } = useWishlist();
-  const { state, dispatch } = useFilter();
+  const { state } = useFilter();
 
   const onAddCartClickHandler = (item) => {
     setCart((oldCart) => {
@@ -27,7 +28,7 @@ const ProductsSection = () => {
       <section className="products">
         <h1>Showing All Products</h1>
         <div className="flex-row flex-wrap">
-          {allProductList.map((item) => {
+          {sortData(allProductList, state.sort).map((item) => {
             return (
               <ProductsCard
                 key={item.id}
