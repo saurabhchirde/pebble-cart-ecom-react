@@ -1,6 +1,5 @@
-import React from "react";
 import Button from "../Button/Button";
-import Input from "../Input/Input";
+import InputTypeOne from "../Input/InputTypeOne";
 import { useModal } from "../../../Context/ModalContext";
 
 const Signup = () => {
@@ -25,7 +24,7 @@ const Signup = () => {
           <i className="fas fa-times"></i>
         </a>
         <form onSubmit={onSignupFormSubmitHandler}>
-          <Input
+          <InputTypeOne
             label="Full Name"
             type="text"
             name="text"
@@ -33,7 +32,7 @@ const Signup = () => {
             placeholder="Enter your name"
             inputWrapper="outline-text-input"
           />
-          <Input
+          <InputTypeOne
             label="Email *"
             type="email"
             name="email"
@@ -42,7 +41,7 @@ const Signup = () => {
             placeholder="Enter your email *"
             inputWrapper="outline-email-input"
           />
-          <Input
+          <InputTypeOne
             label="Phone no"
             type="tel"
             name="tel"
@@ -50,7 +49,7 @@ const Signup = () => {
             placeholder="Enter phone number"
             inputWrapper="outline-tel-input"
           />
-          <Input
+          <InputTypeOne
             label="Password *"
             type="text"
             name="password"
@@ -59,7 +58,7 @@ const Signup = () => {
             placeholder="Enter your password"
             inputWrapper="outline-password-input"
           />
-          <Input
+          <InputTypeOne
             label="Re-enter Password *"
             type="password"
             name="password"

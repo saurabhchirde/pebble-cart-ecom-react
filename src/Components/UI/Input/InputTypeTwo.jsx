@@ -1,10 +1,7 @@
-import React from "react";
-
-const Input = (props) => {
+const InputTypeTwo = (props) => {
   return (
-    <div className={props.inputWrapper}>
-      <label>
-        {props.label}
+    <label>
+      <div onClick={props.onClick} className={props.inputWrapper}>
         <div className={props.iconWrapper}>
           <i className={props.icon}></i>
           <input
@@ -14,11 +11,13 @@ const Input = (props) => {
             autoComplete={props.autoComplete}
             placeholder={props.placeholder}
             onChange={props.onChange}
+            checked={props.checked}
           />
         </div>
-      </label>
-    </div>
+        {props.label}
+      </div>
+    </label>
   );
 };
 
-export default Input;
+export default InputTypeTwo;
