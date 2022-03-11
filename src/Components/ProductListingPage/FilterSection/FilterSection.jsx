@@ -1,9 +1,11 @@
 import React from "react";
+import { useFilter } from "../../../Context/FilterContext";
 import Button from "../../UI/Button/Button";
 import IconButton from "../../UI/Button/IconButton";
 import SortSection from "./SortSection/SortSection";
 
 const FilterSection = () => {
+  const { state, dispatch } = useFilter();
   return (
     <>
       <button
@@ -23,7 +25,13 @@ const FilterSection = () => {
         />
         <div className="filter flex-row flex-justify-space-between">
           <h2>Filter</h2>
-          <Button type="reset" label="Clear" />
+          <Button
+            onClick={() => {
+              dispatch({ type: "Clear" });
+            }}
+            type="reset"
+            label="Clear"
+          />
         </div>
         <SortSection />
       </form>

@@ -1,6 +1,11 @@
 import { createContext, useContext, useReducer } from "react";
 
-const pageContext = createContext(null);
+const pageContext = createContext({
+  landingPage: true,
+  productListingPage: false,
+  cartPage: false,
+  wishlistPage: false,
+});
 
 const reducer = (state, action) => {
   switch (action.type) {
