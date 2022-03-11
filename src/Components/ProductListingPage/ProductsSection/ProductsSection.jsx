@@ -27,7 +27,7 @@ const ProductsSection = () => {
       <section className="products">
         <h1>Showing All Products</h1>
         <div className="flex-row flex-wrap">
-          {sortData(allProductList, state.sort).map((item) => {
+          {sortData(state, state.sort).map((item) => {
             return (
               <ProductsCard
                 key={item.id}
