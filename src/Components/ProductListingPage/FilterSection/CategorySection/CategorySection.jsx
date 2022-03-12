@@ -5,7 +5,7 @@ import InputTypeTwo from "../../../UI/Input/InputTypeTwo";
 const CategorySection = () => {
   const { state, dispatch } = useFilter();
   const { allCategory, camera, lenses, tripod, accessories } = state.byCategory;
-  console.log(allCategory, camera, lenses, tripod, accessories);
+
   return (
     <div className="category">
       <h2>Category</h2>
@@ -34,7 +34,6 @@ const CategorySection = () => {
           inputWrapper="checkbox-input"
           type="checkbox"
           name="check"
-          value={(e) => e.target.value}
           checked={lenses}
           label="Lenses"
           onChange={() => {

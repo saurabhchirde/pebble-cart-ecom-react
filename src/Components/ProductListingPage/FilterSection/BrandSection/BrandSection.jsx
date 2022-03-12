@@ -1,7 +1,11 @@
 import React from "react";
+import { useFilter } from "../../../../Context/FilterContext";
 import InputTypeTwo from "../../../UI/Input/InputTypeTwo";
 
 const BrandSection = () => {
+  const { state, dispatch } = useFilter();
+  const { allBrand, canon, nikon, sony } = state.byBrand;
+
   return (
     <div className="brand">
       <h2>Brand</h2>
@@ -10,33 +14,41 @@ const BrandSection = () => {
           inputWrapper="checkbox-input"
           type="checkbox"
           name="check"
-          checked="checked"
+          checked={allBrand}
           label="All"
-          onChange={() => {}}
+          onChange={() => {
+            dispatch({ type: "AllBrand", payload: "AllBrand" });
+          }}
         />
         <InputTypeTwo
           inputWrapper="checkbox-input"
           type="checkbox"
           name="check"
-          checked=""
+          checked={canon}
           label="Canon"
-          onChange={() => {}}
+          onChange={() => {
+            dispatch({ type: "Canon", payload: "Canon" });
+          }}
         />
         <InputTypeTwo
           inputWrapper="checkbox-input"
           type="checkbox"
           name="check"
-          checked=""
+          checked={nikon}
           label="Nikon"
-          onChange={() => {}}
+          onChange={() => {
+            dispatch({ type: "Nikon", payload: "Nikon" });
+          }}
         />
         <InputTypeTwo
           inputWrapper="checkbox-input"
           type="checkbox"
           name="check"
-          checked=""
+          checked={sony}
           label="Sony"
-          onChange={() => {}}
+          onChange={() => {
+            dispatch({ type: "Sony", payload: "Sony" });
+          }}
         />
       </div>
     </div>
