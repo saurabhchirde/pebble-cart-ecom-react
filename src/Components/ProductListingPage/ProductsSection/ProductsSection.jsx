@@ -1,9 +1,8 @@
 import { useCart } from "../../../Context/CartContext";
 import { useFilter } from "../../../Context/FilterContext";
 import { useWishlist } from "../../../Context/WishlistContext";
-import { allProductList } from "../../../Data/productList/allProductList";
 import ProductsCard from "./ProductsCard/ProductsCard";
-import { sortData } from "../sortData";
+import { finalSortedData } from "../FilterSection/finalSortedData";
 
 const ProductsSection = () => {
   const { setCart } = useCart();
@@ -27,7 +26,7 @@ const ProductsSection = () => {
       <section className="products">
         <h1>Showing All Products</h1>
         <div className="flex-row flex-wrap">
-          {sortData(state, state.sort).map((item) => {
+          {finalSortedData(state).map((item) => {
             return (
               <ProductsCard
                 key={item.id}

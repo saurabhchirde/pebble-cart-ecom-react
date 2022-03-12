@@ -5,7 +5,6 @@ import InputTypeTwo from "../../../UI/Input/InputTypeTwo";
 const IncludeOutOfStock = () => {
   const { state, dispatch } = useFilter();
   const { byStock } = state;
-  console.log(byStock);
 
   return (
     <div className="sort">

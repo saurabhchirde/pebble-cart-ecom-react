@@ -2,7 +2,8 @@ import { useFilter } from "../../../../Context/FilterContext";
 import InputTypeTwo from "../../../UI/Input/InputTypeTwo";
 
 const SortSection = () => {
-  const { dispatch } = useFilter();
+  const { state, dispatch } = useFilter();
+  const { newest, lowTohHigh, highToLow } = state.bySort;
 
   return (
     <div className="sort">
@@ -11,8 +12,9 @@ const SortSection = () => {
         inputWrapper="radio-input"
         type="radio"
         name="sort"
+        checked={newest}
         label="New Arrival"
-        onClick={() => {
+        onChange={() => {
           dispatch({ type: "Newest", payload: "Newest" });
         }}
       />
@@ -20,8 +22,9 @@ const SortSection = () => {
         inputWrapper="radio-input"
         type="radio"
         name="sort"
+        checked={lowTohHigh}
         label="Price - Low to High"
-        onClick={() => {
+        onChange={() => {
           dispatch({ type: "LowToHigh", payload: "LowToHigh" });
         }}
       />
@@ -29,8 +32,9 @@ const SortSection = () => {
         inputWrapper="radio-input"
         type="radio"
         name="sort"
+        checked={highToLow}
         label="Price - High to Low"
-        onClick={() => {
+        onChange={() => {
           dispatch({ type: "HighToLow", payload: "HighToLow" });
         }}
       />

@@ -5,8 +5,14 @@ import { allProductList } from "../Data/productList/allProductList";
 const filterContext = createContext({
   products: allProductList,
   sort: "",
+  bySort: { newest: true, lowTohHigh: false, highToLow: false },
   byStock: false,
-  byRating: 0,
+  byRating: {
+    oneStar: true,
+    twoStar: false,
+    threeStar: false,
+    fourStar: false,
+  },
   bySearch: "",
   byCategory: {
     allCategory: true,
@@ -22,8 +28,14 @@ const FilterProvider = ({ children }) => {
   const [state, dispatch] = useReducer(filterReducer, {
     products: allProductList,
     sort: "",
+    bySort: { newest: true, lowTohHigh: false, highToLow: false },
     byStock: false,
-    byRating: 0,
+    byRating: {
+      oneStar: true,
+      twoStar: false,
+      threeStar: false,
+      fourStar: false,
+    },
     bySearch: "",
     byCategory: {
       allCategory: true,

@@ -9,6 +9,7 @@ import RatingSection from "./RatingSection/RatingSection";
 
 const FilterSection = () => {
   const { dispatch } = useFilter();
+
   return (
     <>
       <button
