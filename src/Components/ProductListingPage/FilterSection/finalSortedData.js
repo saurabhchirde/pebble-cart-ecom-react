@@ -14,6 +14,12 @@ const finalSortedData = (state) => {
   sortedArray = sortByBrand(sortedArray, state);
   sortedArray = sortByRating(sortedArray, state);
 
+  if (sortedArray.length === 0) {
+    state.unAvailable = true;
+  } else {
+    state.unAvailable = false;
+  }
+
   return sortedArray;
 };
 

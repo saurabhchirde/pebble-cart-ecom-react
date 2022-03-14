@@ -22,6 +22,7 @@ const filterContext = createContext({
     accessories: false,
   },
   byBrand: { allBrand: true, canon: false, nikon: false, sony: false },
+  unAvailable: false,
 });
 
 const FilterProvider = ({ children }) => {
@@ -45,6 +46,7 @@ const FilterProvider = ({ children }) => {
       accessories: false,
     },
     byBrand: { allBrand: true, canon: false, nikon: false, sony: false },
+    unAvailable: false,
   });
   return (
     <filterContext.Provider value={{ state, dispatch }}>
