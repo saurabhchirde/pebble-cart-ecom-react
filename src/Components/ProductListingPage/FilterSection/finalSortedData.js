@@ -8,11 +8,11 @@ const finalSortedData = (state) => {
   // all sorting functions
   let sortedArray = [...state.products];
 
-  sortedArray = sortByPrice(sortedArray, state);
   sortedArray = sortByStock(sortedArray, state);
   sortedArray = sortByCategory(sortedArray, state);
   sortedArray = sortByBrand(sortedArray, state);
   sortedArray = sortByRating(sortedArray, state);
+  sortedArray = sortByPrice(sortedArray, state);
 
   if (sortedArray.length === 0) {
     state.unAvailable = true;
