@@ -1,7 +1,6 @@
 const filterByStock = (filteredArray, state) => {
   let withoutFiltered = [...filteredArray];
   let tempArray = [];
-
   if (state.byStock) {
     return withoutFiltered;
   } else {

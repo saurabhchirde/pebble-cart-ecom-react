@@ -2,7 +2,8 @@ import { useCart } from "../../../Context/CartContext";
 import { useFilter } from "../../../Context/FilterContext";
 import { useWishlist } from "../../../Context/WishlistContext";
 import ProductsCard from "./ProductsCard/ProductsCard";
-import { finalSortedData } from "../FilterSection/finalSortedData";
+import { finalFilteredData } from "../../../Utils/finalFilteredData";
+import "./ProductSection.css";
 
 const ProductsSection = () => {
   const { setCart } = useCart();
@@ -25,33 +26,23 @@ const ProductsSection = () => {
     <>
       <section className="products">
         <h1>Showing All Products</h1>
-        {state.unAvailable ? (
-          <h1 className="mg-3-top">
-            No Products Found For The Selected Options, Try Again Later.
-          </h1>
-        ) : (
-          false
-        )}
         <div className="flex-row flex-wrap">
-          {finalSortedData(state).map((item) => {
-            return (
-              <ProductsCard
-                key={item.id}
-                id={item.id}
-                category={item.category}
-                brand={item.brand}
-                title={item.title}
-                price={item.price}
-                rating={item.rating}
-                totalRating={item.totalRating}
-                src={item.src}
-                onAddCartClick={onAddCartClickHandler}
-                onAddWishlist={onAddWishlistHandler}
-                newestArrival={item.newestArrival}
-                inStock={item.inStock}
-              />
-            );
-          })}
+          {finalFilteredData(state).length === 0 ? (
+            <h1 className="noProductError">
+              No Products Found For The Selected Options, Try Again.
+            </h1>
+          ) : (
+            finalFilteredData(state).map((item) => {
+              return (
+                <ProductsCard
+                  item={item}
+                  key={item.id}
+                  onAddCartClick={onAddCartClickHandler}
+                  onAddWishlist={onAddWishlistHandler}
+                />
+              );
+            })
+          )}
         </div>
       </section>
     </>

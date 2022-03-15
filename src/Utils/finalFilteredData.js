@@ -4,17 +4,7 @@ import { filterByStock } from "./filterByStock";
 import { filterByRating } from "./filterByRating";
 import { sortByPrice } from "./sortByPrice";
 
-// const checkAvailability = (filteredArray, dispatch) => {
-//   if (filteredArray.length === 0) {
-//     dispatch({ type: "unAvailable" });
-//     // state.unAvailable = true;
-//   } else {
-//     dispatch({ type: "available" });
-//     // state.unAvailable = false;
-//   }
-// };
-
-const finalFilteredData = (state, dispatch) => {
+const finalFilteredData = (state) => {
   let filteredArray = [...state.products];
 
   filteredArray = filterByStock(filteredArray, state);
