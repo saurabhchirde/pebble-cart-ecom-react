@@ -36,7 +36,7 @@ const ProductsSection = () => {
               return (
                 <ProductsCard
                   item={item}
-                  key={item.id}
+                  key={item._id}
                   onAddCartClick={onAddCartClickHandler}
                   onAddWishlist={onAddWishlistHandler}
                 />

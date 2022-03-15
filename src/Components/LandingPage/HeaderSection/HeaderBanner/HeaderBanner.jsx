@@ -15,7 +15,7 @@ const HeaderBanner = (props) => {
         </div>
         <img
           src={props.imgSrc}
-          alt="image"
+          alt="camera"
           loading="lazy"
           className="img-responsive"
         />

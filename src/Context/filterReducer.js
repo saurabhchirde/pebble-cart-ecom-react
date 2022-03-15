@@ -1,4 +1,4 @@
-import { allProductList } from "../Data/productList/allProductList";
+import { products } from "../backend/db/products";
 
 const filterReducer = (state, action) => {
   switch (action.type) {
@@ -185,7 +185,7 @@ const filterReducer = (state, action) => {
 
     case "Clear":
       return {
-        products: allProductList,
+        products: products,
         sort: "Newest",
         bySort: { newest: true, lowTohHigh: false, highToLow: false },
         byStock: false,

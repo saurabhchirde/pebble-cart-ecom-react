@@ -7,6 +7,11 @@ import { ModalProvider } from "./Context/ModalContext";
 import { PageProvider } from "./Context/PageContext";
 import { CartProvider } from "./Context/CartContext";
 import { WishlistProvider } from "./Context/WishlistContext";
+import { makeServer } from "./server";
+import Mockman from "mockman-js";
+
+// Call make Server
+makeServer();
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,6 +20,7 @@ ReactDOM.render(
         <CartProvider>
           <WishlistProvider>
             <App />
+            {/* <Mockman /> */}
           </WishlistProvider>
         </CartProvider>
       </PageProvider>

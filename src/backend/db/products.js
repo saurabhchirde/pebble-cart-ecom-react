@@ -1,4 +1,4 @@
-import uuid from "react-uuid";
+import { v4 as uuid } from "uuid";
 import {
   lens85mm,
   actionCamera,
@@ -8,11 +8,15 @@ import {
   polaroidCamera,
   sonyAlphaCamera,
   sonySmallCamera,
-} from "../Img/Products/ProductImages";
+} from "../../Data/Img/Products/ProductImages";
 
-const allProductList = [
+/*
+  Product Database 
+*/
+
+const products = [
   {
-    id: uuid(),
+    _id: uuid(),
     category: "camera",
     brand: "sony",
     title: "Sony DSC W830 Cyber-Shot 20.1 MP Point & Shoot Camera",
@@ -25,7 +29,7 @@ const allProductList = [
     newestArrival: true,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "camera",
     brand: "canon",
     title: "Canon EOS 6D DSLR Camera (Kit 24 - 105)  (Black)",
@@ -38,7 +42,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "lens",
     brand: "sony",
     title: "Canon EF 85mm f1.2L II USM Lens for Canon DSLR Cameras",
@@ -51,7 +55,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "lens",
     brand: "papa",
     title: "LUZWE 3in1 Lens Kit for all Smartphone, iOS Devices & Tablets",
@@ -64,7 +68,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "camera",
     brand: "polaroid",
     title: "Polaroid Originals Now I-Type Instant Camera - (9030)",
@@ -77,7 +81,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "camera",
     brand: "sony",
     title: "Sony Alpha ILCE-7RM3A Full-Frame 42.4MP Mirrorless Camera Body",
@@ -90,7 +94,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "camera",
     brand: "canon",
     title: "Canon EOS 1500D 24.1 Digital SLR Camera EF S18-55 is II Lens",
@@ -103,7 +107,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "camera",
     brand: "gopro",
     title: "GoPro HERO10 Black - Front LCD and Touch Rear Screens,23MP.",
@@ -116,7 +120,7 @@ const allProductList = [
     newestArrival: true,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "camera",
     brand: "sony",
     title: "Sony DSC W830 Cyber-Shot 20.1 MP Point & Shoot Camera",
@@ -129,7 +133,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "camera",
     brand: "canon",
     title: "Canon EOS 6D DSLR Camera (Kit 24 - 105)  (Black)",
@@ -142,7 +146,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "lens",
     brand: "sony",
     title: "Canon EF 85mm f1.2L II USM Lens for Canon DSLR Cameras",
@@ -155,7 +159,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "lens",
     brand: "papa",
     title: "LUZWE 3in1 Lens Kit for all Smartphone, iOS Devices & Tablets",
@@ -168,7 +172,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "camera",
     brand: "polaroid",
     title: "Polaroid Originals Now I-Type Instant Camera - (9030)",
@@ -181,7 +185,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "camera",
     brand: "sony",
     title: "Sony Alpha ILCE-7RM3A Full-Frame 42.4MP Mirrorless Camera Body",
@@ -194,7 +198,7 @@ const allProductList = [
     newestArrival: true,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "camera",
     brand: "canon",
     title: "Canon EOS 1500D 24.1 Digital SLR Camera EF S18-55 is II Lens",
@@ -207,7 +211,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "camera",
     brand: "gopro",
     title: "GoPro HERO10 Black - Front LCD and Touch Rear Screens,23MP.",
@@ -220,7 +224,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "camera",
     brand: "sony",
     title: "Sony DSC W830 Cyber-Shot 20.1 MP Point & Shoot Camera",
@@ -233,7 +237,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "camera",
     brand: "canon",
     title: "Canon EOS 6D DSLR Camera (Kit 24 - 105)  (Black)",
@@ -246,7 +250,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "lens",
     brand: "sony",
     title: "Canon EF 85mm f1.2L II USM Lens for Canon DSLR Cameras",
@@ -259,7 +263,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "lens",
     brand: "papa",
     title: "LUZWE 3in1 Lens Kit for all Smartphone, iOS Devices & Tablets",
@@ -272,7 +276,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "camera",
     brand: "polaroid",
     title: "Polaroid Originals Now I-Type Instant Camera - (9030)",
@@ -285,7 +289,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "camera",
     brand: "sony",
     title: "Sony Alpha ILCE-7RM3A Full-Frame 42.4MP Mirrorless Camera Body",
@@ -298,7 +302,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "camera",
     brand: "canon",
     title: "Canon EOS 1500D 24.1 Digital SLR Camera EF S18-55 is II Lens",
@@ -311,7 +315,7 @@ const allProductList = [
     newestArrival: true,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "camera",
     brand: "gopro",
     title: "GoPro HERO10 Black - Front LCD and Touch Rear Screens,23MP.",
@@ -324,7 +328,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "camera",
     brand: "sony",
     title: "Sony DSC W830 Cyber-Shot 20.1 MP Point & Shoot Camera",
@@ -337,7 +341,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "camera",
     brand: "canon",
     title: "Canon EOS 6D DSLR Camera (Kit 24 - 105)  (Black)",
@@ -350,7 +354,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "lens",
     brand: "sony",
     title: "Canon EF 85mm f1.2L II USM Lens for Canon DSLR Cameras",
@@ -363,7 +367,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "lens",
     brand: "papa",
     title: "LUZWE 3in1 Lens Kit for all Smartphone, iOS Devices & Tablets",
@@ -376,7 +380,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "camera",
     brand: "polaroid",
     title: "Polaroid Originals Now I-Type Instant Camera - (9030)",
@@ -389,7 +393,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "camera",
     brand: "sony",
     title: "Sony Alpha ILCE-7RM3A Full-Frame 42.4MP Mirrorless Camera Body",
@@ -402,7 +406,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "camera",
     brand: "canon",
     title: "Canon EOS 1500D 24.1 Digital SLR Camera EF S18-55 is II Lens",
@@ -415,7 +419,7 @@ const allProductList = [
     newestArrival: false,
   },
   {
-    id: uuid(),
+    _id: uuid(),
     category: "camera",
     brand: "gopro",
     title: "GoPro HERO10 Black - Front LCD and Touch Rear Screens,23MP.",
@@ -429,4 +433,4 @@ const allProductList = [
   },
 ];
 
-export { allProductList };
+export { products };
