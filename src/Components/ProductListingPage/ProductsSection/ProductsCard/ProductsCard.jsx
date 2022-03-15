@@ -20,7 +20,7 @@ const ProductsCard = ({ item }) => {
           false
         )}
         <div className="card-img-container">
-          <img src={src} alt="product-image" loading="lazy" />
+          <img src={src} alt="product" loading="lazy" />
         </div>
         <div className="card-body">
           <div className="card-text">

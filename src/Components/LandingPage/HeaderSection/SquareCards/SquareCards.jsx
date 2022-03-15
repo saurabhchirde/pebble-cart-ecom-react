@@ -4,7 +4,7 @@ const SquareCards = (props) => {
       <a onClick={props.onClick}>
         <div className="card-vertical-info card-dark">
           <div className="card-img-container">
-            <img src={props.imgSrc} alt="product-image" />
+            <img src={props.imgSrc} alt="icon" />
           </div>
           <div className="card-text">
             <h1>{props.title}</h1>
