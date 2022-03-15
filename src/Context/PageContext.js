@@ -37,6 +37,8 @@ const reducer = (state, action) => {
         cartPage: false,
         wishlistPage: true,
       };
+    default:
+      return state;
   }
 };
 
