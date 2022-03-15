@@ -21,7 +21,7 @@ const allProductList = [
     totalRating: 13,
     wishlist: false,
     src: sonySmallCamera,
-    inStock: true,
+    inStock: 20,
     newestArrival: true,
   },
   {
@@ -34,7 +34,7 @@ const allProductList = [
     totalRating: 40,
     wishlist: false,
     src: canon6dCamera,
-    inStock: true,
+    inStock: 13,
     newestArrival: false,
   },
   {
@@ -47,7 +47,7 @@ const allProductList = [
     totalRating: 13,
     wishlist: false,
     src: lens85mm,
-    inStock: true,
+    inStock: 3,
     newestArrival: false,
   },
   {
@@ -60,7 +60,7 @@ const allProductList = [
     totalRating: 25,
     wishlist: false,
     src: lensForMobile,
-    inStock: false,
+    inStock: 0,
     newestArrival: false,
   },
   {
@@ -73,7 +73,7 @@ const allProductList = [
     totalRating: 14,
     wishlist: false,
     src: polaroidCamera,
-    inStock: true,
+    inStock: 4,
     newestArrival: false,
   },
   {
@@ -86,7 +86,7 @@ const allProductList = [
     totalRating: 34,
     wishlist: false,
     src: sonyAlphaCamera,
-    inStock: true,
+    inStock: 12,
     newestArrival: false,
   },
   {
@@ -99,7 +99,7 @@ const allProductList = [
     totalRating: 30,
     wishlist: false,
     src: cameraCanon,
-    inStock: false,
+    inStock: 0,
     newestArrival: false,
   },
   {
@@ -112,7 +112,7 @@ const allProductList = [
     totalRating: 103,
     wishlist: false,
     src: actionCamera,
-    inStock: true,
+    inStock: 10,
     newestArrival: true,
   },
   {
@@ -125,7 +125,7 @@ const allProductList = [
     totalRating: 13,
     wishlist: false,
     src: sonySmallCamera,
-    inStock: false,
+    inStock: 0,
     newestArrival: false,
   },
   {
@@ -138,7 +138,7 @@ const allProductList = [
     totalRating: 40,
     wishlist: false,
     src: canon6dCamera,
-    inStock: true,
+    inStock: 6,
     newestArrival: false,
   },
   {
@@ -151,7 +151,7 @@ const allProductList = [
     totalRating: 13,
     wishlist: false,
     src: lens85mm,
-    inStock: true,
+    inStock: 7,
     newestArrival: false,
   },
   {
@@ -164,7 +164,7 @@ const allProductList = [
     totalRating: 25,
     wishlist: false,
     src: lensForMobile,
-    inStock: true,
+    inStock: 6,
     newestArrival: false,
   },
   {
@@ -177,7 +177,7 @@ const allProductList = [
     totalRating: 14,
     wishlist: false,
     src: polaroidCamera,
-    inStock: true,
+    inStock: 3,
     newestArrival: false,
   },
   {
@@ -190,7 +190,7 @@ const allProductList = [
     totalRating: 34,
     wishlist: false,
     src: sonyAlphaCamera,
-    inStock: true,
+    inStock: 4,
     newestArrival: true,
   },
   {
@@ -203,7 +203,7 @@ const allProductList = [
     totalRating: 30,
     wishlist: false,
     src: cameraCanon,
-    inStock: true,
+    inStock: 5,
     newestArrival: false,
   },
   {
@@ -216,7 +216,7 @@ const allProductList = [
     totalRating: 103,
     wishlist: false,
     src: actionCamera,
-    inStock: true,
+    inStock: 8,
     newestArrival: false,
   },
   {
@@ -229,7 +229,7 @@ const allProductList = [
     totalRating: 13,
     wishlist: false,
     src: sonySmallCamera,
-    inStock: true,
+    inStock: 8,
     newestArrival: false,
   },
   {
@@ -242,7 +242,7 @@ const allProductList = [
     totalRating: 40,
     wishlist: false,
     src: canon6dCamera,
-    inStock: true,
+    inStock: 8,
     newestArrival: false,
   },
   {
@@ -255,7 +255,7 @@ const allProductList = [
     totalRating: 13,
     wishlist: false,
     src: lens85mm,
-    inStock: true,
+    inStock: 0,
     newestArrival: false,
   },
   {
@@ -268,7 +268,7 @@ const allProductList = [
     totalRating: 25,
     wishlist: false,
     src: lensForMobile,
-    inStock: false,
+    inStock: 0,
     newestArrival: false,
   },
   {
@@ -281,7 +281,7 @@ const allProductList = [
     totalRating: 14,
     wishlist: false,
     src: polaroidCamera,
-    inStock: true,
+    inStock: 7,
     newestArrival: false,
   },
   {
@@ -294,7 +294,7 @@ const allProductList = [
     totalRating: 34,
     wishlist: false,
     src: sonyAlphaCamera,
-    inStock: true,
+    inStock: 7,
     newestArrival: false,
   },
   {
@@ -307,7 +307,7 @@ const allProductList = [
     totalRating: 30,
     wishlist: false,
     src: cameraCanon,
-    inStock: true,
+    inStock: 7,
     newestArrival: true,
   },
   {
@@ -320,7 +320,7 @@ const allProductList = [
     totalRating: 103,
     wishlist: false,
     src: actionCamera,
-    inStock: true,
+    inStock: 20,
     newestArrival: false,
   },
   {
@@ -333,7 +333,7 @@ const allProductList = [
     totalRating: 13,
     wishlist: false,
     src: sonySmallCamera,
-    inStock: true,
+    inStock: 20,
     newestArrival: false,
   },
   {
@@ -346,7 +346,7 @@ const allProductList = [
     totalRating: 40,
     wishlist: false,
     src: canon6dCamera,
-    inStock: true,
+    inStock: 20,
     newestArrival: false,
   },
   {
@@ -359,7 +359,7 @@ const allProductList = [
     totalRating: 13,
     wishlist: false,
     src: lens85mm,
-    inStock: true,
+    inStock: 10,
     newestArrival: false,
   },
   {
@@ -372,7 +372,7 @@ const allProductList = [
     totalRating: 25,
     wishlist: false,
     src: lensForMobile,
-    inStock: true,
+    inStock: 10,
     newestArrival: false,
   },
   {
@@ -385,7 +385,7 @@ const allProductList = [
     totalRating: 14,
     wishlist: false,
     src: polaroidCamera,
-    inStock: true,
+    inStock: 5,
     newestArrival: false,
   },
   {
@@ -398,7 +398,7 @@ const allProductList = [
     totalRating: 34,
     wishlist: false,
     src: sonyAlphaCamera,
-    inStock: true,
+    inStock: 6,
     newestArrival: false,
   },
   {
@@ -411,7 +411,7 @@ const allProductList = [
     totalRating: 30,
     wishlist: false,
     src: cameraCanon,
-    inStock: true,
+    inStock: 7,
     newestArrival: false,
   },
   {
@@ -424,7 +424,7 @@ const allProductList = [
     totalRating: 103,
     wishlist: false,
     src: actionCamera,
-    inStock: true,
+    inStock: 5,
     newestArrival: true,
   },
 ];

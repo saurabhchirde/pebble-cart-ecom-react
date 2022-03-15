@@ -1,6 +1,6 @@
-const sortByPrice = (sortedArray, state) => {
-  let withoutSort = [...sortedArray];
-  let filteredArray = [];
+const sortByPrice = (filteredArray, state) => {
+  let withoutSort = [...filteredArray];
+  let tempArray = [];
 
   // sort by price
   if (
@@ -12,24 +12,24 @@ const sortByPrice = (sortedArray, state) => {
   }
 
   if (state.bySort.newest) {
-    filteredArray = withoutSort.sort((a, b) =>
+    tempArray = withoutSort.sort((a, b) =>
       a.newestArrival === b.newestArrival ? 0 : a.newestArrival ? -1 : 1
     );
   }
   if (state.bySort.lowTohHigh) {
-    filteredArray = withoutSort.sort((a, b) => a.price - b.price);
+    tempArray = withoutSort.sort((a, b) => a.price - b.price);
   }
 
   if (state.bySort.highToLow) {
-    filteredArray = withoutSort.sort((a, b) => b.price - a.price);
+    tempArray = withoutSort.sort((a, b) => b.price - a.price);
   }
 
   // clear all filters
   if (state.sort === "Clear" || state.sort === "AllCategory") {
-    filteredArray = [...sortedArray];
+    tempArray = [...filteredArray];
   }
 
-  return filteredArray;
+  return tempArray;
 };
 
 export { sortByPrice };
