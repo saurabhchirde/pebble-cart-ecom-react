@@ -1,16 +1,18 @@
-const ProductsCard = (props) => {
+const ProductsCard = ({ item }) => {
+  const { title, price, rating, totalRating, src, newestArrival, inStock } =
+    item;
   const addCartClick = () => {
-    props.onAddCartClick(props);
+    item.onAddCartClick(item);
   };
 
   const addWishlistClick = () => {
-    props.onAddWishlist(props);
+    item.onAddWishlist(item);
   };
 
   return (
     <>
       <div className="card-vertical card-dark">
-        {props.newestArrival ? (
+        {newestArrival ? (
           <div className="badge-on-card top-left">
             <h2>New Arrival</h2>
           </div>
@@ -18,20 +20,20 @@ const ProductsCard = (props) => {
           false
         )}
         <div className="card-img-container">
-          <img src={props.src} alt="product-image" loading="lazy" />
+          <img src={src} alt="product-image" loading="lazy" />
         </div>
         <div className="card-body">
           <div className="card-text">
-            <h1 className="card-title">{props.title}</h1>
+            <h1 className="card-title">{title}</h1>
             <div className="card-price-rating">
-              <h2 className="card-price">Rs. {props.price}/-</h2>
+              <h2 className="card-price">Rs. {price}/-</h2>
               <div className="rating-badge">
-                <span className="rating-badge-number">{props.rating}</span>
+                <span className="rating-badge-number">{rating}</span>
                 <span className="rating-badge-star">
                   <i className="fas fa-star"></i>
                 </span>
                 <span className="rating-badge-number">|</span>
-                <span className="rating-badge-number">{props.totalRating}</span>
+                <span className="rating-badge-number">{totalRating}</span>
               </div>
             </div>
           </div>
@@ -57,7 +59,7 @@ const ProductsCard = (props) => {
             </div>
           </div>
         </div>
-        {!props.inStock ? (
+        {!inStock ? (
           <div className="overlay-area-type-1">
             <h1 className="card-title">SOLD OUT</h1>
           </div>
