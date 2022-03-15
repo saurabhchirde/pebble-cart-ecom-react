@@ -42,4 +42,5 @@ const filterByCategory = (filteredArray, state) => {
 
   return tempArray;
 };
+
 export { filterByCategory };

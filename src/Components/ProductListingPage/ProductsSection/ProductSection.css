@@ -1,0 +1,6 @@
+.noProductError {
+  margin: 1rem;
+  color: var(--text-lighter);
+  font-size: 1.2rem;
+  font-weight: 500;
+}

@@ -204,7 +204,6 @@ const filterReducer = (state, action) => {
           accessories: false,
         },
         byBrand: { allBrand: true, canon: false, nikon: false, sony: false },
-        unAvailable: false,
       };
 
     default:
