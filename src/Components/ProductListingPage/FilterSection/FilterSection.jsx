@@ -2,9 +2,14 @@ import { useFilter } from "../../../Context/FilterContext";
 import Button from "../../UI/Button/Button";
 import IconButton from "../../UI/Button/IconButton";
 import SortSection from "./SortSection/SortSection";
+import BrandSection from "./BrandSection/BrandSection";
+import CategorySection from "./CategorySection/CategorySection";
+import IncludeOutOfStock from "./IncludeOutOfStock/IncludeOutOfStock";
+import RatingSection from "./RatingSection/RatingSection";
 
 const FilterSection = () => {
-  const { state, dispatch } = useFilter();
+  const { dispatch } = useFilter();
+
   return (
     <>
       <button
@@ -32,7 +37,11 @@ const FilterSection = () => {
             label="Clear"
           />
         </div>
+        <CategorySection />
+        <BrandSection />
+        <RatingSection />
         <SortSection />
+        <IncludeOutOfStock />
       </form>
     </>
   );
