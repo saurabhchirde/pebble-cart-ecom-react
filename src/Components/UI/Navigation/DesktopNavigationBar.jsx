@@ -5,6 +5,7 @@ import NavbarLoginButton from "./NavbarLoginButton/NavbarLoginButton";
 import NavbarAvatar from "./Avatar/NavbarAvatar";
 import { useCart } from "../../../Context/CartContext";
 import { useWishlist } from "../../../Context/WishlistContext";
+import { Link } from "react-router-dom";
 
 const DesktopNavigationBar = () => {
   const { cart } = useCart();
@@ -28,14 +29,16 @@ const DesktopNavigationBar = () => {
 
         <div className="nav-bar-btns">
           <NavbarLoginButton />
-          <BadgeIconButton
-            btnWrapper="badge-container"
-            btnClassName="btn badge-icon-btn-lg"
-            icon="far fa-heart"
-            badgeClassName="badge-on-icon"
-            badgeValue={wishlist.length}
-            onClick={() => {}}
-          />
+          <Link to="wishlist">
+            <BadgeIconButton
+              btnWrapper="badge-container"
+              btnClassName="btn badge-icon-btn-lg"
+              icon="far fa-heart"
+              badgeClassName="badge-on-icon"
+              badgeValue={wishlist.length}
+            />
+          </Link>
+          <Link to="cart">
           <BadgeIconButton
             btnWrapper="badge-container"
             btnClassName="btn badge-icon-btn-lg"
@@ -43,8 +46,7 @@ const DesktopNavigationBar = () => {
             badgeClassName="badge-on-icon"
             badgeValue={cart.length}
             label="Cart"
-            onClick={() => {}}
-          />
+          /></Link>
           <NavbarAvatar
             avatarWrapper="badge-container"
             avatarClassName="avatar text-avatar-xsm-round"
