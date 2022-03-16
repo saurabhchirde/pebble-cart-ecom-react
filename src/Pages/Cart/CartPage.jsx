@@ -1,7 +1,7 @@
 import "./CartPage.css";
 
 const CartPage = () => {
-  return <p>Cart</p>;
+  return <p className="text-white">Cart</p>;
 };
 
 export default CartPage;

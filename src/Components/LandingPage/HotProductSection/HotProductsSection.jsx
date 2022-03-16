@@ -1,4 +1,3 @@
-import { usePageProvider } from "../../../Context/PageContext";
 import {
   actionCamera,
   polaroidCamera,
@@ -7,33 +6,14 @@ import {
 import HotProductCard from "./HotProductCards/HotProductCard";
 
 const HotProductsSection = () => {
-  const { dispatch } = usePageProvider();
   return (
     <>
       <div className="hot-new-products pd-2-tb">
         <h1>Hot New Products</h1>
         <div className="flex-row-center">
-          <HotProductCard
-            title="Mirrorless Cameras"
-            imgSrc={sonyAlphaCamera}
-            onClick={() => {
-              dispatch({ type: "productListingPage" });
-            }}
-          />
-          <HotProductCard
-            title="Action Cameras"
-            imgSrc={actionCamera}
-            onClick={() => {
-              dispatch({ type: "productListingPage" });
-            }}
-          />
-          <HotProductCard
-            title="Polaroid Cameras"
-            imgSrc={polaroidCamera}
-            onClick={() => {
-              dispatch({ type: "productListingPage" });
-            }}
-          />
+          <HotProductCard title="Mirrorless Cameras" imgSrc={sonyAlphaCamera} />
+          <HotProductCard title="Action Cameras" imgSrc={actionCamera} />
+          <HotProductCard title="Polaroid Cameras" imgSrc={polaroidCamera} />
         </div>
       </div>
     </>

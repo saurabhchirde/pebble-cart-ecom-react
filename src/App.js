@@ -9,11 +9,14 @@ import "./App.css";
 import Footer from "./Components/UI/Footer/Footer";
 import BodyWrapper from "./Components/UI/Wrapper/BodyWrapper";
 import ProductListingPage from "./Pages/ProductListing/ProductListingPage";
-import { usePageProvider } from "./Context/PageContext";
+import WishlistPage from "./Pages/Wishlist/WishlistPage";
+import CartPage from "./Pages/Cart/CartPage";
+import CheckoutPage from "./Pages/Checkout/CheckoutPage";
+
+import { Routes, Route } from "react-router-dom";
 
 const App = () => {
   const { showLoginModal, showSignupModal } = useModal();
-  const { state } = usePageProvider();
 
   return (
     <>
@@ -23,8 +26,13 @@ const App = () => {
       <MobileNavigationBar />
       <MobileNavigationBarBottom />
       <BodyWrapper>
-        {state.landingPage ? <LandingPage /> : false}
-        {state.productListingPage ? <ProductListingPage /> : false}
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="products" element={<ProductListingPage />} />
+          <Route path="wishlist" element={<WishlistPage />} />
+          <Route path="cart" element={<CartPage />} />
+          <Route path="checkout" element={<CheckoutPage />} />
+        </Routes>
       </BodyWrapper>
       <Footer />
     </>

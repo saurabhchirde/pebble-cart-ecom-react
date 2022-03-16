@@ -7,11 +7,8 @@ import {
   accessoriesIcon,
   sonyAlphaCamera,
 } from "../../../Data/Img/Products/ProductImages";
-import { usePageProvider } from "../../../Context/PageContext";
 
 const HeaderSection = () => {
-  const { dispatch } = usePageProvider();
-
   return (
     <>
       <div className="hero-section">
@@ -23,34 +20,10 @@ const HeaderSection = () => {
           btnLabel="Shop Now"
         />
         <div className="hero-categories flex-row-center pd-2-tb">
-          <SquareCards
-            title="Cameras"
-            imgSrc={cameraIcon}
-            onClick={() => {
-              dispatch({ type: "productListingPage" });
-            }}
-          />
-          <SquareCards
-            title="Lenses"
-            imgSrc={lensIcon}
-            onClick={() => {
-              dispatch({ type: "productListingPage" });
-            }}
-          />
-          <SquareCards
-            title="Tripods"
-            imgSrc={tripodIcon}
-            onClick={() => {
-              dispatch({ type: "productListingPage" });
-            }}
-          />
-          <SquareCards
-            title="Accessories"
-            imgSrc={accessoriesIcon}
-            onClick={() => {
-              dispatch({ type: "productListingPage" });
-            }}
-          />
+          <SquareCards title="Cameras" imgSrc={cameraIcon} />
+          <SquareCards title="Lenses" imgSrc={lensIcon} />
+          <SquareCards title="Tripods" imgSrc={tripodIcon} />
+          <SquareCards title="Accessories" imgSrc={accessoriesIcon} />
         </div>
       </div>
     </>
