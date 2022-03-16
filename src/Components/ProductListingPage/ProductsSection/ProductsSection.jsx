@@ -6,21 +6,7 @@ import { finalFilteredData } from "../../../Utils/finalFilteredData";
 import "./ProductSection.css";
 
 const ProductsSection = () => {
-  const { setCart } = useCart();
-  const { setWishlist } = useWishlist();
   const { state } = useFilter();
-
-  const onAddCartClickHandler = (item) => {
-    setCart((oldCart) => {
-      return [...oldCart, item];
-    });
-  };
-
-  const onAddWishlistHandler = (item) => {
-    setWishlist((oldWishlist) => {
-      return [...oldWishlist, item];
-    });
-  };
 
   return (
     <>
@@ -33,14 +19,7 @@ const ProductsSection = () => {
             </h1>
           ) : (
             finalFilteredData(state).map((item) => {
-              return (
-                <ProductsCard
-                  item={item}
-                  key={item._id}
-                  onAddCartClick={onAddCartClickHandler}
-                  onAddWishlist={onAddWishlistHandler}
-                />
-              );
+              return <ProductsCard item={item} key={item._id} />;
             })
           )}
         </div>
