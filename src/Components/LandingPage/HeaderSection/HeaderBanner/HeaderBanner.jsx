@@ -1,4 +1,5 @@
 import Button from "../../../UI/Button/Button";
+import { Link } from "react-router-dom";
 
 const HeaderBanner = (props) => {
   return (
@@ -7,11 +8,12 @@ const HeaderBanner = (props) => {
         <div>
           <h1>{props.title}</h1>
           <p>{props.description}</p>
-          <Button
-            label={props.btnLabel}
-            btnClassName="btn primary-text-btn-lg"
-            onClick={() => {}}
-          />
+          <Link to="products">
+            <Button
+              label={props.btnLabel}
+              btnClassName="btn primary-text-btn-lg"
+            />
+          </Link>
         </div>
         <img
           src={props.imgSrc}

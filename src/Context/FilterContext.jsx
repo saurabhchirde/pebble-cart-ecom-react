@@ -1,9 +1,9 @@
 import { createContext, useContext, useReducer } from "react";
 import { filterReducer } from "./filterReducer";
-import { products } from "../backend/db/products";
+import { useProductProvider } from "./ProductsProvider";
 
 const filterContext = createContext({
-  products: products,
+  products: [],
   sort: "",
   bySort: { newest: true, lowTohHigh: false, highToLow: false },
   byStock: false,
@@ -25,6 +25,8 @@ const filterContext = createContext({
 });
 
 const FilterProvider = ({ children }) => {
+  const { products } = useProductProvider();
+
   const [state, dispatch] = useReducer(filterReducer, {
     products: products,
     sort: "",
