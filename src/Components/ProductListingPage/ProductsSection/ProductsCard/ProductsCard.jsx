@@ -1,12 +1,22 @@
+import { useCart } from "../../../../Context/CartContext";
+import { useWishlist } from "../../../../Context/WishlistContext";
+
 const ProductsCard = ({ item }) => {
   const { title, price, rating, totalRating, src, newestArrival, inStock } =
     item;
+  const { setCart } = useCart();
+  const { setWishlist } = useWishlist();
+
   const addCartClick = () => {
-    item.onAddCartClick(item);
+    setCart((oldCart) => {
+      return [...oldCart, item];
+    });
   };
 
   const addWishlistClick = () => {
-    item.onAddWishlist(item);
+    setWishlist((oldCart) => {
+      return [...oldCart, item];
+    });
   };
 
   return (

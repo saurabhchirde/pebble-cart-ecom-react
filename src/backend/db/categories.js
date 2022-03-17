@@ -17,7 +17,7 @@ export const categories = [
   },
   {
     _id: uuid(),
-    categoryName: "tripod",
+    categoryName: "tripods",
     description: "Triposd for camera and mobile photography",
   },
   {

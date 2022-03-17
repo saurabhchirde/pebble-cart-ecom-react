@@ -3,8 +3,8 @@ import { useFilter } from "../../../../Context/FilterContext";
 import InputTypeTwo from "../../../UI/Input/InputTypeTwo";
 
 const BrandSection = () => {
-  const { state, dispatch } = useFilter();
-  const { allBrand, canon, nikon, sony } = state.byBrand;
+  const { filterState, filterDispatch } = useFilter();
+  const { allBrand, canon, nikon, sony } = filterState.byBrand;
 
   return (
     <div className="brand">
@@ -14,20 +14,10 @@ const BrandSection = () => {
           inputWrapper="checkbox-input"
           type="checkbox"
           name="check"
-          checked={allBrand}
-          label="All"
-          onChange={() => {
-            dispatch({ type: "AllBrand", payload: "AllBrand" });
-          }}
-        />
-        <InputTypeTwo
-          inputWrapper="checkbox-input"
-          type="checkbox"
-          name="check"
           checked={canon}
           label="Canon"
           onChange={() => {
-            dispatch({ type: "Canon", payload: "Canon" });
+            filterDispatch({ type: "Canon", payload: "Canon" });
           }}
         />
         <InputTypeTwo
@@ -37,7 +27,7 @@ const BrandSection = () => {
           checked={nikon}
           label="Nikon"
           onChange={() => {
-            dispatch({ type: "Nikon", payload: "Nikon" });
+            filterDispatch({ type: "Nikon", payload: "Nikon" });
           }}
         />
         <InputTypeTwo
@@ -47,7 +37,7 @@ const BrandSection = () => {
           checked={sony}
           label="Sony"
           onChange={() => {
-            dispatch({ type: "Sony", payload: "Sony" });
+            filterDispatch({ type: "Sony", payload: "Sony" });
           }}
         />
       </div>

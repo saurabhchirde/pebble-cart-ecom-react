@@ -2,26 +2,26 @@ import { useCart } from "../../../Context/CartContext";
 import BadgeIconButton from "../Button/BadgeIconButton";
 import IconButton from "../Button/IconButton";
 import "./MobileNavigationBarBottom.css";
+import { Link } from "react-router-dom";
 
 const MobileNavigationBarBottom = () => {
   const { cart } = useCart();
   return (
     <>
       <nav className="mobile-navigation-bar-bottom dark-nav-bar">
-        <a>
+      <Link to="wishlist">
           <BadgeIconButton
             btnWrapper="badge-container"
             btnClassName="btn badge-icon-btn-lg"
             icon="far fa-heart"
             badgeClassName="badge-on-icon"
             badgeValue="3"
-            onClick={() => {}}
-          />
-        </a>
-        <a href="./index.html">
+            
+          /></Link>
+        <Link to="/">
           <IconButton btnClassName="btn icon-btn-lg" icon="fas fa-house-user" />
-        </a>
-        <a href="./cart.html">
+        </Link>
+        <Link to="cart">
           <BadgeIconButton
             btnWrapper="badge-container"
             btnClassName="btn badge-icon-btn-lg"
@@ -30,7 +30,7 @@ const MobileNavigationBarBottom = () => {
             badgeValue={cart.length}
             onClick={() => {}}
           />
-        </a>
+       </Link>
       </nav>
     </>
   );

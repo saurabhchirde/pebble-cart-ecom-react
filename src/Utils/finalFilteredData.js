@@ -4,8 +4,8 @@ import { filterByStock } from "./filterByStock";
 import { filterByRating } from "./filterByRating";
 import { sortByPrice } from "./sortByPrice";
 
-const finalFilteredData = (state) => {
-  let filteredArray = [...state.products];
+const finalFilteredData = (products, state) => {
+  let filteredArray = [...products];
 
   filteredArray = filterByStock(filteredArray, state);
   filteredArray = filterByCategory(filteredArray, state);
