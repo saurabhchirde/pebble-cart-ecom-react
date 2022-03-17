@@ -12,7 +12,7 @@ import ProductListingPage from "./Pages/ProductListing/ProductListingPage";
 import WishlistPage from "./Pages/Wishlist/WishlistPage";
 import CartPage from "./Pages/Cart/CartPage";
 import CheckoutPage from "./Pages/Checkout/CheckoutPage";
-
+import Mockman from "mockman-js";
 import { Routes, Route } from "react-router-dom";
 
 const App = () => {
@@ -32,6 +32,7 @@ const App = () => {
           <Route path="wishlist" element={<WishlistPage />} />
           <Route path="cart" element={<CartPage />} />
           <Route path="checkout" element={<CheckoutPage />} />
+          <Route path="mockman" element={<Mockman />} />
         </Routes>
       </BodyWrapper>
       <Footer />

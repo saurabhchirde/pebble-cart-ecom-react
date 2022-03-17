@@ -3,14 +3,17 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 const productContext = createContext([]);
 
-const ProductProvider = ({ children }) => {
-  const [products, setProducts] = useState([]);
+const ProductsProvider = ({ children }) => {
+  const [products, setProducts] = useState(
+    JSON.parse(sessionStorage.getItem("productList")) ?? []
+  );
 
   useEffect(() => {
     const getproducts = async () => {
       try {
         const response = await axios.get("/api/products");
         setProducts(response.data.products);
+        sessionStorage.setItem("productList", JSON.stringify(products));
       } catch (error) {
         console.log(error);
       }
@@ -27,4 +30,4 @@ const ProductProvider = ({ children }) => {
 
 const useProductProvider = () => useContext(productContext);
 
-export { ProductProvider, useProductProvider };
+export { ProductsProvider, useProductProvider };
