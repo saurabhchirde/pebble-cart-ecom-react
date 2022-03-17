@@ -2,6 +2,7 @@ import FilterSection from "../../Components/ProductListingPage/FilterSection/Fil
 import ProductsSection from "../../Components/ProductListingPage/ProductsSection/ProductsSection";
 import { FilterProvider } from "../../Context/FilterContext";
 import "./ProductListingPage.css";
+import FloatingButton from "../../Components/UI/Button/FloatingButton";
 
 const ProductListingPage = () => {
   return (
@@ -11,6 +12,7 @@ const ProductListingPage = () => {
           <FilterSection />
           <ProductsSection />
         </div>
+        <FloatingButton href="#" icon="fas fa-arrow-up" />
       </FilterProvider>
     </>
   );
