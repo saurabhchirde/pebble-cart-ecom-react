@@ -1,9 +1,15 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const wishlistContext = createContext([]);
 
 const WishlistProvider = ({ children }) => {
-  const [wishlist, setWishlist] = useState([]);
+  const [wishlist, setWishlist] = useState(
+    JSON.parse(sessionStorage.getItem("wishlist")) ?? []
+  );
+
+  useEffect(() => {
+    sessionStorage.setItem("wishlist", JSON.stringify(wishlist));
+  }, [wishlist]);
 
   return (
     <wishlistContext.Provider value={{ wishlist, setWishlist }}>
