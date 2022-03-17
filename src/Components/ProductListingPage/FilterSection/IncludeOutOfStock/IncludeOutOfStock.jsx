@@ -3,8 +3,8 @@ import { useFilter } from "../../../../Context/FilterContext";
 import InputTypeTwo from "../../../UI/Input/InputTypeTwo";
 
 const IncludeOutOfStock = () => {
-  const { state, dispatch } = useFilter();
-  const { byStock } = state;
+  const { filterState, filterDispatch } = useFilter();
+  const { byStock } = filterState;
 
   return (
     <div className="sort">
@@ -16,7 +16,10 @@ const IncludeOutOfStock = () => {
         name="sort"
         label="Include Out of Stock?"
         onChange={() => {
-          dispatch({ type: "IncludeOutOfStock", payload: "IncludeOutOfStock" });
+          filterDispatch({
+            type: "IncludeOutOfStock",
+            payload: "IncludeOutOfStock",
+          });
         }}
       />
     </div>

@@ -7,22 +7,22 @@ import { v4 as uuid } from "uuid";
 export const brands = [
   {
     _id: uuid(),
-    categoryName: "canon",
+    brandName: "canon",
     description: "All products of Canon.",
   },
   {
     _id: uuid(),
-    categoryName: "nikon",
+    brandName: "nikon",
     description: "All products of Nikon.",
   },
   {
     _id: uuid(),
-    categoryName: "sony",
+    brandName: "sony",
     description: "All products of Sony.",
   },
   {
     _id: uuid(),
-    categoryName: "other",
+    brandName: "other",
     description: "All other brand products.",
   },
 ];
