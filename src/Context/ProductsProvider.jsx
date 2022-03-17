@@ -20,6 +20,9 @@ const productsReducer = (productState, action) => {
         ...productState,
         brands: action.payload,
       };
+
+    default:
+      return productState;
   }
 };
 
@@ -47,7 +50,7 @@ const ProductsProvider = ({ children }) => {
       }
     };
     getproducts();
-  }, []);
+  }, [productState]);
 
   useEffect(() => {
     const getcategory = async () => {
@@ -66,7 +69,7 @@ const ProductsProvider = ({ children }) => {
       }
     };
     getcategory();
-  }, []);
+  }, [productState]);
 
   useEffect(() => {
     const getbrands = async () => {
@@ -79,7 +82,7 @@ const ProductsProvider = ({ children }) => {
       }
     };
     getbrands();
-  }, []);
+  }, [productState]);
 
   return (
     <productContext.Provider value={{ productState, productDispatch }}>
