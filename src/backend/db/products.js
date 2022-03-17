@@ -44,7 +44,7 @@ const products = [
   {
     _id: uuid(),
     category: "lens",
-    brand: "sony",
+    brand: "canon",
     title: "Canon EF 85mm f1.2L II USM Lens for Canon DSLR Cameras",
     price: 85100,
     rating: 4.2,
@@ -148,7 +148,7 @@ const products = [
   {
     _id: uuid(),
     category: "lens",
-    brand: "sony",
+    brand: "canon",
     title: "Canon EF 85mm f1.2L II USM Lens for Canon DSLR Cameras",
     price: 85100,
     rating: 3.2,
@@ -252,7 +252,7 @@ const products = [
   {
     _id: uuid(),
     category: "lens",
-    brand: "sony",
+    brand: "canon",
     title: "Canon EF 85mm f1.2L II USM Lens for Canon DSLR Cameras",
     price: 85100,
     rating: 3.2,
@@ -356,7 +356,7 @@ const products = [
   {
     _id: uuid(),
     category: "lens",
-    brand: "sony",
+    brand: "canon",
     title: "Canon EF 85mm f1.2L II USM Lens for Canon DSLR Cameras",
     price: 85100,
     rating: 4,
