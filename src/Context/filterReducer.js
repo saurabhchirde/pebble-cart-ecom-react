@@ -1,106 +1,84 @@
 import { products } from "../backend/db/products";
 
-const filterReducer = (state, action) => {
+const filterReducer = (filterState, action) => {
   switch (action.type) {
     //   category
-    case "AllCategory":
-      return {
-        ...state,
-        byCategory: {
-          allCategory: !state.byCategory.allCategory,
-          camera: false,
-          lenses: false,
-          tripod: false,
-          accessories: false,
-        },
-        sort: action.payload,
-      };
+
     case "Camera":
       return {
-        ...state,
+        ...filterState,
         byCategory: {
-          ...state.byCategory,
+          ...filterState.byCategory,
           allCategory: false,
-          camera: !state.byCategory.camera,
+          camera: !filterState.byCategory.camera,
         },
         sort: action.payload,
       };
 
     case "Lenses":
       return {
-        ...state,
+        ...filterState,
         byCategory: {
-          ...state.byCategory,
+          ...filterState.byCategory,
           allCategory: false,
-          lenses: !state.byCategory.lenses,
+          lenses: !filterState.byCategory.lenses,
         },
         sort: action.payload,
       };
 
     case "Tripods":
       return {
-        ...state,
+        ...filterState,
         byCategory: {
-          ...state.byCategory,
+          ...filterState.byCategory,
           allCategory: false,
-          tripod: !state.byCategory.tripod,
+          tripod: !filterState.byCategory.tripod,
         },
         sort: action.payload,
       };
 
     case "Accessories":
       return {
-        ...state,
+        ...filterState,
         byCategory: {
-          ...state.byCategory,
+          ...filterState.byCategory,
           allCategory: false,
-          accessories: !state.byCategory.accessories,
+          accessories: !filterState.byCategory.accessories,
         },
         sort: action.payload,
       };
 
     //   brand
-    case "AllBrand":
-      return {
-        ...state,
-        byBrand: {
-          allBrand: !state.byBrand.allBrand,
-          canon: false,
-          nikon: false,
-          sony: false,
-        },
-        sort: action.payload,
-      };
 
     case "Canon":
       return {
-        ...state,
+        ...filterState,
         byBrand: {
-          ...state.byBrand,
+          ...filterState.byBrand,
           allBrand: false,
-          canon: !state.byBrand.canon,
+          canon: !filterState.byBrand.canon,
         },
         sort: action.payload,
       };
 
     case "Nikon":
       return {
-        ...state,
+        ...filterState,
         byBrand: {
-          ...state.byBrand,
+          ...filterState.byBrand,
           allBrand: false,
-          nikon: !state.byBrand.nikon,
+          nikon: !filterState.byBrand.nikon,
         },
         sort: action.payload,
       };
 
     case "Sony":
       return {
-        ...state,
+        ...filterState,
         byBrand: {
-          ...state.byBrand,
+          ...filterState.byBrand,
           allBrand: false,
-          sony: !state.byBrand.sony,
+          sony: !filterState.byBrand.sony,
         },
         sort: action.payload,
       };
@@ -108,7 +86,7 @@ const filterReducer = (state, action) => {
     //   ratings
     case "4+":
       return {
-        ...state,
+        ...filterState,
         byRating: {
           oneStar: false,
           twoStar: false,
@@ -120,7 +98,7 @@ const filterReducer = (state, action) => {
 
     case "3+":
       return {
-        ...state,
+        ...filterState,
         byRating: {
           oneStar: false,
           twoStar: false,
@@ -132,7 +110,7 @@ const filterReducer = (state, action) => {
 
     case "2+":
       return {
-        ...state,
+        ...filterState,
         byRating: {
           oneStar: false,
           twoStar: true,
@@ -144,7 +122,7 @@ const filterReducer = (state, action) => {
 
     case "1+":
       return {
-        ...state,
+        ...filterState,
         byRating: {
           oneStar: true,
           twoStar: false,
@@ -157,29 +135,29 @@ const filterReducer = (state, action) => {
     //   sort
     case "Newest":
       return {
-        ...state,
+        ...filterState,
         bySort: { newest: true, lowTohHigh: false, highToLow: false },
         sort: action.payload,
       };
 
     case "LowToHigh":
       return {
-        ...state,
+        ...filterState,
         bySort: { newest: false, lowTohHigh: true, highToLow: false },
         sort: action.payload,
       };
 
     case "HighToLow":
       return {
-        ...state,
+        ...filterState,
         bySort: { newest: false, lowTohHigh: false, highToLow: true },
         sort: action.payload,
       };
 
     case "IncludeOutOfStock":
       return {
-        ...state,
-        byStock: !state.byStock,
+        ...filterState,
+        byStock: !filterState.byStock,
         sort: action.payload,
       };
 
@@ -207,7 +185,7 @@ const filterReducer = (state, action) => {
       };
 
     default:
-      return state;
+      return filterState;
   }
 };
 

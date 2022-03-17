@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const RecommendedBanner = (props) => {
   return (
     <>
@@ -6,11 +8,11 @@ const RecommendedBanner = (props) => {
           <p>{props.subTitle} </p>
           <h1>{props.title}</h1>
           <p>{props.description}</p>
-          <a>
+          <Link to="products">
             <button onClick={props.onbtnClick} className="btn primary-btn-md">
               {props.btnLabel}
             </button>
-          </a>
+          </Link>
           <a>
             <button
               onClick={props.onReadMoreClick}

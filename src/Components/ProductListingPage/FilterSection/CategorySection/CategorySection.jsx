@@ -3,8 +3,9 @@ import { useFilter } from "../../../../Context/FilterContext";
 import InputTypeTwo from "../../../UI/Input/InputTypeTwo";
 
 const CategorySection = () => {
-  const { state, dispatch } = useFilter();
-  const { allCategory, camera, lenses, tripod, accessories } = state.byCategory;
+  const { filterState, filterDispatch } = useFilter();
+  const { allCategory, camera, lenses, tripod, accessories } =
+    filterState.byCategory;
 
   return (
     <div className="category">
@@ -14,20 +15,10 @@ const CategorySection = () => {
           inputWrapper="checkbox-input"
           type="checkbox"
           name="check"
-          checked={allCategory}
-          label="All"
-          onChange={() => {
-            dispatch({ type: "AllCategory", payload: "AllCategory" });
-          }}
-        />
-        <InputTypeTwo
-          inputWrapper="checkbox-input"
-          type="checkbox"
-          name="check"
           checked={camera}
           label="Camera"
           onChange={() => {
-            dispatch({ type: "Camera", payload: "Camera" });
+            filterDispatch({ type: "Camera", payload: "Camera" });
           }}
         />
         <InputTypeTwo
@@ -37,7 +28,7 @@ const CategorySection = () => {
           checked={lenses}
           label="Lenses"
           onChange={() => {
-            dispatch({ type: "Lenses", payload: "Lenses" });
+            filterDispatch({ type: "Lenses", payload: "Lenses" });
           }}
         />
         <InputTypeTwo
@@ -47,7 +38,7 @@ const CategorySection = () => {
           checked={tripod}
           label="Tripods"
           onChange={() => {
-            dispatch({ type: "Tripods", payload: "Tripods" });
+            filterDispatch({ type: "Tripods", payload: "Tripods" });
           }}
         />
         <InputTypeTwo
@@ -57,7 +48,7 @@ const CategorySection = () => {
           checked={accessories}
           label="Accessories"
           onChange={() => {
-            dispatch({ type: "Accessories", payload: "Accessories" });
+            filterDispatch({ type: "Accessories", payload: "Accessories" });
           }}
         />
       </div>

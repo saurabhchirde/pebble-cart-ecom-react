@@ -2,8 +2,8 @@ import { useFilter } from "../../../../Context/FilterContext";
 import InputTypeTwo from "../../../UI/Input/InputTypeTwo";
 
 const SortSection = () => {
-  const { state, dispatch } = useFilter();
-  const { newest, lowTohHigh, highToLow } = state.bySort;
+  const { filterState, filterDispatch } = useFilter();
+  const { newest, lowTohHigh, highToLow } = filterState.bySort;
 
   return (
     <div className="sort">
@@ -15,7 +15,7 @@ const SortSection = () => {
         checked={newest}
         label="New Arrival"
         onChange={() => {
-          dispatch({ type: "Newest", payload: "Newest" });
+          filterDispatch({ type: "Newest", payload: "Newest" });
         }}
       />
       <InputTypeTwo
@@ -25,7 +25,7 @@ const SortSection = () => {
         checked={lowTohHigh}
         label="Price - Low to High"
         onChange={() => {
-          dispatch({ type: "LowToHigh", payload: "LowToHigh" });
+          filterDispatch({ type: "LowToHigh", payload: "LowToHigh" });
         }}
       />
       <InputTypeTwo
@@ -35,7 +35,7 @@ const SortSection = () => {
         checked={highToLow}
         label="Price - High to Low"
         onChange={() => {
-          dispatch({ type: "HighToLow", payload: "HighToLow" });
+          filterDispatch({ type: "HighToLow", payload: "HighToLow" });
         }}
       />
     </div>

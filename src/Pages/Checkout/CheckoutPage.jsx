@@ -1,7 +1,7 @@
 import "./CheckoutPage.css";
 
 const CheckoutPage = () => {
-  return <p>Checkout</p>;
+  return <p className="text-white">Checkout</p>;
 };
 
 export default CheckoutPage;
