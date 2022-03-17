@@ -43,7 +43,7 @@ const ProductsProvider = ({ children }) => {
           JSON.stringify(productState.products)
         );
       } catch (error) {
-        console.log(error);
+        console.error(error.message);
       }
     };
     getproducts();
@@ -62,7 +62,7 @@ const ProductsProvider = ({ children }) => {
           JSON.stringify(productState.categories)
         );
       } catch (error) {
-        console.log(error);
+        console.error(error.message);
       }
     };
     getcategory();
@@ -75,7 +75,7 @@ const ProductsProvider = ({ children }) => {
         productDispatch({ type: "getbrands", payload: response.data.brands });
         sessionStorage.setItem("brands", JSON.stringify(productState.brands));
       } catch (error) {
-        console.log(error);
+        console.error(error.message);
       }
     };
     getbrands();
