@@ -8,7 +8,7 @@ import IncludeOutOfStock from "./IncludeOutOfStock/IncludeOutOfStock";
 import RatingSection from "./RatingSection/RatingSection";
 
 const FilterSection = () => {
-  const { dispatch } = useFilter();
+  const { filterDispatch } = useFilter();
 
   return (
     <>
@@ -31,7 +31,7 @@ const FilterSection = () => {
           <h2>Filter</h2>
           <Button
             onClick={() => {
-              dispatch({ type: "Clear" });
+              filterDispatch({ type: "Clear" });
             }}
             type="reset"
             label="Clear"

@@ -23,7 +23,7 @@ const filterContext = createContext({
 });
 
 const FilterProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(filterReducer, {
+  const [filterState, filterDispatch] = useReducer(filterReducer, {
     sort: "",
     bySort: { newest: true, lowTohHigh: false, highToLow: false },
     byStock: false,
@@ -45,7 +45,7 @@ const FilterProvider = ({ children }) => {
   });
 
   return (
-    <filterContext.Provider value={{ state, dispatch }}>
+    <filterContext.Provider value={{ filterState, filterDispatch }}>
       {children}
     </filterContext.Provider>
   );
