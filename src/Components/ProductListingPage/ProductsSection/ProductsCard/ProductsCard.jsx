@@ -4,13 +4,11 @@ import { useWishlist } from "../../../../Context/WishlistContext";
 const ProductsCard = ({ item }) => {
   const { title, price, rating, totalRating, src, newestArrival, inStock } =
     item;
-  const { setCart } = useCart();
+  const { cartState, cartDispatch } = useCart();
   const { wishlist, setWishlist } = useWishlist();
 
   const addCartClick = () => {
-    setCart((oldCart) => {
-      return [...oldCart, item];
-    });
+    cartDispatch({ type: "addToCart", payload: item });
   };
 
   const addWishlistClick = () => {

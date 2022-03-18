@@ -8,7 +8,7 @@ import { useWishlist } from "../../../Context/WishlistContext";
 import { Link } from "react-router-dom";
 
 const DesktopNavigationBar = () => {
-  const { cart } = useCart();
+  const { cartState } = useCart();
   const { wishlist } = useWishlist();
 
   return (
@@ -39,14 +39,15 @@ const DesktopNavigationBar = () => {
             />
           </Link>
           <Link to="cart">
-          <BadgeIconButton
-            btnWrapper="badge-container"
-            btnClassName="btn badge-icon-btn-lg"
-            icon="fas fa-shopping-cart"
-            badgeClassName="badge-on-icon"
-            badgeValue={cart.length}
-            label="Cart"
-          /></Link>
+            <BadgeIconButton
+              btnWrapper="badge-container"
+              btnClassName="btn badge-icon-btn-lg"
+              icon="fas fa-shopping-cart"
+              badgeClassName="badge-on-icon"
+              badgeValue={cartState.cart.qty}
+              label="Cart"
+            />
+          </Link>
           <NavbarAvatar
             avatarWrapper="badge-container"
             avatarClassName="avatar text-avatar-xsm-round"
