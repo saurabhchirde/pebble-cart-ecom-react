@@ -1,25 +1,24 @@
 import { useWishlist } from "../../Context/WishlistContext";
 import { useCart } from "../../Context/CartContext";
 
-const HorizontalProductsCard = (props) => {
+const HorizontalProductsCard = ({ item }) => {
+  const { title, price, src } = item;
   const { setWishlist } = useWishlist();
-  const { setCart } = useCart();
+  const { cartDispatch } = useCart();
 
   const onMoveToCartClickHandler = () => {
-    setCart((oldCart) => {
-      return [...oldCart, props];
-    });
+    cartDispatch({ type: "addToCart", payload: item });
     setWishlist((oldWishlist) => {
-      return oldWishlist.filter((item) => {
-        return item._id !== props._id;
+      return oldWishlist.filter((el) => {
+        return el._id !== item._id;
       });
     });
   };
 
   const onRemoveWishlistClickHandler = () => {
     setWishlist((oldWishlist) => {
-      return oldWishlist.filter((item) => {
-        return item._id !== props._id;
+      return oldWishlist.filter((el) => {
+        return el._id !== item._id;
       });
     });
   };
@@ -28,12 +27,12 @@ const HorizontalProductsCard = (props) => {
     <>
       <div className="card-horizontal card-dark">
         <div className="card-img-container">
-          <img src={props.imgSrc} alt="product" loading="lazy" />
+          <img src={src} alt="product" loading="lazy" />
         </div>
         <div className="card-body">
           <div className="card-text">
-            <h1 className="card-title title-sm">{props.title}</h1>
-            <h2 className="card-price">Rs. {props.price}/-</h2>
+            <h1 className="card-title title-sm">{title}</h1>
+            <h2 className="card-price">Rs. {price}/-</h2>
           </div>
           <div className="card-nav">
             <div className="card-cta-btn">

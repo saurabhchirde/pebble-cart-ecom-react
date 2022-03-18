@@ -22,15 +22,7 @@ const WishlistPage = () => {
         ) : (
           <div className="flex-row-center flex-wrap">
             {wishlist.map((item) => {
-              return (
-                <HorizontalProductsCard
-                  _id={item._id}
-                  key={item._id}
-                  title={item.title}
-                  price={item.price}
-                  imgSrc={item.src}
-                />
-              );
+              return <HorizontalProductsCard item={item} key={item._id} />;
             })}
           </div>
         )}
