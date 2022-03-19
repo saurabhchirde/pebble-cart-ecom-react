@@ -27,12 +27,10 @@ const ProductsCard = ({ item }) => {
   return (
     <>
       <div className="card-vertical card-dark">
-        {newestArrival ? (
+        {newestArrival && (
           <div className="badge-on-card top-left">
             <h2>New Arrival</h2>
           </div>
-        ) : (
-          false
         )}
         <div className="card-img-container">
           <img src={src} alt="product" loading="lazy" />
