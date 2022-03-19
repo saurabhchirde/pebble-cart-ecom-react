@@ -11,9 +11,9 @@ const CartPage = () => {
     <>
       <div className="cart">
         <h1 className="title-xl-wt-5 mg-2-bot text-center">
-          Shopping Cart ({cartState.cart.items.length})
+          Shopping Cart ({cartState.cart.length})
         </h1>
-        {cartState.cart.items.length === 0 ? (
+        {cartState.cart.length === 0 ? (
           <div className="emptyWishlistMsg">
             <h1>Your cart is empty</h1>
             <Link to="/products">
@@ -23,7 +23,7 @@ const CartPage = () => {
         ) : (
           <div className="flex-row flex-justify-space-between">
             <div className="cart-products">
-              {cartState.cart.items.map((item) => {
+              {cartState.cart.map((item) => {
                 return <CartItemCard item={item} key={item._id} />;
               })}
             </div>

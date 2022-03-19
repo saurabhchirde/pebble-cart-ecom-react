@@ -56,9 +56,14 @@ const ProductsCard = ({ item }) => {
             <div className="card-cta-btn">
               <button
                 onClick={addCartClick}
-                className="btn primary-btn-sm add-cart"
+                className={
+                  cartState.cart.includes(item)
+                    ? "btn primary-outline-btn-sm add-cart"
+                    : "btn primary-btn-sm add-cart"
+                }
+                disabled={cartState.cart.includes(item)}
               >
-                Add to Cart
+                {cartState.cart.includes(item) ? "In your Cart" : "Add to Cart"}
               </button>
               <div className="card-nav-icon">
                 <button

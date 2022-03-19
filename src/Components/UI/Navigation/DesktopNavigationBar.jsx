@@ -23,7 +23,6 @@ const DesktopNavigationBar = () => {
           searchIcon="fas fa-search"
           placeholder="Search"
           onChange={() => {}}
-          onIconClick={() => {}}
         />
 
         <div className="nav-bar-btns">
@@ -43,8 +42,7 @@ const DesktopNavigationBar = () => {
               btnClassName="btn badge-icon-btn-lg"
               icon="fas fa-shopping-cart"
               badgeClassName="badge-on-icon"
-              badgeValue={cartState.cart.qty}
-              label="Cart"
+              badgeValue={cartState.qty}
             />
           </Link>
           <NavbarAvatar

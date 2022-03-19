@@ -3,24 +3,20 @@ const cartReducer = (cartState, action) => {
     case "addToCart":
       return {
         ...cartState,
-        cart: {
-          items: [...cartState.cart.items, action.payload],
-          qty: cartState.cart.qty + 1,
-        },
+        cart: [...cartState.cart, action.payload],
+        qty: cartState.qty + 1,
         totalPrice: cartState.totalPrice + action.payload.price,
       };
 
     case "removeFromCart":
       return {
         ...cartState,
-        cart: {
-          items: [
-            ...cartState.cart.items.filter((el) => {
-              return el._id !== action.payload._id;
-            }),
-          ],
-          qty: cartState.cart.qty < 1 ? 0 : cartState.cart.qty - 1,
-        },
+        cart: [
+          ...cartState.cart.filter((el) => {
+            return el._id !== action.payload._id;
+          }),
+        ],
+        qty: cartState.qty < 1 ? 0 : cartState.qty - 1,
         totalPrice: cartState.totalPrice - action.payload.price,
       };
 
@@ -28,22 +24,18 @@ const cartReducer = (cartState, action) => {
       return {
         ...cartState,
         coupon: action.payload,
-        couponError: false,
       };
 
     case "discount":
       return {
         ...cartState,
         discount: action.payload,
-        couponError: false,
-        coupon: "",
       };
 
     case "nodiscount":
       return {
         ...cartState,
         discount: 0,
-        couponError: true,
       };
 
     default:

@@ -5,14 +5,11 @@ const cartContext = createContext({});
 
 const CartProvider = ({ children }) => {
   const [cartState, cartDispatch] = useReducer(cartReducer, {
-    cart: {
-      items: [],
-      qty: 0,
-    },
+    cart: [],
+    qty: 0,
     totalPrice: 0,
     discount: 0,
     coupon: "",
-    couponError: false,
   });
 
   return (
