@@ -1,9 +1,8 @@
-import { useCart } from "../../../Context/CartContext";
+import { useCart, useWishlist } from "../../../Context/index";
 import BadgeIconButton from "../Button/BadgeIconButton";
 import IconButton from "../Button/IconButton";
 import "./MobileNavigationBarBottom.css";
 import { Link } from "react-router-dom";
-import { useWishlist } from "../../../Context/WishlistContext";
 
 const MobileNavigationBarBottom = () => {
   const { cartState } = useCart();

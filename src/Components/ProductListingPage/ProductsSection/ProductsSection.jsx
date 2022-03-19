@@ -1,8 +1,7 @@
-import { useFilter } from "../../../Context/FilterContext";
+import { useFilter, useProductProvider } from "../../../Context/index";
 import ProductsCard from "./ProductsCard/ProductsCard";
 import { finalFilteredData } from "../../../Utils/finalFilteredData";
 import "./ProductSection.css";
-import { useProductProvider } from "../../../Context/ProductsProvider";
 
 const ProductsSection = () => {
   const { filterState } = useFilter();

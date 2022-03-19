@@ -3,8 +3,7 @@ import BadgeIconButton from "../Button/BadgeIconButton";
 import SearchBar from "./SearchBar/SearchBar";
 import NavbarLoginButton from "./NavbarLoginButton/NavbarLoginButton";
 import NavbarAvatar from "./Avatar/NavbarAvatar";
-import { useCart } from "../../../Context/CartContext";
-import { useWishlist } from "../../../Context/WishlistContext";
+import { useCart, useWishlist } from "../../../Context/index";
 import { Link } from "react-router-dom";
 
 const DesktopNavigationBar = () => {

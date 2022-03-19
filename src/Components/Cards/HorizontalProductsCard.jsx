@@ -1,5 +1,4 @@
-import { useWishlist } from "../../Context/WishlistContext";
-import { useCart } from "../../Context/CartContext";
+import { useWishlist, useCart } from "../../Context/index";
 
 const HorizontalProductsCard = ({ item }) => {
   const { title, price, src } = item;
