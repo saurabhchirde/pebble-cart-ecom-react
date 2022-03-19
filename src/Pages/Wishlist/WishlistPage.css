@@ -1,0 +1,13 @@
+.emptyWishlistMsg {
+  color: var(--text-lighter);
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -20%);
+}
+
+.emptyWishlistMsg h1 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}

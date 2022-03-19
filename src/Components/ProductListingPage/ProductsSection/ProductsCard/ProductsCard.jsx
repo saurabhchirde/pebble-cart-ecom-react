@@ -5,7 +5,7 @@ const ProductsCard = ({ item }) => {
   const { title, price, rating, totalRating, src, newestArrival, inStock } =
     item;
   const { setCart } = useCart();
-  const { setWishlist } = useWishlist();
+  const { wishlist, setWishlist } = useWishlist();
 
   const addCartClick = () => {
     setCart((oldCart) => {
@@ -15,7 +15,15 @@ const ProductsCard = ({ item }) => {
 
   const addWishlistClick = () => {
     setWishlist((oldCart) => {
-      return [...oldCart, item];
+      return [...new Set([...oldCart, item])];
+    });
+  };
+
+  const removeFromWishlist = () => {
+    setWishlist((oldWishlist) => {
+      return oldWishlist.filter((el) => {
+        return el._id !== item._id;
+      });
     });
   };
 
@@ -57,10 +65,18 @@ const ProductsCard = ({ item }) => {
               </button>
               <div className="card-nav-icon">
                 <button
-                  onClick={addWishlistClick}
+                  onClick={
+                    wishlist.includes(item)
+                      ? removeFromWishlist
+                      : addWishlistClick
+                  }
                   className="btn primary-text-btn-sm icon-md"
                 >
-                  <i className="far fa-heart"></i>
+                  <i
+                    className={
+                      wishlist.includes(item) ? "fas fa-heart" : "far fa-heart"
+                    }
+                  ></i>
                 </button>
                 <button className="btn primary-text-btn-sm icon-md ">
                   <i className="fas fa-share-alt"></i>
