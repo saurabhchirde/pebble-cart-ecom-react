@@ -1,9 +1,12 @@
 import { useCart, useWishlist } from "../../../Context/index";
 import "./CartItemCard.css";
+import { couponCheck } from "../../../Utils/couponCheck";
+import { useEffect } from "react";
 
 const CartItemCard = ({ item }) => {
   const { title, price, src } = item;
-  const { cartDispatch } = useCart();
+  const { cartState, cartDispatch } = useCart();
+  const { totalPrice, coupon } = cartState;
   const { setWishlist } = useWishlist();
 
   const onWishlistClickHandler = () => {
@@ -16,6 +19,10 @@ const CartItemCard = ({ item }) => {
   const onRemoveClickHandler = () => {
     cartDispatch({ type: "removeFromCart", payload: item });
   };
+
+  useEffect(() => {
+    couponCheck(totalPrice, coupon, cartDispatch);
+  }, [cartState.cart]);
 
   return (
     <div className="cart-item-card card-dark">

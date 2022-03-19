@@ -29,8 +29,7 @@ const MobileNavigationBarBottom = () => {
             btnClassName="btn badge-icon-btn-lg"
             icon="fas fa-shopping-cart"
             badgeClassName="badge-on-icon"
-            badgeValue={cartState.cart.qty}
-            onClick={() => {}}
+            badgeValue={cartState.qty}
           />
         </Link>
       </nav>

@@ -1,11 +1,13 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import { useCart } from "../../../Context/CartContext";
 import { couponCheck } from "../../../Utils/couponCheck";
 import "./PriceCard.css";
 
-const PriceCard = ({ item }) => {
+const PriceCard = () => {
   const { cartState, cartDispatch } = useCart();
-  const { cart, totalPrice, coupon, discount, couponError } = cartState;
+  const { qty, totalPrice, coupon, discount } = cartState;
+  const [errorCoupon, setErrorCoupon] = useState(false);
+  const [successCoupon, setSuccessCoupon] = useState(false);
 
   const onCouponInputHHandler = (e) => {
     const coupon = e.target.value;
@@ -13,6 +15,13 @@ const PriceCard = ({ item }) => {
   };
 
   const onCouponApplyHandler = () => {
+    if (coupon === "PEBBLE" || coupon === "SAURABH") {
+      setErrorCoupon(false);
+      setSuccessCoupon(true);
+    } else {
+      setErrorCoupon(true);
+      setSuccessCoupon(false);
+    }
     couponCheck(totalPrice, coupon, cartDispatch);
   };
 
@@ -26,7 +35,7 @@ const PriceCard = ({ item }) => {
       </div>
       <div className="cart-product-qty">
         <h3>Total Qty</h3>
-        <h3>{cart.qty}</h3>
+        <h3>{qty}</h3>
       </div>
       <div className="cart-discount">
         <h3>Discount</h3>
@@ -56,18 +65,32 @@ const PriceCard = ({ item }) => {
         </div>
       </div>
       <hr className="break-line" />
-      {couponError ? (
-        discount === 0 ? (
-          <h3 className="couponError">Enter Valid Coupon Code</h3>
-        ) : (
-          <h3 className="couponSuccess">Coupun Applied Successfully</h3>
-        )
-      ) : (
-        false
+      {successCoupon && (
+        <p className="couponSuccess">Coupon applied successfully.</p>
       )}
+      {errorCoupon && <p className="couponError">Enter a valid coupon.</p>}
       <div className="cart-btns">
         <button className="btn primary-outline-btn-md">Edit Cart</button>
         <button className="btn primary-btn-md">Place Order</button>
+      </div>
+      <div className="availableCoupons">
+        <p>Available coupons</p>
+        <div>
+          <div
+            onClick={() => {
+              cartDispatch({ type: "couponCode", payload: "PEBBLE" });
+            }}
+          >
+            PEBBLE
+          </div>
+          <div
+            onClick={() => {
+              cartDispatch({ type: "couponCode", payload: "SAURABH" });
+            }}
+          >
+            SAURABH
+          </div>
+        </div>
       </div>
     </div>
   );
