@@ -1,5 +1,4 @@
-import { useCart } from "../../../Context/CartContext";
-import { useWishlist } from "../../../Context/WishlistContext";
+import { useCart, useWishlist } from "../../../Context/index";
 import "./CartItemCard.css";
 
 const CartItemCard = ({ item }) => {
