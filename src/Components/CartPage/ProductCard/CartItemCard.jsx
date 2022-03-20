@@ -59,11 +59,18 @@ const CartItemCard = ({ item }) => {
           >
             Remove
           </button>
+
           <div className="card-nav-icon">
             <div className="cart-qty">
-              <button onClick={decreaseQty}>-</button>
+              {item.qty > 1 ? (
+                <button onClick={decreaseQty}>
+                  <i className="fas fa-minus"></i>
+                </button>
+              ) : null}
               {item.qty}
-              <button onClick={increaseQty}>+</button>
+              <button onClick={increaseQty}>
+                <i className="fas fa-plus"></i>
+              </button>
             </div>
           </div>
         </div>

@@ -26,18 +26,26 @@ const cartReducer = (cartState, action) => {
       };
 
     case "removeFromCart":
+      updatedCartItems = [
+        ...cartState.cart.filter((el) => el._id !== action.payload._id),
+      ];
+
+      if (updatedCartItems.length === 0) {
+        return {
+          cart: [],
+          totalQty: 0,
+          totalPrice: 0,
+          discount: 0,
+          coupon: "",
+        };
+      }
+
       return {
         ...cartState,
-        cart: [
-          ...(updatedCartItems = cartState.cart.filter((el) => {
-            return el._id !== action.payload._id;
-          })),
-        ],
-        totalQty: 0,
-        totalQty: 0,
-        totalPrice: 0,
-        discount: 0,
-        coupon: "",
+        cart: updatedCartItems,
+        totalQty: cartState.totalQty - action.payload.qty,
+        totalPrice:
+          cartState.totalPrice - action.payload.price * action.payload.qty,
       };
 
     case "decreaseQty":
