@@ -1,19 +1,39 @@
 const checkoutReducer = (checkoutState, action) => {
   switch (action.type) {
-    case "itemOverviewToggle":
+    case "gpayPay":
       return {
         ...checkoutState,
-        itemOverviewCheck: !checkoutState.itemOverviewCheck,
+        paymentOverviewCheck: true,
       };
-    case "addressOverviewToggle":
+
+    case "applePay":
       return {
         ...checkoutState,
-        addressOverviewCheck: !checkoutState.addressOverviewCheck,
+        paymentOverviewCheck: false,
       };
-    case "paymentOverviewToggle":
+
+    case "masterPay":
       return {
         ...checkoutState,
-        paymentOverviewCheck: !checkoutState.paymentOverviewCheck,
+        paymentOverviewCheck: false,
+      };
+
+    case "visaPay":
+      return {
+        ...checkoutState,
+        paymentOverviewCheck: false,
+      };
+
+    case "paypalPay":
+      return {
+        ...checkoutState,
+        paymentOverviewCheck: false,
+      };
+
+    case "addressSelected":
+      return {
+        ...checkoutState,
+        addressOverviewCheck: true,
       };
   }
   return checkoutState;

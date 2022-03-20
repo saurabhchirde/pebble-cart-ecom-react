@@ -161,6 +161,13 @@ const filterReducer = (filterState, action) => {
         sort: action.payload,
       };
 
+    case "bySearch":
+      return {
+        ...filterState,
+        bySearch: action.payload,
+        sort: action.payload,
+      };
+
     case "Clear":
       return {
         products: products,

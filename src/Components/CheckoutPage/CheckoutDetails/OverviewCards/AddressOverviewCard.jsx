@@ -1,27 +1,29 @@
 import { useCheckout } from "../../../../Context/CheckoutContext";
 
 const AddressOverviewCard = () => {
-  const { checkoutState } = useCheckout();
+  const { checkoutState, checkoutDispatch } = useCheckout();
   const { addressOverviewCheck } = checkoutState;
+
+  const onSelectingAddress = () => {
+    checkoutDispatch({ type: "addressSelected" });
+  };
+
+  const checkIconStatus = `${
+    addressOverviewCheck ? "fas fa-check-circle" : "far fa-check-circle"
+  }`;
 
   return (
     <div className="contact-address">
       <details>
         <summary>
           <h1>Contact & Delivery Address</h1>
-          <i
-            onClick={() => {}}
-            className={
-              addressOverviewCheck
-                ? "fas fa-check-circle"
-                : "far fa-check-circle"
-            }
-          ></i>
+          <i className={checkIconStatus}></i>
         </summary>
+
         <div className="address address-one">
-          <div className="radio-input">
-            <input type="radio" name="radio" />
-            <label>
+          <div className="radio-input" onClick={onSelectingAddress}>
+            <input type="radio" name="radio" id="addressOne" />
+            <label htmlFor="addressOne">
               Kashika Agnani, House No. 55, Near Ambika Lane, Betageri Market,
               Building No. 68, Vellora, Kannur, Kerala, Pincode-646039
             </label>
@@ -30,9 +32,9 @@ const AddressOverviewCard = () => {
         </div>
 
         <div className="address address-two">
-          <div className="radio-input">
-            <input type="radio" name="radio" />
-            <label>
+          <div className="radio-input" onClick={onSelectingAddress}>
+            <input type="radio" name="radio" id="addressTwo" />
+            <label htmlFor="addressTwo">
               Kashika Agnani, House No. 55, Near Ambika Lane, Betageri Market,
               Building No. 68, Vellora, Kannur, Kerala, Pincode-646039
             </label>

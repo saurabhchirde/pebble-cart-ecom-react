@@ -1,14 +1,18 @@
 import { createContext, useContext, useReducer } from "react";
 import checkoutReducer from "./checkoutReducer";
 
-const checkoutContext = createContext({});
+const checkoutInitialState = {
+  addressOverviewCheck: false,
+  paymentOverviewCheck: false,
+};
+
+const checkoutContext = createContext(checkoutInitialState);
 
 const CheckoutProvider = ({ children }) => {
-  const [checkoutState, checkoutDispatch] = useReducer(checkoutReducer, {
-    itemOverviewCheck: false,
-    addressOverviewCheck: false,
-    paymentOverviewCheck: false,
-  });
+  const [checkoutState, checkoutDispatch] = useReducer(
+    checkoutReducer,
+    checkoutInitialState
+  );
 
   return (
     <checkoutContext.Provider value={{ checkoutState, checkoutDispatch }}>
