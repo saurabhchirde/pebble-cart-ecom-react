@@ -20,6 +20,8 @@ const productsReducer = (productState, action) => {
         ...productState,
         brands: action.payload,
       };
+    default:
+      return productState;
   }
 };
 
