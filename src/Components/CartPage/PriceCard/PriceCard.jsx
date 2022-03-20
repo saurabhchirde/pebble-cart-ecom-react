@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useCart } from "../../../Context";
 import { couponCheck } from "../../../Utils/couponCheck";
 import "./PriceCard.css";
@@ -49,12 +50,12 @@ const PriceCard = () => {
       <div className="cart-discount">
         <h3>Discount</h3>
         {discount > 0 && <h3>{discountPercentage}% OFF</h3>}
-        <h3>{discount}/-</h3>
+        <h3>{Math.trunc(discount)}/-</h3>
       </div>
       <hr className="break-line" />
       <div className="cart-total">
         <h3>Total</h3>
-        <h3>Rs.{totalPrice - discount}/-</h3>
+        <h3>Rs.{Math.trunc(totalPrice - discount)}/-</h3>
       </div>
       <hr className="break-line" />
       <div className="cart-coupon">
@@ -80,8 +81,12 @@ const PriceCard = () => {
       )}
       {errorCoupon && <p className="coupon-error">Enter a valid coupon.</p>}
       <div className="cart-btns">
-        <button className="btn primary-outline-btn-md">Edit Cart</button>
-        <button className="btn primary-btn-md">Place Order</button>
+        <Link to="/products" className="edit-cart-link">
+          <button className="btn primary-outline-btn-md">add more items</button>
+        </Link>
+        <Link to="checkout" className="btn primary-btn-md">
+          Place Order
+        </Link>
       </div>
       <div className="available-coupons">
         <p>Available coupons</p>

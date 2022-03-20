@@ -4,7 +4,7 @@ import ProductOverviewCard from "./OverviewCards/ProductOverviewCard";
 
 const CheckoutDetails = () => {
   return (
-    <div class="checkout-form">
+    <div className="checkout-form">
       <ProductOverviewCard />
       <AddressOverviewCard />
       <PaymentOverviewCard />

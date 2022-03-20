@@ -29,9 +29,9 @@
 }
 
 .available-coupons > div div {
-  background-color: rgb(97, 97, 97);
+  background-color: rgba(97, 97, 97, 0.139);
   margin: 0.6rem;
-  padding: 0.4rem 0.8rem;
+  padding: 0.6rem 1rem;
   border-radius: 5px;
   font-size: 0.9rem;
   cursor: pointer;
@@ -44,4 +44,8 @@
 
 .cart-coupon-apply input {
   font-size: 0.9rem;
+}
+
+.edit-cart-link button {
+  margin: 0;
 }
