@@ -1,5 +1,5 @@
 import CartItemCard from "../../Components/CartPage/ProductCard/CartItemCard";
-import { useCart } from "../../Context/CartContext";
+import { useCart } from "../../Context";
 import "./CartPage.css";
 import { Link } from "react-router-dom";
 import PriceCard from "../../Components/CartPage/PriceCard/PriceCard";

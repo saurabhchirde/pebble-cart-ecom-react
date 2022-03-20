@@ -1,6 +1,7 @@
 import Button from "../Button/Button";
+import "./Signup.css";
 import InputTypeOne from "../Input/InputTypeOne";
-import { useModal } from "../../../Context/ModalContext";
+import { useModal } from "../../../Context";
 
 const Signup = () => {
   const { setShowLoginModal, setShowSignupModal } = useModal();
@@ -78,6 +79,19 @@ const Signup = () => {
             btnClassName="btn primary-btn-md"
             label=" Sign Up"
           />
+          <a
+            className="existing-account-btn"
+            onClick={() => {
+              setShowLoginModal(true);
+              setShowSignupModal(false);
+            }}
+          >
+            <h2>
+              already have an account
+              <span>Login</span>
+              <i className="fas fa-angle-right"></i>
+            </h2>
+          </a>
         </form>
       </div>
     </>

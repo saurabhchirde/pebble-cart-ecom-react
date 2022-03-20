@@ -1,4 +1,4 @@
-import { useFilter } from "../../../Context/FilterContext";
+import { useFilter } from "../../../Context";
 import Button from "../../UI/Button/Button";
 import IconButton from "../../UI/Button/IconButton";
 import SortSection from "./SortSection/SortSection";

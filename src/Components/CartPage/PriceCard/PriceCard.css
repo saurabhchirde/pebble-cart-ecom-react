@@ -1,5 +1,5 @@
-.couponSuccess,
-.couponError {
+.coupon-success,
+.coupon-error {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7,15 +7,15 @@
   height: 2rem;
   border-radius: 4px;
 }
-.couponError {
+.coupon-error {
   background-color: rgba(252, 0, 0, 0.18);
 }
 
-.couponSuccess {
+.coupon-success {
   background-color: rgba(34, 252, 0, 0.18);
 }
 
-.availableCoupons {
+.available-coupons {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,12 +23,12 @@
   margin-top: 1rem;
 }
 
-.availableCoupons > div {
+.available-coupons > div {
   display: flex;
   padding: 0.6rem;
 }
 
-.availableCoupons > div div {
+.available-coupons > div div {
   background-color: rgb(97, 97, 97);
   margin: 0.6rem;
   padding: 0.4rem 0.8rem;
@@ -37,7 +37,7 @@
   cursor: pointer;
 }
 
-.availableCoupons > div div:hover {
+.available-coupons > div div:hover {
   transition: ease-in 0.2s;
   background-color: var(--primary-color);
 }

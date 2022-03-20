@@ -1,22 +1,73 @@
 const cartReducer = (cartState, action) => {
+  const indexOfExistingItem = cartState.cart.findIndex(
+    (item) => item._id === action.payload._id
+  );
+  const existingCartItems = cartState.cart[indexOfExistingItem];
+  let updatedCartItems;
+
   switch (action.type) {
     case "addToCart":
+      if (existingCartItems) {
+        const updatedItem = {
+          ...existingCartItems,
+          qty: existingCartItems.qty + 1,
+        };
+        updatedCartItems = [...cartState.cart];
+        updatedCartItems[indexOfExistingItem] = updatedItem;
+      } else {
+        updatedCartItems = cartState.cart.concat(action.payload);
+      }
+
       return {
         ...cartState,
-        cart: [...cartState.cart, action.payload],
-        qty: cartState.qty + 1,
-        totalPrice: cartState.totalPrice + action.payload.price,
+        cart: updatedCartItems,
+        totalQty: cartState.totalQty + 1,
+        totalPrice: cartState.totalPrice + 1 * action.payload.price,
       };
 
     case "removeFromCart":
       return {
         ...cartState,
         cart: [
-          ...cartState.cart.filter((el) => {
+          ...(updatedCartItems = cartState.cart.filter((el) => {
             return el._id !== action.payload._id;
-          }),
+          })),
         ],
-        qty: cartState.qty < 1 ? 0 : cartState.qty - 1,
+        totalQty: 0,
+        totalQty: 0,
+        totalPrice: 0,
+        discount: 0,
+        coupon: "",
+      };
+
+    case "decreaseQty":
+      if (existingCartItems.qty === 1) {
+        updatedCartItems = cartState.cart.filter(
+          (el) => el._id !== action.payload._id
+        );
+      } else {
+        const updatedItem = {
+          ...existingCartItems,
+          qty: existingCartItems.qty - 1,
+        };
+        updatedCartItems = [...cartState.cart];
+        updatedCartItems[indexOfExistingItem] = updatedItem;
+      }
+
+      if (updatedCartItems.length === 0) {
+        return {
+          cart: [],
+          totalQty: 0,
+          totalPrice: 0,
+          discount: 0,
+          coupon: "",
+        };
+      }
+
+      return {
+        ...cartState,
+        cart: updatedCartItems,
+        totalQty: cartState.totalQty - 1,
         totalPrice: cartState.totalPrice - action.payload.price,
       };
 
@@ -29,7 +80,8 @@ const cartReducer = (cartState, action) => {
     case "discount":
       return {
         ...cartState,
-        discount: action.payload,
+        discount: action.payload.discountedAmount,
+        discountPercentage: action.payload.percentage,
       };
 
     case "nodiscount":

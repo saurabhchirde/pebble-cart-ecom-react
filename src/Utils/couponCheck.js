@@ -1,12 +1,19 @@
 const couponCheck = (totalPrice, coupon, cartDispatch) => {
-  if (coupon === "PEBBLE") {
-    cartDispatch({ type: "discount", payload: (totalPrice * 30) / 100 });
-  } else if (coupon === "SAURABH") {
-    cartDispatch({ type: "discount", payload: (totalPrice * 50) / 100 });
-  } else if (coupon !== "PEBBLE" && coupon !== "") {
-    cartDispatch({ type: "nodiscount", payload: 0 });
-  } else {
-    cartDispatch({ type: "nodiscount", payload: 0 });
+  switch (coupon) {
+    case "PEBBLE":
+      return cartDispatch({
+        type: "discount",
+        payload: { discountedAmount: (totalPrice * 30) / 100, percentage: 30 },
+      });
+
+    case "SAURABH":
+      return cartDispatch({
+        type: "discount",
+        payload: { discountedAmount: (totalPrice * 50) / 100, percentage: 50 },
+      });
+
+    default:
+      return cartDispatch({ type: "nodiscount", payload: 0 });
   }
 };
 

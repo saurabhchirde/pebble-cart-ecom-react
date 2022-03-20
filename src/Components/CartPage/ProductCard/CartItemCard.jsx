@@ -1,5 +1,4 @@
-import { useCart, useWishlist } from "../../../Context/index";
-import "./CartItemCard.css";
+import { useCart, useWishlist } from "../../../Context";
 import { couponCheck } from "../../../Utils/couponCheck";
 import { useEffect } from "react";
 
@@ -18,6 +17,14 @@ const CartItemCard = ({ item }) => {
 
   const onRemoveClickHandler = () => {
     cartDispatch({ type: "removeFromCart", payload: item });
+  };
+
+  const increaseQty = () => {
+    cartDispatch({ type: "addToCart", payload: item });
+  };
+
+  const decreaseQty = () => {
+    cartDispatch({ type: "decreaseQty", payload: item });
   };
 
   useEffect(() => {
@@ -43,7 +50,7 @@ const CartItemCard = ({ item }) => {
       <div className="card-body">
         <div className="card-text">
           <h1 className="card-title">{title}</h1>
-          <h2 className="card-price">Rs. {price}/-</h2>
+          <h2 className="card-price">Rs.{price}/-</h2>
         </div>
         <div className="card-nav">
           <button
@@ -53,7 +60,11 @@ const CartItemCard = ({ item }) => {
             Remove
           </button>
           <div className="card-nav-icon">
-            <h2 className="cartQty">Qty - 1</h2>
+            <div className="cart-qty">
+              <button onClick={decreaseQty}>-</button>
+              {item.qty}
+              <button onClick={increaseQty}>+</button>
+            </div>
           </div>
         </div>
       </div>

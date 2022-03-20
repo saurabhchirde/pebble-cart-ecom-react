@@ -3,7 +3,7 @@ import BadgeIconButton from "../Button/BadgeIconButton";
 import SearchBar from "./SearchBar/SearchBar";
 import NavbarLoginButton from "./NavbarLoginButton/NavbarLoginButton";
 import NavbarAvatar from "./Avatar/NavbarAvatar";
-import { useCart, useWishlist } from "../../../Context/index";
+import { useCart, useWishlist } from "../../../Context";
 import { Link } from "react-router-dom";
 
 const DesktopNavigationBar = () => {
@@ -42,7 +42,7 @@ const DesktopNavigationBar = () => {
               btnClassName="btn badge-icon-btn-lg"
               icon="fas fa-shopping-cart"
               badgeClassName="badge-on-icon"
-              badgeValue={cartState.qty}
+              badgeValue={cartState.cart.length}
             />
           </Link>
           <NavbarAvatar

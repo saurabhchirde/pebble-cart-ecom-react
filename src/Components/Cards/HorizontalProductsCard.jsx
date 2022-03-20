@@ -1,4 +1,4 @@
-import { useWishlist, useCart } from "../../Context/index";
+import { useWishlist, useCart } from "../../Context";
 
 const HorizontalProductsCard = ({ item }) => {
   const { title, price, src } = item;
@@ -7,6 +7,7 @@ const HorizontalProductsCard = ({ item }) => {
 
   const onMoveToCartClickHandler = () => {
     cartDispatch({ type: "addToCart", payload: item });
+
     setWishlist((oldWishlist) => {
       return oldWishlist.filter((el) => {
         return el._id !== item._id;
