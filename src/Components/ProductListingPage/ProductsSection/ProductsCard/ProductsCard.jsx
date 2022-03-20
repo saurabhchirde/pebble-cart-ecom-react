@@ -1,16 +1,17 @@
-import { useCart } from "../../../../Context/CartContext";
-import { useWishlist } from "../../../../Context/WishlistContext";
+import { useCart, useWishlist } from "../../../../Context";
 
 const ProductsCard = ({ item }) => {
   const { title, price, rating, totalRating, src, newestArrival, inStock } =
     item;
-  const { setCart } = useCart();
+  const { cartState, cartDispatch } = useCart();
   const { wishlist, setWishlist } = useWishlist();
 
   const addCartClick = () => {
-    setCart((oldCart) => {
-      return [...oldCart, item];
-    });
+    cartDispatch({ type: "addToCart", payload: item });
+  };
+
+  const removeFromCart = () => {
+    cartDispatch({ type: "removeFromCart", payload: item });
   };
 
   const addWishlistClick = () => {
@@ -30,12 +31,10 @@ const ProductsCard = ({ item }) => {
   return (
     <>
       <div className="card-vertical card-dark">
-        {newestArrival ? (
+        {newestArrival && (
           <div className="badge-on-card top-left">
             <h2>New Arrival</h2>
           </div>
-        ) : (
-          false
         )}
         <div className="card-img-container">
           <img src={src} alt="product" loading="lazy" />
@@ -58,10 +57,16 @@ const ProductsCard = ({ item }) => {
           <div className="card-nav">
             <div className="card-cta-btn">
               <button
-                onClick={addCartClick}
-                className="btn primary-btn-sm add-cart"
+                onClick={
+                  cartState.cart.includes(item) ? removeFromCart : addCartClick
+                }
+                className={
+                  cartState.cart.includes(item)
+                    ? "btn primary-outline-btn-sm add-cart"
+                    : "btn primary-btn-sm add-cart"
+                }
               >
-                Add to Cart
+                {cartState.cart.includes(item) ? "In your Cart" : "Add to Cart"}
               </button>
               <div className="card-nav-icon">
                 <button
@@ -85,12 +90,10 @@ const ProductsCard = ({ item }) => {
             </div>
           </div>
         </div>
-        {!inStock ? (
+        {!inStock && (
           <div className="overlay-area-type-1">
             <h1 className="card-title">SOLD OUT</h1>
           </div>
-        ) : (
-          true
         )}
       </div>
     </>

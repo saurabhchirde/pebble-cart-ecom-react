@@ -1,5 +1,5 @@
 import HorizontalProductsCard from "../../Components/Cards/HorizontalProductsCard";
-import { useWishlist } from "../../Context/WishlistContext";
+import { useWishlist } from "../../Context";
 import { Link } from "react-router-dom";
 import "./WishlistPage.css";
 import FloatingButton from "../../Components/UI/Button/FloatingButton";
@@ -22,15 +22,7 @@ const WishlistPage = () => {
         ) : (
           <div className="flex-row-center flex-wrap">
             {wishlist.map((item) => {
-              return (
-                <HorizontalProductsCard
-                  _id={item._id}
-                  key={item._id}
-                  title={item.title}
-                  price={item.price}
-                  imgSrc={item.src}
-                />
-              );
+              return <HorizontalProductsCard item={item} key={item._id} />;
             })}
           </div>
         )}

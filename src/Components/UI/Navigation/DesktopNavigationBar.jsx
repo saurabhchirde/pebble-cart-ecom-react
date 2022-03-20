@@ -3,12 +3,11 @@ import BadgeIconButton from "../Button/BadgeIconButton";
 import SearchBar from "./SearchBar/SearchBar";
 import NavbarLoginButton from "./NavbarLoginButton/NavbarLoginButton";
 import NavbarAvatar from "./Avatar/NavbarAvatar";
-import { useCart } from "../../../Context/CartContext";
-import { useWishlist } from "../../../Context/WishlistContext";
+import { useCart, useWishlist } from "../../../Context";
 import { Link } from "react-router-dom";
 
 const DesktopNavigationBar = () => {
-  const { cart } = useCart();
+  const { cartState } = useCart();
   const { wishlist } = useWishlist();
 
   return (
@@ -24,7 +23,6 @@ const DesktopNavigationBar = () => {
           searchIcon="fas fa-search"
           placeholder="Search"
           onChange={() => {}}
-          onIconClick={() => {}}
         />
 
         <div className="nav-bar-btns">
@@ -39,14 +37,14 @@ const DesktopNavigationBar = () => {
             />
           </Link>
           <Link to="cart">
-          <BadgeIconButton
-            btnWrapper="badge-container"
-            btnClassName="btn badge-icon-btn-lg"
-            icon="fas fa-shopping-cart"
-            badgeClassName="badge-on-icon"
-            badgeValue={cart.length}
-            label="Cart"
-          /></Link>
+            <BadgeIconButton
+              btnWrapper="badge-container"
+              btnClassName="btn badge-icon-btn-lg"
+              icon="fas fa-shopping-cart"
+              badgeClassName="badge-on-icon"
+              badgeValue={cartState.cart.length}
+            />
+          </Link>
           <NavbarAvatar
             avatarWrapper="badge-container"
             avatarClassName="avatar text-avatar-xsm-round"
