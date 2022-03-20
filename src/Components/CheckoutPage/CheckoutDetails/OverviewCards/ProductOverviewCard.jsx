@@ -1,29 +1,34 @@
+import { useCart } from "../../../../Context";
+import ProductCard from "./PorductCard/ProductCard";
+import { useCheckout } from "../../../../Context/CheckoutContext";
+
 const ProductOverviewCard = () => {
+  const { cartState } = useCart();
+  const { checkoutState } = useCheckout();
+  const { productOverviewCheck } = checkoutState;
+
   return (
     <div className="checkout-item-overview">
       <details>
         <summary>
           <h1>Item Overview</h1>
-          <i className="fas fa-check-circle"></i>
+          <i
+            onClick={() => {}}
+            className={
+              productOverviewCheck
+                ? "fas fa-check-circle"
+                : "far fa-check-circle"
+            }
+          ></i>
         </summary>
-        <div className="cart-item-card checkout-item-card card-dark">
-          <div className="card-img-container">
-            <img
-              src="./src/assets/images/polaroid-camera.png"
-              className="img-responsive"
-              alt="product"
-              loading="lazy"
+        {cartState.cart.map((item) => {
+          return (
+            <ProductCard
+              key={item._id}
+              item={{ ...item, delivery: " 7 - 8 " }}
             />
-          </div>
-          <div className="card-body">
-            <div className="card-text">
-              <h1 className="card-title">
-                Polaroid Now I-Type Instant Camera - Everything Box Black (6026)
-              </h1>
-              <h2 className="delivery-period">Delivery: 7-8 Days</h2>
-            </div>
-          </div>
-        </div>
+          );
+        })}
       </details>
     </div>
   );

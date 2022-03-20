@@ -3,6 +3,7 @@ import { ProductsProvider } from "./ProductsProvider";
 import { CartProvider } from "./CartContext";
 import { WishlistProvider } from "./WishlistContext";
 import { BrowserRouter } from "react-router-dom";
+import { CheckoutProvider } from "./CheckoutContext";
 
 const PebbleCartProviders = ({ children }) => {
   return (
@@ -10,7 +11,9 @@ const PebbleCartProviders = ({ children }) => {
       <ModalProvider>
         <ProductsProvider>
           <CartProvider>
-            <WishlistProvider>{children}</WishlistProvider>
+            <CheckoutProvider>
+              <WishlistProvider>{children}</WishlistProvider>
+            </CheckoutProvider>
           </CartProvider>
         </ProductsProvider>
       </ModalProvider>
