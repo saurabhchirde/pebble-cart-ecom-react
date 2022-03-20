@@ -3,9 +3,10 @@ import { cartReducer } from "./cartReducer";
 
 const initialCartState = {
   cart: [],
-  qty: 0,
+  totalQty: 0,
   totalPrice: 0,
   discount: 0,
+  discountPercentage: 0,
   coupon: "",
 };
 

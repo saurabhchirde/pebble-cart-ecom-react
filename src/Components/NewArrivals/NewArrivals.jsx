@@ -1,4 +1,4 @@
-import { useProductProvider } from "../../Context/ProductsProvider";
+import { useProductProvider } from "../../Context";
 import ProductsCard from "../ProductListingPage/ProductsSection/ProductsCard/ProductsCard";
 
 const NewArrivals = () => {
@@ -9,7 +9,9 @@ const NewArrivals = () => {
       <div className="flex-row-center">
         {productState.products.map((item) => {
           return (
-            item.newestArrival && <ProductsCard key={item._id} item={item} />
+            item.newestArrival && (
+              <ProductsCard key={item._id} item={{ ...item, qty: 1 }} />
+            )
           );
         })}
         ;

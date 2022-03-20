@@ -1,5 +1,5 @@
 import HorizontalProductsCard from "../../Components/Cards/HorizontalProductsCard";
-import { useWishlist } from "../../Context/WishlistContext";
+import { useWishlist } from "../../Context";
 import { Link } from "react-router-dom";
 import "./WishlistPage.css";
 import FloatingButton from "../../Components/UI/Button/FloatingButton";

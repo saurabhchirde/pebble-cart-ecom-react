@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { useCart } from "../../../Context/CartContext";
+import { useCart } from "../../../Context";
 import { couponCheck } from "../../../Utils/couponCheck";
 import "./PriceCard.css";
 
 const PriceCard = () => {
   const { cartState, cartDispatch } = useCart();
-  const { qty, totalPrice, coupon, discount } = cartState;
+  const { totalQty, totalPrice, coupon, discount, discountPercentage } =
+    cartState;
   const [errorCoupon, setErrorCoupon] = useState(false);
   const [successCoupon, setSuccessCoupon] = useState(false);
 
@@ -25,6 +26,14 @@ const PriceCard = () => {
     couponCheck(totalPrice, coupon, cartDispatch);
   };
 
+  const selectCouponPebble = () => {
+    cartDispatch({ type: "couponCode", payload: "PEBBLE" });
+  };
+
+  const selectCouponOther = () => {
+    cartDispatch({ type: "couponCode", payload: "SAURABH" });
+  };
+
   return (
     <div className="cart-price-table price-table-dark">
       <h2>Price Details</h2>
@@ -35,10 +44,11 @@ const PriceCard = () => {
       </div>
       <div className="cart-product-qty">
         <h3>Total Qty</h3>
-        <h3>{qty}</h3>
+        <h3>{totalQty}</h3>
       </div>
       <div className="cart-discount">
         <h3>Discount</h3>
+        {discount > 0 && <h3>{discountPercentage}% OFF</h3>}
         <h3>{discount}/-</h3>
       </div>
       <hr className="break-line" />
@@ -66,30 +76,18 @@ const PriceCard = () => {
       </div>
       <hr className="break-line" />
       {successCoupon && (
-        <p className="couponSuccess">Coupon applied successfully.</p>
+        <p className="coupon-success">Coupon applied successfully.</p>
       )}
-      {errorCoupon && <p className="couponError">Enter a valid coupon.</p>}
+      {errorCoupon && <p className="coupon-error">Enter a valid coupon.</p>}
       <div className="cart-btns">
         <button className="btn primary-outline-btn-md">Edit Cart</button>
         <button className="btn primary-btn-md">Place Order</button>
       </div>
-      <div className="availableCoupons">
+      <div className="available-coupons">
         <p>Available coupons</p>
         <div>
-          <div
-            onClick={() => {
-              cartDispatch({ type: "couponCode", payload: "PEBBLE" });
-            }}
-          >
-            PEBBLE
-          </div>
-          <div
-            onClick={() => {
-              cartDispatch({ type: "couponCode", payload: "SAURABH" });
-            }}
-          >
-            SAURABH
-          </div>
+          <div onClick={selectCouponPebble}>PEBBLE</div>
+          <div onClick={selectCouponOther}>SAURABH</div>
         </div>
       </div>
     </div>

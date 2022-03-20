@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useModal } from "../../../Context/ModalContext";
+import { useModal } from "../../../Context";
 import Button from "../Button/Button";
 import InputTypeOne from "../Input/InputTypeOne";
 import "./Login.css";
@@ -90,7 +90,7 @@ const Login = () => {
             </span>
           </p>
           <a
-            className="createAccountBtn"
+            className="create-account-btn"
             onClick={() => {
               setShowLoginModal(false);
               setShowSignupModal(true);

@@ -1,4 +1,4 @@
-import { useFilter } from "../../../../Context/FilterContext";
+import { useFilter } from "../../../../Context";
 import InputTypeTwo from "../../../UI/Input/InputTypeTwo";
 
 const SortSection = () => {

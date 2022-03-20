@@ -1,4 +1,4 @@
-import { useCart, useWishlist } from "../../../Context/index";
+import { useCart, useWishlist } from "../../../Context";
 import BadgeIconButton from "../Button/BadgeIconButton";
 import IconButton from "../Button/IconButton";
 import "./MobileNavigationBarBottom.css";
@@ -29,7 +29,7 @@ const MobileNavigationBarBottom = () => {
             btnClassName="btn badge-icon-btn-lg"
             icon="fas fa-shopping-cart"
             badgeClassName="badge-on-icon"
-            badgeValue={cartState.qty}
+            badgeValue={cartState.cart.length}
           />
         </Link>
       </nav>

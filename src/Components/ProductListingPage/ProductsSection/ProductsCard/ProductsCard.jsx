@@ -1,4 +1,4 @@
-import { useCart, useWishlist } from "../../../../Context/index";
+import { useCart, useWishlist } from "../../../../Context";
 
 const ProductsCard = ({ item }) => {
   const { title, price, rating, totalRating, src, newestArrival, inStock } =
@@ -8,6 +8,10 @@ const ProductsCard = ({ item }) => {
 
   const addCartClick = () => {
     cartDispatch({ type: "addToCart", payload: item });
+  };
+
+  const removeFromCart = () => {
+    cartDispatch({ type: "removeFromCart", payload: item });
   };
 
   const addWishlistClick = () => {
@@ -53,13 +57,14 @@ const ProductsCard = ({ item }) => {
           <div className="card-nav">
             <div className="card-cta-btn">
               <button
-                onClick={addCartClick}
+                onClick={
+                  cartState.cart.includes(item) ? removeFromCart : addCartClick
+                }
                 className={
                   cartState.cart.includes(item)
                     ? "btn primary-outline-btn-sm add-cart"
                     : "btn primary-btn-sm add-cart"
                 }
-                disabled={cartState.cart.includes(item)}
               >
                 {cartState.cart.includes(item) ? "In your Cart" : "Add to Cart"}
               </button>
@@ -85,12 +90,10 @@ const ProductsCard = ({ item }) => {
             </div>
           </div>
         </div>
-        {!inStock ? (
+        {!inStock && (
           <div className="overlay-area-type-1">
             <h1 className="card-title">SOLD OUT</h1>
           </div>
-        ) : (
-          true
         )}
       </div>
     </>
