@@ -3,12 +3,24 @@ import BadgeIconButton from "../Button/BadgeIconButton";
 import SearchBar from "./SearchBar/SearchBar";
 import NavbarLoginButton from "./NavbarLoginButton/NavbarLoginButton";
 import NavbarAvatar from "./Avatar/NavbarAvatar";
-import { useCart, useWishlist } from "../../../Context";
+import { useState } from "react";
+import { useCart, useWishlist, useFilter } from "../../../Context";
 import { Link } from "react-router-dom";
 
 const DesktopNavigationBar = () => {
   const { cartState } = useCart();
   const { wishlist } = useWishlist();
+  const [searchInput, setSearchInput] = useState();
+  const { filterDispatch } = useFilter();
+
+  const onSearchSubmitHandler = (e) => {
+    e.preventDefault();
+    filterDispatch({ type: "bySearch", payload: searchInput });
+  };
+
+  const onSearchInputHandler = (e) => {
+    setSearchInput(e.target.value);
+  };
 
   return (
     <>
@@ -22,7 +34,8 @@ const DesktopNavigationBar = () => {
           micIcon="hide"
           searchIcon="fas fa-search"
           placeholder="Search"
-          onChange={() => {}}
+          onChange={onSearchInputHandler}
+          onSubmit={onSearchSubmitHandler}
         />
 
         <div className="nav-bar-btns">
