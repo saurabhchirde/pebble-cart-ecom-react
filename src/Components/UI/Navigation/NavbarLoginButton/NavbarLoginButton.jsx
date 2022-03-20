@@ -1,5 +1,5 @@
 import Button from "../../Button/Button";
-import { useModal } from "../../../../Context/ModalContext";
+import { useModal } from "../../../../Context";
 
 const NavbarLoginButton = () => {
   const { setShowLoginModal, setShowSignupModal, loginButton, setLoginButton } =

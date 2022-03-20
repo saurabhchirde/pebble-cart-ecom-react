@@ -1,0 +1,47 @@
+.coupon-success,
+.coupon-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 2rem;
+  border-radius: 4px;
+}
+.coupon-error {
+  background-color: rgba(252, 0, 0, 0.18);
+}
+
+.coupon-success {
+  background-color: rgba(34, 252, 0, 0.18);
+}
+
+.available-coupons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.6rem;
+  margin-top: 1rem;
+}
+
+.available-coupons > div {
+  display: flex;
+  padding: 0.6rem;
+}
+
+.available-coupons > div div {
+  background-color: rgb(97, 97, 97);
+  margin: 0.6rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.available-coupons > div div:hover {
+  transition: ease-in 0.2s;
+  background-color: var(--primary-color);
+}
+
+.cart-coupon-apply input {
+  font-size: 0.9rem;
+}

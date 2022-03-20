@@ -1,6 +1,6 @@
 import FilterSection from "../../Components/ProductListingPage/FilterSection/FilterSection";
 import ProductsSection from "../../Components/ProductListingPage/ProductsSection/ProductsSection";
-import { FilterProvider } from "../../Context/FilterContext";
+import { FilterProvider } from "../../Context";
 import "./ProductListingPage.css";
 import FloatingButton from "../../Components/UI/Button/FloatingButton";
 
