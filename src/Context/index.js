@@ -5,3 +5,4 @@ export { filterReducer } from "./filterReducer";
 export { ModalProvider, useModal } from "./ModalContext";
 export { ProductsProvider, useProductProvider } from "./ProductsProvider";
 export { WishlistProvider, useWishlist } from "./WishlistContext";
+export { CheckoutProvider, useCheckout } from "./CheckoutContext";

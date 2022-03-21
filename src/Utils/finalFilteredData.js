@@ -3,6 +3,7 @@ import { filterByCategory } from "./filterByCategory";
 import { filterByStock } from "./filterByStock";
 import { filterByRating } from "./filterByRating";
 import { sortByPrice } from "./sortByPrice";
+import { searchData } from "./searchData";
 
 const finalFilteredData = (products, state) => {
   let filteredArray = [...products];
@@ -12,6 +13,7 @@ const finalFilteredData = (products, state) => {
   filteredArray = filterByBrand(filteredArray, state);
   filteredArray = filterByRating(filteredArray, state);
   filteredArray = sortByPrice(filteredArray, state);
+  filteredArray = searchData(filteredArray, state);
 
   return filteredArray;
 };
