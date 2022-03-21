@@ -35,8 +35,10 @@ const checkoutReducer = (checkoutState, action) => {
         ...checkoutState,
         addressOverviewCheck: true,
       };
+
+    default:
+      return checkoutState;
   }
-  return checkoutState;
 };
 
 export default checkoutReducer;

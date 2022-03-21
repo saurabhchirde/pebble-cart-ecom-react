@@ -4,7 +4,7 @@ import InputTypeTwo from "../../../UI/Input/InputTypeTwo";
 
 const BrandSection = () => {
   const { filterState, filterDispatch } = useFilter();
-  const { allBrand, canon, nikon, sony } = filterState.byBrand;
+  const { canon, nikon, sony } = filterState.byBrand;
 
   return (
     <div className="brand">
