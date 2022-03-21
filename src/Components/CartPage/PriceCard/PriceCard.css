@@ -8,11 +8,11 @@
   border-radius: 4px;
 }
 .coupon-error {
-  background-color: rgba(252, 0, 0, 0.18);
+  background-color: var(--coupon-error);
 }
 
 .coupon-success {
-  background-color: rgba(34, 252, 0, 0.18);
+  background-color: var(--coupon-success);
 }
 
 .available-coupons {
@@ -29,7 +29,7 @@
 }
 
 .available-coupons > div div {
-  background-color: rgba(97, 97, 97, 0.139);
+  background-color: var(--available-coupons);
   margin: 0.6rem;
   padding: 0.6rem 1rem;
   border-radius: 5px;
