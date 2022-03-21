@@ -4,8 +4,7 @@ import InputTypeTwo from "../../../UI/Input/InputTypeTwo";
 
 const CategorySection = () => {
   const { filterState, filterDispatch } = useFilter();
-  const { allCategory, camera, lenses, tripod, accessories } =
-    filterState.byCategory;
+  const { camera, lenses, tripod, accessories } = filterState.byCategory;
 
   return (
     <div className="category">
