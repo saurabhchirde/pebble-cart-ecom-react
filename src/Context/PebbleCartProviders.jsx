@@ -1,24 +1,29 @@
-import { ModalProvider } from "./ModalContext";
-import { ProductsProvider } from "./ProductsProvider";
-import { CartProvider } from "./CartContext";
-import { WishlistProvider } from "./WishlistContext";
+import {
+  ModalProvider,
+  ProductsProvider,
+  CartProvider,
+  WishlistProvider,
+  CheckoutProvider,
+  FilterProvider,
+  ScrollToTop,
+} from "./index";
 import { BrowserRouter } from "react-router-dom";
-import { CheckoutProvider } from "./CheckoutContext";
-import { FilterProvider } from "./FilterContext";
 
 const PebbleCartProviders = ({ children }) => {
   return (
     <BrowserRouter>
       <ModalProvider>
-        <ProductsProvider>
-          <CartProvider>
-            <FilterProvider>
-              <CheckoutProvider>
-                <WishlistProvider>{children}</WishlistProvider>
-              </CheckoutProvider>
-            </FilterProvider>
-          </CartProvider>
-        </ProductsProvider>
+        <ScrollToTop>
+          <ProductsProvider>
+            <CartProvider>
+              <FilterProvider>
+                <CheckoutProvider>
+                  <WishlistProvider>{children}</WishlistProvider>
+                </CheckoutProvider>
+              </FilterProvider>
+            </CartProvider>
+          </ProductsProvider>
+        </ScrollToTop>
       </ModalProvider>
     </BrowserRouter>
   );

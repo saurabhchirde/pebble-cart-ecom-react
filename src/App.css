@@ -12,3 +12,24 @@
   --coupon-success: rgba(34, 252, 0, 0.18);
   --available-coupons: rgba(97, 97, 97, 0.139);
 }
+
+.single-product {
+  margin-bottom: 2rem;
+}
+
+.single-product-image {
+  position: relative;
+}
+
+.single-product-image > button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 1.4rem;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.rating-star-container input {
+  width: 9px;
+}
