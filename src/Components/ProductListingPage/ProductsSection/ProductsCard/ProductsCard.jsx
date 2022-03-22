@@ -1,4 +1,5 @@
 import { useCart, useWishlist } from "../../../../Context";
+import { Link } from "react-router-dom";
 
 const ProductsCard = ({ item }) => {
   const { title, price, rating, totalRating, src, newestArrival, inStock } =
@@ -36,9 +37,11 @@ const ProductsCard = ({ item }) => {
             <h2>New Arrival</h2>
           </div>
         )}
-        <div className="card-img-container">
-          <img src={src} alt="product" loading="lazy" />
-        </div>
+        <Link to="/products/product-details" state={{ item: item }}>
+          <div className="card-img-container">
+            <img src={src} alt="product" loading="lazy" />
+          </div>
+        </Link>
         <div className="card-body">
           <div className="card-text">
             <h1 className="card-title">{title}</h1>
