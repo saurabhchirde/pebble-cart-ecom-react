@@ -14,6 +14,7 @@ import CartPage from "./Pages/Cart/CartPage";
 import CheckoutPage from "./Pages/Checkout/CheckoutPage";
 import Mockman from "mockman-js";
 import { Routes, Route } from "react-router-dom";
+import SingleProduct from "./Pages/SingleProduct/SingleProduct";
 
 const App = () => {
   const { showLoginModal, showSignupModal } = useModal();
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="cart" element={<CartPage />} />
           <Route path="cart/checkout" element={<CheckoutPage />} />
           <Route path="mockman" element={<Mockman />} />
+          <Route path="products/product-details" element={<SingleProduct />} />
         </Routes>
       </BodyWrapper>
       <Footer />
