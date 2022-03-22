@@ -1,13 +1,42 @@
-const ProductImageSection = (props) => {
+import { useWishlist } from "../../../Context";
+
+const ProductImageSection = ({ item }) => {
+  const { wishlist, setWishlist } = useWishlist();
+  const { src } = item;
+
+  const addWishlistClick = () => {
+    setWishlist((oldCart) => {
+      return [...new Set([...oldCart, item])];
+    });
+  };
+
+  const removeFromWishlist = () => {
+    setWishlist((oldWishlist) => {
+      return oldWishlist.filter((el) => {
+        return el._id !== item._id;
+      });
+    });
+  };
+
   return (
     <div className="single-product-image">
-      <img src={props.mainImg} alt="product-image" loading="lazy" />
+      <button
+        onClick={
+          wishlist.includes(item) ? removeFromWishlist : addWishlistClick
+        }
+        className="btn primary-text-btn-sm icon-md"
+      >
+        <i
+          className={wishlist.includes(item) ? "fas fa-heart" : "far fa-heart"}
+        ></i>
+      </button>
+      <img src={src} alt="product-image" loading="lazy" />
       <div className="single-product-image-options">
-        <img src={props.img1} alt="product-image" loading="lazy" />
-        <img src={props.img2} alt="product-image" loading="lazy" />
-        <img src={props.img3} alt="product-image" loading="lazy" />
-        <img src={props.img4} alt="product-image" loading="lazy" />
-        <img src={props.img5} alt="product-image" loading="lazy" />
+        <img src={src} alt="product-image" loading="lazy" />
+        <img src={src} alt="product-image" loading="lazy" />
+        <img src={src} alt="product-image" loading="lazy" />
+        <img src={src} alt="product-image" loading="lazy" />
+        <img src={src} alt="product-image" loading="lazy" />
       </div>
     </div>
   );

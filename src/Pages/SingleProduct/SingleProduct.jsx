@@ -5,29 +5,15 @@ import { useLocation } from "react-router-dom";
 
 const SingleProduct = () => {
   const location = useLocation();
-  const { item } = location.state;
+  const { item } = location.state ?? null;
 
   return (
     <section className="single-product">
       <div className="flex-row flex-wrap">
-        <ProductImageSection
-          item={item}
-          mainImg={item.src}
-          img1={item.src}
-          img2={item.src}
-          img3={item.src}
-          img4={item.src}
-          img5={item.src}
-        />
-        <ProductDetailSection
-          item={item}
-          title={item.title}
-          brand={item.brand}
-          totalRating={item.totalRating}
-          price={item.price}
-        />
+        <ProductImageSection item={item} />
+        <ProductDetailSection item={item} />
       </div>
-      <ProductDescription />
+      <ProductDescription item={item} />
     </section>
   );
 };

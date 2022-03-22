@@ -43,20 +43,22 @@ const ProductsCard = ({ item }) => {
           </div>
         </Link>
         <div className="card-body">
-          <div className="card-text">
-            <h1 className="card-title">{title}</h1>
-            <div className="card-price-rating">
-              <h2 className="card-price">Rs. {price}/-</h2>
-              <div className="rating-badge">
-                <span className="rating-badge-number">{rating}</span>
-                <span className="rating-badge-star">
-                  <i className="fas fa-star"></i>
-                </span>
-                <span className="rating-badge-number">|</span>
-                <span className="rating-badge-number">{totalRating}</span>
+          <Link to="/products/product-details" state={{ item: item }}>
+            <div className="card-text">
+              <h1 className="card-title">{title}</h1>
+              <div className="card-price-rating">
+                <h2 className="card-price">Rs. {price}/-</h2>
+                <div className="rating-badge">
+                  <span className="rating-badge-number">{rating}</span>
+                  <span className="rating-badge-star">
+                    <i className="fas fa-star"></i>
+                  </span>
+                  <span className="rating-badge-number">|</span>
+                  <span className="rating-badge-number">{totalRating}</span>
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
           <div className="card-nav">
             <div className="card-cta-btn">
               <button

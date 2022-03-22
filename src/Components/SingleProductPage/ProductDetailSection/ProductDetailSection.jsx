@@ -1,9 +1,10 @@
-import { useCart, useWishlist } from "../../../Context";
+import { Navigate } from "react-router-dom";
+import { useCart } from "../../../Context";
+import { ratingStarCheck } from "../../../Utils/ratingStarCheck";
 
 const ProductDetailSection = ({ item }) => {
   const { cartState, cartDispatch } = useCart();
-  const { wishlist, setWishlist } = useWishlist();
-  console.log(item);
+  const { title, brand, rating, totalRating, price } = item;
 
   const addCartClick = () => {
     cartDispatch({ type: "addToCart", payload: item });
@@ -13,32 +14,25 @@ const ProductDetailSection = ({ item }) => {
     cartDispatch({ type: "removeFromCart", payload: item });
   };
 
-  const addWishlistClick = () => {
-    setWishlist((oldCart) => {
-      return [...new Set([...oldCart, item])];
-    });
-  };
-
-  const removeFromWishlist = () => {
-    setWishlist((oldWishlist) => {
-      return oldWishlist.filter((el) => {
-        return el._id !== item._id;
-      });
-    });
+  const onBuyNowClickHandler = () => {
+    cartDispatch({ type: "addToCart", payload: item });
+    if (cartState.cart.includes(item)) {
+      return <Navigate to="cart" />;
+    }
   };
 
   return (
     <div className="single-product-detail">
       <div className="product-details-header">
-        <h1>{item.title}</h1>
-        <h3>Brand: {item.brand}</h3>
+        <h1>{title}</h1>
+        <h3>Brand: {brand}</h3>
         <div className="flex-row flex-justify-space-between">
           <div className="rating-star-container">
             <label>
               <input
                 className="rating-star-input"
                 type="checkbox"
-                checked
+                checked={ratingStarCheck(rating) > 0.5}
                 disabled
               />
               <i className="fas fa-star rating-star-icon"></i>
@@ -47,7 +41,7 @@ const ProductDetailSection = ({ item }) => {
               <input
                 className="rating-star-input"
                 type="checkbox"
-                checked
+                checked={ratingStarCheck(rating) > 1.7}
                 disabled
               />
               <i className="fas fa-star rating-star-icon"></i>
@@ -56,7 +50,7 @@ const ProductDetailSection = ({ item }) => {
               <input
                 className="rating-star-input"
                 type="checkbox"
-                checked
+                checked={ratingStarCheck(rating) > 2.7}
                 disabled
               />
               <i className="fas fa-star rating-star-icon"></i>
@@ -65,29 +59,44 @@ const ProductDetailSection = ({ item }) => {
               <input
                 className="rating-star-input"
                 type="checkbox"
-                checked
+                checked={ratingStarCheck(rating) > 3.7}
                 disabled
               />
               <i className="fas fa-star rating-star-icon"></i>
             </label>
             <label>
-              <input className="rating-star-input" type="checkbox" disabled />
+              <input
+                className="rating-star-input"
+                type="checkbox"
+                checked={ratingStarCheck(rating) > 4.7}
+                disabled
+              />
               <i className="fas fa-star rating-star-icon"></i>
             </label>
             <span className="rating-star-separator">|</span>
-            <span className="rating-star-number">{item.totalRating}</span>
+            <span className="rating-star-number">{totalRating}</span>
           </div>
           <p>Delivery in 7 - 8 days</p>
         </div>
       </div>
       <div className="product-details-body">
         <div>
-          <h2 className="product-details-price">Rs. {item.price}/-</h2>
+          <h2 className="product-details-price">Rs. {price}/-</h2>
           <div className="product-details-cta">
-            <button onClick={addCartClick} className="btn secondary-btn-md">
-              Add to cart
+            <button
+              onClick={
+                cartState.cart.includes(item) ? removeFromCart : addCartClick
+              }
+              className="btn secondary-btn-md"
+            >
+              {cartState.cart.includes(item) ? "In your Cart" : "Add to Cart"}
             </button>
-            <button className="btn primary-btn-md">Buy Now</button>
+            <button
+              onClick={onBuyNowClickHandler}
+              className="btn primary-btn-md"
+            >
+              Buy Now
+            </button>
           </div>
         </div>
         <div className="product-details-feature">
