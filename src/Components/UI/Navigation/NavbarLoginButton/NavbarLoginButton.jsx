@@ -1,16 +1,18 @@
 import Button from "../../Button/Button";
-import { useModal } from "../../../../Context";
+import { useAuth, useModal } from "../../../../Context";
 
-const NavbarLoginButton = () => {
-  const { setShowLoginModal, setShowSignupModal, loginButton, setLoginButton } =
-    useModal();
+const NavbarLoginButton = (props) => {
+  const { auth, authDispatch } = useAuth();
+  const { setShowLoginModal, setShowSignupModal } = useModal();
+
+  console.log(auth.login);
 
   const onNavbarLoginClickHandler = () => {
-    if (loginButton === "Login") {
+    if (!auth.login) {
       setShowLoginModal(true);
       setShowSignupModal(false);
     } else {
-      setLoginButton("Login");
+      authDispatch({ type: "logout" });
       setShowLoginModal(false);
       setShowSignupModal(false);
     }
@@ -20,7 +22,7 @@ const NavbarLoginButton = () => {
     <>
       <Button
         btnWrapper="signin"
-        label={loginButton}
+        label={props.label}
         btnClassName="btn primary-btn-md"
         onClick={onNavbarLoginClickHandler}
       />

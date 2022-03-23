@@ -1,4 +1,4 @@
-import { useCart, useWishlist } from "../../../Context";
+import { useAuth, useCart, useWishlist } from "../../../Context";
 import BadgeIconButton from "../Button/BadgeIconButton";
 import IconButton from "../Button/IconButton";
 import "./MobileNavigationBarBottom.css";
@@ -7,6 +7,10 @@ import { Link } from "react-router-dom";
 const MobileNavigationBarBottom = () => {
   const { cartState } = useCart();
   const { wishlist } = useWishlist();
+  const { auth } = useAuth();
+
+  const cartItems = auth.login ? auth.cart.items : cartState.cart;
+  const wishlistItems = auth.login ? auth.wishlist : wishlist;
 
   return (
     <>
@@ -17,7 +21,7 @@ const MobileNavigationBarBottom = () => {
             btnClassName="btn badge-icon-btn-lg"
             icon="far fa-heart"
             badgeClassName="badge-on-icon"
-            badgeValue={wishlist.length}
+            badgeValue={wishlistItems.length}
           />
         </Link>
         <Link to="/">
@@ -29,7 +33,7 @@ const MobileNavigationBarBottom = () => {
             btnClassName="btn badge-icon-btn-lg"
             icon="fas fa-shopping-cart"
             badgeClassName="badge-on-icon"
-            badgeValue={cartState.cart.length}
+            badgeValue={cartItems.length}
           />
         </Link>
       </nav>

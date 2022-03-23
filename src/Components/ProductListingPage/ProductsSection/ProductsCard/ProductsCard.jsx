@@ -1,4 +1,4 @@
-import { useCart, useWishlist } from "../../../../Context";
+import { useAuth, useCart, useWishlist } from "../../../../Context";
 import { Link } from "react-router-dom";
 
 const ProductsCard = ({ item }) => {
@@ -6,35 +6,58 @@ const ProductsCard = ({ item }) => {
     item;
   const { cartState, cartDispatch } = useCart();
   const { wishlist, setWishlist } = useWishlist();
+  const { auth, authDispatch } = useAuth();
+
+  const currCartState = auth.login ? auth.cart.items : cartState.cart;
 
   const addCartClick = () => {
-    cartDispatch({ type: "addToCart", payload: item });
+    auth.login
+      ? authDispatch({
+          type: "addToCart",
+          payload: item,
+        })
+      : cartDispatch({ type: "addToCart", payload: item });
   };
 
   const removeFromCart = () => {
-    cartDispatch({ type: "removeFromCart", payload: item });
+    auth.login
+      ? authDispatch({
+          type: "removeFromCart",
+          payload: item,
+        })
+      : cartDispatch({ type: "removeFromCart", payload: item });
   };
 
   const addWishlistClick = () => {
-    setWishlist((oldCart) => {
-      return [...new Set([...oldCart, item])];
-    });
+    auth.login
+      ? authDispatch({
+          type: "addToWishlist",
+          payload: item,
+        })
+      : setWishlist((oldCart) => {
+          return [...new Set([...oldCart, item])];
+        });
   };
 
   const removeFromWishlist = () => {
-    setWishlist((oldWishlist) => {
-      return oldWishlist.filter((el) => {
-        return el._id !== item._id;
-      });
-    });
+    auth.login
+      ? authDispatch({
+          type: "removeFromWishlist",
+          payload: item,
+        })
+      : setWishlist((oldWishlist) => {
+          return oldWishlist.filter((el) => {
+            return el._id !== item._id;
+          });
+        });
   };
 
   const cartButtonState = `${
-    cartState.cart.includes(item) ? "In your Cart" : "Add to Cart"
+    currCartState.includes(item) ? "In your Cart" : "Add to Cart"
   }`;
 
   const cartClassName = `${
-    cartState.cart.includes(item)
+    currCartState.includes(item)
       ? "btn primary-outline-btn-sm add-cart"
       : "btn primary-btn-sm add-cart"
   }`;
@@ -77,7 +100,7 @@ const ProductsCard = ({ item }) => {
             <div className="card-cta-btn">
               <button
                 onClick={
-                  cartState.cart.includes(item) ? removeFromCart : addCartClick
+                  currCartState.includes(item) ? removeFromCart : addCartClick
                 }
                 className={cartClassName}
               >

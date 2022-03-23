@@ -3,15 +3,15 @@ import BadgeIconButton from "../Button/BadgeIconButton";
 import SearchBar from "./SearchBar/SearchBar";
 import NavbarLoginButton from "./NavbarLoginButton/NavbarLoginButton";
 import NavbarAvatar from "./Avatar/NavbarAvatar";
-import { useState } from "react";
-import { useCart, useWishlist, useFilter } from "../../../Context";
+import { useCart, useWishlist, useFilter, useAuth } from "../../../Context";
 import { Link } from "react-router-dom";
 
 const DesktopNavigationBar = () => {
   const { cartState } = useCart();
   const { wishlist } = useWishlist();
-  const [searchInput, setSearchInput] = useState();
-  const { filterDispatch } = useFilter();
+
+  const { filterDispatch, searchInput, setSearchInput } = useFilter();
+  const { auth } = useAuth();
 
   const onSearchSubmitHandler = (e) => {
     e.preventDefault();
@@ -22,12 +22,15 @@ const DesktopNavigationBar = () => {
     setSearchInput(e.target.value);
   };
 
+  const cartItems = auth.login ? auth.cart.items : cartState.cart;
+  const wishlistItems = auth.login ? auth.wishlist : wishlist;
+
   return (
     <>
       <nav className="desktop-navigation-bar dark-nav-bar">
-        <a href="/">
+        <Link to="/">
           <img className="company-logo" src={logoLight} alt="logo" />
-        </a>
+        </Link>
 
         <SearchBar
           searchWrapper="search-container"
@@ -37,16 +40,15 @@ const DesktopNavigationBar = () => {
           onChange={onSearchInputHandler}
           onSubmit={onSearchSubmitHandler}
         />
-
         <div className="nav-bar-btns">
-          <NavbarLoginButton />
+          <NavbarLoginButton label={auth.login ? "Logout" : "Login"} />
           <Link to="wishlist">
             <BadgeIconButton
               btnWrapper="badge-container"
               btnClassName="btn badge-icon-btn-lg"
               icon="far fa-heart"
               badgeClassName="badge-on-icon"
-              badgeValue={wishlist.length}
+              badgeValue={wishlistItems.length}
             />
           </Link>
           <Link to="cart">
@@ -55,16 +57,17 @@ const DesktopNavigationBar = () => {
               btnClassName="btn badge-icon-btn-lg"
               icon="fas fa-shopping-cart"
               badgeClassName="badge-on-icon"
-              badgeValue={cartState.cart.length}
+              badgeValue={cartItems.length}
             />
           </Link>
-          <NavbarAvatar
-            avatarWrapper="badge-container"
-            avatarClassName="avatar text-avatar-xsm-round"
-            imgDisplay="hide"
-            src=""
-            statusBadge="hide"
-          />
+          {auth.login && (
+            <NavbarAvatar
+              avatarWrapper="badge-container"
+              avatarClassName="avatar text-avatar-xsm-round"
+              imgDisplay="hide"
+              src={auth.user.dp !== "" ? auth.user.dp : "IN"}
+            />
+          )}
         </div>
       </nav>
     </>

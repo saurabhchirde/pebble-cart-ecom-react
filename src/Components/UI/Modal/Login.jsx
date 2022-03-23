@@ -1,14 +1,18 @@
-import { useState } from "react";
-import { useModal } from "../../../Context";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useAuth, useModal } from "../../../Context";
 import Button from "../Button/Button";
 import InputTypeOne from "../Input/InputTypeOne";
 import "./Login.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [inputField, setInputField] = useState({
+  const [loginInput, setLoginInput] = useState({
     email: "",
     password: "",
   });
+  const { auth, authDispatch } = useAuth();
+  const navigate = useNavigate();
 
   const { setShowLoginModal, setShowSignupModal, setLoginButton } = useModal();
 
@@ -19,7 +23,7 @@ const Login = () => {
   const onModalInputHandler = (e) => {
     const value = e.target.value;
     const name = e.target.name;
-    setInputField((preData) => {
+    setLoginInput((preData) => {
       return {
         ...preData,
         [name]: value,
@@ -28,12 +32,31 @@ const Login = () => {
   };
 
   const onLoginCLickFormHandler = () => {
-    if (inputField.name === "" || inputField.password === "") {
+    setLoginInput(() => {
+      return {
+        email: "saurabh.chirde@gmail.com",
+        password: "saurabh@123",
+      };
+    });
+    if (loginInput.name === "" || loginInput.password === "") {
       return;
     } else {
-      setLoginButton("Logout");
+      loginAuthentication();
+
+      // setShowSignupModal(false);
+    }
+  };
+  console.log(auth);
+  const loginAuthentication = async () => {
+    try {
+      const response = await axios.post("/api/auth/login", loginInput);
+      authDispatch({
+        type: "login",
+        payload: response.data,
+      });
       setShowLoginModal(false);
-      setShowSignupModal(false);
+    } catch (error) {
+      console.error(error.message);
     }
   };
 
@@ -55,26 +78,26 @@ const Login = () => {
           <InputTypeOne
             type="email"
             name="email"
-            required="required"
+            // required="required"
             autoComplete="email"
             placeholder="Enter your email *"
             iconWrapper="input-icon"
             icon="far fa-envelope"
             inputWrapper="outline-email-input"
             onChange={onModalInputHandler}
-            value={inputField.email}
+            value={loginInput.email}
           />
           <InputTypeOne
             type="password"
             name="password"
-            required="required"
+            // required="required"
             autoComplete="current-password"
             placeholder="Enter your password *"
             iconWrapper="input-icon"
             icon="fas fa-key"
             inputWrapper="outline-password-input"
             onChange={onModalInputHandler}
-            value={inputField.password}
+            value={loginInput.password}
           />
           <Button
             btnWrapper="signin-btn"
