@@ -2,7 +2,7 @@ import { useCart, useWishlist } from "../../../../Context";
 import { Link } from "react-router-dom";
 
 const ProductsCard = ({ item }) => {
-  const { title, price, rating, totalRating, src, newestArrival, inStock } =
+  const { title, price, rating, totalRating, src1, newestArrival, inStock } =
     item;
   const { cartState, cartDispatch } = useCart();
   const { wishlist, setWishlist } = useWishlist();
@@ -53,7 +53,7 @@ const ProductsCard = ({ item }) => {
         )}
         <Link to="/products/product-details" state={{ item: item }}>
           <div className="card-img-container">
-            <img src={src} alt="product" loading="lazy" />
+            <img src={src1} alt="product" loading="lazy" />
           </div>
         </Link>
         <div className="card-body">
