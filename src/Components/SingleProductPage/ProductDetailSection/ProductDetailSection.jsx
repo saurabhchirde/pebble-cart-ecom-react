@@ -87,7 +87,7 @@ const ProductDetailSection = ({ item }) => {
               onClick={
                 cartState.cart.includes(item) ? removeFromCart : addCartClick
               }
-              className="btn secondary-btn-md"
+              className="btn primary-outline-btn-md"
             >
               {cartState.cart.includes(item) ? "In your Cart" : "Add to Cart"}
             </button>
