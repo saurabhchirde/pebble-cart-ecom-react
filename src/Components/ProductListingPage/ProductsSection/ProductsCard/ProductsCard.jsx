@@ -29,6 +29,20 @@ const ProductsCard = ({ item }) => {
     });
   };
 
+  const cartButtonState = `${
+    cartState.cart.includes(item) ? "In your Cart" : "Add to Cart"
+  }`;
+
+  const cartClassName = `${
+    cartState.cart.includes(item)
+      ? "btn primary-outline-btn-sm add-cart"
+      : "btn primary-btn-sm add-cart"
+  }`;
+
+  const wishlistClassName = `${
+    wishlist.includes(item) ? "fas fa-heart" : "far fa-heart"
+  }`;
+
   return (
     <>
       <div className="card-vertical card-dark">
@@ -65,13 +79,9 @@ const ProductsCard = ({ item }) => {
                 onClick={
                   cartState.cart.includes(item) ? removeFromCart : addCartClick
                 }
-                className={
-                  cartState.cart.includes(item)
-                    ? "btn primary-outline-btn-sm add-cart"
-                    : "btn primary-btn-sm add-cart"
-                }
+                className={cartClassName}
               >
-                {cartState.cart.includes(item) ? "In your Cart" : "Add to Cart"}
+                {cartButtonState}
               </button>
               <div className="card-nav-icon">
                 <button
@@ -82,11 +92,7 @@ const ProductsCard = ({ item }) => {
                   }
                   className="btn primary-text-btn-sm icon-md"
                 >
-                  <i
-                    className={
-                      wishlist.includes(item) ? "fas fa-heart" : "far fa-heart"
-                    }
-                  ></i>
+                  <i className={wishlistClassName}></i>
                 </button>
                 <button className="btn primary-text-btn-sm icon-md ">
                   <i className="fas fa-share-alt"></i>
