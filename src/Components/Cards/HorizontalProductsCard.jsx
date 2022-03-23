@@ -1,7 +1,7 @@
 import { useWishlist, useCart } from "../../Context";
 
 const HorizontalProductsCard = ({ item }) => {
-  const { title, price, src } = item;
+  const { title, price, src1 } = item;
   const { setWishlist } = useWishlist();
   const { cartDispatch } = useCart();
 
@@ -27,7 +27,7 @@ const HorizontalProductsCard = ({ item }) => {
     <>
       <div className="card-horizontal card-dark">
         <div className="card-img-container">
-          <img src={src} alt="product" loading="lazy" />
+          <img src={src1} alt="product" loading="lazy" />
         </div>
         <div className="card-body">
           <div className="card-text">
