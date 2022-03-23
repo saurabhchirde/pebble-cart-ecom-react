@@ -1,4 +1,5 @@
 import { useCart, useWishlist } from "../../../../Context";
+import { Link } from "react-router-dom";
 
 const ProductsCard = ({ item }) => {
   const { title, price, rating, totalRating, src, newestArrival, inStock } =
@@ -28,6 +29,20 @@ const ProductsCard = ({ item }) => {
     });
   };
 
+  const cartButtonState = `${
+    cartState.cart.includes(item) ? "In your Cart" : "Add to Cart"
+  }`;
+
+  const cartClassName = `${
+    cartState.cart.includes(item)
+      ? "btn primary-outline-btn-sm add-cart"
+      : "btn primary-btn-sm add-cart"
+  }`;
+
+  const wishlistClassName = `${
+    wishlist.includes(item) ? "fas fa-heart" : "far fa-heart"
+  }`;
+
   return (
     <>
       <div className="card-vertical card-dark">
@@ -36,37 +51,37 @@ const ProductsCard = ({ item }) => {
             <h2>New Arrival</h2>
           </div>
         )}
-        <div className="card-img-container">
-          <img src={src} alt="product" loading="lazy" />
-        </div>
+        <Link to="/products/product-details" state={{ item: item }}>
+          <div className="card-img-container">
+            <img src={src} alt="product" loading="lazy" />
+          </div>
+        </Link>
         <div className="card-body">
-          <div className="card-text">
-            <h1 className="card-title">{title}</h1>
-            <div className="card-price-rating">
-              <h2 className="card-price">Rs. {price}/-</h2>
-              <div className="rating-badge">
-                <span className="rating-badge-number">{rating}</span>
-                <span className="rating-badge-star">
-                  <i className="fas fa-star"></i>
-                </span>
-                <span className="rating-badge-number">|</span>
-                <span className="rating-badge-number">{totalRating}</span>
+          <Link to="/products/product-details" state={{ item: item }}>
+            <div className="card-text">
+              <h1 className="card-title">{title}</h1>
+              <div className="card-price-rating">
+                <h2 className="card-price">Rs. {price}/-</h2>
+                <div className="rating-badge">
+                  <span className="rating-badge-number">{rating}</span>
+                  <span className="rating-badge-star">
+                    <i className="fas fa-star"></i>
+                  </span>
+                  <span className="rating-badge-number">|</span>
+                  <span className="rating-badge-number">{totalRating}</span>
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
           <div className="card-nav">
             <div className="card-cta-btn">
               <button
                 onClick={
                   cartState.cart.includes(item) ? removeFromCart : addCartClick
                 }
-                className={
-                  cartState.cart.includes(item)
-                    ? "btn primary-outline-btn-sm add-cart"
-                    : "btn primary-btn-sm add-cart"
-                }
+                className={cartClassName}
               >
-                {cartState.cart.includes(item) ? "In your Cart" : "Add to Cart"}
+                {cartButtonState}
               </button>
               <div className="card-nav-icon">
                 <button
@@ -77,11 +92,7 @@ const ProductsCard = ({ item }) => {
                   }
                   className="btn primary-text-btn-sm icon-md"
                 >
-                  <i
-                    className={
-                      wishlist.includes(item) ? "fas fa-heart" : "far fa-heart"
-                    }
-                  ></i>
+                  <i className={wishlistClassName}></i>
                 </button>
                 <button className="btn primary-text-btn-sm icon-md ">
                   <i className="fas fa-share-alt"></i>
