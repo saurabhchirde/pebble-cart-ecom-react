@@ -1,11 +1,11 @@
 const ProductCard = ({ item }) => {
-  const { title, src, delivery } = item;
+  const { title, src1, delivery } = item;
 
   return (
-    <div className="cart-item-card checkout-item-card card-dark">
+    <div className="cart-item-card checkout-item-card card-dark card-shadow-two">
       <div className="card-img-container">
         <img
-          src={src}
+          src={src1}
           className="img-responsive"
           alt="product"
           loading="lazy"
@@ -14,7 +14,7 @@ const ProductCard = ({ item }) => {
       <div className="card-body">
         <div className="card-text">
           <h1 className="card-title">{title}</h1>
-          <h2 className="delivery-period">Delivery: {delivery} Days</h2>
+          <h2 className="delivery-period">Delivery: {delivery}</h2>
         </div>
       </div>
     </div>

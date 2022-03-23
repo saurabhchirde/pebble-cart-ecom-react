@@ -56,6 +56,7 @@ const products = [
     src5: sonySmallCamera,
     inStock: 20,
     newestArrival: true,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "Super HAD CCD sensor with 20.1 effective megapixels : Included Components - 1 U (Including-Rechargeable battery, AC Adaptor, Multi USB Cable, Wrist Strap,User Manual)",
       "720p MP4 movie mode the camera shoots 1280 x 720 high definition movies at 30 fps, Focal length f=4.5-36mm. Exposure Compensation: +/- 2.0 EV, 1/3 EV step",
@@ -80,6 +81,7 @@ const products = [
     src5: canon6dCamera5,
     inStock: 13,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "This camera comes with a high resolution 20.2-megapixel CMOS sensor capture sharp images with quality and detail. It has a new photodiode construction, gapless microlens array and on-chip noise reduction circuitry on the sensor to keep the image data clean and clear, even at high ISO settings.",
       "The Canon EOS 6D lets you take pictures in any environment, bright or low-lit, as it comes with a flexible ISO speed setting between 50 and 102400. It lets you adjust the camera's sensitivity to light, giving you great photos in both day and night.",
@@ -105,6 +107,7 @@ const products = [
     src5: lens85mm,
     inStock: 3,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "Beautiful bokeh with DS* coating",
       "High image quality and bright f/1.2 aperture mid-telephoto zoom RF L lens.",
@@ -130,6 +133,7 @@ const products = [
     src5: lensForMobile5,
     inStock: 0,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "The 4K HD Mobile Phone 5-in-1 Camera Lens Kit from Apexel is a bundle that contains a 2x Zoom Telephone Lens, a 0.6x / 110° Wide-Angle Lens, a 170° Super Wide-Angle Lens, a 195° Fisheye Lens, and a 10x Macro Lens. These lenses are compatible with iPhone XS Max, XR, X, 8, 7, and 6 Plus, as well as Samsung phones.",
       "This lens provides a magnification of 10x for detailed close-ups. The Telephoto Lens provides a minimum magnification of 2x to deliver photos from a distance that are of higher quality. If you'd like to create subjects with a blurred background, please keep the lens 12 to 40 from your subject. To fully utilize the 2x magnification, keep the lens at least 60 from the subject.",
@@ -152,6 +156,7 @@ const products = [
     src5: polaroidCamera5,
     inStock: 4,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "NOW: Polaroid's new point-and-shoot analog instant camera has all you need to catch every life moment in an original Polaroid photograph.",
       "NEW & IMPROVED: Now with autofocus, it’s simple to capture moments as you see them, so you can relive them forever in sharp, vivid color.",
@@ -176,6 +181,7 @@ const products = [
     src5: sonyAlphaCamera5,
     inStock: 12,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "35mm full-frame “Exmor R” CMOS sensor with approx 42.4 effective megapixels",
       "Enhanced BIONZ X image processing engine with front end LSI",
@@ -207,6 +213,7 @@ const products = [
     src5: cameraCanon5,
     inStock: 0,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "Sensor: APS-C CMOS Sensor with 24.1 MP (high resolution for large prints and image cropping). Transmission frequency (central frequency):Frequency: 2 412 to 2 462MHz. Standard diopter :-2.5 - +0.5m-1 (dpt)",
       "ISO: 100-6400 sensitivity range (critical for obtaining grain-free pictures, especially in low light)",
@@ -233,6 +240,7 @@ const products = [
     src5: actionCamera2,
     inStock: 10,
     newestArrival: true,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "1 year international + 1 year local India warranty. For 1 Year extended warranty please visit gopro.luxurypersonified.co.in",
       "Revolutionary Processor: Faster. Smoother. Better. The powerful new GP2 engine changes the game—snappy performance, responsive touch controls and double the frame rate for amazingly smooth footage. Designed specifically for the demanding nature of the GoPro, the GP2 “system on a chip” is by far our fastest ever.",
@@ -258,6 +266,7 @@ const products = [
     src5: sonySmallCamera,
     inStock: 0,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "Super HAD CCD sensor with 20.1 effective megapixels : Included Components - 1 U (Including-Rechargeable battery, AC Adaptor, Multi USB Cable, Wrist Strap,User Manual)",
       "720p MP4 movie mode the camera shoots 1280 x 720 high definition movies at 30 fps, Focal length f=4.5-36mm. Exposure Compensation: +/- 2.0 EV, 1/3 EV step",
@@ -282,6 +291,7 @@ const products = [
     src5: canon6dCamera5,
     inStock: 6,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "This camera comes with a high resolution 20.2-megapixel CMOS sensor capture sharp images with quality and detail. It has a new photodiode construction, gapless microlens array and on-chip noise reduction circuitry on the sensor to keep the image data clean and clear, even at high ISO settings.",
       "The Canon EOS 6D lets you take pictures in any environment, bright or low-lit, as it comes with a flexible ISO speed setting between 50 and 102400. It lets you adjust the camera's sensitivity to light, giving you great photos in both day and night.",
@@ -307,6 +317,7 @@ const products = [
     src5: lens85mm,
     inStock: 7,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "Beautiful bokeh with DS* coating",
       "High image quality and bright f/1.2 aperture mid-telephoto zoom RF L lens.",
@@ -332,6 +343,7 @@ const products = [
     src5: lensForMobile5,
     inStock: 6,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "The 4K HD Mobile Phone 5-in-1 Camera Lens Kit from Apexel is a bundle that contains a 2x Zoom Telephone Lens, a 0.6x / 110° Wide-Angle Lens, a 170° Super Wide-Angle Lens, a 195° Fisheye Lens, and a 10x Macro Lens. These lenses are compatible with iPhone XS Max, XR, X, 8, 7, and 6 Plus, as well as Samsung phones.",
       "This lens provides a magnification of 10x for detailed close-ups. The Telephoto Lens provides a minimum magnification of 2x to deliver photos from a distance that are of higher quality. If you'd like to create subjects with a blurred background, please keep the lens 12 to 40 from your subject. To fully utilize the 2x magnification, keep the lens at least 60 from the subject.",
@@ -354,6 +366,7 @@ const products = [
     src5: polaroidCamera5,
     inStock: 3,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "NOW: Polaroid's new point-and-shoot analog instant camera has all you need to catch every life moment in an original Polaroid photograph.",
       "NEW & IMPROVED: Now with autofocus, it’s simple to capture moments as you see them, so you can relive them forever in sharp, vivid color.",
@@ -378,6 +391,7 @@ const products = [
     src5: sonyAlphaCamera5,
     inStock: 4,
     newestArrival: true,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "35mm full-frame “Exmor R” CMOS sensor with approx 42.4 effective megapixels",
       "Enhanced BIONZ X image processing engine with front end LSI",
@@ -409,6 +423,7 @@ const products = [
     src5: cameraCanon5,
     inStock: 5,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "Sensor: APS-C CMOS Sensor with 24.1 MP (high resolution for large prints and image cropping). Transmission frequency (central frequency):Frequency: 2 412 to 2 462MHz. Standard diopter :-2.5 - +0.5m-1 (dpt)",
       "ISO: 100-6400 sensitivity range (critical for obtaining grain-free pictures, especially in low light)",
@@ -435,6 +450,7 @@ const products = [
     src5: actionCamera2,
     inStock: 8,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "1 year international + 1 year local India warranty. For 1 Year extended warranty please visit gopro.luxurypersonified.co.in",
       "Revolutionary Processor: Faster. Smoother. Better. The powerful new GP2 engine changes the game—snappy performance, responsive touch controls and double the frame rate for amazingly smooth footage. Designed specifically for the demanding nature of the GoPro, the GP2 “system on a chip” is by far our fastest ever.",
@@ -460,6 +476,7 @@ const products = [
     src5: sonySmallCamera,
     inStock: 8,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "Super HAD CCD sensor with 20.1 effective megapixels : Included Components - 1 U (Including-Rechargeable battery, AC Adaptor, Multi USB Cable, Wrist Strap,User Manual)",
       "720p MP4 movie mode the camera shoots 1280 x 720 high definition movies at 30 fps, Focal length f=4.5-36mm. Exposure Compensation: +/- 2.0 EV, 1/3 EV step",
@@ -484,6 +501,7 @@ const products = [
     src5: canon6dCamera5,
     inStock: 8,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "This camera comes with a high resolution 20.2-megapixel CMOS sensor capture sharp images with quality and detail. It has a new photodiode construction, gapless microlens array and on-chip noise reduction circuitry on the sensor to keep the image data clean and clear, even at high ISO settings.",
       "The Canon EOS 6D lets you take pictures in any environment, bright or low-lit, as it comes with a flexible ISO speed setting between 50 and 102400. It lets you adjust the camera's sensitivity to light, giving you great photos in both day and night.",
@@ -509,6 +527,7 @@ const products = [
     src5: lens85mm,
     inStock: 0,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "Beautiful bokeh with DS* coating",
       "High image quality and bright f/1.2 aperture mid-telephoto zoom RF L lens.",
@@ -534,6 +553,7 @@ const products = [
     src5: lensForMobile5,
     inStock: 0,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "The 4K HD Mobile Phone 5-in-1 Camera Lens Kit from Apexel is a bundle that contains a 2x Zoom Telephone Lens, a 0.6x / 110° Wide-Angle Lens, a 170° Super Wide-Angle Lens, a 195° Fisheye Lens, and a 10x Macro Lens. These lenses are compatible with iPhone XS Max, XR, X, 8, 7, and 6 Plus, as well as Samsung phones.",
       "This lens provides a magnification of 10x for detailed close-ups. The Telephoto Lens provides a minimum magnification of 2x to deliver photos from a distance that are of higher quality. If you'd like to create subjects with a blurred background, please keep the lens 12 to 40 from your subject. To fully utilize the 2x magnification, keep the lens at least 60 from the subject.",
@@ -556,6 +576,7 @@ const products = [
     src5: polaroidCamera5,
     inStock: 7,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "NOW: Polaroid's new point-and-shoot analog instant camera has all you need to catch every life moment in an original Polaroid photograph.",
       "NEW & IMPROVED: Now with autofocus, it’s simple to capture moments as you see them, so you can relive them forever in sharp, vivid color.",
@@ -580,6 +601,7 @@ const products = [
     src5: sonyAlphaCamera5,
     inStock: 7,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "35mm full-frame “Exmor R” CMOS sensor with approx 42.4 effective megapixels",
       "Enhanced BIONZ X image processing engine with front end LSI",
@@ -611,6 +633,7 @@ const products = [
     src5: cameraCanon5,
     inStock: 7,
     newestArrival: true,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "Sensor: APS-C CMOS Sensor with 24.1 MP (high resolution for large prints and image cropping). Transmission frequency (central frequency):Frequency: 2 412 to 2 462MHz. Standard diopter :-2.5 - +0.5m-1 (dpt)",
       "ISO: 100-6400 sensitivity range (critical for obtaining grain-free pictures, especially in low light)",
@@ -637,6 +660,7 @@ const products = [
     src5: actionCamera2,
     inStock: 20,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "1 year international + 1 year local India warranty. For 1 Year extended warranty please visit gopro.luxurypersonified.co.in",
       "Revolutionary Processor: Faster. Smoother. Better. The powerful new GP2 engine changes the game—snappy performance, responsive touch controls and double the frame rate for amazingly smooth footage. Designed specifically for the demanding nature of the GoPro, the GP2 “system on a chip” is by far our fastest ever.",
@@ -662,6 +686,7 @@ const products = [
     src5: sonySmallCamera,
     inStock: 20,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "Super HAD CCD sensor with 20.1 effective megapixels : Included Components - 1 U (Including-Rechargeable battery, AC Adaptor, Multi USB Cable, Wrist Strap,User Manual)",
       "720p MP4 movie mode the camera shoots 1280 x 720 high definition movies at 30 fps, Focal length f=4.5-36mm. Exposure Compensation: +/- 2.0 EV, 1/3 EV step",
@@ -686,6 +711,7 @@ const products = [
     src5: canon6dCamera5,
     inStock: 20,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "This camera comes with a high resolution 20.2-megapixel CMOS sensor capture sharp images with quality and detail. It has a new photodiode construction, gapless microlens array and on-chip noise reduction circuitry on the sensor to keep the image data clean and clear, even at high ISO settings.",
       "The Canon EOS 6D lets you take pictures in any environment, bright or low-lit, as it comes with a flexible ISO speed setting between 50 and 102400. It lets you adjust the camera's sensitivity to light, giving you great photos in both day and night.",
@@ -711,6 +737,7 @@ const products = [
     src5: lens85mm,
     inStock: 10,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "Beautiful bokeh with DS* coating",
       "High image quality and bright f/1.2 aperture mid-telephoto zoom RF L lens.",
@@ -736,6 +763,7 @@ const products = [
     src5: lensForMobile5,
     inStock: 10,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "The 4K HD Mobile Phone 5-in-1 Camera Lens Kit from Apexel is a bundle that contains a 2x Zoom Telephone Lens, a 0.6x / 110° Wide-Angle Lens, a 170° Super Wide-Angle Lens, a 195° Fisheye Lens, and a 10x Macro Lens. These lenses are compatible with iPhone XS Max, XR, X, 8, 7, and 6 Plus, as well as Samsung phones.",
       "This lens provides a magnification of 10x for detailed close-ups. The Telephoto Lens provides a minimum magnification of 2x to deliver photos from a distance that are of higher quality. If you'd like to create subjects with a blurred background, please keep the lens 12 to 40 from your subject. To fully utilize the 2x magnification, keep the lens at least 60 from the subject.",
@@ -758,6 +786,7 @@ const products = [
     src5: polaroidCamera5,
     inStock: 5,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "NOW: Polaroid's new point-and-shoot analog instant camera has all you need to catch every life moment in an original Polaroid photograph.",
       "NEW & IMPROVED: Now with autofocus, it’s simple to capture moments as you see them, so you can relive them forever in sharp, vivid color.",
@@ -782,6 +811,7 @@ const products = [
     src5: sonyAlphaCamera5,
     inStock: 6,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "35mm full-frame “Exmor R” CMOS sensor with approx 42.4 effective megapixels",
       "Enhanced BIONZ X image processing engine with front end LSI",
@@ -813,6 +843,7 @@ const products = [
     src5: cameraCanon5,
     inStock: 7,
     newestArrival: false,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "Sensor: APS-C CMOS Sensor with 24.1 MP (high resolution for large prints and image cropping). Transmission frequency (central frequency):Frequency: 2 412 to 2 462MHz. Standard diopter :-2.5 - +0.5m-1 (dpt)",
       "ISO: 100-6400 sensitivity range (critical for obtaining grain-free pictures, especially in low light)",
@@ -839,6 +870,7 @@ const products = [
     src5: actionCamera2,
     inStock: 5,
     newestArrival: true,
+    delivery: `${Math.trunc(Math.random() * 10) + 2} Days`,
     description: [
       "1 year international + 1 year local India warranty. For 1 Year extended warranty please visit gopro.luxurypersonified.co.in",
       "Revolutionary Processor: Faster. Smoother. Better. The powerful new GP2 engine changes the game—snappy performance, responsive touch controls and double the frame rate for amazingly smooth footage. Designed specifically for the demanding nature of the GoPro, the GP2 “system on a chip” is by far our fastest ever.",
