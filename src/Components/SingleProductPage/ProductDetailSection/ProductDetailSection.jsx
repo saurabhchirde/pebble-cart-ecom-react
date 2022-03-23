@@ -1,10 +1,11 @@
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useCart } from "../../../Context";
 import { ratingStarCheck } from "../../../Utils/ratingStarCheck";
 
 const ProductDetailSection = ({ item }) => {
   const { cartState, cartDispatch } = useCart();
   const { title, brand, rating, totalRating, price } = item;
+  const navigate = useNavigate();
 
   const addCartClick = () => {
     cartDispatch({ type: "addToCart", payload: item });
@@ -16,9 +17,7 @@ const ProductDetailSection = ({ item }) => {
 
   const onBuyNowClickHandler = () => {
     cartDispatch({ type: "addToCart", payload: item });
-    if (cartState.cart.includes(item)) {
-      return <Navigate to="cart" />;
-    }
+    navigate("/cart");
   };
 
   return (
