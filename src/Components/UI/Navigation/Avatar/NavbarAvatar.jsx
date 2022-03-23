@@ -3,7 +3,7 @@ const NavbarAvatar = (props) => {
     <>
       <div className={props.avatarWrapper}>
         <div className={props.avatarClassName}>
-          IN
+          {props.src}
           <img
             loading="lazy"
             src={props.src}
