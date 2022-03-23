@@ -4,7 +4,7 @@ import { ratingStarCheck } from "../../../Utils/ratingStarCheck";
 
 const ProductDetailSection = ({ item }) => {
   const { cartState, cartDispatch } = useCart();
-  const { title, brand, rating, totalRating, price } = item;
+  const { title, brand, rating, totalRating, price, delivery } = item;
   const navigate = useNavigate();
 
   const addCartClick = () => {
@@ -75,7 +75,7 @@ const ProductDetailSection = ({ item }) => {
             <span className="rating-star-separator">|</span>
             <span className="rating-star-number">{totalRating}</span>
           </div>
-          <p>Delivery in 7 - 8 days</p>
+          <p>Delivery in {delivery}</p>
         </div>
       </div>
       <div className="product-details-body">

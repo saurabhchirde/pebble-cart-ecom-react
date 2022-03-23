@@ -3,7 +3,7 @@ import { couponCheck } from "../../../Utils/couponCheck";
 import { useEffect } from "react";
 
 const CartItemCard = ({ item }) => {
-  const { title, price, src } = item;
+  const { title, price, src1 } = item;
   const { cartState, cartDispatch } = useCart();
   const { totalPrice, coupon } = cartState;
   const { setWishlist } = useWishlist();
@@ -41,7 +41,7 @@ const CartItemCard = ({ item }) => {
       </button>
       <div className="card-img-container">
         <img
-          src={src}
+          src={src1}
           className="img-responsive"
           alt="product"
           loading="lazy"

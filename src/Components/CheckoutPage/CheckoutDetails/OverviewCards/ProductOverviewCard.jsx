@@ -18,12 +18,7 @@ const ProductOverviewCard = () => {
           ></i>
         </summary>
         {cartState.cart.map((item) => {
-          return (
-            <ProductCard
-              key={item._id}
-              item={{ ...item, delivery: " 7 - 8 " }}
-            />
-          );
+          return <ProductCard key={item._id} item={item} />;
         })}
       </details>
     </div>
