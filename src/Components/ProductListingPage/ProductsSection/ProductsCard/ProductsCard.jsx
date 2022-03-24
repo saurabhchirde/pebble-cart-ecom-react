@@ -1,5 +1,7 @@
 import { useAuth, useCart, useModal, useWishlist } from "../../../../Context";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { validate } from "uuid";
 
 const ProductsCard = ({ item }) => {
   const { title, price, rating, totalRating, src1, newestArrival, inStock } =
@@ -10,21 +12,43 @@ const ProductsCard = ({ item }) => {
   const { setShowLoginModal } = useModal();
 
   const addCartClick = () => {
-    auth.login
-      ? cartDispatch({ type: "addToCart", payload: item })
-      : setShowLoginModal(true);
+    if (auth.login) {
+      addToCartOnServer();
+      cartDispatch({ type: "addToCart", payload: item });
+    } else {
+      setShowLoginModal(true);
+    }
   };
 
   const removeFromCart = () => {
     auth.login && cartDispatch({ type: "removeFromCart", payload: item });
   };
 
+  const addToCartOnServer = async () => {
+    try {
+      const response = await axios.post(
+        "/api/user/cartas",
+        {
+          product: { ...item },
+        },
+        { headers: { authorization: auth.token } }
+      );
+      // console.log(response.data.cart);
+    } catch (error) {
+      removeFromCart();
+      console.error(error.message);
+    }
+  };
+
   const addWishlistClick = () => {
-    auth.login
-      ? setWishlist((oldCart) => {
-          return [...new Set([...oldCart, item])];
-        })
-      : setShowLoginModal(true);
+    if (auth.login) {
+      addToWishlistOnServer();
+      setWishlist((oldCart) => {
+        return [...new Set([...oldCart, item])];
+      });
+    } else {
+      setShowLoginModal(true);
+    }
   };
 
   const removeFromWishlist = () => {
@@ -34,6 +58,22 @@ const ProductsCard = ({ item }) => {
           return el._id !== item._id;
         });
       });
+  };
+
+  const addToWishlistOnServer = async () => {
+    try {
+      const response = await axios.post(
+        "/api/user/wishlist",
+        {
+          product: { ...item },
+        },
+        { headers: { authorization: auth.token } }
+      );
+      console.log(response.data.wishlist);
+    } catch (error) {
+      removeFromWishlist();
+      console.error(error.message);
+    }
   };
 
   const cartButtonStatus = () => {
