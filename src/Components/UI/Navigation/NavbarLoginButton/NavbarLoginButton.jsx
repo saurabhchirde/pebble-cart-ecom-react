@@ -1,11 +1,11 @@
 import Button from "../../Button/Button";
 import { useAuth, useModal } from "../../../../Context";
+import { useNavigate } from "react-router-dom";
 
 const NavbarLoginButton = (props) => {
   const { auth, authDispatch } = useAuth();
   const { setShowLoginModal, setShowSignupModal } = useModal();
-
-  console.log(auth.login);
+  const navigate = useNavigate();
 
   const onNavbarLoginClickHandler = () => {
     if (!auth.login) {
@@ -13,6 +13,7 @@ const NavbarLoginButton = (props) => {
       setShowSignupModal(false);
     } else {
       authDispatch({ type: "logout" });
+      navigate("/");
       setShowLoginModal(false);
       setShowSignupModal(false);
     }

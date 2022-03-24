@@ -5,6 +5,7 @@ const modalContext = createContext(null);
 const ModalProvider = ({ children }) => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
+  const [showDiscardModal, setShowDiscardModal] = useState(false);
 
   return (
     <modalContext.Provider
@@ -13,6 +14,8 @@ const ModalProvider = ({ children }) => {
         setShowLoginModal,
         showSignupModal,
         setShowSignupModal,
+        showDiscardModal,
+        setShowDiscardModal,
       }}
     >
       {children}

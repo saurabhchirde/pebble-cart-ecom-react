@@ -1,20 +1,21 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { useAuth, useModal } from "../../../Context";
+import { useState } from "react";
+import { useAuth, useCart, useModal, useWishlist } from "../../../Context";
 import Button from "../Button/Button";
 import InputTypeOne from "../Input/InputTypeOne";
 import "./Login.css";
-import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const { cartDispatch } = useCart();
+  const { setWishlist } = useWishlist();
+  const { authDispatch } = useAuth();
+
   const [loginInput, setLoginInput] = useState({
     email: "",
     password: "",
   });
-  const { auth, authDispatch } = useAuth();
-  const navigate = useNavigate();
 
-  const { setShowLoginModal, setShowSignupModal, setLoginButton } = useModal();
+  const { setShowLoginModal, setShowSignupModal } = useModal();
 
   const onLoginSubmitHandler = (e) => {
     e.preventDefault();
@@ -31,22 +32,24 @@ const Login = () => {
     });
   };
 
-  const onLoginCLickFormHandler = () => {
-    setLoginInput(() => {
-      return {
-        email: "saurabh.chirde@gmail.com",
-        password: "saurabh@123",
-      };
-    });
+  const onLoginClickFormHandler = () => {
     if (loginInput.name === "" || loginInput.password === "") {
       return;
     } else {
       loginAuthentication();
-
-      // setShowSignupModal(false);
     }
   };
-  console.log(auth);
+
+  const onTestButtonClickFormHandler = () => {
+    setLoginInput(() => {
+      return {
+        email: "test@gmail.com",
+        password: "test@123",
+      };
+    });
+    loginAuthentication();
+  };
+
   const loginAuthentication = async () => {
     try {
       const response = await axios.post("/api/auth/login", loginInput);
@@ -54,6 +57,11 @@ const Login = () => {
         type: "login",
         payload: response.data,
       });
+      cartDispatch({
+        type: "authCartInitiate",
+        payload: response.data.foundUser.cart,
+      });
+      setWishlist(response.data.foundUser.wishlist);
       setShowLoginModal(false);
     } catch (error) {
       console.error(error.message);
@@ -78,7 +86,7 @@ const Login = () => {
           <InputTypeOne
             type="email"
             name="email"
-            // required="required"
+            // required="required"    commented for development
             autoComplete="email"
             placeholder="Enter your email *"
             iconWrapper="input-icon"
@@ -90,7 +98,7 @@ const Login = () => {
           <InputTypeOne
             type="password"
             name="password"
-            // required="required"
+            // required="required"     commented for development
             autoComplete="current-password"
             placeholder="Enter your password *"
             iconWrapper="input-icon"
@@ -104,7 +112,14 @@ const Login = () => {
             type="submit"
             label="Sign In"
             btnClassName="btn primary-btn-md"
-            onClick={onLoginCLickFormHandler}
+            onClick={onLoginClickFormHandler}
+          />
+          <Button
+            btnWrapper="signin-btn"
+            type="submit"
+            label="Test User (double click)"
+            btnClassName="btn primary-outline-btn-md"
+            onClick={onTestButtonClickFormHandler}
           />
           <p>
             Forgot your password?{" "}

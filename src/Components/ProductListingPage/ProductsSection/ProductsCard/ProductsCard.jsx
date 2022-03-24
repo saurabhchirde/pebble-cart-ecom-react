@@ -1,4 +1,4 @@
-import { useAuth, useCart, useWishlist } from "../../../../Context";
+import { useAuth, useCart, useModal, useWishlist } from "../../../../Context";
 import { Link } from "react-router-dom";
 
 const ProductsCard = ({ item }) => {
@@ -6,58 +6,50 @@ const ProductsCard = ({ item }) => {
     item;
   const { cartState, cartDispatch } = useCart();
   const { wishlist, setWishlist } = useWishlist();
-  const { auth, authDispatch } = useAuth();
-
-  const currCartState = auth.login ? auth.cart.items : cartState.cart;
+  const { auth } = useAuth();
+  const { setShowLoginModal } = useModal();
 
   const addCartClick = () => {
     auth.login
-      ? authDispatch({
-          type: "addToCart",
-          payload: item,
-        })
-      : cartDispatch({ type: "addToCart", payload: item });
+      ? cartDispatch({ type: "addToCart", payload: item })
+      : setShowLoginModal(true);
   };
 
   const removeFromCart = () => {
-    auth.login
-      ? authDispatch({
-          type: "removeFromCart",
-          payload: item,
-        })
-      : cartDispatch({ type: "removeFromCart", payload: item });
+    auth.login && cartDispatch({ type: "removeFromCart", payload: item });
   };
 
   const addWishlistClick = () => {
     auth.login
-      ? authDispatch({
-          type: "addToWishlist",
-          payload: item,
-        })
-      : setWishlist((oldCart) => {
+      ? setWishlist((oldCart) => {
           return [...new Set([...oldCart, item])];
-        });
+        })
+      : setShowLoginModal(true);
   };
 
   const removeFromWishlist = () => {
-    auth.login
-      ? authDispatch({
-          type: "removeFromWishlist",
-          payload: item,
-        })
-      : setWishlist((oldWishlist) => {
-          return oldWishlist.filter((el) => {
-            return el._id !== item._id;
-          });
+    auth.login &&
+      setWishlist((oldWishlist) => {
+        return oldWishlist.filter((el) => {
+          return el._id !== item._id;
         });
+      });
+  };
+
+  const cartButtonStatus = () => {
+    cartState.cart.includes(item) ? removeFromCart() : addCartClick();
+  };
+
+  const wishlistButtonStatus = () => {
+    wishlist.includes(item) ? removeFromWishlist() : addWishlistClick();
   };
 
   const cartButtonState = `${
-    currCartState.includes(item) ? "In your Cart" : "Add to Cart"
+    cartState.cart.includes(item) ? "In your Cart" : "Add to Cart"
   }`;
 
   const cartClassName = `${
-    currCartState.includes(item)
+    cartState.cart.includes(item)
       ? "btn primary-outline-btn-sm add-cart"
       : "btn primary-btn-sm add-cart"
   }`;
@@ -98,21 +90,12 @@ const ProductsCard = ({ item }) => {
           </Link>
           <div className="card-nav">
             <div className="card-cta-btn">
-              <button
-                onClick={
-                  currCartState.includes(item) ? removeFromCart : addCartClick
-                }
-                className={cartClassName}
-              >
+              <button onClick={cartButtonStatus} className={cartClassName}>
                 {cartButtonState}
               </button>
               <div className="card-nav-icon">
                 <button
-                  onClick={
-                    wishlist.includes(item)
-                      ? removeFromWishlist
-                      : addWishlistClick
-                  }
+                  onClick={wishlistButtonStatus}
                   className="btn primary-text-btn-sm icon-md"
                 >
                   <i className={wishlistClassName}></i>

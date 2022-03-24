@@ -1,23 +1,29 @@
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../../../Context";
+import { useAuth, useCart, useModal } from "../../../Context";
 import { ratingStarCheck } from "../../../Utils/ratingStarCheck";
 
 const ProductDetailSection = ({ item }) => {
   const { cartState, cartDispatch } = useCart();
   const { title, brand, rating, totalRating, price, delivery } = item;
+  const { auth } = useAuth();
   const navigate = useNavigate();
+  const { setShowLoginModal } = useModal();
 
   const addCartClick = () => {
-    cartDispatch({ type: "addToCart", payload: item });
+    auth.login
+      ? cartDispatch({ type: "addToCart", payload: item })
+      : setShowLoginModal(true);
   };
 
   const removeFromCart = () => {
-    cartDispatch({ type: "removeFromCart", payload: item });
+    auth.login && cartDispatch({ type: "removeFromCart", payload: item });
   };
 
   const onBuyNowClickHandler = () => {
-    cartDispatch({ type: "addToCart", payload: item });
-    navigate("/cart");
+    auth.login
+      ? cartDispatch({ type: "addToCart", payload: item })
+      : setShowLoginModal(true);
+    auth.login && navigate("/cart");
   };
 
   return (

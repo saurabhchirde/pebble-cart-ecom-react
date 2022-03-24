@@ -17,6 +17,8 @@ const MobileNavigationBar = () => {
     setSearchInput(e.target.value);
   };
 
+  const dp = auth.user.dp !== "" ? auth.user.dp.toUpperCase() : "";
+
   return (
     <>
       <nav className="mobile-navigation-bar dark-nav-bar">
@@ -39,7 +41,7 @@ const MobileNavigationBar = () => {
             avatarWrapper="badge-container"
             avatarClassName="avatar text-avatar-xsm-round"
             imgDisplay="hide"
-            src={auth.user.dp !== "" ? auth.user.dp : "IN"}
+            src={dp}
           />
         )}
       </nav>

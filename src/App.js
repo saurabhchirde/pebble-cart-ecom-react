@@ -15,14 +15,16 @@ import CheckoutPage from "./Pages/Checkout/CheckoutPage";
 import Mockman from "mockman-js";
 import { Routes, Route } from "react-router-dom";
 import SingleProduct from "./Pages/SingleProduct/SingleProduct";
+import Discard from "./Components/UI/Modal/Discard";
 
 const App = () => {
-  const { showLoginModal, showSignupModal } = useModal();
+  const { showLoginModal, showSignupModal, showDiscardModal } = useModal();
 
   return (
     <>
-      {showLoginModal === true ? <Login /> : false}
-      {showSignupModal === true ? <Signup /> : false}
+      {showLoginModal && <Login />}
+      {showSignupModal && <Signup />}
+      {showDiscardModal && <Discard />}
       <DesktopNavigationBar />
       <MobileNavigationBar />
       <MobileNavigationBarBottom />

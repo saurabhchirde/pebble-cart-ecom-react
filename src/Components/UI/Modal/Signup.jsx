@@ -1,13 +1,63 @@
 import Button from "../Button/Button";
 import "./Signup.css";
 import InputTypeOne from "../Input/InputTypeOne";
-import { useModal } from "../../../Context";
+import { useAuth, useModal } from "../../../Context";
+import { useState } from "react";
+import axios from "axios";
 
 const Signup = () => {
-  const { setShowLoginModal, setShowSignupModal } = useModal();
+  const { setShowLoginModal, setShowSignupModal, setShowDiscardModal } =
+    useModal();
+  const [user, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
 
   const onSignupFormSubmitHandler = (e) => {
     e.preventDefault();
+    userSignup();
+    setShowSignupModal(false);
+    setUser({
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+    });
+  };
+
+  const onInputChangeHandler = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setUser((oldData) => {
+      return {
+        ...oldData,
+        [name]: value,
+      };
+    });
+  };
+
+  const userSignup = async () => {
+    try {
+      const response = await axios.post("/api/auth/signup", user);
+      if (response.status === 201) {
+        setShowDiscardModal(true);
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  const onCloseClick = () => {
+    setShowLoginModal(false);
+    setShowSignupModal(false);
+  };
+
+  const onLoginClick = () => {
+    setShowLoginModal(true);
+    setShowSignupModal(false);
   };
 
   return (
@@ -16,22 +66,29 @@ const Signup = () => {
       <div className="signup-modal-one">
         <h1>Sign Up</h1>
         <p>Please provide your details.</p>
-        <a
-          onClick={() => {
-            setShowLoginModal(false);
-            setShowSignupModal(false);
-          }}
-        >
+        <a onClick={onCloseClick}>
           <i className="fas fa-times"></i>
         </a>
         <form onSubmit={onSignupFormSubmitHandler}>
           <InputTypeOne
-            label="Full Name"
+            label="First Name"
             type="text"
-            name="text"
-            autoComplete="name"
-            placeholder="Enter your name"
+            name="firstName"
+            autoComplete="on"
+            placeholder="Enter your first name"
             inputWrapper="outline-text-input"
+            onChange={onInputChangeHandler}
+            value={user.firstName}
+          />
+          <InputTypeOne
+            label="Last Name"
+            type="text"
+            name="lastName"
+            autoComplete="on"
+            placeholder="Enter your last name"
+            inputWrapper="outline-text-input"
+            onChange={onInputChangeHandler}
+            value={user.lastName}
           />
           <InputTypeOne
             label="Email *"
@@ -41,14 +98,8 @@ const Signup = () => {
             autoComplete="email"
             placeholder="Enter your email *"
             inputWrapper="outline-email-input"
-          />
-          <InputTypeOne
-            label="Phone no"
-            type="tel"
-            name="tel"
-            autoComplete="tel"
-            placeholder="Enter phone number"
-            inputWrapper="outline-tel-input"
+            onChange={onInputChangeHandler}
+            value={user.email}
           />
           <InputTypeOne
             label="Password *"
@@ -58,14 +109,8 @@ const Signup = () => {
             autoComplete="current-password"
             placeholder="Enter your password"
             inputWrapper="outline-password-input"
-          />
-          <InputTypeOne
-            label="Re-enter Password *"
-            type="password"
-            name="password"
-            required="required"
-            placeholder="Re-enter your password"
-            inputWrapper="outline-password-input"
+            onChange={onInputChangeHandler}
+            value={user.password}
           />
           <p>
             By continuing you agree to our Terms of Service and
@@ -79,13 +124,7 @@ const Signup = () => {
             btnClassName="btn primary-btn-md"
             label=" Sign Up"
           />
-          <a
-            className="existing-account-btn"
-            onClick={() => {
-              setShowLoginModal(true);
-              setShowSignupModal(false);
-            }}
-          >
+          <a className="existing-account-btn" onClick={onLoginClick}>
             <h2>
               already have an account
               <span>Login</span>
