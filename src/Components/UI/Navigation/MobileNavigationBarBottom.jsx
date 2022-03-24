@@ -9,8 +9,8 @@ const MobileNavigationBarBottom = () => {
   const { wishlist } = useWishlist();
   const { auth } = useAuth();
 
-  const cartItems = auth.login ? auth.cart.items : cartState.cart;
-  const wishlistItems = auth.login ? auth.wishlist : wishlist;
+  const cartBadgeValue = auth.login ? cartState.cart.length : 0;
+  const wishlistBadgeValue = auth.login ? wishlist.length : 0;
 
   return (
     <>
@@ -21,7 +21,7 @@ const MobileNavigationBarBottom = () => {
             btnClassName="btn badge-icon-btn-lg"
             icon="far fa-heart"
             badgeClassName="badge-on-icon"
-            badgeValue={wishlistItems.length}
+            badgeValue={wishlistBadgeValue}
           />
         </Link>
         <Link to="/">
@@ -33,7 +33,7 @@ const MobileNavigationBarBottom = () => {
             btnClassName="btn badge-icon-btn-lg"
             icon="fas fa-shopping-cart"
             badgeClassName="badge-on-icon"
-            badgeValue={cartItems.length}
+            badgeValue={cartBadgeValue}
           />
         </Link>
       </nav>

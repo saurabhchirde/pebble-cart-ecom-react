@@ -6,6 +6,15 @@ const cartReducer = (cartState, action) => {
   let updatedCartItems;
 
   switch (action.type) {
+    case "authCartInitiate":
+      return {
+        cart: action.payload,
+        totalQty: 0,
+        totalPrice: 0,
+        discount: 0,
+        coupon: "",
+      };
+
     case "addToCart":
       if (existingCartItems) {
         const updatedItem = {
