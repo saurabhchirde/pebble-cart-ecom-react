@@ -18,6 +18,7 @@ const MobileNavigationBar = () => {
   };
 
   const dp = auth.user.dp !== "" ? auth.user.dp.toUpperCase() : "";
+  const loginButtonStatus = auth.login ? "Logout" : "Login";
 
   return (
     <>
@@ -34,7 +35,7 @@ const MobileNavigationBar = () => {
           onSubmit={onSearchSubmitHandler}
         />
         <div className="nav-bar-btns">
-          <NavbarLoginButton />
+          <NavbarLoginButton label={loginButtonStatus} />
         </div>
         {auth.login && (
           <NavbarAvatar
