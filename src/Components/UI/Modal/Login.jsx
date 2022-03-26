@@ -1,21 +1,22 @@
-import axios from "axios";
 import { useState } from "react";
-import { useAuth, useCart, useModal, useWishlist } from "../../../Context";
+import { useAxiosCalls, useModal } from "../../../Context";
 import Button from "../Button/Button";
 import InputTypeOne from "../Input/InputTypeOne";
 import "./Login.css";
 
 const Login = () => {
-  const { cartDispatch } = useCart();
-  const { setWishlist } = useWishlist();
-  const { authDispatch } = useAuth();
-
   const [loginInput, setLoginInput] = useState({
     email: "",
     password: "",
   });
 
-  const { setShowLogin, setShowSignup, setError, setShowError } = useModal();
+  const { setShowLogin, setShowSignup } = useModal();
+  const { userLogin } = useAxiosCalls();
+
+  const loginConfig = {
+    url: "/api/auth/login",
+    data: loginInput,
+  };
 
   const onLoginSubmitHandler = (e) => {
     e.preventDefault();
@@ -36,7 +37,7 @@ const Login = () => {
     if (loginInput.name === "" || loginInput.password === "") {
       return;
     } else {
-      loginAuthentication();
+      userLogin(loginConfig);
     }
   };
 
@@ -45,31 +46,7 @@ const Login = () => {
       email: "test@gmail.com",
       password: "test@123",
     });
-    loginAuthentication();
-  };
-
-  const loginAuthentication = async () => {
-    try {
-      const response = await axios.post("/api/auth/login", loginInput);
-      setError(
-        `Welcome back ${response.data.foundUser.firstName} ${response.data.foundUser.lastName}`
-      );
-      setShowError(true);
-      authDispatch({
-        type: "login",
-        payload: response.data,
-      });
-      cartDispatch({
-        type: "authCartInitiate",
-        payload: response.data.foundUser.cart,
-      });
-      setWishlist(response.data.foundUser.wishlist);
-      setShowLogin(false);
-    } catch (error) {
-      setError(error.message);
-      setShowError(true);
-      console.error(error.message);
-    }
+    userLogin(loginConfig);
   };
 
   return (

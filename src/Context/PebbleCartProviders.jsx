@@ -7,6 +7,7 @@ import {
   FilterProvider,
   ScrollToTop,
   AuthProvider,
+  AxiosCallProvider,
 } from "./index";
 import { BrowserRouter } from "react-router-dom";
 
@@ -20,7 +21,9 @@ const PebbleCartProviders = ({ children }) => {
               <CartProvider>
                 <FilterProvider>
                   <CheckoutProvider>
-                    <WishlistProvider>{children}</WishlistProvider>
+                    <WishlistProvider>
+                      <AxiosCallProvider>{children}</AxiosCallProvider>
+                    </WishlistProvider>
                   </CheckoutProvider>
                 </FilterProvider>
               </CartProvider>

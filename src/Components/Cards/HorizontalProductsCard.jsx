@@ -1,18 +1,35 @@
-import { useWishlist, useCart, useModal, useAuth } from "../../Context";
-import axios from "axios";
+import { useWishlist, useCart, useAuth, useAxiosCalls } from "../../Context";
 
 const HorizontalProductsCard = ({ item }) => {
   const { title, price, src1 } = item;
   const { setWishlist } = useWishlist();
   const { cartDispatch } = useCart();
-  const { setError, setShowError } = useModal();
   const { auth } = useAuth();
+  const { addToCartOnServer, removeWishlistItemFromServer } = useAxiosCalls();
+
+  const cartConfig = {
+    url: "/api/user/cart",
+    body: {
+      product: { ...item },
+    },
+    headers: { headers: { authorization: auth.token } },
+    item: item,
+  };
+
+  const wishlistConfig = {
+    url: "/api/user/wishlist",
+    body: {
+      product: { ...item },
+    },
+    headers: { headers: { authorization: auth.token } },
+    item: item,
+  };
 
   const onMoveToCartClickHandler = () => {
-    addToCartOnServer();
+    addToCartOnServer(cartConfig);
     cartDispatch({ type: "addToCart", payload: item });
 
-    removeWishlistItemFromServer();
+    removeWishlistItemFromServer(wishlistConfig);
     setWishlist((oldWishlist) => {
       return oldWishlist.filter((el) => {
         return el._id !== item._id;
@@ -20,46 +37,8 @@ const HorizontalProductsCard = ({ item }) => {
     });
   };
 
-  const removeFromCart = () => {
-    auth.login && cartDispatch({ type: "removeFromCart", payload: item });
-  };
-
-  // add to server cart
-  const addToCartOnServer = async () => {
-    try {
-      const response = await axios.post(
-        "/api/user/cart",
-        {
-          product: { ...item },
-        },
-        { headers: { authorization: auth.token } }
-      );
-      console.log("cart", response.data.cart);
-    } catch (error) {
-      removeFromCart();
-      setError(error.message);
-      setShowError(true);
-    }
-  };
-
-  // remove wishlit item from server
-  const removeWishlistItemFromServer = async () => {
-    try {
-      const response = await axios.delete(`/api/user/wishlist/${item._id}`, {
-        headers: { authorization: auth.token },
-      });
-      console.log("wishlist", response.data.wishlist);
-    } catch (error) {
-      setWishlist((oldCart) => {
-        return [...new Set([...oldCart, item])];
-      });
-      setError(error.message);
-      setShowError(true);
-    }
-  };
-
   const onRemoveWishlistClickHandler = () => {
-    removeWishlistItemFromServer();
+    removeWishlistItemFromServer(wishlistConfig);
     setWishlist((oldWishlist) => {
       return oldWishlist.filter((el) => {
         return el._id !== item._id;

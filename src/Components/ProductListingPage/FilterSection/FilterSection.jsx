@@ -8,7 +8,7 @@ import IncludeOutOfStock from "./IncludeOutOfStock/IncludeOutOfStock";
 import RatingSection from "./RatingSection/RatingSection";
 import { useState } from "react";
 
-const FilterSection = () => {
+const FilterSection = (props) => {
   const { filterDispatch, setSearchInput } = useFilter();
   const [showFilter, setShowFilter] = useState(false);
 
@@ -42,11 +42,13 @@ const FilterSection = () => {
           btnClassName="filter-close-btn"
           icon="far fa-times-circle"
         />
-        <div className="filter flex-row flex-justify-space-between">
-          <h2>Filter</h2>
-          <Button onClick={clearClickHandler} type="reset" label="Clear" />
-        </div>
-        <CategorySection />
+        {props.camera && props.lens && props.tripod && props.accessories && (
+          <div className="filter flex-row flex-justify-space-between">
+            <h2>Filter</h2>
+            <Button onClick={clearClickHandler} type="reset" label="Clear" />
+          </div>
+        )}
+        <CategorySection props={props} />
         <BrandSection />
         <RatingSection />
         <SortSection />

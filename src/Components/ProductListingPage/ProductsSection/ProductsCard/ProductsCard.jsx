@@ -1,6 +1,11 @@
-import { useAuth, useCart, useModal, useWishlist } from "../../../../Context";
+import {
+  useAuth,
+  useCart,
+  useModal,
+  useWishlist,
+  useAxiosCalls,
+} from "../../../../Context";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const ProductsCard = ({ item }) => {
@@ -9,42 +14,44 @@ const ProductsCard = ({ item }) => {
   const { cartState, cartDispatch } = useCart();
   const { wishlist, setWishlist } = useWishlist();
   const { auth } = useAuth();
-  const { setShowLogin, setError, setShowError } = useModal();
+  const { setShowLogin } = useModal();
   const navigate = useNavigate();
+  const {
+    addToCartOnServer,
+    addToWishlistOnServer,
+    removeWishlistItemFromServer,
+  } = useAxiosCalls();
+
+  const cartConfig = {
+    url: "/api/user/cart",
+    body: {
+      product: { ...item },
+    },
+    headers: { headers: { authorization: auth.token } },
+    item: item,
+  };
+
+  const wishlistConfig = {
+    url: "/api/user/wishlist",
+    body: {
+      product: { ...item },
+    },
+    headers: { headers: { authorization: auth.token } },
+    item: item,
+  };
 
   const addCartClick = () => {
     if (auth.login) {
-      addToCartOnServer();
+      addToCartOnServer(cartConfig, item);
       cartDispatch({ type: "addToCart", payload: item });
     } else {
       setShowLogin(true);
     }
   };
 
-  const removeFromCart = () => {
-    auth.login && cartDispatch({ type: "removeFromCart", payload: item });
-  };
-
-  // add to server cart
-  const addToCartOnServer = async () => {
-    try {
-      const response = await axios.post(
-        "/api/user/cart",
-        {
-          product: { ...item },
-        },
-        { headers: { authorization: auth.token } }
-      );
-    } catch (error) {
-      removeFromCart();
-      setError(error.message);
-      setShowError(true);
-    }
-  };
-
   const addWishlistClick = () => {
     if (auth.login) {
-      addToWishlistOnServer();
+      addToWishlistOnServer(wishlistConfig);
       setWishlist((oldCart) => {
         return [...new Set([...oldCart, item])];
       });
@@ -55,44 +62,12 @@ const ProductsCard = ({ item }) => {
 
   const removeFromWishlist = () => {
     if (auth.login) {
-      removeWishlistItemFromServer();
+      removeWishlistItemFromServer(wishlistConfig);
       setWishlist((oldWishlist) => {
         return oldWishlist.filter((el) => {
           return el._id !== item._id;
         });
       });
-    }
-  };
-
-  // add to server wishlist
-  const addToWishlistOnServer = async () => {
-    try {
-      const response = await axios.post(
-        "/api/user/wishlist",
-        {
-          product: { ...item },
-        },
-        { headers: { authorization: auth.token } }
-      );
-    } catch (error) {
-      removeFromWishlist();
-      setError(error.message);
-      setShowError(true);
-    }
-  };
-
-  // remove wishlit item from server
-  const removeWishlistItemFromServer = async () => {
-    try {
-      const response = await axios.delete(`/api/user/wishlist/${item._id}`, {
-        headers: { authorization: auth.token },
-      });
-    } catch (error) {
-      setWishlist((oldCart) => {
-        return [...new Set([...oldCart, item])];
-      });
-      setError(error.message);
-      setShowError(true);
     }
   };
 
@@ -107,7 +82,6 @@ const ProductsCard = ({ item }) => {
   const wishlistButtonStatus = () => {
     if (wishlist.includes(item)) {
       removeFromWishlist();
-      removeWishlistItemFromServer();
     } else {
       addWishlistClick();
     }

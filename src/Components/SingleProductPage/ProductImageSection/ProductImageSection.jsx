@@ -1,15 +1,32 @@
-import { useAuth, useModal, useWishlist } from "../../../Context";
-import axios from "axios";
+import {
+  useAuth,
+  useAxiosCalls,
+  useModal,
+  useWishlist,
+} from "../../../Context";
+import { useState } from "react";
 
 const ProductImageSection = ({ item }) => {
   const { wishlist, setWishlist } = useWishlist();
   const { src1, src2, src3, src4, src5 } = item;
   const { auth } = useAuth();
-  const { setError, setShowError, setShowLogin } = useModal();
+  const { setShowLogin } = useModal();
+  const [currentImg, setCurrentImg] = useState(src1);
+  const { addToWishlistOnServer, removeWishlistItemFromServer } =
+    useAxiosCalls();
+
+  const wishlistConfig = {
+    url: "/api/user/wishlist",
+    body: {
+      product: { ...item },
+    },
+    headers: { headers: { authorization: auth.token } },
+    item: item,
+  };
 
   const addWishlistClick = () => {
     if (auth.login) {
-      addToWishlistOnServer();
+      addToWishlistOnServer(wishlistConfig);
       setWishlist((oldCart) => {
         return [...new Set([...oldCart, item])];
       });
@@ -20,7 +37,7 @@ const ProductImageSection = ({ item }) => {
 
   const removeFromWishlist = () => {
     if (auth.login) {
-      removeWishlistItemFromServer();
+      removeWishlistItemFromServer(wishlistConfig);
       setWishlist((oldWishlist) => {
         return oldWishlist.filter((el) => {
           return el._id !== item._id;
@@ -29,38 +46,20 @@ const ProductImageSection = ({ item }) => {
     }
   };
 
-  // add to server wishlist
-  const addToWishlistOnServer = async () => {
-    try {
-      const response = await axios.post(
-        "/api/user/wishlist",
-        {
-          product: { ...item },
-        },
-        { headers: { authorization: auth.token } }
-      );
-      console.log("wishlist", response.data.wishlist);
-    } catch (error) {
-      removeFromWishlist();
-      setError(error.message);
-      setShowError(true);
-    }
+  const onClick1 = () => {
+    setCurrentImg(src1);
   };
-
-  // remove wishlit item from server
-  const removeWishlistItemFromServer = async () => {
-    try {
-      const response = await axios.delete(`/api/user/wishlist/${item._id}`, {
-        headers: { authorization: auth.token },
-      });
-      console.log("wishlist", response.data.wishlist);
-    } catch (error) {
-      setWishlist((oldCart) => {
-        return [...new Set([...oldCart, item])];
-      });
-      setError(error.message);
-      setShowError(true);
-    }
+  const onClick2 = () => {
+    setCurrentImg(src2);
+  };
+  const onClick3 = () => {
+    setCurrentImg(src3);
+  };
+  const onClick4 = () => {
+    setCurrentImg(src4);
+  };
+  const onClick5 = () => {
+    setCurrentImg(src5);
   };
 
   return (
@@ -75,13 +74,18 @@ const ProductImageSection = ({ item }) => {
           className={wishlist.includes(item) ? "fas fa-heart" : "far fa-heart"}
         ></i>
       </button>
-      <img src={src1} alt="product-image" loading="lazy" />
+      <img
+        className="main-image"
+        src={currentImg}
+        alt="product-image"
+        loading="lazy"
+      />
       <div className="single-product-image-options">
-        <img src={src1} alt="product-image" loading="lazy" />
-        <img src={src2} alt="product-image" loading="lazy" />
-        <img src={src3} alt="product-image" loading="lazy" />
-        <img src={src4} alt="product-image" loading="lazy" />
-        <img src={src5} alt="product-image" loading="lazy" />
+        <img src={src1} alt="product-image" loading="lazy" onClick={onClick1} />
+        <img src={src2} alt="product-image" loading="lazy" onClick={onClick2} />
+        <img src={src3} alt="product-image" loading="lazy" onClick={onClick3} />
+        <img src={src4} alt="product-image" loading="lazy" onClick={onClick4} />
+        <img src={src5} alt="product-image" loading="lazy" onClick={onClick5} />
       </div>
     </div>
   );

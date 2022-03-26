@@ -1,9 +1,8 @@
 import Button from "../Button/Button";
 import "./Signup.css";
 import InputTypeOne from "../Input/InputTypeOne";
-import { useAuth, useModal } from "../../../Context";
+import { useAxiosCalls, useModal } from "../../../Context";
 import { useState } from "react";
-import axios from "axios";
 
 const initialSignupState = {
   firstName: "",
@@ -13,12 +12,18 @@ const initialSignupState = {
 };
 
 const Signup = () => {
-  const { setShowLogin, setShowSignup, setShowSignupAlert } = useModal();
+  const { setShowLogin, setShowSignup } = useModal();
   const [user, setUser] = useState(initialSignupState);
+  const { userSignup } = useAxiosCalls();
+
+  const signupConfig = {
+    url: "/api/auth/signup",
+    data: user,
+  };
 
   const onSignupFormSubmitHandler = (e) => {
     e.preventDefault();
-    userSignup();
+    userSignup(signupConfig);
     setShowSignup(false);
     setUser(initialSignupState);
   };
@@ -33,17 +38,6 @@ const Signup = () => {
         [name]: value,
       };
     });
-  };
-
-  const userSignup = async () => {
-    try {
-      const response = await axios.post("/api/auth/signup", user);
-      if (response.status === 201) {
-        setShowSignupAlert(true);
-      }
-    } catch (error) {
-      console.error(error.message);
-    }
   };
 
   const onCloseClick = () => {
