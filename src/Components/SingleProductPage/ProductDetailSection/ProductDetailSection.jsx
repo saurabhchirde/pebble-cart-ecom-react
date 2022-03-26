@@ -1,30 +1,69 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth, useCart, useModal } from "../../../Context";
-import { ratingStarCheck } from "../../../Utils/ratingStarCheck";
+import { ratingStarCheck } from "../../../Utils/FilterFunctions/ratingStarCheck";
+import axios from "axios";
 
 const ProductDetailSection = ({ item }) => {
   const { cartState, cartDispatch } = useCart();
   const { title, brand, rating, totalRating, price, delivery } = item;
   const { auth } = useAuth();
   const navigate = useNavigate();
-  const { setShowLoginModal } = useModal();
+  const { setShowLogin, setError, setShowError } = useModal();
 
   const addCartClick = () => {
-    auth.login
-      ? cartDispatch({ type: "addToCart", payload: item })
-      : setShowLoginModal(true);
+    if (auth.login) {
+      addToCartOnServer();
+      cartDispatch({ type: "addToCart", payload: item });
+    } else {
+      setShowLogin(true);
+    }
+  };
+
+  const onBuyNowClickHandler = () => {
+    if (auth.login) {
+      if (!cartState.cart.includes(item)) {
+        cartDispatch({ type: "addToCart", payload: item });
+        addToCartOnServer();
+      }
+      navigate("/cart");
+    } else {
+      setShowLogin(true);
+    }
   };
 
   const removeFromCart = () => {
     auth.login && cartDispatch({ type: "removeFromCart", payload: item });
   };
 
-  const onBuyNowClickHandler = () => {
-    auth.login
-      ? cartDispatch({ type: "addToCart", payload: item })
-      : setShowLoginModal(true);
+  // add to server cart
+  const addToCartOnServer = async () => {
+    try {
+      const response = await axios.post(
+        "/api/user/cart",
+        {
+          product: { ...item },
+        },
+        { headers: { authorization: auth.token } }
+      );
+      console.log("cart", response.data.cart);
+    } catch (error) {
+      removeFromCart();
+      setError(error.message);
+      setShowError(true);
+    }
+  };
+
+  const goToCart = () => {
     auth.login && navigate("/cart");
   };
+
+  const cartButtonStatus = () => {
+    cartState.cart.includes(item) ? goToCart() : addCartClick();
+  };
+
+  const cartButtonState = `${
+    cartState.cart.includes(item) ? "Go to Cart" : "Add to Cart"
+  }`;
 
   return (
     <div className="single-product-detail">
@@ -89,12 +128,10 @@ const ProductDetailSection = ({ item }) => {
           <h2 className="product-details-price">Rs. {price}/-</h2>
           <div className="product-details-cta">
             <button
-              onClick={
-                cartState.cart.includes(item) ? removeFromCart : addCartClick
-              }
+              onClick={cartButtonStatus}
               className="btn primary-outline-btn-md"
             >
-              {cartState.cart.includes(item) ? "In your Cart" : "Add to Cart"}
+              {cartButtonState}
             </button>
             <button
               onClick={onBuyNowClickHandler}

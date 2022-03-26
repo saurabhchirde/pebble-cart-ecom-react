@@ -6,14 +6,27 @@ import BrandSection from "./BrandSection/BrandSection";
 import CategorySection from "./CategorySection/CategorySection";
 import IncludeOutOfStock from "./IncludeOutOfStock/IncludeOutOfStock";
 import RatingSection from "./RatingSection/RatingSection";
+import { useState } from "react";
 
 const FilterSection = () => {
-  const { filterDispatch } = useFilter();
+  const { filterDispatch, setSearchInput } = useFilter();
+  const [showFilter, setShowFilter] = useState(false);
+
+  const clearClickHandler = () => {
+    setSearchInput("");
+    filterDispatch({ type: "Clear" });
+  };
+
+  const onClickShowFilterMobile = () => {
+    setShowFilter((preState) => !preState);
+  };
+
+  const filterSection = `${showFilter ? "inline" : ""}`;
 
   return (
     <>
       <button
-        onClick={() => {}}
+        onClick={onClickShowFilterMobile}
         className="show-filter-section-btn btn primary-text-btn-lg"
       >
         Filter <i className="fas fa-chevron-right"></i>
@@ -22,20 +35,16 @@ const FilterSection = () => {
         onSubmit={(e) => e.preventDefault()}
         id="filter-section"
         className="filter-section"
+        style={{ display: filterSection }}
       >
         <IconButton
+          onClick={onClickShowFilterMobile}
           btnClassName="filter-close-btn"
           icon="far fa-times-circle"
         />
         <div className="filter flex-row flex-justify-space-between">
           <h2>Filter</h2>
-          <Button
-            onClick={() => {
-              filterDispatch({ type: "Clear" });
-            }}
-            type="reset"
-            label="Clear"
-          />
+          <Button onClick={clearClickHandler} type="reset" label="Clear" />
         </div>
         <CategorySection />
         <BrandSection />

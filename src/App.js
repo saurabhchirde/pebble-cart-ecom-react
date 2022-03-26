@@ -1,6 +1,6 @@
 import DesktopNavigationBar from "../src/Components/UI/Navigation/DesktopNavigationBar";
 import LandingPage from "./Pages/Landing/LandingPage";
-import { useModal } from "./Context/ModalContext";
+import { useModal } from "./Context/Modal/ModalProvider";
 import Login from "../src/Components/UI/Modal/Login";
 import Signup from "../src/Components/UI/Modal/Signup";
 import MobileNavigationBar from "../src/Components/UI/Navigation/MobileNavigationBar";
@@ -15,16 +15,18 @@ import CheckoutPage from "./Pages/Checkout/CheckoutPage";
 import Mockman from "mockman-js";
 import { Routes, Route } from "react-router-dom";
 import SingleProduct from "./Pages/SingleProduct/SingleProduct";
-import Discard from "./Components/UI/Modal/Discard";
+import SignupAlertModal from "./Components/UI/Modal/SignupAlertModal";
+import AlertModal from "./Components/UI/Modal/AlertModal";
 
 const App = () => {
-  const { showLoginModal, showSignupModal, showDiscardModal } = useModal();
+  const { showLogin, showSignup, showSignupAlert, showError } = useModal();
 
   return (
     <>
-      {showLoginModal && <Login />}
-      {showSignupModal && <Signup />}
-      {showDiscardModal && <Discard />}
+      {showLogin && <Login />}
+      {showSignup && <Signup />}
+      {showSignupAlert && <SignupAlertModal />}
+      {showError && <AlertModal />}
       <DesktopNavigationBar />
       <MobileNavigationBar />
       <MobileNavigationBarBottom />

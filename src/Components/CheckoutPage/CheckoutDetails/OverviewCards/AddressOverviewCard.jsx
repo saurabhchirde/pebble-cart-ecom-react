@@ -1,5 +1,5 @@
 import { useAuth } from "../../../../Context";
-import { useCheckout } from "../../../../Context/CheckoutContext";
+import { useCheckout } from "../../../../Context/Checkout/CheckoutProvider";
 
 const AddressOverviewCard = () => {
   const { checkoutState, checkoutDispatch } = useCheckout();
