@@ -1,17 +1,17 @@
 import { useModal } from "../../../Context";
-import "./Discard.css";
+import "./SignupAlertModal.css";
 import Button from "../Button/Button";
 
-const Discard = () => {
-  const { setShowLoginModal, setShowDiscardModal } = useModal();
+const SignupAlertModal = () => {
+  const { setShowLogin, setShowDiscard } = useModal();
 
   const loginClickHandler = () => {
-    setShowLoginModal(true);
-    setShowDiscardModal(false);
+    setShowLogin(true);
+    setShowDiscard(false);
   };
 
   const closeClickHandler = () => {
-    setShowDiscardModal(false);
+    setShowDiscard(false);
   };
 
   return (
@@ -40,4 +40,4 @@ const Discard = () => {
   );
 };
 
-export default Discard;
+export default SignupAlertModal;

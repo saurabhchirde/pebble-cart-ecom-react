@@ -9,8 +9,14 @@ const MobileNavigationBarBottom = () => {
   const { wishlist } = useWishlist();
   const { auth } = useAuth();
 
-  const cartBadgeValue = auth.login ? cartState.cart.length : 0;
-  const wishlistBadgeValue = auth.login ? wishlist.length : 0;
+  const cartBadgeValue = auth.login ? cartState.cart.length : null;
+  const wishlistBadgeValue = auth.login ? wishlist.length : null;
+  const cartBadgeVisible = `${
+    cartState.cart.length !== 0 ? "badge-on-icon" : "hide"
+  }`;
+  const wishlistBadgeVisible = `${
+    wishlist.length !== 0 ? "badge-on-icon" : "hide"
+  }`;
 
   return (
     <>
@@ -20,7 +26,7 @@ const MobileNavigationBarBottom = () => {
             btnWrapper="badge-container"
             btnClassName="btn badge-icon-btn-lg"
             icon="far fa-heart"
-            badgeClassName="badge-on-icon"
+            badgeClassName={wishlistBadgeVisible}
             badgeValue={wishlistBadgeValue}
           />
         </Link>
@@ -32,7 +38,7 @@ const MobileNavigationBarBottom = () => {
             btnWrapper="badge-container"
             btnClassName="btn badge-icon-btn-lg"
             icon="fas fa-shopping-cart"
-            badgeClassName="badge-on-icon"
+            badgeClassName={cartBadgeVisible}
             badgeValue={cartBadgeValue}
           />
         </Link>

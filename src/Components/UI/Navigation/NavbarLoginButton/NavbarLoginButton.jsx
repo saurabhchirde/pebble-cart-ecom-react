@@ -4,18 +4,20 @@ import { useNavigate } from "react-router-dom";
 
 const NavbarLoginButton = (props) => {
   const { auth, authDispatch } = useAuth();
-  const { setShowLoginModal, setShowSignupModal } = useModal();
+  const { setShowLogin, setShowSignup, setError, setShowError } = useModal();
   const navigate = useNavigate();
 
   const onNavbarLoginClickHandler = () => {
     if (!auth.login) {
-      setShowLoginModal(true);
-      setShowSignupModal(false);
+      setShowLogin(true);
+      setShowSignup(false);
     } else {
+      setError(`Logged out successfully`);
+      setShowError(true);
       authDispatch({ type: "logout" });
-      navigate("/");
-      setShowLoginModal(false);
-      setShowSignupModal(false);
+      navigate("/products");
+      setShowLogin(false);
+      setShowSignup(false);
     }
   };
 
@@ -30,4 +32,5 @@ const NavbarLoginButton = (props) => {
     </>
   );
 };
+
 export default NavbarLoginButton;

@@ -1,13 +1,18 @@
-import { useWishlist, useCart } from "../../Context";
+import { useWishlist, useCart, useModal, useAuth } from "../../Context";
+import axios from "axios";
 
 const HorizontalProductsCard = ({ item }) => {
   const { title, price, src1 } = item;
   const { setWishlist } = useWishlist();
   const { cartDispatch } = useCart();
+  const { setError, setShowError } = useModal();
+  const { auth } = useAuth();
 
   const onMoveToCartClickHandler = () => {
+    addToCartOnServer();
     cartDispatch({ type: "addToCart", payload: item });
 
+    removeWishlistItemFromServer();
     setWishlist((oldWishlist) => {
       return oldWishlist.filter((el) => {
         return el._id !== item._id;
@@ -15,7 +20,46 @@ const HorizontalProductsCard = ({ item }) => {
     });
   };
 
+  const removeFromCart = () => {
+    auth.login && cartDispatch({ type: "removeFromCart", payload: item });
+  };
+
+  // add to server cart
+  const addToCartOnServer = async () => {
+    try {
+      const response = await axios.post(
+        "/api/user/cart",
+        {
+          product: { ...item },
+        },
+        { headers: { authorization: auth.token } }
+      );
+      console.log("cart", response.data.cart);
+    } catch (error) {
+      removeFromCart();
+      setError(error.message);
+      setShowError(true);
+    }
+  };
+
+  // remove wishlit item from server
+  const removeWishlistItemFromServer = async () => {
+    try {
+      const response = await axios.delete(`/api/user/wishlist/${item._id}`, {
+        headers: { authorization: auth.token },
+      });
+      console.log("wishlist", response.data.wishlist);
+    } catch (error) {
+      setWishlist((oldCart) => {
+        return [...new Set([...oldCart, item])];
+      });
+      setError(error.message);
+      setShowError(true);
+    }
+  };
+
   const onRemoveWishlistClickHandler = () => {
+    removeWishlistItemFromServer();
     setWishlist((oldWishlist) => {
       return oldWishlist.filter((el) => {
         return el._id !== item._id;

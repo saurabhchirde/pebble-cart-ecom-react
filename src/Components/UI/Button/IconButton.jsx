@@ -1,7 +1,7 @@
 const IconButton = (props) => {
   return (
     <>
-      <button className={props.btnClassName}>
+      <button onClick={props.onClick} className={props.btnClassName}>
         <i className={props.icon}></i>
       </button>
     </>

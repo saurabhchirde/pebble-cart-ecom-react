@@ -5,26 +5,22 @@ import { useAuth, useModal } from "../../../Context";
 import { useState } from "react";
 import axios from "axios";
 
+const initialSignupState = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+};
+
 const Signup = () => {
-  const { setShowLoginModal, setShowSignupModal, setShowDiscardModal } =
-    useModal();
-  const [user, setUser] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-  });
+  const { setShowLogin, setShowSignup, setShowSignupAlert } = useModal();
+  const [user, setUser] = useState(initialSignupState);
 
   const onSignupFormSubmitHandler = (e) => {
     e.preventDefault();
     userSignup();
-    setShowSignupModal(false);
-    setUser({
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-    });
+    setShowSignup(false);
+    setUser(initialSignupState);
   };
 
   const onInputChangeHandler = (e) => {
@@ -43,7 +39,7 @@ const Signup = () => {
     try {
       const response = await axios.post("/api/auth/signup", user);
       if (response.status === 201) {
-        setShowDiscardModal(true);
+        setShowSignupAlert(true);
       }
     } catch (error) {
       console.error(error.message);
@@ -51,13 +47,13 @@ const Signup = () => {
   };
 
   const onCloseClick = () => {
-    setShowLoginModal(false);
-    setShowSignupModal(false);
+    setShowLogin(false);
+    setShowSignup(false);
   };
 
   const onLoginClick = () => {
-    setShowLoginModal(true);
-    setShowSignupModal(false);
+    setShowLogin(true);
+    setShowSignup(false);
   };
 
   return (

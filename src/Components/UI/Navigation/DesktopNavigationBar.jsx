@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 const DesktopNavigationBar = () => {
   const { cartState } = useCart();
   const { wishlist } = useWishlist();
-  const { setShowLoginModal } = useModal();
+  const { setShowLogin } = useModal();
 
   const { filterDispatch, searchInput, setSearchInput } = useFilter();
   const { auth } = useAuth();
@@ -31,20 +31,26 @@ const DesktopNavigationBar = () => {
 
   const onWishlistClickHandler = () => {
     if (!auth.login) {
-      setShowLoginModal(true);
+      setShowLogin(true);
     }
   };
 
   const onCartClickHandler = () => {
     if (!auth.login) {
-      setShowLoginModal(true);
+      setShowLogin(true);
     }
   };
 
   const dp = auth.user.dp !== "" ? auth.user.dp.toUpperCase() : "";
-  const cartBadgeValue = auth.login ? cartState.cart.length : 0;
-  const wishlistBadgeValue = auth.login ? wishlist.length : 0;
+  const cartBadgeValue = auth.login ? cartState.cart.length : null;
+  const wishlistBadgeValue = auth.login ? wishlist.length : null;
   const loginButtonStatus = auth.login ? "Logout" : "Login";
+  const cartBadgeVisible = `${
+    cartState.cart.length !== 0 ? "badge-on-icon" : "hide"
+  }`;
+  const wishlistBadgeVisible = `${
+    wishlist.length !== 0 ? "badge-on-icon" : "hide"
+  }`;
 
   return (
     <>
@@ -59,6 +65,7 @@ const DesktopNavigationBar = () => {
           placeholder="Search"
           onChange={onSearchInputHandler}
           onSubmit={onSearchSubmitHandler}
+          value={searchInput}
         />
         <div className="nav-bar-btns">
           <NavbarLoginButton label={loginButtonStatus} />
@@ -67,7 +74,7 @@ const DesktopNavigationBar = () => {
               btnWrapper="badge-container"
               btnClassName="btn badge-icon-btn-lg"
               icon="far fa-heart"
-              badgeClassName="badge-on-icon"
+              badgeClassName={wishlistBadgeVisible}
               badgeValue={wishlistBadgeValue}
               onClick={onWishlistClickHandler}
             />
@@ -77,7 +84,7 @@ const DesktopNavigationBar = () => {
               btnWrapper="badge-container"
               btnClassName="btn badge-icon-btn-lg"
               icon="fas fa-shopping-cart"
-              badgeClassName="badge-on-icon"
+              badgeClassName={cartBadgeVisible}
               badgeValue={cartBadgeValue}
               onClick={onCartClickHandler}
             />

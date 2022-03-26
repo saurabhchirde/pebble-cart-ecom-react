@@ -4,7 +4,11 @@ const ProductDescription = ({ item }) => {
       <h2>About this item :</h2>
       <ol className="list-basic list-style-number">
         {item.description.map((info, index) => {
-          return <li key={index}>{info}</li>;
+          return (
+            <li className="product-description-text" key={index}>
+              {info}
+            </li>
+          );
         })}
       </ol>
     </div>

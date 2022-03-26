@@ -1,15 +1,17 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
+import {
+  useSessionStorageGet,
+  useSessionStorageSet,
+} from "../../Hooks/useSessionStorage";
 
 const wishlistContext = createContext([]);
 
 const WishlistProvider = ({ children }) => {
   const [wishlist, setWishlist] = useState(
-    JSON.parse(sessionStorage.getItem("wishlist")) ?? []
+    useSessionStorageGet("wishlist") ?? []
   );
 
-  useEffect(() => {
-    sessionStorage.setItem("wishlist", JSON.stringify(wishlist));
-  }, [wishlist]);
+  useSessionStorageSet("wishlist", wishlist);
 
   return (
     <wishlistContext.Provider value={{ wishlist, setWishlist }}>

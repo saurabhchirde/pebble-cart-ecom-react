@@ -1,5 +1,5 @@
 import { useCart } from "../../../Context";
-import { useCheckout } from "../../../Context/CheckoutContext";
+import { useCheckout } from "../../../Context/Checkout/CheckoutProvider";
 import "./OrderSummary.css";
 
 const OrderSummary = () => {

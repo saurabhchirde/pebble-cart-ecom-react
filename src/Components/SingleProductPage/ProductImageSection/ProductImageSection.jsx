@@ -1,21 +1,66 @@
-import { useWishlist } from "../../../Context";
+import { useAuth, useModal, useWishlist } from "../../../Context";
+import axios from "axios";
 
 const ProductImageSection = ({ item }) => {
   const { wishlist, setWishlist } = useWishlist();
   const { src1, src2, src3, src4, src5 } = item;
+  const { auth } = useAuth();
+  const { setError, setShowError, setShowLogin } = useModal();
 
   const addWishlistClick = () => {
-    setWishlist((oldCart) => {
-      return [...new Set([...oldCart, item])];
-    });
+    if (auth.login) {
+      addToWishlistOnServer();
+      setWishlist((oldCart) => {
+        return [...new Set([...oldCart, item])];
+      });
+    } else {
+      setShowLogin(true);
+    }
   };
 
   const removeFromWishlist = () => {
-    setWishlist((oldWishlist) => {
-      return oldWishlist.filter((el) => {
-        return el._id !== item._id;
+    if (auth.login) {
+      removeWishlistItemFromServer();
+      setWishlist((oldWishlist) => {
+        return oldWishlist.filter((el) => {
+          return el._id !== item._id;
+        });
       });
-    });
+    }
+  };
+
+  // add to server wishlist
+  const addToWishlistOnServer = async () => {
+    try {
+      const response = await axios.post(
+        "/api/user/wishlist",
+        {
+          product: { ...item },
+        },
+        { headers: { authorization: auth.token } }
+      );
+      console.log("wishlist", response.data.wishlist);
+    } catch (error) {
+      removeFromWishlist();
+      setError(error.message);
+      setShowError(true);
+    }
+  };
+
+  // remove wishlit item from server
+  const removeWishlistItemFromServer = async () => {
+    try {
+      const response = await axios.delete(`/api/user/wishlist/${item._id}`, {
+        headers: { authorization: auth.token },
+      });
+      console.log("wishlist", response.data.wishlist);
+    } catch (error) {
+      setWishlist((oldCart) => {
+        return [...new Set([...oldCart, item])];
+      });
+      setError(error.message);
+      setShowError(true);
+    }
   };
 
   return (

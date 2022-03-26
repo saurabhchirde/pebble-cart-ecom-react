@@ -1,5 +1,3 @@
-import { products } from "../backend/db/products";
-
 const filterReducer = (filterState, action) => {
   switch (action.type) {
     //   category
@@ -170,7 +168,6 @@ const filterReducer = (filterState, action) => {
 
     case "Clear":
       return {
-        products: products,
         sort: "Newest",
         bySort: { newest: true, lowTohHigh: false, highToLow: false },
         byStock: false,

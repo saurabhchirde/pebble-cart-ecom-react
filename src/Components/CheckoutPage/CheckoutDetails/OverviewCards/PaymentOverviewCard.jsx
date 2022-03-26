@@ -5,7 +5,7 @@ import {
   payPal,
   mastercard,
 } from "../../../../Data/Img/Payment/PaymentIcon";
-import { useCheckout } from "../../../../Context/CheckoutContext";
+import { useCheckout } from "../../../../Context/Checkout/CheckoutProvider";
 import "./PaymentOverviewCard.css";
 
 const PaymentOverviewCard = () => {
