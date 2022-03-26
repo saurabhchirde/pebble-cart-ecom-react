@@ -13,3 +13,8 @@ export {
   useSessionStorageGet,
   useSessionStorageSet,
 } from "../Hooks/useSessionStorage";
+
+export {
+  AxiosCallProvider,
+  useAxiosCalls,
+} from "./AxiosCalls/AxiosCallProvider";

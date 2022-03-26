@@ -64,6 +64,34 @@
   width: 8rem;
 }
 
+.card-vertical-info .card-img-container {
+  height: 6.5rem;
+}
+
+.filter-section {
+  width: 16.8rem;
+}
+
+.single-product-image .main-image {
+  width: 19rem;
+  height: 19rem;
+  object-fit: contain;
+}
+
+.single-product-image-options img {
+  width: 4rem;
+  margin: 12px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1050px) {
+  .single-product-image .main-image {
+    width: 15rem;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
 @media screen and (max-width: 580px) {
   .card-vertical img,
   .card-horizontal img,
@@ -75,7 +103,7 @@
 
   .card-horizontal img,
   .cart-item-card img {
-    width: 50rem;
+    width: 9rem;
   }
 
   .card-vertical .card-nav {
@@ -85,5 +113,11 @@
   .card-vertical .card-cta-btn {
     justify-content: space-between;
     min-width: 100%;
+  }
+
+  .single-product-image .main-image {
+    width: 14rem;
+    height: auto;
+    object-fit: contain;
   }
 }

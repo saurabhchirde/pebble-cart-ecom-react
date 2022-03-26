@@ -6,7 +6,12 @@ const ProductListingPage = () => {
   return (
     <>
       <div className="product-page-main mg-3-bot">
-        <FilterSection />
+        <FilterSection
+          camera={true}
+          lens={true}
+          tripod={true}
+          accessories={true}
+        />
         <ProductsSection />
       </div>
       <FloatingButton href="#" icon="fas fa-arrow-up" />

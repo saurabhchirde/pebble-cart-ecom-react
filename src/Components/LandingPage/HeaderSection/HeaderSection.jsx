@@ -7,6 +7,7 @@ import {
   accessoriesIcon,
   sonyAlphaCamera,
 } from "../../../Data/Img/Products/ProductImages";
+import { Link } from "react-router-dom";
 
 const HeaderSection = () => {
   return (
@@ -20,10 +21,18 @@ const HeaderSection = () => {
           btnLabel="Shop Now"
         />
         <div className="hero-categories flex-row-center pd-2-tb">
-          <SquareCards title="Cameras" imgSrc={cameraIcon} />
-          <SquareCards title="Lenses" imgSrc={lensIcon} />
-          <SquareCards title="Tripods" imgSrc={tripodIcon} />
-          <SquareCards title="Accessories" imgSrc={accessoriesIcon} />
+          <Link to="/products/camera">
+            <SquareCards title="Cameras" imgSrc={cameraIcon} />
+          </Link>
+          <Link to="/products/lenses">
+            <SquareCards title="Lenses" imgSrc={lensIcon} />
+          </Link>
+          <Link to="/products/tripods">
+            <SquareCards title="Tripods" imgSrc={tripodIcon} />
+          </Link>
+          <Link to="/products/accessories">
+            <SquareCards title="Accessories" imgSrc={accessoriesIcon} />
+          </Link>
         </div>
       </div>
     </>

@@ -1,18 +1,27 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth, useCart, useModal } from "../../../Context";
+import { useAuth, useAxiosCalls, useCart, useModal } from "../../../Context";
 import { ratingStarCheck } from "../../../Utils/FilterFunctions/ratingStarCheck";
-import axios from "axios";
 
 const ProductDetailSection = ({ item }) => {
   const { cartState, cartDispatch } = useCart();
   const { title, brand, rating, totalRating, price, delivery } = item;
   const { auth } = useAuth();
   const navigate = useNavigate();
-  const { setShowLogin, setError, setShowError } = useModal();
+  const { setShowLogin } = useModal();
+  const { addToCartOnServer } = useAxiosCalls();
+
+  const cartConfig = {
+    url: "/api/user/cart",
+    body: {
+      product: { ...item },
+    },
+    headers: { headers: { authorization: auth.token } },
+    item: item,
+  };
 
   const addCartClick = () => {
     if (auth.login) {
-      addToCartOnServer();
+      addToCartOnServer(cartConfig);
       cartDispatch({ type: "addToCart", payload: item });
     } else {
       setShowLogin(true);
@@ -23,33 +32,11 @@ const ProductDetailSection = ({ item }) => {
     if (auth.login) {
       if (!cartState.cart.includes(item)) {
         cartDispatch({ type: "addToCart", payload: item });
-        addToCartOnServer();
+        addToCartOnServer(cartConfig);
       }
       navigate("/cart");
     } else {
       setShowLogin(true);
-    }
-  };
-
-  const removeFromCart = () => {
-    auth.login && cartDispatch({ type: "removeFromCart", payload: item });
-  };
-
-  // add to server cart
-  const addToCartOnServer = async () => {
-    try {
-      const response = await axios.post(
-        "/api/user/cart",
-        {
-          product: { ...item },
-        },
-        { headers: { authorization: auth.token } }
-      );
-      console.log("cart", response.data.cart);
-    } catch (error) {
-      removeFromCart();
-      setError(error.message);
-      setShowError(true);
     }
   };
 

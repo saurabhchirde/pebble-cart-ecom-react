@@ -1,4 +1,4 @@
-import CartItemCard from "../../Components/CartPage/ProductCard/CartItemCard";
+import CartItemCard from "../../Components/CartPage/CartItemCard/CartItemCard";
 import { useAuth, useCart } from "../../Context";
 import "./CartPage.css";
 import { Link } from "react-router-dom";
