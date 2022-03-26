@@ -3,15 +3,22 @@ import BadgeIconButton from "../Button/BadgeIconButton";
 import SearchBar from "./SearchBar/SearchBar";
 import NavbarLoginButton from "./NavbarLoginButton/NavbarLoginButton";
 import NavbarAvatar from "./Avatar/NavbarAvatar";
-import { useState } from "react";
-import { useCart, useWishlist, useFilter } from "../../../Context";
+import {
+  useCart,
+  useWishlist,
+  useFilter,
+  useAuth,
+  useModal,
+} from "../../../Context";
 import { Link } from "react-router-dom";
 
 const DesktopNavigationBar = () => {
   const { cartState } = useCart();
   const { wishlist } = useWishlist();
-  const [searchInput, setSearchInput] = useState();
-  const { filterDispatch } = useFilter();
+  const { setShowLogin } = useModal();
+
+  const { filterDispatch, searchInput, setSearchInput } = useFilter();
+  const { auth } = useAuth();
 
   const onSearchSubmitHandler = (e) => {
     e.preventDefault();
@@ -22,13 +29,35 @@ const DesktopNavigationBar = () => {
     setSearchInput(e.target.value);
   };
 
+  const onWishlistClickHandler = () => {
+    if (!auth.login) {
+      setShowLogin(true);
+    }
+  };
+
+  const onCartClickHandler = () => {
+    if (!auth.login) {
+      setShowLogin(true);
+    }
+  };
+
+  const dp = auth.user.dp !== "" ? auth.user.dp.toUpperCase() : "";
+  const cartBadgeValue = auth.login ? cartState.cart.length : null;
+  const wishlistBadgeValue = auth.login ? wishlist.length : null;
+  const loginButtonStatus = auth.login ? "Logout" : "Login";
+  const cartBadgeVisible = `${
+    cartState.cart.length !== 0 ? "badge-on-icon" : "hide"
+  }`;
+  const wishlistBadgeVisible = `${
+    wishlist.length !== 0 ? "badge-on-icon" : "hide"
+  }`;
+
   return (
     <>
       <nav className="desktop-navigation-bar dark-nav-bar">
-        <a href="/">
+        <Link to="/">
           <img className="company-logo" src={logoLight} alt="logo" />
-        </a>
-
+        </Link>
         <SearchBar
           searchWrapper="search-container"
           micIcon="hide"
@@ -36,17 +65,18 @@ const DesktopNavigationBar = () => {
           placeholder="Search"
           onChange={onSearchInputHandler}
           onSubmit={onSearchSubmitHandler}
+          value={searchInput}
         />
-
         <div className="nav-bar-btns">
-          <NavbarLoginButton />
+          <NavbarLoginButton label={loginButtonStatus} />
           <Link to="wishlist">
             <BadgeIconButton
               btnWrapper="badge-container"
               btnClassName="btn badge-icon-btn-lg"
               icon="far fa-heart"
-              badgeClassName="badge-on-icon"
-              badgeValue={wishlist.length}
+              badgeClassName={wishlistBadgeVisible}
+              badgeValue={wishlistBadgeValue}
+              onClick={onWishlistClickHandler}
             />
           </Link>
           <Link to="cart">
@@ -54,17 +84,19 @@ const DesktopNavigationBar = () => {
               btnWrapper="badge-container"
               btnClassName="btn badge-icon-btn-lg"
               icon="fas fa-shopping-cart"
-              badgeClassName="badge-on-icon"
-              badgeValue={cartState.cart.length}
+              badgeClassName={cartBadgeVisible}
+              badgeValue={cartBadgeValue}
+              onClick={onCartClickHandler}
             />
           </Link>
-          <NavbarAvatar
-            avatarWrapper="badge-container"
-            avatarClassName="avatar text-avatar-xsm-round"
-            imgDisplay="hide"
-            src=""
-            statusBadge="hide"
-          />
+          {auth.login && (
+            <NavbarAvatar
+              avatarWrapper="badge-container"
+              avatarClassName="avatar text-avatar-xsm-round"
+              imgDisplay="hide"
+              src={dp}
+            />
+          )}
         </div>
       </nav>
     </>

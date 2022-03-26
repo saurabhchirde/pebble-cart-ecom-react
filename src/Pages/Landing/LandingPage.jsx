@@ -2,7 +2,6 @@ import HeaderSection from "../../Components/LandingPage/HeaderSection/HeaderSect
 import HotProductsSection from "../../Components/LandingPage/HotProductSection/HotProductsSection";
 import RecommendedSection from "../../Components/LandingPage/RecommendedSection/RecommendedSection";
 import FloatingButton from "../../Components/UI/Button/FloatingButton";
-import "./LandingPage.css";
 
 const LandingPage = () => {
   return (

@@ -1,16 +1,22 @@
 import { useState } from "react";
-import { useModal } from "../../../Context";
+import { useAxiosCalls, useModal } from "../../../Context";
 import Button from "../Button/Button";
 import InputTypeOne from "../Input/InputTypeOne";
 import "./Login.css";
 
 const Login = () => {
-  const [inputField, setInputField] = useState({
+  const [loginInput, setLoginInput] = useState({
     email: "",
     password: "",
   });
 
-  const { setShowLoginModal, setShowSignupModal, setLoginButton } = useModal();
+  const { setShowLogin, setShowSignup } = useModal();
+  const { userLogin } = useAxiosCalls();
+
+  const loginConfig = {
+    url: "/api/auth/login",
+    data: loginInput,
+  };
 
   const onLoginSubmitHandler = (e) => {
     e.preventDefault();
@@ -19,7 +25,7 @@ const Login = () => {
   const onModalInputHandler = (e) => {
     const value = e.target.value;
     const name = e.target.name;
-    setInputField((preData) => {
+    setLoginInput((preData) => {
       return {
         ...preData,
         [name]: value,
@@ -27,26 +33,37 @@ const Login = () => {
     });
   };
 
-  const onLoginCLickFormHandler = () => {
-    if (inputField.name === "" || inputField.password === "") {
+  const onLoginClickFormHandler = () => {
+    if (loginInput.name === "" || loginInput.password === "") {
       return;
     } else {
-      setLoginButton("Logout");
-      setShowLoginModal(false);
-      setShowSignupModal(false);
+      userLogin(loginConfig);
     }
+  };
+
+  const onTestButtonClickFormHandler = () => {
+    setLoginInput({
+      email: "test@gmail.com",
+      password: "test@123",
+    });
+    userLogin(loginConfig);
   };
 
   return (
     <>
-      <div className="modal-backdrop"></div>
+      <div
+        className="modal-backdrop"
+        onClick={() => {
+          setShowLogin(false);
+        }}
+      ></div>
       <div className="signin-modal">
         <h1>Welcome Back</h1>
         <p>Enter your credentials to access your account</p>
         <a
           onClick={() => {
-            setShowLoginModal(false);
-            setShowSignupModal(false);
+            setShowLogin(false);
+            setShowSignup(false);
           }}
         >
           <i className="fas fa-times"></i>
@@ -55,33 +72,40 @@ const Login = () => {
           <InputTypeOne
             type="email"
             name="email"
-            required="required"
+            // required="required"    commented for development
             autoComplete="email"
             placeholder="Enter your email *"
             iconWrapper="input-icon"
             icon="far fa-envelope"
             inputWrapper="outline-email-input"
             onChange={onModalInputHandler}
-            value={inputField.email}
+            value={loginInput.email}
           />
           <InputTypeOne
             type="password"
             name="password"
-            required="required"
+            // required="required"     commented for development
             autoComplete="current-password"
             placeholder="Enter your password *"
             iconWrapper="input-icon"
             icon="fas fa-key"
             inputWrapper="outline-password-input"
             onChange={onModalInputHandler}
-            value={inputField.password}
+            value={loginInput.password}
           />
           <Button
             btnWrapper="signin-btn"
             type="submit"
             label="Sign In"
             btnClassName="btn primary-btn-md"
-            onClick={onLoginCLickFormHandler}
+            onClick={onLoginClickFormHandler}
+          />
+          <Button
+            btnWrapper="signin-btn"
+            type="submit"
+            label="Test User (double click)"
+            btnClassName="btn primary-outline-btn-md"
+            onClick={onTestButtonClickFormHandler}
           />
           <p>
             Forgot your password?{" "}
@@ -92,8 +116,8 @@ const Login = () => {
           <a
             className="create-account-btn"
             onClick={() => {
-              setShowLoginModal(false);
-              setShowSignupModal(true);
+              setShowLogin(false);
+              setShowSignup(true);
             }}
           >
             <h2>

@@ -1,18 +1,23 @@
 import Button from "../../Button/Button";
-import { useModal } from "../../../../Context";
+import { useAuth, useModal } from "../../../../Context";
+import { useNavigate } from "react-router-dom";
 
-const NavbarLoginButton = () => {
-  const { setShowLoginModal, setShowSignupModal, loginButton, setLoginButton } =
-    useModal();
+const NavbarLoginButton = (props) => {
+  const { auth, authDispatch } = useAuth();
+  const { setShowLogin, setShowSignup, setError, setShowError } = useModal();
+  const navigate = useNavigate();
 
   const onNavbarLoginClickHandler = () => {
-    if (loginButton === "Login") {
-      setShowLoginModal(true);
-      setShowSignupModal(false);
+    if (!auth.login) {
+      setShowLogin(true);
+      setShowSignup(false);
     } else {
-      setLoginButton("Login");
-      setShowLoginModal(false);
-      setShowSignupModal(false);
+      setError(`Logged out successfully`);
+      setShowError(true);
+      authDispatch({ type: "logout" });
+      navigate("/products");
+      setShowLogin(false);
+      setShowSignup(false);
     }
   };
 
@@ -20,11 +25,12 @@ const NavbarLoginButton = () => {
     <>
       <Button
         btnWrapper="signin"
-        label={loginButton}
+        label={props.label}
         btnClassName="btn primary-btn-md"
         onClick={onNavbarLoginClickHandler}
       />
     </>
   );
 };
+
 export default NavbarLoginButton;

@@ -1,13 +1,35 @@
-import { useWishlist, useCart } from "../../Context";
+import { useWishlist, useCart, useAuth, useAxiosCalls } from "../../Context";
 
 const HorizontalProductsCard = ({ item }) => {
   const { title, price, src1 } = item;
   const { setWishlist } = useWishlist();
   const { cartDispatch } = useCart();
+  const { auth } = useAuth();
+  const { addToCartOnServer, removeWishlistItemFromServer } = useAxiosCalls();
+
+  const cartConfig = {
+    url: "/api/user/cart",
+    body: {
+      product: { ...item },
+    },
+    headers: { headers: { authorization: auth.token } },
+    item: item,
+  };
+
+  const wishlistConfig = {
+    url: "/api/user/wishlist",
+    body: {
+      product: { ...item },
+    },
+    headers: { headers: { authorization: auth.token } },
+    item: item,
+  };
 
   const onMoveToCartClickHandler = () => {
+    addToCartOnServer(cartConfig);
     cartDispatch({ type: "addToCart", payload: item });
 
+    removeWishlistItemFromServer(wishlistConfig);
     setWishlist((oldWishlist) => {
       return oldWishlist.filter((el) => {
         return el._id !== item._id;
@@ -16,6 +38,7 @@ const HorizontalProductsCard = ({ item }) => {
   };
 
   const onRemoveWishlistClickHandler = () => {
+    removeWishlistItemFromServer(wishlistConfig);
     setWishlist((oldWishlist) => {
       return oldWishlist.filter((el) => {
         return el._id !== item._id;

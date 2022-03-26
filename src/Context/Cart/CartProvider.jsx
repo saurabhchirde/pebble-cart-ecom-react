@@ -1,5 +1,9 @@
 import { createContext, useContext, useReducer, useEffect } from "react";
 import { cartReducer } from "./cartReducer";
+import {
+  useSessionStorageGet,
+  useSessionStorageSet,
+} from "../../Hooks/useSessionStorage";
 
 const initialCartState = {
   cart: [],
@@ -15,12 +19,10 @@ const cartContext = createContext({});
 const CartProvider = ({ children }) => {
   const [cartState, cartDispatch] = useReducer(
     cartReducer,
-    JSON.parse(sessionStorage.getItem("cartState")) ?? initialCartState
+    useSessionStorageGet("cartState") ?? initialCartState
   );
 
-  useEffect(() => {
-    sessionStorage.setItem("cartState", JSON.stringify(cartState));
-  }, [cartState]);
+  useSessionStorageSet("cartState", cartState);
 
   return (
     <cartContext.Provider value={{ cartState, cartDispatch }}>

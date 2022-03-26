@@ -1,24 +1,56 @@
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../../../Context";
-import { ratingStarCheck } from "../../../Utils/ratingStarCheck";
+import { useAuth, useAxiosCalls, useCart, useModal } from "../../../Context";
+import { ratingStarCheck } from "../../../Utils/FilterFunctions/ratingStarCheck";
 
 const ProductDetailSection = ({ item }) => {
   const { cartState, cartDispatch } = useCart();
   const { title, brand, rating, totalRating, price, delivery } = item;
+  const { auth } = useAuth();
   const navigate = useNavigate();
+  const { setShowLogin } = useModal();
+  const { addToCartOnServer } = useAxiosCalls();
 
-  const addCartClick = () => {
-    cartDispatch({ type: "addToCart", payload: item });
+  const cartConfig = {
+    url: "/api/user/cart",
+    body: {
+      product: { ...item },
+    },
+    headers: { headers: { authorization: auth.token } },
+    item: item,
   };
 
-  const removeFromCart = () => {
-    cartDispatch({ type: "removeFromCart", payload: item });
+  const addCartClick = () => {
+    if (auth.login) {
+      addToCartOnServer(cartConfig);
+      cartDispatch({ type: "addToCart", payload: item });
+    } else {
+      setShowLogin(true);
+    }
   };
 
   const onBuyNowClickHandler = () => {
-    cartDispatch({ type: "addToCart", payload: item });
-    navigate("/cart");
+    if (auth.login) {
+      if (!cartState.cart.includes(item)) {
+        cartDispatch({ type: "addToCart", payload: item });
+        addToCartOnServer(cartConfig);
+      }
+      navigate("/cart");
+    } else {
+      setShowLogin(true);
+    }
   };
+
+  const goToCart = () => {
+    auth.login && navigate("/cart");
+  };
+
+  const cartButtonStatus = () => {
+    cartState.cart.includes(item) ? goToCart() : addCartClick();
+  };
+
+  const cartButtonState = `${
+    cartState.cart.includes(item) ? "Go to Cart" : "Add to Cart"
+  }`;
 
   return (
     <div className="single-product-detail">
@@ -83,12 +115,10 @@ const ProductDetailSection = ({ item }) => {
           <h2 className="product-details-price">Rs. {price}/-</h2>
           <div className="product-details-cta">
             <button
-              onClick={
-                cartState.cart.includes(item) ? removeFromCart : addCartClick
-              }
+              onClick={cartButtonStatus}
               className="btn primary-outline-btn-md"
             >
-              {cartState.cart.includes(item) ? "In your Cart" : "Add to Cart"}
+              {cartButtonState}
             </button>
             <button
               onClick={onBuyNowClickHandler}

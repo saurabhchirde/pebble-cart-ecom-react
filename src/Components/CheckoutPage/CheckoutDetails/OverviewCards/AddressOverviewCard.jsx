@@ -1,8 +1,10 @@
-import { useCheckout } from "../../../../Context/CheckoutContext";
+import { useAuth } from "../../../../Context";
+import { useCheckout } from "../../../../Context/Checkout/CheckoutProvider";
 
 const AddressOverviewCard = () => {
   const { checkoutState, checkoutDispatch } = useCheckout();
   const { addressOverviewCheck } = checkoutState;
+  const { auth } = useAuth();
 
   const onSelectingAddress = () => {
     checkoutDispatch({ type: "addressSelected" });
@@ -24,8 +26,9 @@ const AddressOverviewCard = () => {
           <div className="radio-input" onClick={onSelectingAddress}>
             <input type="radio" name="radio" id="addressOne" />
             <label htmlFor="addressOne">
-              Kashika Agnani, House No. 55, Near Ambika Lane, Betageri Market,
-              Building No. 68, Vellora, Kannur, Kerala, Pincode-646039
+              {auth.user.firstName} {auth.user.lastName}, House No. 55, Near
+              Ambika Lane, Betageri Market, Building No. 68, Vellora, Kannur,
+              Kerala, Pincode-646039
             </label>
           </div>
           <button className="btn primary-text-btn-sm">edit address</button>
@@ -35,8 +38,9 @@ const AddressOverviewCard = () => {
           <div className="radio-input" onClick={onSelectingAddress}>
             <input type="radio" name="radio" id="addressTwo" />
             <label htmlFor="addressTwo">
-              Kashika Agnani, House No. 55, Near Ambika Lane, Betageri Market,
-              Building No. 68, Vellora, Kannur, Kerala, Pincode-646039
+              {auth.user.firstName} {auth.user.lastName}, House No. 55, Near
+              Ambika Lane, Betageri Market, Building No. 68, Vellora, Kannur,
+              Kerala, Pincode-646039
             </label>
           </div>
           <button className="btn primary-text-btn-sm">edit address</button>

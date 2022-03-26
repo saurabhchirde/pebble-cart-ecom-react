@@ -1,4 +1,10 @@
-import { useCart, useWishlist } from "../../../Context";
+import {
+  useAuth,
+  useAxiosCalls,
+  useCart,
+  useModal,
+  useWishlist,
+} from "../../../Context";
 import { couponCheck } from "../../../Utils/couponCheck";
 import { useEffect } from "react";
 
@@ -7,24 +13,64 @@ const CartItemCard = ({ item }) => {
   const { cartState, cartDispatch } = useCart();
   const { totalPrice, coupon } = cartState;
   const { setWishlist } = useWishlist();
+  const { auth } = useAuth();
+  const { setError, setShowError } = useModal();
+  const {
+    addToWishlistOnServer,
+    removeCartItemFromServer,
+    increaseCartItemQtyOnServer,
+    decreaseCartItemQtyOnServer,
+  } = useAxiosCalls();
+
+  const cartConfig = {
+    url: "/api/user/cart",
+    body: {
+      product: { ...item },
+    },
+    actionIncrement: {
+      action: { type: "increment" },
+    },
+    actionDecrement: {
+      action: { type: "decrement" },
+    },
+    headers: { headers: { authorization: auth.token } },
+    item: item,
+  };
+
+  const wishlistConfig = {
+    url: "/api/user/wishlist",
+    body: {
+      product: { ...item },
+    },
+    headers: { headers: { authorization: auth.token } },
+    dispatch: { setWishlist, setError, setShowError },
+    item: item,
+  };
 
   const onWishlistClickHandler = () => {
-    setWishlist((oldWishlist) => {
-      return [...oldWishlist, item];
-    });
-    cartDispatch({ type: "removeFromCart", payload: item });
+    if (auth.login) {
+      addToWishlistOnServer(wishlistConfig);
+      setWishlist((oldWishlist) => {
+        return [...oldWishlist, item];
+      });
+      removeCartItemFromServer(cartConfig);
+      cartDispatch({ type: "removeFromCart", payload: item });
+    }
   };
 
   const onRemoveClickHandler = () => {
+    removeCartItemFromServer(cartConfig);
     cartDispatch({ type: "removeFromCart", payload: item });
   };
 
   const increaseQty = () => {
     cartDispatch({ type: "addToCart", payload: item });
+    increaseCartItemQtyOnServer(cartConfig);
   };
 
   const decreaseQty = () => {
     cartDispatch({ type: "decreaseQty", payload: item });
+    decreaseCartItemQtyOnServer(cartConfig);
   };
 
   useEffect(() => {

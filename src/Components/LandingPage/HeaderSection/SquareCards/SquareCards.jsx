@@ -1,16 +1,14 @@
 const SquareCards = (props) => {
   return (
     <>
-      <a onClick={props.onClick}>
-        <div className="card-vertical-info card-dark">
-          <div className="card-img-container">
-            <img src={props.imgSrc} alt="icon" />
-          </div>
-          <div className="card-text">
-            <h1>{props.title}</h1>
-          </div>
+      <div className="card-vertical-info card-dark">
+        <div className="card-img-container">
+          <img src={props.imgSrc} alt="icon" />
         </div>
-      </a>
+        <div className="card-text">
+          <h1>{props.title}</h1>
+        </div>
+      </div>
     </>
   );
 };
