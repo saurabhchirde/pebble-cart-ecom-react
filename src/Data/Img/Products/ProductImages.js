@@ -38,6 +38,51 @@ import sonySmallCamera2 from "./sonySmallCamera/sonySmallCamera2.webp";
 import sonySmallCamera3 from "./sonySmallCamera/sonySmallCamera3.webp";
 import sonySmallCamera4 from "./sonySmallCamera/sonySmallCamera4.webp";
 import tripodIcon from "./tripodIcon.png";
+import cameraStrap from "./cameraStrap/cameraStrap.webp";
+import cameraStrap2 from "./cameraStrap/cameraStrap2.webp";
+import cameraStrap3 from "./cameraStrap/cameraStrap3.webp";
+import cameraStrap4 from "./cameraStrap/cameraStrap4.webp";
+import cameraStrap5 from "./cameraStrap/cameraStrap5.webp";
+import digitekTripod from "./digitekTripod/digitekTripod.webp";
+import digitekTripod2 from "./digitekTripod/digitekTripod2.webp";
+import digitekTripod3 from "./digitekTripod/digitekTripod3.webp";
+import digitekTripod4 from "./digitekTripod/digitekTripod4.webp";
+import digitekTripod5 from "./digitekTripod/digitekTripod5.webp";
+import godoxFlash from "./godoxFlash/godoxFlash.webp";
+import godoxFlash2 from "./godoxFlash/godoxFlash2.webp";
+import godoxFlash3 from "./godoxFlash/godoxFlash3.webp";
+import godoxFlash4 from "./godoxFlash/godoxFlash4.webp";
+import godoxFlash5 from "./godoxFlash/godoxFlash5.webp";
+import humbleTripod from "./humbleTripod/humbleTripod.webp";
+import humbleTripod2 from "./humbleTripod/humbleTripod2.webp";
+import humbleTripod3 from "./humbleTripod/humbleTripod3.webp";
+import humbleTripod4 from "./humbleTripod/humbleTripod4.webp";
+import humbleTripod5 from "./humbleTripod/humbleTripod5.webp";
+import msgTripod from "./msgTripod/msgTripod.webp";
+import msgTripod2 from "./msgTripod/msgTripod2.webp";
+import msgTripod3 from "./msgTripod/msgTripod3.webp";
+import msgTripod4 from "./msgTripod/msgTripod4.webp";
+import msgTripod5 from "./msgTripod/msgTripod5.webp";
+import polaroidBag from "./polaroidBag/polaroidBag.webp";
+import polaroidBag2 from "./polaroidBag/polaroidBag2.webp";
+import polaroidBag3 from "./polaroidBag/polaroidBag3.webp";
+import polaroidBag4 from "./polaroidBag/polaroidBag4.webp";
+import polaroidBag5 from "./polaroidBag/polaroidBag5.webp";
+import polaroidFilm from "./polaroidFilm/polaroidFilm.webp";
+import polaroidFilm2 from "./polaroidFilm/polaroidFilm2.webp";
+import polaroidFilm3 from "./polaroidFilm/polaroidFilm3.webp";
+import polaroidFilm4 from "./polaroidFilm/polaroidFilm4.webp";
+import polaroidFilm5 from "./polaroidFilm/polaroidFilm5.webp";
+import sandisk128 from "./sandisk128gb/sandisk128.webp";
+import sandisk1282 from "./sandisk128gb/sandisk1282.webp";
+import sandisk1283 from "./sandisk128gb/sandisk1283.webp";
+import sandisk1284 from "./sandisk128gb/sandisk1284.webp";
+import sandisk1285 from "./sandisk128gb/sandisk1285.webp";
+import sandisk256 from "./sandisk256gb/sandisk256.webp";
+import sandisk2562 from "./sandisk256gb/sandisk2562.webp";
+import sandisk2563 from "./sandisk256gb/sandisk2563.webp";
+import sandisk2564 from "./sandisk256gb/sandisk2564.webp";
+import sandisk2565 from "./sandisk256gb/sandisk2565.webp";
 
 export {
   avatar1,
@@ -80,4 +125,49 @@ export {
   cameraImg1,
   lensIcon,
   tripodIcon,
+  cameraStrap,
+  cameraStrap2,
+  cameraStrap3,
+  cameraStrap4,
+  cameraStrap5,
+  digitekTripod,
+  digitekTripod2,
+  digitekTripod3,
+  digitekTripod4,
+  digitekTripod5,
+  godoxFlash,
+  godoxFlash2,
+  godoxFlash3,
+  godoxFlash4,
+  godoxFlash5,
+  humbleTripod,
+  humbleTripod2,
+  humbleTripod3,
+  humbleTripod4,
+  humbleTripod5,
+  msgTripod,
+  msgTripod2,
+  msgTripod3,
+  msgTripod4,
+  msgTripod5,
+  polaroidBag,
+  polaroidBag2,
+  polaroidBag3,
+  polaroidBag4,
+  polaroidBag5,
+  polaroidFilm,
+  polaroidFilm2,
+  polaroidFilm3,
+  polaroidFilm4,
+  polaroidFilm5,
+  sandisk128,
+  sandisk1282,
+  sandisk1283,
+  sandisk1284,
+  sandisk1285,
+  sandisk256,
+  sandisk2562,
+  sandisk2563,
+  sandisk2564,
+  sandisk2565,
 };

@@ -27,9 +27,9 @@ const productsReducer = (productState, action) => {
 
 const ProductsProvider = ({ children }) => {
   const [productState, productDispatch] = useReducer(productsReducer, {
-    products: JSON.parse(sessionStorage.getItem("productList")) ?? [],
-    categories: JSON.parse(sessionStorage.getItem("categories")) ?? [],
-    brands: JSON.parse(sessionStorage.getItem("brands")) ?? [],
+    products: [],
+    categories: [],
+    brands: [],
   });
 
   useEffect(() => {
@@ -40,10 +40,6 @@ const ProductsProvider = ({ children }) => {
           type: "getproducts",
           payload: response.data.products,
         });
-        sessionStorage.setItem(
-          "productList",
-          JSON.stringify(productState.products)
-        );
       } catch (error) {
         console.error(error.message);
       }
@@ -59,10 +55,6 @@ const ProductsProvider = ({ children }) => {
           type: "getcategories",
           payload: response.data.categories,
         });
-        sessionStorage.setItem(
-          "categories",
-          JSON.stringify(productState.categories)
-        );
       } catch (error) {
         console.error(error.message);
       }
@@ -75,7 +67,6 @@ const ProductsProvider = ({ children }) => {
       try {
         const response = await axios.get("/api/brands");
         productDispatch({ type: "getbrands", payload: response.data.brands });
-        sessionStorage.setItem("brands", JSON.stringify(productState.brands));
       } catch (error) {
         console.error(error.message);
       }
