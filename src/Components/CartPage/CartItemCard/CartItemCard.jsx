@@ -40,7 +40,7 @@ const CartItemCard = ({ item }) => {
   const wishlistConfig = {
     url: "/api/user/wishlist",
     body: {
-      product: { ...item },
+      product: { ...item, qty: 1 },
     },
     headers: { headers: { authorization: auth.token } },
     dispatch: { setWishlist, setError, setShowError },
@@ -51,7 +51,7 @@ const CartItemCard = ({ item }) => {
     if (auth.login) {
       addToWishlistOnServer(wishlistConfig);
       setWishlist((oldWishlist) => {
-        return [...oldWishlist, item];
+        return [...oldWishlist, { ...item, qty: 1 }];
       });
       removeCartItemFromServer(cartConfig);
       cartDispatch({ type: "removeFromCart", payload: item });

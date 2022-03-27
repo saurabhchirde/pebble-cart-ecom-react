@@ -63,8 +63,7 @@ const AxiosCallProvider = ({ children }) => {
     const { url, body, headers, item } = cartConfig;
 
     try {
-      const res = await axios.post(url, body, headers);
-      console.log(res.data);
+      await axios.post(url, body, headers);
     } catch (error) {
       setError(error.message);
       setShowError(true);
