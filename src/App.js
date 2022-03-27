@@ -49,6 +49,7 @@ const App = () => {
           <Route path="cart" element={<CartPage />} />
           <Route path="cart/checkout" element={<CheckoutPage />} />
           <Route path="mockman" element={<Mockman />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BodyWrapper>
       <Footer />
