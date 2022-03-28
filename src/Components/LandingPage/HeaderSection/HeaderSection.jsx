@@ -6,18 +6,36 @@ import {
   tripodIcon,
   accessoriesIcon,
   sonyAlphaCamera,
+  polaroidCamera,
+  actionCamera,
 } from "../../../Data/Img/Products/ProductImages";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const HeaderSection = () => {
+  const [currImg, setCurrImg] = useState(0);
+  const banner = [sonyAlphaCamera, polaroidCamera, actionCamera];
+
+  useEffect(() => {
+    const imgTime = setInterval(() => {
+      if (currImg < 2) {
+        setCurrImg((preNum) => preNum + 1);
+      } else {
+        setCurrImg(0);
+      }
+    }, 2500);
+    return () => {
+      clearInterval(imgTime);
+    };
+  }, [currImg]);
+
   return (
     <>
       <div className="hero-section">
         <HeaderBanner
-          title="Simply the better Camera you are looking for."
-          description="When you are ready for more, there is a camera waiting for you that
-            is easy to carry but shoots like a pro"
-          imgSrc={sonyAlphaCamera}
+          title="Your Perfect Camera."
+          description="When you are ready for more, there is a camera waiting for you that is easy to carry but shoots like a pro"
+          imgSrc={banner[currImg]}
           btnLabel="Shop Now"
         />
         <div className="hero-categories flex-row-center pd-2-tb">

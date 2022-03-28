@@ -115,6 +115,13 @@
 }
 
 @media screen and (max-width: 580px) {
+  .hero-banner {
+    margin: 3.5rem auto 2rem;
+  }
+
+  .hero-banner img {
+    margin: 3rem auto 2rem;
+  }
   .card-vertical img,
   .card-horizontal img,
   .cart-item-card img {

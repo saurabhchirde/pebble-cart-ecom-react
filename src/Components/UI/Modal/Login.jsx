@@ -18,8 +18,17 @@ const Login = () => {
     data: loginInput,
   };
 
+  const onLoginClickFormHandler = () => {
+    if (loginInput.name === "" || loginInput.password === "") {
+      return;
+    } else {
+      userLogin(loginConfig);
+    }
+  };
+
   const onLoginSubmitHandler = (e) => {
     e.preventDefault();
+    onLoginClickFormHandler();
   };
 
   const onModalInputHandler = (e) => {
@@ -31,14 +40,6 @@ const Login = () => {
         [name]: value,
       };
     });
-  };
-
-  const onLoginClickFormHandler = () => {
-    if (loginInput.name === "" || loginInput.password === "") {
-      return;
-    } else {
-      userLogin(loginConfig);
-    }
   };
 
   const onTestButtonClickFormHandler = () => {

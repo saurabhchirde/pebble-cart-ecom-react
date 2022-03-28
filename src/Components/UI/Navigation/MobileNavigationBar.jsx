@@ -3,10 +3,15 @@ import SearchBar from "./SearchBar/SearchBar";
 import logoIcon from "../../../Data/logo/icon.svg";
 import NavbarAvatar from "./Avatar/NavbarAvatar";
 import { useAuth, useFilter } from "../../../Context";
+import { useLocation } from "react-router-dom";
 
 const MobileNavigationBar = () => {
   const { auth } = useAuth();
   const { filterDispatch, searchInput, setSearchInput } = useFilter();
+  const location = useLocation();
+
+  const showSearch = location.pathname.includes("products") ? true : false;
+  const hideOnCheckout = location.pathname.includes("/checkout") ? false : true;
 
   const onSearchSubmitHandler = (e) => {
     e.preventDefault();
@@ -19,6 +24,11 @@ const MobileNavigationBar = () => {
 
   const dp = auth.user.dp !== "" ? auth.user.dp.toUpperCase() : "";
   const loginButtonStatus = auth.login ? "Logout" : "Login";
+  const loginButtonState = hideOnCheckout
+    ? loginButtonStatus === "Login"
+      ? "btn primary-btn-md"
+      : "btn secondary-outline-btn-md"
+    : "btn secondary-text-btn-md";
 
   return (
     <>
@@ -26,16 +36,21 @@ const MobileNavigationBar = () => {
         <a href="/">
           <img className="logo" src={logoIcon} alt="logo" />
         </a>
-        <SearchBar
-          searchWrapper="search-container"
-          micIcon="hide"
-          searchIcon="fas fa-search"
-          placeholder="Search"
-          onChange={onSearchInputHandler}
-          onSubmit={onSearchSubmitHandler}
-        />
+        {showSearch && (
+          <SearchBar
+            searchWrapper="search-container"
+            micIcon="hide"
+            searchIcon="fas fa-search"
+            placeholder="Search"
+            onChange={onSearchInputHandler}
+            onSubmit={onSearchSubmitHandler}
+          />
+        )}
         <div className="nav-bar-btns">
-          <NavbarLoginButton label={loginButtonStatus} />
+          <NavbarLoginButton
+            label={loginButtonStatus}
+            btnClassName={loginButtonState}
+          />
         </div>
         {auth.login && (
           <NavbarAvatar
