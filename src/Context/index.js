@@ -13,6 +13,7 @@ export {
   useSessionStorageGet,
   useSessionStorageSet,
 } from "../Hooks/useSessionStorage";
+export { AnimationProvider, useAnimation } from "./Animation/AnimationProvider";
 
 export {
   AxiosCallProvider,

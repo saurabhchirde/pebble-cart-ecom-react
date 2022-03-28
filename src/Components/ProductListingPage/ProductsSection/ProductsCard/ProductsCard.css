@@ -23,3 +23,53 @@
   font-size: 1rem;
   color: var(--text-dark);
 }
+
+.bump {
+  animation: bump 300ms ease-in-out;
+}
+
+@keyframes bump {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(0.8);
+  }
+  30% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  70% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.alertAnimate {
+  animation: alert 300ms ease-in;
+}
+
+@keyframes alert {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(0.8);
+  }
+  30% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  70% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

@@ -13,6 +13,28 @@
   --available-coupons: rgba(97, 97, 97, 0.139);
 }
 
+.app {
+  animation: app 200ms ease-in-out;
+}
+
+@keyframes app {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.4;
+  }
+  40% {
+    opacity: 0.8;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .single-product {
   margin-bottom: 2rem;
 }

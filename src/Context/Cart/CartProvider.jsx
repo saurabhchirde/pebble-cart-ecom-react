@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer, useEffect } from "react";
+import { createContext, useContext, useReducer } from "react";
 import { cartReducer } from "./cartReducer";
 import {
   useSessionStorageGet,

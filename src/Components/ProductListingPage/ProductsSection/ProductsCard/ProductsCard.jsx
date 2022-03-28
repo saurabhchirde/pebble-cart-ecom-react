@@ -94,8 +94,8 @@ const ProductsCard = ({ item }) => {
 
   const cartClassName = `${
     cartState.cart.includes(item)
-      ? "btn primary-outline-btn-sm add-cart"
-      : "btn primary-btn-sm add-cart"
+      ? "btn primary-outline-btn-sm "
+      : "btn primary-btn-sm "
   }`;
 
   const wishlistClassName = `${
@@ -151,11 +151,11 @@ const ProductsCard = ({ item }) => {
             </div>
           </div>
         </div>
-        {!inStock && (
+        {inStock < 1 ? (
           <div className="overlay-area-type-1">
             <h1 className="card-title">SOLD OUT</h1>
           </div>
-        )}
+        ) : null}
       </div>
     </>
   );
