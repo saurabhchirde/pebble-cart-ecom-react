@@ -1,0 +1,25 @@
+.card-vertical {
+  position: relative;
+}
+
+.card-vertical > button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.card-cta-btn > button {
+  width: 8.2rem;
+  height: 2rem;
+  font-size: 1rem;
+}
+
+.card-dark .badge-on-card {
+  height: 2rem;
+  width: 7rem;
+}
+
+.card-dark .badge-on-card h2 {
+  font-size: 1rem;
+  color: var(--text-dark);
+}

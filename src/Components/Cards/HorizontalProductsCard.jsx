@@ -1,4 +1,5 @@
 import { useWishlist, useCart, useAuth, useAxiosCalls } from "../../Context";
+import "./HorizontalProductsCard.css";
 
 const HorizontalProductsCard = ({ item }) => {
   const { title, price, src1 } = item;
@@ -49,6 +50,9 @@ const HorizontalProductsCard = ({ item }) => {
   return (
     <>
       <div className="card-horizontal card-dark">
+        <button className="btn primary-text-btn-sm icon-md">
+          <i className="fas fa-share-alt"></i>
+        </button>
         <div className="card-img-container">
           <img src={src1} alt="product" loading="lazy" />
         </div>
@@ -71,9 +75,6 @@ const HorizontalProductsCard = ({ item }) => {
                   className="btn primary-text-btn-sm icon-md"
                 >
                   <i className="fas fa-heart"></i>
-                </button>
-                <button className="btn primary-text-btn-sm icon-md">
-                  <i className="fas fa-share-alt"></i>
                 </button>
               </div>
             </div>

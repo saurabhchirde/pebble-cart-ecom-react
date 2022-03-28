@@ -1,0 +1,9 @@
+.card-horizontal {
+  position: relative;
+}
+
+.card-horizontal > button {
+  position: absolute;
+  left: 10rem;
+  top: 1rem;
+}

@@ -10,6 +10,7 @@ const SearchBar = (props) => {
           name="search"
           placeholder={props.placeholder}
           onChange={props.onChange}
+          value={props.value}
         />
         <i className={props.searchIcon}></i>
       </form>

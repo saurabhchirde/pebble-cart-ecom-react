@@ -7,6 +7,7 @@ import {
 } from "../../../../Context";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import "./ProductsCard.css";
 
 const ProductsCard = ({ item }) => {
   const { title, price, rating, totalRating, src1, newestArrival, inStock } =
@@ -104,6 +105,9 @@ const ProductsCard = ({ item }) => {
   return (
     <>
       <div className="card-vertical card-dark">
+        <button className="btn primary-text-btn-sm icon-md ">
+          <i className="fas fa-share-alt"></i>
+        </button>
         {newestArrival && (
           <div className="badge-on-card top-left">
             <h2>New Arrival</h2>
@@ -139,12 +143,9 @@ const ProductsCard = ({ item }) => {
               <div className="card-nav-icon">
                 <button
                   onClick={wishlistButtonStatus}
-                  className="btn primary-text-btn-sm icon-md"
+                  className="btn primary-text-btn-sm icon-lg"
                 >
                   <i className={wishlistClassName}></i>
-                </button>
-                <button className="btn primary-text-btn-sm icon-md ">
-                  <i className="fas fa-share-alt"></i>
                 </button>
               </div>
             </div>

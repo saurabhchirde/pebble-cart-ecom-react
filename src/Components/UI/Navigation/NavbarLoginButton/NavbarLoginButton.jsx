@@ -26,7 +26,7 @@ const NavbarLoginButton = (props) => {
       <Button
         btnWrapper="signin"
         label={props.label}
-        btnClassName="btn primary-btn-md"
+        btnClassName={props.btnClassName}
         onClick={onNavbarLoginClickHandler}
       />
     </>

@@ -10,7 +10,7 @@ import {
   useAuth,
   useModal,
 } from "../../../Context";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const DesktopNavigationBar = () => {
   const { cartState } = useCart();
@@ -19,6 +19,10 @@ const DesktopNavigationBar = () => {
 
   const { filterDispatch, searchInput, setSearchInput } = useFilter();
   const { auth } = useAuth();
+  const location = useLocation();
+
+  const showSearch = location.pathname.includes("products") ? true : false;
+  const hideOnCheckout = location.pathname.includes("/checkout") ? false : true;
 
   const onSearchSubmitHandler = (e) => {
     e.preventDefault();
@@ -41,13 +45,21 @@ const DesktopNavigationBar = () => {
     }
   };
 
-  const dp = auth.user.dp !== "" ? auth.user.dp.toUpperCase() : "";
-  const cartBadgeValue = auth.login ? cartState.cart.length : null;
-  const wishlistBadgeValue = auth.login ? wishlist.length : null;
   const loginButtonStatus = auth.login ? "Logout" : "Login";
+  const loginButtonState = hideOnCheckout
+    ? loginButtonStatus === "Login"
+      ? "btn primary-btn-md"
+      : "btn secondary-outline-btn-md"
+    : "btn secondary-text-btn-md";
+
+  const dp = auth.user.dp !== "" ? auth.user.dp.toUpperCase() : "";
+
+  const cartBadgeValue = auth.login ? cartState.cart.length : null;
   const cartBadgeVisible = `${
     cartState.cart.length !== 0 ? "badge-on-icon" : "hide"
   }`;
+
+  const wishlistBadgeValue = auth.login ? wishlist.length : null;
   const wishlistBadgeVisible = `${
     wishlist.length !== 0 ? "badge-on-icon" : "hide"
   }`;
@@ -58,37 +70,46 @@ const DesktopNavigationBar = () => {
         <Link to="/">
           <img className="company-logo" src={logoLight} alt="logo" />
         </Link>
-        <SearchBar
-          searchWrapper="search-container"
-          micIcon="hide"
-          searchIcon="fas fa-search"
-          placeholder="Search"
-          onChange={onSearchInputHandler}
-          onSubmit={onSearchSubmitHandler}
-          value={searchInput}
-        />
+        {showSearch && (
+          <SearchBar
+            searchWrapper="search-container"
+            micIcon="hide"
+            searchIcon="fas fa-search"
+            placeholder="Search"
+            onChange={onSearchInputHandler}
+            onSubmit={onSearchSubmitHandler}
+            value={searchInput}
+          />
+        )}
         <div className="nav-bar-btns">
-          <NavbarLoginButton label={loginButtonStatus} />
-          <Link to="wishlist">
-            <BadgeIconButton
-              btnWrapper="badge-container"
-              btnClassName="btn badge-icon-btn-lg"
-              icon="far fa-heart"
-              badgeClassName={wishlistBadgeVisible}
-              badgeValue={wishlistBadgeValue}
-              onClick={onWishlistClickHandler}
-            />
-          </Link>
-          <Link to="cart">
-            <BadgeIconButton
-              btnWrapper="badge-container"
-              btnClassName="btn badge-icon-btn-lg"
-              icon="fas fa-shopping-cart"
-              badgeClassName={cartBadgeVisible}
-              badgeValue={cartBadgeValue}
-              onClick={onCartClickHandler}
-            />
-          </Link>
+          <NavbarLoginButton
+            label={loginButtonStatus}
+            btnClassName={loginButtonState}
+          />
+          {hideOnCheckout && (
+            <Link to="wishlist">
+              <BadgeIconButton
+                btnWrapper="badge-container"
+                btnClassName="btn badge-icon-btn-lg"
+                icon="far fa-heart"
+                badgeClassName={wishlistBadgeVisible}
+                badgeValue={wishlistBadgeValue}
+                onClick={onWishlistClickHandler}
+              />
+            </Link>
+          )}
+          {hideOnCheckout && (
+            <Link to="cart">
+              <BadgeIconButton
+                btnWrapper="badge-container"
+                btnClassName="btn badge-icon-btn-lg"
+                icon="fas fa-shopping-cart"
+                badgeClassName={cartBadgeVisible}
+                badgeValue={cartBadgeValue}
+                onClick={onCartClickHandler}
+              />
+            </Link>
+          )}
           {auth.login && (
             <NavbarAvatar
               avatarWrapper="badge-container"

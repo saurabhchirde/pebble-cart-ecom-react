@@ -29,7 +29,7 @@ const FilterProvider = ({ children }) => {
     filterReducer,
     filterInitialState
   );
-  const [searchInput, setSearchInput] = useState();
+  const [searchInput, setSearchInput] = useState("");
 
   return (
     <filterContext.Provider
