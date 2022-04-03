@@ -2,8 +2,8 @@ import { createContext, useContext } from "react";
 import axios from "axios";
 import { useCart } from "../Cart/CartProvider";
 import { useModal } from "../Modal/ModalProvider";
-import { useWishlist } from "../Wishlist/WishlistProvider";
 import { useAuth } from "../Auth/AuthProvider";
+import { useAnimation } from "../Animation/AnimationProvider";
 
 const axiosContext = createContext(null);
 
@@ -11,35 +11,52 @@ const AxiosCallProvider = ({ children }) => {
   const { cartDispatch } = useCart();
   const { setError, setShowError, setShowLogin, setShowSignupAlert } =
     useModal();
-  const { setWishlist } = useWishlist();
   const { authDispatch } = useAuth();
+  const { showLoader } = useAnimation();
 
   // login
   const userLogin = async (loginConfig) => {
     const { url, data } = loginConfig;
 
     try {
+      showLoader();
       const response = await axios.post(url, data);
-      setError(
-        `Welcome back ${response.data.foundUser.firstName} ${response.data.foundUser.lastName}`
-      );
-      setShowError(true);
+      if (response.status === 200) {
+        setError(
+          `Welcome back ${response.data.foundUser.firstName} ${response.data.foundUser.lastName}`
+        );
+        //save login credentials
+        authDispatch({
+          type: "login",
+          payload: response.data,
+        });
+        //set initial data
+        cartDispatch({
+          type: "authCartInitiate",
+          payload: response.data.foundUser,
+        });
 
-      authDispatch({
-        type: "login",
-        payload: response.data,
-      });
+        showLoader();
+        setShowError(true);
+        setShowLogin(false);
+      }
 
-      cartDispatch({
-        type: "authCartInitiate",
-        payload: response.data.foundUser.cart,
-      });
-
-      setWishlist(response.data.foundUser.wishlist);
-      setShowLogin(false);
+      if (response.status === 201) {
+        setError("Invalid Password, Try Again");
+        showLoader();
+        setShowError(true);
+      }
     } catch (error) {
-      setError(error.message);
+      let msg = JSON.stringify(error);
+      let parsedMsg = JSON.parse(msg);
+      const alertText =
+        parsedMsg.status === 404
+          ? "Email Address doesn't Exist, Please Signup"
+          : "Server Error, Try Again";
+
+      setError(alertText);
       setShowError(true);
+      showLoader();
     }
   };
 
@@ -48,26 +65,32 @@ const AxiosCallProvider = ({ children }) => {
     const { url, data } = signupConfig;
 
     try {
+      showLoader();
       const response = await axios.post(url, data);
       if (response.status === 201) {
         setShowSignupAlert(true);
       }
+      showLoader();
     } catch (error) {
       setError(error.message);
+      showLoader();
       setShowError(true);
     }
   };
 
   // add to cart
   const addToCartOnServer = async (cartConfig) => {
-    const { url, body, headers, item } = cartConfig;
+    const { url, body, headers } = cartConfig;
 
     try {
-      await axios.post(url, body, headers);
+      showLoader();
+      const response = await axios.post(url, body, headers);
+      cartDispatch({ type: "addToCartServer", payload: response.data.cart });
+      showLoader();
     } catch (error) {
       setError(error.message);
+      showLoader();
       setShowError(true);
-      cartDispatch({ type: "removeFromCart", payload: item });
     }
   };
 
@@ -76,10 +99,16 @@ const AxiosCallProvider = ({ children }) => {
     const { url, headers, item } = cartConfig;
 
     try {
-      await axios.delete(`${url}/${item._id}`, headers);
+      showLoader();
+      const response = await axios.delete(`${url}/${item._id}`, headers);
+      cartDispatch({
+        type: "removeFromCartServer",
+        payload: response.data.cart,
+      });
+      showLoader();
     } catch (error) {
-      cartDispatch({ type: "addToCart", payload: item });
       setError(error.message);
+      showLoader();
       setShowError(true);
     }
   };
@@ -88,11 +117,21 @@ const AxiosCallProvider = ({ children }) => {
   const increaseCartItemQtyOnServer = async (cartConfig) => {
     const { url, headers, actionIncrement, item } = cartConfig;
     try {
-      await axios.post(`${url}/${item._id}`, actionIncrement, headers);
+      showLoader();
+      const response = await axios.post(
+        `${url}/${item._id}`,
+        actionIncrement,
+        headers
+      );
+      cartDispatch({
+        type: "incQtyOnCartServer",
+        payload: response.data.cart,
+      });
+      showLoader();
     } catch (error) {
       setError(error.message);
+      showLoader();
       setShowError(true);
-      cartDispatch({ type: "decreaseQty", payload: item });
     }
   };
 
@@ -100,27 +139,39 @@ const AxiosCallProvider = ({ children }) => {
   const decreaseCartItemQtyOnServer = async (cartConfig) => {
     const { url, headers, actionDecrement, item } = cartConfig;
     try {
-      await axios.post(`${url}/${item._id}`, actionDecrement, headers);
+      showLoader();
+      const response = await axios.post(
+        `${url}/${item._id}`,
+        actionDecrement,
+        headers
+      );
+      cartDispatch({
+        type: "decQtyOnCartServer",
+        payload: response.data.cart,
+      });
+      showLoader();
     } catch (error) {
       setError(error.message);
+      showLoader();
       setShowError(true);
-      cartDispatch({ type: "addToCart", payload: item });
     }
   };
 
   // add to wishlist
   const addToWishlistOnServer = async (wishlistConfig) => {
-    const { url, body, headers, item } = wishlistConfig;
+    const { url, body, headers } = wishlistConfig;
     try {
+      showLoader();
       const response = await axios.post(url, body, headers);
+      cartDispatch({
+        type: "addToWishlistServer",
+        payload: response.data.wishlist,
+      });
+      showLoader();
     } catch (error) {
       setError(error.message);
+      showLoader();
       setShowError(true);
-      setWishlist((oldWishlist) => {
-        return oldWishlist.filter((el) => {
-          return el._id !== item._id;
-        });
-      });
     }
   };
 
@@ -129,13 +180,17 @@ const AxiosCallProvider = ({ children }) => {
     const { url, headers, item } = wishlistConfig;
 
     try {
+      showLoader();
       const response = await axios.delete(`${url}/${item._id}`, headers);
+      cartDispatch({
+        type: "removeFromWishlistServer",
+        payload: response.data.wishlist,
+      });
+      showLoader();
     } catch (error) {
       setError(error.message);
+      showLoader();
       setShowError(true);
-      setWishlist((oldCart) => {
-        return [...new Set([...oldCart, item])];
-      });
     }
   };
 

@@ -1,19 +1,25 @@
 import {
+  useAlert,
   useAuth,
   useAxiosCalls,
+  useCart,
   useModal,
-  useWishlist,
 } from "../../../Context";
 import { useState } from "react";
 
 const ProductImageSection = ({ item }) => {
-  const { wishlist, setWishlist } = useWishlist();
   const { src1, src2, src3, src4, src5 } = item;
   const { auth } = useAuth();
   const { setShowLogin } = useModal();
   const [currentImg, setCurrentImg] = useState(src1);
   const { addToWishlistOnServer, removeWishlistItemFromServer } =
     useAxiosCalls();
+  const {
+    cartState: { wishlist },
+    addWishlist,
+    setAddWishlist,
+  } = useCart();
+  const { alertDispatch } = useAlert();
 
   const wishlistConfig = {
     url: "/api/user/wishlist",
@@ -26,10 +32,12 @@ const ProductImageSection = ({ item }) => {
 
   const addWishlistClick = () => {
     if (auth.login) {
-      addToWishlistOnServer(wishlistConfig);
-      setWishlist((oldCart) => {
-        return [...new Set([...oldCart, item])];
-      });
+      if (wishlist.findIndex((el) => el._id === item._id) !== -1) {
+        alertDispatch({ type: "alreadyInWishlist" });
+      } else {
+        addToWishlistOnServer(wishlistConfig);
+      }
+      alertDispatch({ type: "addToWishlistAlert" });
     } else {
       setShowLogin(true);
     }
@@ -37,12 +45,17 @@ const ProductImageSection = ({ item }) => {
 
   const removeFromWishlist = () => {
     if (auth.login) {
+      alertDispatch({ type: "removeFromWishlistAlert" });
+      setAddWishlist("far fa-heart");
       removeWishlistItemFromServer(wishlistConfig);
-      setWishlist((oldWishlist) => {
-        return oldWishlist.filter((el) => {
-          return el._id !== item._id;
-        });
-      });
+    }
+  };
+
+  const wishlistButtonStatus = () => {
+    if (addWishlist === "fas fa-heart") {
+      removeFromWishlist();
+    } else {
+      addWishlistClick();
     }
   };
 
@@ -65,14 +78,10 @@ const ProductImageSection = ({ item }) => {
   return (
     <div className="single-product-image">
       <button
-        onClick={
-          wishlist.includes(item) ? removeFromWishlist : addWishlistClick
-        }
+        onClick={wishlistButtonStatus}
         className="btn primary-text-btn-sm icon-md"
       >
-        <i
-          className={wishlist.includes(item) ? "fas fa-heart" : "far fa-heart"}
-        ></i>
+        <i className={addWishlist}></i>
       </button>
       <img
         className="main-image"

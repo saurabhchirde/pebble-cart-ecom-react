@@ -2,16 +2,17 @@ import NavbarLoginButton from "./NavbarLoginButton/NavbarLoginButton";
 import SearchBar from "./SearchBar/SearchBar";
 import logoIcon from "../../../Data/logo/icon.svg";
 import NavbarAvatar from "./Avatar/NavbarAvatar";
-import { useAuth, useFilter } from "../../../Context";
-import { useLocation } from "react-router-dom";
+import { useAuth, useFilter, useModal } from "../../../Context";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const MobileNavigationBar = () => {
-  const { auth } = useAuth();
+  const { auth, authDispatch, showProfileMenu, setShowProfileMenu } = useAuth();
   const { filterDispatch, searchInput, setSearchInput } = useFilter();
   const location = useLocation();
+  const navigate = useNavigate();
+  const { setError, setShowError } = useModal();
 
   const showSearch = location.pathname.includes("products") ? true : false;
-  const hideOnCheckout = location.pathname.includes("/checkout") ? false : true;
 
   const onSearchSubmitHandler = (e) => {
     e.preventDefault();
@@ -22,13 +23,22 @@ const MobileNavigationBar = () => {
     setSearchInput(e.target.value);
   };
 
-  const dp = auth.user.dp !== "" ? auth.user.dp.toUpperCase() : "";
-  const loginButtonStatus = auth.login ? "Logout" : "Login";
-  const loginButtonState = hideOnCheckout
-    ? loginButtonStatus === "Login"
-      ? "btn primary-btn-md"
-      : "btn secondary-outline-btn-md"
-    : "btn secondary-text-btn-md";
+  const logoutClickHandler = () => {
+    authDispatch({ type: "logout" });
+    setError("Logged out successfully");
+    setShowError(true);
+    if (
+      location.pathname.includes(
+        "checkout" || "user" || "profile" || "settings"
+      )
+    ) {
+      navigate("/products");
+    }
+  };
+
+  const toggleProfileMenu = () => {
+    setShowProfileMenu((show) => !show);
+  };
 
   return (
     <>
@@ -47,18 +57,31 @@ const MobileNavigationBar = () => {
           />
         )}
         <div className="nav-bar-btns">
-          <NavbarLoginButton
-            label={loginButtonStatus}
-            btnClassName={loginButtonState}
-          />
+          {!auth.login && (
+            <NavbarLoginButton
+              label={auth.login ? "Logout" : "Login"}
+              btnClassName="btn primary-btn-md"
+            />
+          )}
         </div>
         {auth.login && (
-          <NavbarAvatar
-            avatarWrapper="badge-container"
-            avatarClassName="avatar text-avatar-xsm-round"
-            imgDisplay="hide"
-            src={dp}
-          />
+          <div>
+            <NavbarAvatar
+              onClick={toggleProfileMenu}
+              avatarWrapper="badge-container"
+              avatarClassName="avatar text-avatar-xsm-round"
+              imgDisplay="hide"
+              src={auth.user.dp !== "" ? auth.user.dp.toUpperCase() : ""}
+            />
+            {showProfileMenu && (
+              <div className="profile-hover-menu card-shadow-two">
+                <h2>Profile</h2>
+                <h2>Support</h2>
+                <h2>Settings</h2>
+                <h2 onClick={logoutClickHandler}>Logout</h2>
+              </div>
+            )}
+          </div>
         )}
       </nav>
     </>

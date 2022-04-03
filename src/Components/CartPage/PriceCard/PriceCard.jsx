@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../../../Context";
 import { couponCheck } from "../../../Utils/couponCheck";
@@ -16,6 +16,14 @@ const PriceCard = () => {
     cartDispatch({ type: "couponCode", payload: coupon });
   };
 
+  const selectCouponPebble = () => {
+    cartDispatch({ type: "couponCode", payload: "PEBBLE" });
+  };
+
+  const selectCouponOther = () => {
+    cartDispatch({ type: "couponCode", payload: "SAURABH" });
+  };
+
   const onCouponApplyHandler = () => {
     if (coupon === "PEBBLE" || coupon === "SAURABH") {
       setErrorCoupon(false);
@@ -24,16 +32,43 @@ const PriceCard = () => {
       setErrorCoupon(true);
       setSuccessCoupon(false);
     }
-    couponCheck(totalPrice, coupon, cartDispatch);
+    const updatePrice = couponCheck(totalPrice, coupon);
+    cartDispatch({
+      type: "couponCheck",
+      payload: updatePrice,
+    });
+    cartDispatch({ type: "emptyCoupon" });
   };
 
-  const selectCouponPebble = () => {
-    cartDispatch({ type: "couponCode", payload: "PEBBLE" });
-  };
+  // to update price after changing qty
+  useEffect(() => {
+    const updatedPriceDetails = {
+      totalQty: cartState.cart.reduce((acc, curr) => {
+        return acc + curr.qty;
+      }, 0),
+      totalPrice: cartState.cart.reduce((acc, curr) => {
+        return acc + curr.price * curr.qty;
+      }, 0),
+    };
+    cartDispatch({
+      type: "updateCartOnServer",
+      payload: updatedPriceDetails,
+    });
+    return () => {
+      // to unmount useEffect
+    };
+  }, [cartState.cart]);
 
-  const selectCouponOther = () => {
-    cartDispatch({ type: "couponCode", payload: "SAURABH" });
-  };
+  // to update total price after changing qty
+  useEffect(() => {
+    cartDispatch({
+      type: "updatedDiscount",
+      payload: discount === 0 ? 0 : (totalPrice * discountPercentage) / 100,
+    });
+    return () => {
+      // to unmount useEffect
+    };
+  }, [cartState.totalQty]);
 
   return (
     <div className="cart-price-table price-table-dark">

@@ -1,14 +1,27 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth, useAxiosCalls, useCart, useModal } from "../../../Context";
+import {
+  useAlert,
+  useAuth,
+  useAxiosCalls,
+  useCart,
+  useModal,
+} from "../../../Context";
 import { ratingStarCheck } from "../../../Utils/FilterFunctions/ratingStarCheck";
+import { useEffect } from "react";
 
 const ProductDetailSection = ({ item }) => {
-  const { cartState, cartDispatch } = useCart();
+  const {
+    cartState: { cart, wishlist },
+    addButton,
+    setAddButton,
+    setAddWishlist,
+  } = useCart();
   const { title, brand, rating, totalRating, price, delivery } = item;
   const { auth } = useAuth();
   const navigate = useNavigate();
   const { setShowLogin } = useModal();
-  const { addToCartOnServer } = useAxiosCalls();
+  const { addToCartOnServer, increaseCartItemQtyOnServer } = useAxiosCalls();
+  const { alertDispatch } = useAlert();
 
   const cartConfig = {
     url: "/api/user/cart",
@@ -21,8 +34,12 @@ const ProductDetailSection = ({ item }) => {
 
   const addCartClick = () => {
     if (auth.login) {
-      addToCartOnServer(cartConfig);
-      cartDispatch({ type: "addToCart", payload: item });
+      if (cart.findIndex((el) => el._id === item._id) !== -1) {
+        increaseCartItemQtyOnServer(cartConfig);
+      } else {
+        addToCartOnServer(cartConfig);
+      }
+      alertDispatch({ type: "addToCartAlert" });
     } else {
       setShowLogin(true);
     }
@@ -30,8 +47,7 @@ const ProductDetailSection = ({ item }) => {
 
   const onBuyNowClickHandler = () => {
     if (auth.login) {
-      if (!cartState.cart.includes(item)) {
-        cartDispatch({ type: "addToCart", payload: item });
+      if (!cart.findIndex((el) => el._id === item._id) !== -1) {
         addToCartOnServer(cartConfig);
       }
       navigate("/cart");
@@ -45,12 +61,22 @@ const ProductDetailSection = ({ item }) => {
   };
 
   const cartButtonStatus = () => {
-    cartState.cart.includes(item) ? goToCart() : addCartClick();
+    addButton === "Add to Cart" ? addCartClick() : goToCart();
   };
 
-  const cartButtonState = `${
-    cartState.cart.includes(item) ? "Go to Cart" : "Add to Cart"
-  }`;
+  useEffect(() => {
+    if (cart.findIndex((el) => el._id === item._id) !== -1) {
+      setAddButton("Go to Cart");
+    } else {
+      setAddButton("Add to Cart");
+    }
+
+    if (wishlist.findIndex((el) => el._id === item._id) !== -1) {
+      setAddWishlist("fas fa-heart");
+    } else {
+      setAddWishlist("far fa-heart");
+    }
+  }, [cart, wishlist]);
 
   return (
     <div className="single-product-detail">
@@ -118,7 +144,7 @@ const ProductDetailSection = ({ item }) => {
               onClick={cartButtonStatus}
               className="btn primary-outline-btn-md"
             >
-              {cartButtonState}
+              {addButton}
             </button>
             <button
               onClick={onBuyNowClickHandler}

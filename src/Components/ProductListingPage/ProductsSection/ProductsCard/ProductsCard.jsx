@@ -2,26 +2,32 @@ import {
   useAuth,
   useCart,
   useModal,
-  useWishlist,
   useAxiosCalls,
+  useAlert,
 } from "../../../../Context";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./ProductsCard.css";
+import { useEffect, useState } from "react";
 
 const ProductsCard = ({ item }) => {
   const { title, price, rating, totalRating, src1, newestArrival, inStock } =
     item;
-  const { cartState, cartDispatch } = useCart();
-  const { wishlist, setWishlist } = useWishlist();
+  const {
+    cartState: { cart, wishlist },
+  } = useCart();
   const { auth } = useAuth();
   const { setShowLogin } = useModal();
   const navigate = useNavigate();
   const {
     addToCartOnServer,
+    increaseCartItemQtyOnServer,
     addToWishlistOnServer,
     removeWishlistItemFromServer,
   } = useAxiosCalls();
+  const { alertDispatch } = useAlert();
+  const [addButton, setAddButton] = useState("Add to Cart");
+  const [addWishlist, setAddWishlist] = useState("far fa-heart");
 
   const cartConfig = {
     url: "/api/user/cart",
@@ -43,8 +49,12 @@ const ProductsCard = ({ item }) => {
 
   const addCartClick = () => {
     if (auth.login) {
-      addToCartOnServer(cartConfig, item);
-      cartDispatch({ type: "addToCart", payload: item });
+      if (cart.findIndex((el) => el._id === item._id) !== -1) {
+        increaseCartItemQtyOnServer(cartConfig);
+      } else {
+        addToCartOnServer(cartConfig);
+      }
+      alertDispatch({ type: "addToCartAlert" });
     } else {
       setShowLogin(true);
     }
@@ -52,10 +62,12 @@ const ProductsCard = ({ item }) => {
 
   const addWishlistClick = () => {
     if (auth.login) {
-      addToWishlistOnServer(wishlistConfig);
-      setWishlist((oldCart) => {
-        return [...new Set([...oldCart, item])];
-      });
+      if (wishlist.findIndex((el) => el._id === item._id) !== -1) {
+        alertDispatch({ type: "alreadyInWishlist" });
+      } else {
+        addToWishlistOnServer(wishlistConfig);
+      }
+      alertDispatch({ type: "addToWishlistAlert" });
     } else {
       setShowLogin(true);
     }
@@ -63,12 +75,9 @@ const ProductsCard = ({ item }) => {
 
   const removeFromWishlist = () => {
     if (auth.login) {
+      setAddWishlist("far fa-heart");
+      alertDispatch({ type: "removeFromWishlistAlert" });
       removeWishlistItemFromServer(wishlistConfig);
-      setWishlist((oldWishlist) => {
-        return oldWishlist.filter((el) => {
-          return el._id !== item._id;
-        });
-      });
     }
   };
 
@@ -77,30 +86,30 @@ const ProductsCard = ({ item }) => {
   };
 
   const cartButtonStatus = () => {
-    cartState.cart.includes(item) ? goToCart() : addCartClick();
+    addButton === "Add to Cart" ? addCartClick() : goToCart();
   };
 
   const wishlistButtonStatus = () => {
-    if (wishlist.includes(item)) {
+    if (addWishlist === "fas fa-heart") {
       removeFromWishlist();
     } else {
       addWishlistClick();
     }
   };
 
-  const cartButtonState = `${
-    cartState.cart.includes(item) ? "Go to Cart" : "Add to Cart"
-  }`;
+  useEffect(() => {
+    if (cart.findIndex((el) => el._id === item._id) !== -1) {
+      setAddButton("Go to Cart");
+    } else {
+      setAddButton("Add to Cart");
+    }
 
-  const cartClassName = `${
-    cartState.cart.includes(item)
-      ? "btn primary-outline-btn-sm "
-      : "btn primary-btn-sm "
-  }`;
-
-  const wishlistClassName = `${
-    wishlist.includes(item) ? "fas fa-heart" : "far fa-heart"
-  }`;
+    if (wishlist.findIndex((el) => el._id === item._id) !== -1) {
+      setAddWishlist("fas fa-heart");
+    } else {
+      setAddWishlist("far fa-heart");
+    }
+  }, [cart, wishlist]);
 
   return (
     <>
@@ -137,15 +146,22 @@ const ProductsCard = ({ item }) => {
           </Link>
           <div className="card-nav">
             <div className="card-cta-btn">
-              <button onClick={cartButtonStatus} className={cartClassName}>
-                {cartButtonState}
+              <button
+                onClick={cartButtonStatus}
+                className={
+                  addButton === "Add to Cart"
+                    ? "btn primary-btn-sm"
+                    : "btn primary-outline-btn-sm"
+                }
+              >
+                {addButton}
               </button>
               <div className="card-nav-icon">
                 <button
                   onClick={wishlistButtonStatus}
                   className="btn primary-text-btn-sm icon-lg"
                 >
-                  <i className={wishlistClassName}></i>
+                  <i className={addWishlist}></i>
                 </button>
               </div>
             </div>

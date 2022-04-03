@@ -3,24 +3,20 @@ import BadgeIconButton from "../Button/BadgeIconButton";
 import SearchBar from "./SearchBar/SearchBar";
 import NavbarLoginButton from "./NavbarLoginButton/NavbarLoginButton";
 import NavbarAvatar from "./Avatar/NavbarAvatar";
-import {
-  useCart,
-  useWishlist,
-  useFilter,
-  useAuth,
-  useModal,
-} from "../../../Context";
-import { Link, useLocation } from "react-router-dom";
+import { useCart, useFilter, useAuth, useModal } from "../../../Context";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import "./DesktopNavigationBar.css";
 
 const DesktopNavigationBar = () => {
-  const { cartState } = useCart();
-  const { wishlist } = useWishlist();
-  const { setShowLogin } = useModal();
+  const {
+    cartState: { cart, wishlist },
+  } = useCart();
 
+  const { setShowLogin, setError, setShowError } = useModal();
   const { filterDispatch, searchInput, setSearchInput } = useFilter();
-  const { auth } = useAuth();
+  const { auth, authDispatch, showProfileMenu, setShowProfileMenu } = useAuth();
   const location = useLocation();
-
+  const navigate = useNavigate();
   const showSearch = location.pathname.includes("products") ? true : false;
   const hideOnCheckout = location.pathname.includes("/checkout") ? false : true;
 
@@ -45,24 +41,22 @@ const DesktopNavigationBar = () => {
     }
   };
 
-  const loginButtonStatus = auth.login ? "Logout" : "Login";
-  const loginButtonState = hideOnCheckout
-    ? loginButtonStatus === "Login"
-      ? "btn primary-btn-md"
-      : "btn secondary-outline-btn-md"
-    : "btn secondary-text-btn-md";
+  const logoutClickHandler = () => {
+    authDispatch({ type: "logout" });
+    setError("Logged out successfully");
+    setShowError(true);
+    if (
+      location.pathname.includes(
+        "checkout" || "user" || "profile" || "settings"
+      )
+    ) {
+      navigate("/products");
+    }
+  };
 
-  const dp = auth.user.dp !== "" ? auth.user.dp.toUpperCase() : "";
-
-  const cartBadgeValue = auth.login ? cartState.cart.length : null;
-  const cartBadgeVisible = `${
-    cartState.cart.length !== 0 ? "badge-on-icon" : "hide"
-  }`;
-
-  const wishlistBadgeValue = auth.login ? wishlist.length : null;
-  const wishlistBadgeVisible = `${
-    wishlist.length !== 0 ? "badge-on-icon" : "hide"
-  }`;
+  const toggleProfileMenu = () => {
+    setShowProfileMenu((show) => !show);
+  };
 
   return (
     <>
@@ -82,18 +76,22 @@ const DesktopNavigationBar = () => {
           />
         )}
         <div className="nav-bar-btns">
-          <NavbarLoginButton
-            label={loginButtonStatus}
-            btnClassName={loginButtonState}
-          />
+          {!auth.login && (
+            <NavbarLoginButton
+              label={auth.login ? "Logout" : "Login"}
+              btnClassName="btn primary-btn-md"
+            />
+          )}
           {hideOnCheckout && (
             <Link to="wishlist">
               <BadgeIconButton
                 btnWrapper="badge-container"
                 btnClassName="btn badge-icon-btn-lg"
                 icon="far fa-heart"
-                badgeClassName={wishlistBadgeVisible}
-                badgeValue={wishlistBadgeValue}
+                badgeClassName={
+                  wishlist.length !== 0 ? "badge-on-icon" : "hide"
+                }
+                badgeValue={auth.login ? wishlist.length : null}
                 onClick={onWishlistClickHandler}
               />
             </Link>
@@ -104,19 +102,34 @@ const DesktopNavigationBar = () => {
                 btnWrapper="badge-container"
                 btnClassName="btn badge-icon-btn-lg"
                 icon="fas fa-shopping-cart"
-                badgeClassName={cartBadgeVisible}
-                badgeValue={cartBadgeValue}
+                badgeClassName={cart.length !== 0 ? "badge-on-icon" : "hide"}
+                badgeValue={auth.login ? cart.length : null}
                 onClick={onCartClickHandler}
               />
             </Link>
           )}
           {auth.login && (
-            <NavbarAvatar
-              avatarWrapper="badge-container"
-              avatarClassName="avatar text-avatar-xsm-round"
-              imgDisplay="hide"
-              src={dp}
-            />
+            <div
+              onMouseEnter={toggleProfileMenu}
+              // onMouseLeave={toggleProfileMenu}
+            >
+              <NavbarAvatar
+                avatarWrapper="badge-container"
+                avatarClassName="avatar text-avatar-xsm-round"
+                imgDisplay="hide"
+                src={auth.user.dp !== "" ? auth.user.dp.toUpperCase() : ""}
+              />
+              {showProfileMenu && (
+                <div className="profile-hover-menu card-shadow-two">
+                  <Link to="user">
+                    <h2>Profile</h2>
+                  </Link>
+                  <h2>Support</h2>
+                  <h2>Settings</h2>
+                  <h2 onClick={logoutClickHandler}>Logout</h2>
+                </div>
+              )}
+            </div>
           )}
         </div>
       </nav>

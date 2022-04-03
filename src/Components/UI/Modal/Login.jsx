@@ -104,18 +104,15 @@ const Login = () => {
           <Button
             btnWrapper="signin-btn"
             type="submit"
-            label="Test User (double click)"
+            label="Test User"
             btnClassName="btn primary-outline-btn-md"
             onClick={onTestButtonClickFormHandler}
           />
           <p>
-            Forgot your password?{" "}
-            <span>
-              <a> Reset Password </a>
-            </span>
+            Forgot your password? <span>Reset Password</span>
           </p>
-          <a
-            className="create-account-btn"
+          <button
+            className="btn primary-text-btn-sm create-account-btn"
             onClick={() => {
               setShowLogin(false);
               setShowSignup(true);
@@ -124,7 +121,7 @@ const Login = () => {
             <h2>
               Create New Account <i className="fas fa-angle-right"></i>
             </h2>
-          </a>
+          </button>
         </form>
       </div>
     </>

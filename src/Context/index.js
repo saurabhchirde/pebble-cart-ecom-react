@@ -5,7 +5,6 @@ export {
   ProductsProvider,
   useProductProvider,
 } from "./ProductList/ProductsProvider";
-export { WishlistProvider, useWishlist } from "./Wishlist/WishlistProvider";
 export { CheckoutProvider, useCheckout } from "./Checkout/CheckoutProvider";
 export { ScrollToTop } from "./ScrollToTop/ScrollToTop";
 export { AuthProvider, useAuth } from "./Auth/AuthProvider";
@@ -19,3 +18,4 @@ export {
   AxiosCallProvider,
   useAxiosCalls,
 } from "./AxiosCalls/AxiosCallProvider";
+export { AlertProvider, useAlert } from "./Alerts/AlertsProvider";

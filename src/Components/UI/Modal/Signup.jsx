@@ -104,9 +104,7 @@ const Signup = () => {
           />
           <p>
             By continuing you agree to our Terms of Service and
-            <span>
-              <a href=""> Privacy Policy</a>
-            </span>
+            <span> Privacy Policy</span>
           </p>
           <Button
             btnWrapper="signup-btn"
@@ -114,13 +112,13 @@ const Signup = () => {
             btnClassName="btn primary-btn-md"
             label=" Sign Up"
           />
-          <a className="existing-account-btn" onClick={onLoginClick}>
+          <div className="existing-account-btn" onClick={onLoginClick}>
             <h2>
               already have an account
               <span>Login</span>
               <i className="fas fa-angle-right"></i>
             </h2>
-          </a>
+          </div>
         </form>
       </div>
     </>
