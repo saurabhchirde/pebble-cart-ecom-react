@@ -1,17 +1,26 @@
-import { useWishlist, useCart, useAuth, useAxiosCalls } from "../../Context";
+import { useAlert, useAuth, useAxiosCalls, useCart } from "../../Context";
 import "./HorizontalProductsCard.css";
 
 const HorizontalProductsCard = ({ item }) => {
   const { title, price, src1 } = item;
-  const { setWishlist } = useWishlist();
-  const { cartDispatch } = useCart();
   const { auth } = useAuth();
-  const { addToCartOnServer, removeWishlistItemFromServer } = useAxiosCalls();
+  const {
+    addToCartOnServer,
+    increaseCartItemQtyOnServer,
+    removeWishlistItemFromServer,
+  } = useAxiosCalls();
+  const { alertDispatch } = useAlert();
+  const {
+    cartState: { cart },
+  } = useCart();
 
   const cartConfig = {
     url: "/api/user/cart",
     body: {
       product: { ...item },
+    },
+    actionIncrement: {
+      action: { type: "increment" },
     },
     headers: { headers: { authorization: auth.token } },
     item: item,
@@ -27,24 +36,19 @@ const HorizontalProductsCard = ({ item }) => {
   };
 
   const onMoveToCartClickHandler = () => {
-    addToCartOnServer(cartConfig);
-    cartDispatch({ type: "addToCart", payload: item });
-
+    if (cart.findIndex((el) => el._id === item._id) !== -1) {
+      increaseCartItemQtyOnServer(cartConfig);
+      alertDispatch({ type: "alreadyInCart" });
+    } else {
+      addToCartOnServer(cartConfig);
+    }
+    alertDispatch({ type: "addToCartAlert" });
     removeWishlistItemFromServer(wishlistConfig);
-    setWishlist((oldWishlist) => {
-      return oldWishlist.filter((el) => {
-        return el._id !== item._id;
-      });
-    });
   };
 
   const onRemoveWishlistClickHandler = () => {
+    alertDispatch({ type: "removeFromWishlistAlert" });
     removeWishlistItemFromServer(wishlistConfig);
-    setWishlist((oldWishlist) => {
-      return oldWishlist.filter((el) => {
-        return el._id !== item._id;
-      });
-    });
   };
 
   return (

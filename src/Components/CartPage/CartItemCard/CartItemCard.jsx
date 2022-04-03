@@ -1,18 +1,18 @@
 import {
+  useAlert,
   useAuth,
   useAxiosCalls,
   useCart,
   useModal,
-  useWishlist,
 } from "../../../Context";
 import { couponCheck } from "../../../Utils/couponCheck";
 import { useEffect } from "react";
 
 const CartItemCard = ({ item }) => {
   const { title, price, src1 } = item;
-  const { cartState, cartDispatch } = useCart();
-  const { totalPrice, coupon } = cartState;
-  const { setWishlist } = useWishlist();
+  const {
+    cartState: { wishlist, totalPrice, coupon },
+  } = useCart();
   const { auth } = useAuth();
   const { setError, setShowError } = useModal();
   const {
@@ -21,6 +21,7 @@ const CartItemCard = ({ item }) => {
     increaseCartItemQtyOnServer,
     decreaseCartItemQtyOnServer,
   } = useAxiosCalls();
+  const { alertDispatch } = useAlert();
 
   const cartConfig = {
     url: "/api/user/cart",
@@ -43,39 +44,41 @@ const CartItemCard = ({ item }) => {
       product: { ...item, qty: 1 },
     },
     headers: { headers: { authorization: auth.token } },
-    dispatch: { setWishlist, setError, setShowError },
+    dispatch: { setError, setShowError },
     item: item,
   };
 
   const onWishlistClickHandler = () => {
-    if (auth.login) {
+    if (wishlist.findIndex((el) => el._id === item._id) !== -1) {
+      alertDispatch({ type: "alreadyInWishlist" });
+    } else {
       addToWishlistOnServer(wishlistConfig);
-      setWishlist((oldWishlist) => {
-        return [...oldWishlist, { ...item, qty: 1 }];
-      });
-      removeCartItemFromServer(cartConfig);
-      cartDispatch({ type: "removeFromCart", payload: item });
     }
+    removeCartItemFromServer(cartConfig);
+    alertDispatch({ type: "addToWishlistAlert" });
   };
 
   const onRemoveClickHandler = () => {
+    alertDispatch({ type: "removeFromCartAlert" });
     removeCartItemFromServer(cartConfig);
-    cartDispatch({ type: "removeFromCart", payload: item });
   };
 
   const increaseQty = () => {
-    cartDispatch({ type: "addToCart", payload: item });
+    alertDispatch({ type: "cartEditedAlert" });
     increaseCartItemQtyOnServer(cartConfig);
   };
 
   const decreaseQty = () => {
-    cartDispatch({ type: "decreaseQty", payload: item });
+    alertDispatch({ type: "cartEditedAlert" });
     decreaseCartItemQtyOnServer(cartConfig);
   };
 
   useEffect(() => {
-    couponCheck(totalPrice, coupon, cartDispatch);
-  }, [cartState.cart]);
+    couponCheck(totalPrice, coupon);
+    return () => {
+      // to unmount useEffect
+    };
+  }, [totalPrice, coupon]);
 
   return (
     <div className="cart-item-card card-dark">

@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 import {
   useSessionStorageGet,
   useSessionStorageSet,
@@ -53,10 +53,13 @@ const AuthProvider = ({ children }) => {
     authReducer,
     useSessionStorageGet("authState") ?? initialAuthState
   );
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
 
   useSessionStorageSet("authState", auth);
   return (
-    <authContext.Provider value={{ auth, authDispatch }}>
+    <authContext.Provider
+      value={{ auth, authDispatch, showProfileMenu, setShowProfileMenu }}
+    >
       {children}
     </authContext.Provider>
   );

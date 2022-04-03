@@ -28,6 +28,25 @@
   padding: 0.6rem;
 }
 
+.applied-coupon {
+  background-color: var(--primary-color);
+  color: var(-text-white);
+  width: 45%;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin: 8px auto;
+}
+
+.applied-coupon p {
+  font-size: 0.9rem;
+}
+
+.applied-coupon i {
+  font-size: 12px;
+  padding: 5px;
+  cursor: pointer;
+}
+
 .available-coupons > div div {
   background-color: var(--available-coupons);
   margin: 0.6rem;

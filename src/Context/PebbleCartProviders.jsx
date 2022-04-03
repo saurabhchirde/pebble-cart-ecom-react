@@ -2,12 +2,13 @@ import {
   ModalProvider,
   ProductsProvider,
   CartProvider,
-  WishlistProvider,
   CheckoutProvider,
   FilterProvider,
   ScrollToTop,
   AuthProvider,
   AxiosCallProvider,
+  AnimationProvider,
+  AlertProvider,
 } from "./index";
 import { BrowserRouter } from "react-router-dom";
 
@@ -15,21 +16,23 @@ const PebbleCartProviders = ({ children }) => {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <ModalProvider>
-          <ScrollToTop>
-            <ProductsProvider>
-              <CartProvider>
-                <FilterProvider>
-                  <CheckoutProvider>
-                    <WishlistProvider>
-                      <AxiosCallProvider>{children}</AxiosCallProvider>
-                    </WishlistProvider>
-                  </CheckoutProvider>
-                </FilterProvider>
-              </CartProvider>
-            </ProductsProvider>
-          </ScrollToTop>
-        </ModalProvider>
+        <AnimationProvider>
+          <AlertProvider>
+            <ModalProvider>
+              <ScrollToTop>
+                <ProductsProvider>
+                  <CartProvider>
+                    <FilterProvider>
+                      <CheckoutProvider>
+                        <AxiosCallProvider>{children}</AxiosCallProvider>
+                      </CheckoutProvider>
+                    </FilterProvider>
+                  </CartProvider>
+                </ProductsProvider>
+              </ScrollToTop>
+            </ModalProvider>
+          </AlertProvider>
+        </AnimationProvider>
       </AuthProvider>
     </BrowserRouter>
   );

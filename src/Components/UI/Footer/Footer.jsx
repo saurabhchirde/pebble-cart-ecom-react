@@ -5,12 +5,11 @@ const Footer = () => {
         <div className="footer-main-area">
           <div>
             <h1>Company</h1>
-            <a>
-              <h2>About Us</h2>
-            </a>
-            <a>
-              <h2>Careers</h2>
-            </a>
+
+            <h2>About Us</h2>
+
+            <h2>Careers</h2>
+
             <div className="footer-connect-icons">
               <i className="fab fa-facebook"></i>
               <i className="fab fa-twitter"></i>
@@ -19,18 +18,15 @@ const Footer = () => {
           </div>
           <div>
             <h1>Support</h1>
-            <a>
-              <h2>Contact Us</h2>
-            </a>
-            <a>
-              <h2>Your Account</h2>
-            </a>
+
+            <h2>Contact Us</h2>
+
+            <h2>Your Account</h2>
           </div>
           <div>
             <h1>Where To Buy </h1>
-            <a>
-              <h2>See Authorized Retailers</h2>
-            </a>
+
+            <h2>See Authorized Retailers</h2>
           </div>
         </div>
         <hr className="break-line" />

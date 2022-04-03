@@ -7,7 +7,7 @@ const RecommendedBanner = (props) => {
   const { productState } = useProductProvider();
   const { auth } = useAuth();
   const navigate = useNavigate();
-  const { cartState, cartDispatch } = useCart();
+  const { cartState } = useCart();
   const { setShowLogin } = useModal();
   const { addToCartOnServer } = useAxiosCalls();
 
@@ -23,10 +23,6 @@ const RecommendedBanner = (props) => {
   const onBuyNowClickHandler = () => {
     if (auth.login) {
       if (!cartState.cart.includes(productState.products[1])) {
-        cartDispatch({
-          type: "addToCart",
-          payload: { ...productState.products[1], qty: 1 },
-        });
         addToCartOnServer(cartConfig);
       }
       navigate("/cart");

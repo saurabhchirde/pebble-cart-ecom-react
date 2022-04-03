@@ -1,19 +1,19 @@
-const couponCheck = (totalPrice, coupon, cartDispatch) => {
+const couponCheck = (totalPrice, coupon) => {
   switch (coupon) {
     case "PEBBLE":
-      return cartDispatch({
-        type: "discount",
-        payload: { discountedAmount: (totalPrice * 30) / 100, percentage: 30 },
-      });
+      return {
+        totalDiscount: (totalPrice * 30) / 100,
+        percentage: 30,
+      };
 
     case "SAURABH":
-      return cartDispatch({
-        type: "discount",
-        payload: { discountedAmount: (totalPrice * 50) / 100, percentage: 50 },
-      });
+      return {
+        totalDiscount: (totalPrice * 50) / 100,
+        percentage: 50,
+      };
 
     default:
-      return cartDispatch({ type: "nodiscount", payload: 0 });
+      return { totalDiscount: 0, percentage: null };
   }
 };
 

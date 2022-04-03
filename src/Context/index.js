@@ -5,7 +5,6 @@ export {
   ProductsProvider,
   useProductProvider,
 } from "./ProductList/ProductsProvider";
-export { WishlistProvider, useWishlist } from "./Wishlist/WishlistProvider";
 export { CheckoutProvider, useCheckout } from "./Checkout/CheckoutProvider";
 export { ScrollToTop } from "./ScrollToTop/ScrollToTop";
 export { AuthProvider, useAuth } from "./Auth/AuthProvider";
@@ -13,8 +12,10 @@ export {
   useSessionStorageGet,
   useSessionStorageSet,
 } from "../Hooks/useSessionStorage";
+export { AnimationProvider, useAnimation } from "./Animation/AnimationProvider";
 
 export {
   AxiosCallProvider,
   useAxiosCalls,
 } from "./AxiosCalls/AxiosCallProvider";
+export { AlertProvider, useAlert } from "./Alerts/AlertsProvider";

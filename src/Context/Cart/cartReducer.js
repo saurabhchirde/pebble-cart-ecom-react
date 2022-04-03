@@ -1,92 +1,57 @@
 const cartReducer = (cartState, action) => {
-  const indexOfExistingItem = cartState.cart.findIndex(
-    (item) => item._id === action.payload._id
-  );
-  const existingCartItems = cartState.cart[indexOfExistingItem];
-  let updatedCartItems;
-
   switch (action.type) {
+    // server
     case "authCartInitiate":
       return {
-        cart: action.payload,
+        cart: action.payload.cart,
+        wishlist: action.payload.wishlist,
         totalQty: 0,
         totalPrice: 0,
         discount: 0,
         coupon: "",
       };
 
-    case "addToCart":
-      if (existingCartItems) {
-        const updatedItem = {
-          ...existingCartItems,
-          qty: existingCartItems.qty + 1,
-        };
-        updatedCartItems = [...cartState.cart];
-        updatedCartItems[indexOfExistingItem] = updatedItem;
-      } else {
-        updatedCartItems = cartState.cart.concat(action.payload);
-      }
-
+    case "updateCartOnServer":
       return {
         ...cartState,
-        cart: updatedCartItems,
-        totalQty: cartState.totalQty + 1,
-        totalPrice: cartState.totalPrice + 1 * action.payload.price,
+        totalQty: action.payload.totalQty,
+        totalPrice: action.payload.totalPrice,
       };
 
-    case "removeFromCart":
-      updatedCartItems = [
-        ...cartState.cart.filter((el) => el._id !== action.payload._id),
-      ];
-
-      if (updatedCartItems.length === 0) {
-        return {
-          cart: [],
-          totalQty: 0,
-          totalPrice: 0,
-          discount: 0,
-          coupon: "",
-        };
-      }
-
+    case "updatedDiscount":
       return {
         ...cartState,
-        cart: updatedCartItems,
-        totalQty: cartState.totalQty - action.payload.qty,
-        totalPrice:
-          cartState.totalPrice - action.payload.price * action.payload.qty,
+        discount: action.payload,
       };
 
-    case "decreaseQty":
-      if (existingCartItems.qty === 1) {
-        updatedCartItems = cartState.cart.filter(
-          (el) => el._id !== action.payload._id
-        );
-      } else {
-        const updatedItem = {
-          ...existingCartItems,
-          qty: existingCartItems.qty - 1,
-        };
-        updatedCartItems = [...cartState.cart];
-        updatedCartItems[indexOfExistingItem] = updatedItem;
-      }
+    case "getCartFromServer":
+      return { ...cartState, cart: action.payload };
 
-      if (updatedCartItems.length === 0) {
-        return {
-          cart: [],
-          totalQty: 0,
-          totalPrice: 0,
-          discount: 0,
-          coupon: "",
-        };
-      }
+    case "getWishlistFromServer":
+      return { ...cartState, wishlist: action.payload };
 
-      return {
-        ...cartState,
-        cart: updatedCartItems,
-        totalQty: cartState.totalQty - 1,
-        totalPrice: cartState.totalPrice - action.payload.price,
-      };
+    case "addToCartServer":
+      return { ...cartState, cart: action.payload };
+
+    case "incQtyOnCartServer":
+      return { ...cartState, cart: action.payload };
+
+    case "decQtyOnCartServer":
+      return { ...cartState, cart: action.payload };
+
+    case "removeFromCartServer":
+      return { ...cartState, cart: action.payload };
+
+    case "addToWishlistServer":
+      return { ...cartState, wishlist: action.payload };
+
+    case "removeFromWishlistServer":
+      return { ...cartState, wishlist: action.payload };
+
+    case "emptyCart":
+      return { ...cartState, cart: [], wishlist: [] };
+
+    //client side
 
     case "couponCode":
       return {
@@ -94,17 +59,17 @@ const cartReducer = (cartState, action) => {
         coupon: action.payload,
       };
 
-    case "discount":
+    case "emptyCoupon":
       return {
         ...cartState,
-        discount: action.payload.discountedAmount,
-        discountPercentage: action.payload.percentage,
+        coupon: "",
       };
 
-    case "nodiscount":
+    case "couponCheck":
       return {
         ...cartState,
-        discount: 0,
+        discount: action.payload.totalDiscount,
+        discountPercentage: action.payload.percentage,
       };
 
     default:
