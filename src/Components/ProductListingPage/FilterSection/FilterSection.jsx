@@ -1,4 +1,4 @@
-import { useFilter } from "../../../Context";
+import { useFilter, useTheme } from "../../../Context";
 import Button from "../../UI/Button/Button";
 import IconButton from "../../UI/Button/IconButton";
 import SortSection from "./SortSection/SortSection";
@@ -11,6 +11,7 @@ import { useState } from "react";
 const FilterSection = (props) => {
   const { filterDispatch, setSearchInput } = useFilter();
   const [showFilter, setShowFilter] = useState(false);
+  const { darkTheme } = useTheme();
 
   const clearClickHandler = () => {
     setSearchInput("");
@@ -34,7 +35,9 @@ const FilterSection = (props) => {
       <form
         onSubmit={(e) => e.preventDefault()}
         id="filter-section"
-        className="filter-section"
+        className={
+          darkTheme ? "filter-section" : "filter-section filter-section-light"
+        }
         style={{ display: filterSection }}
       >
         <IconButton

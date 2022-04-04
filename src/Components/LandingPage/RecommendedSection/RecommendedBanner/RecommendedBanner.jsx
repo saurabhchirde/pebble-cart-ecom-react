@@ -1,5 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth, useAxiosCalls, useCart, useModal } from "../../../../Context";
+import {
+  useAuth,
+  useAxiosCalls,
+  useCart,
+  useModal,
+  useTheme,
+} from "../../../../Context";
 import { useProductProvider } from "../../../../Context/ProductList/ProductsProvider";
 import { canon6dCamera } from "../../../../Data/Img/Products/ProductImages";
 
@@ -10,6 +16,7 @@ const RecommendedBanner = (props) => {
   const { cartState } = useCart();
   const { setShowLogin } = useModal();
   const { addToCartOnServer } = useAxiosCalls();
+  const { darkTheme } = useTheme();
 
   const cartConfig = {
     url: "/api/user/cart",
@@ -33,7 +40,13 @@ const RecommendedBanner = (props) => {
 
   return (
     <>
-      <div className="recommended-banner">
+      <div
+        className={
+          darkTheme
+            ? "recommended-banner"
+            : "recommended-banner recommended-banner-light"
+        }
+      >
         <div>
           <p>{props.subTitle} </p>
           <h1>{props.title}</h1>

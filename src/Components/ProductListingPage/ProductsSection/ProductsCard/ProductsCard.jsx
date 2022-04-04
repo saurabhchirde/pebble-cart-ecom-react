@@ -4,6 +4,7 @@ import {
   useModal,
   useAxiosCalls,
   useAlert,
+  useTheme,
 } from "../../../../Context";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -28,6 +29,7 @@ const ProductsCard = ({ item }) => {
   const { alertDispatch } = useAlert();
   const [addButton, setAddButton] = useState("Add to Cart");
   const [addWishlist, setAddWishlist] = useState("far fa-heart");
+  const { darkTheme } = useTheme();
 
   const cartConfig = {
     url: "/api/user/cart",
@@ -111,9 +113,13 @@ const ProductsCard = ({ item }) => {
     }
   }, [cart, wishlist]);
 
+  const productCardClass = darkTheme
+    ? "card-vertical card-dark"
+    : "card-vertical card-light";
+
   return (
     <>
-      <div className="card-vertical card-dark">
+      <div className={productCardClass}>
         <button className="btn primary-text-btn-sm icon-md ">
           <i className="fas fa-share-alt"></i>
         </button>

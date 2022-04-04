@@ -1,4 +1,4 @@
-import { useAuth, useCart } from "../../../Context";
+import { useAuth, useCart, useTheme } from "../../../Context";
 import BadgeIconButton from "../Button/BadgeIconButton";
 import IconButton from "../Button/IconButton";
 import "./MobileNavigationBarBottom.css";
@@ -9,10 +9,15 @@ const MobileNavigationBarBottom = () => {
     cartState: { cart, wishlist },
   } = useCart();
   const { auth } = useAuth();
+  const { darkTheme } = useTheme();
+
+  const mobileBottomBarClass = darkTheme
+    ? "mobile-navigation-bar-bottom dark-nav-bar"
+    : "mobile-navigation-bar-bottom mobile-navigation-bar-bottom-light";
 
   return (
     <>
-      <nav className="mobile-navigation-bar-bottom dark-nav-bar">
+      <nav className={mobileBottomBarClass}>
         <Link to="wishlist">
           <BadgeIconButton
             btnWrapper="badge-container"

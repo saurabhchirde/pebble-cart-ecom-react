@@ -1,4 +1,4 @@
-import { useFilter, useProductProvider } from "../../../Context";
+import { useFilter, useProductProvider, useTheme } from "../../../Context";
 import ProductsCard from "./ProductsCard/ProductsCard";
 import { finalFilteredData } from "../../../Utils/FilterFunctions/finalFilteredData";
 import "./ProductSection.css";
@@ -9,6 +9,7 @@ const ProductsSection = () => {
   const { filterState, filterDispatch } = useFilter();
   const { productState } = useProductProvider();
   const location = useLocation();
+  const { darkTheme } = useTheme();
 
   useEffect(() => {
     if (location.pathname === "/products/camera") {
@@ -74,7 +75,7 @@ const ProductsSection = () => {
 
   return (
     <>
-      <section className="products">
+      <section className={darkTheme ? "products" : "products products-light"}>
         <h1>Showing All {categoryName !== null ? categoryName : "Products"}</h1>
         <div className="flex-row flex-wrap">
           {finalFilteredData(productState.products, filterState).length ===

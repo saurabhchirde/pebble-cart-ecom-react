@@ -7,10 +7,12 @@ import {
 } from "../../../../Data/Img/Payment/PaymentIcon";
 import { useCheckout } from "../../../../Context/Checkout/CheckoutProvider";
 import "./PaymentOverviewCard.css";
+import { useTheme } from "../../../../Context";
 
 const PaymentOverviewCard = () => {
   const { checkoutState, checkoutDispatch } = useCheckout();
   const { paymentOverviewCheck } = checkoutState;
+  const { darkTheme } = useTheme();
 
   const checkIconStatus = `${
     paymentOverviewCheck ? "fas fa-check-circle" : "far fa-check-circle"
@@ -19,7 +21,11 @@ const PaymentOverviewCard = () => {
   const paymentModeActive = `${paymentOverviewCheck ? "" : "inActivePayment"}`;
 
   return (
-    <div className="payment-method">
+    <div
+      className={
+        darkTheme ? "payment-method" : "payment-method payment-method-light"
+      }
+    >
       <details>
         <summary>
           <h1>

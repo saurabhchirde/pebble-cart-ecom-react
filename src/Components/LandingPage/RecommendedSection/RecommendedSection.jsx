@@ -1,9 +1,17 @@
+import { useTheme } from "../../../Context";
 import RecommendedBanner from "./RecommendedBanner/RecommendedBanner";
 
 const RecommendedSection = () => {
+  const { darkTheme } = useTheme();
   return (
     <>
-      <div className="landing-recommended-section">
+      <div
+        className={
+          darkTheme
+            ? "landing-recommended-section"
+            : "landing-recommended-section landing-recommended-section-light"
+        }
+      >
         <RecommendedBanner
           subTitle="Recommended for you"
           title="Canon EOS 6D DSLR Camera (Kit 24 - 105) (Black)."

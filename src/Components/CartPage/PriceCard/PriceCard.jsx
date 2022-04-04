@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useCart } from "../../../Context";
+import { useCart, useTheme } from "../../../Context";
 import { couponCheck } from "../../../Utils/couponCheck";
 import "./PriceCard.css";
 
@@ -10,6 +10,7 @@ const PriceCard = () => {
     cartState;
   const [errorCoupon, setErrorCoupon] = useState(false);
   const [successCoupon, setSuccessCoupon] = useState(false);
+  const { darkTheme } = useTheme();
 
   const onCouponInputHHandler = (e) => {
     const coupon = e.target.value;
@@ -70,8 +71,12 @@ const PriceCard = () => {
     };
   }, [cartState.totalQty]);
 
+  const cartPriceTableClass = darkTheme
+    ? "cart-price-table price-table-dark"
+    : "cart-price-table";
+
   return (
-    <div className="cart-price-table price-table-dark">
+    <div className={cartPriceTableClass}>
       <h2>Price Details</h2>
       <hr className="break-line" />
       <div className="cart-price">

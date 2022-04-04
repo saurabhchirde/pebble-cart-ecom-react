@@ -1,5 +1,5 @@
 import CartItemCard from "../../Components/CartPage/CartItemCard/CartItemCard";
-import { useAlert, useAuth, useCart } from "../../Context";
+import { useAlert, useAuth, useCart, useTheme } from "../../Context";
 import "./CartPage.css";
 import { Link } from "react-router-dom";
 import PriceCard from "../../Components/CartPage/PriceCard/PriceCard";
@@ -11,6 +11,7 @@ const CartPage = () => {
   const {
     alertState: { cartEditedAlert, removeFromCartAlert, addToWishlistAlert },
   } = useAlert();
+  const { darkTheme } = useTheme();
 
   return (
     <>
@@ -42,7 +43,7 @@ const CartPage = () => {
         <h1 className="notLoggedIn">Please login, to add items in your cart</h1>
       )}
       {auth.login && (
-        <div className="cart">
+        <div className={darkTheme ? "cart" : "cart cart-light"}>
           <h1 className="title-xl-wt-5 mg-2-bot text-center">
             Shopping Cart ({cartState.cart.length})
           </h1>

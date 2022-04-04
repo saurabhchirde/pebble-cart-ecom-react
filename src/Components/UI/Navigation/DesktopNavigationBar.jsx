@@ -1,10 +1,18 @@
 import logoLight from "../../../Data/logo/logo-light.svg";
+import logoDark from "../../../Data/logo/logo-dark.svg";
 import BadgeIconButton from "../Button/BadgeIconButton";
 import SearchBar from "./SearchBar/SearchBar";
 import NavbarLoginButton from "./NavbarLoginButton/NavbarLoginButton";
 import NavbarAvatar from "./Avatar/NavbarAvatar";
-import { useCart, useFilter, useAuth, useModal } from "../../../Context";
+import {
+  useCart,
+  useFilter,
+  useAuth,
+  useModal,
+  useTheme,
+} from "../../../Context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import IconButton from "../Button/IconButton";
 import "./DesktopNavigationBar.css";
 
 const DesktopNavigationBar = () => {
@@ -15,6 +23,7 @@ const DesktopNavigationBar = () => {
   const { setShowLogin, setError, setShowError } = useModal();
   const { filterDispatch, searchInput, setSearchInput } = useFilter();
   const { auth, authDispatch, showProfileMenu, setShowProfileMenu } = useAuth();
+  const { darkTheme, setDarkTheme } = useTheme();
   const location = useLocation();
   const navigate = useNavigate();
   const showSearch = location.pathname.includes("products") ? true : false;
@@ -58,11 +67,24 @@ const DesktopNavigationBar = () => {
     setShowProfileMenu((show) => !show);
   };
 
+  const onThemeTogglerClick = () => {
+    setDarkTheme((preTheme) => !preTheme);
+  };
+
+  const themeIcon = darkTheme ? "fa fa-sun" : "fa fa-moon";
+  const navBarClass = darkTheme
+    ? "desktop-navigation-bar dark-nav-bar"
+    : "desktop-navigation-bar";
+
   return (
     <>
-      <nav className="desktop-navigation-bar dark-nav-bar">
+      <nav className={navBarClass}>
         <Link to="/">
-          <img className="company-logo" src={logoLight} alt="logo" />
+          <img
+            className="company-logo"
+            src={darkTheme ? logoLight : logoDark}
+            alt="logo"
+          />
         </Link>
         {showSearch && (
           <SearchBar
@@ -111,7 +133,7 @@ const DesktopNavigationBar = () => {
           {auth.login && (
             <div
               onMouseEnter={toggleProfileMenu}
-              // onMouseLeave={toggleProfileMenu}
+              onMouseLeave={toggleProfileMenu}
             >
               <NavbarAvatar
                 avatarWrapper="badge-container"
@@ -131,6 +153,11 @@ const DesktopNavigationBar = () => {
               )}
             </div>
           )}
+          <IconButton
+            onClick={onThemeTogglerClick}
+            icon={themeIcon}
+            btnClassName="btn icon-btn-md"
+          />
         </div>
       </nav>
     </>

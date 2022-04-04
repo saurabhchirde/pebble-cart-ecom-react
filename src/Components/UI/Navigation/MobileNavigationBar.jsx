@@ -2,8 +2,8 @@ import NavbarLoginButton from "./NavbarLoginButton/NavbarLoginButton";
 import SearchBar from "./SearchBar/SearchBar";
 import logoIcon from "../../../Data/logo/icon.svg";
 import NavbarAvatar from "./Avatar/NavbarAvatar";
-import { useAuth, useFilter, useModal } from "../../../Context";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth, useFilter, useModal, useTheme } from "../../../Context";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const MobileNavigationBar = () => {
   const { auth, authDispatch, showProfileMenu, setShowProfileMenu } = useAuth();
@@ -11,6 +11,7 @@ const MobileNavigationBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { setError, setShowError } = useModal();
+  const { darkTheme } = useTheme();
 
   const showSearch = location.pathname.includes("products") ? true : false;
 
@@ -40,12 +41,16 @@ const MobileNavigationBar = () => {
     setShowProfileMenu((show) => !show);
   };
 
+  const navBarClass = darkTheme
+    ? "mobile-navigation-bar dark-nav-bar"
+    : "mobile-navigation-bar";
+
   return (
     <>
-      <nav className="mobile-navigation-bar dark-nav-bar">
-        <a href="/">
+      <nav className={navBarClass}>
+        <Link to="/">
           <img className="logo" src={logoIcon} alt="logo" />
-        </a>
+        </Link>
         {showSearch && (
           <SearchBar
             searchWrapper="search-container"

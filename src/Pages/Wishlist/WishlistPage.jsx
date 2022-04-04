@@ -1,5 +1,5 @@
 import HorizontalProductsCard from "../../Components/Cards/HorizontalProductsCard";
-import { useAlert, useAuth, useCart } from "../../Context";
+import { useAlert, useAuth, useCart, useTheme } from "../../Context";
 import { Link } from "react-router-dom";
 import "./WishlistPage.css";
 import FloatingButton from "../../Components/UI/Button/FloatingButton";
@@ -14,6 +14,7 @@ const WishlistPage = () => {
   const {
     alertState: { addToCartAlert, removeFromWishlistAlert, alreadyInCart },
   } = useAlert();
+  const { darkTheme } = useTheme();
 
   return (
     <>
@@ -48,7 +49,7 @@ const WishlistPage = () => {
       )}
       {auth.login && (
         <div>
-          <div className="wishlist">
+          <div className={darkTheme ? "wishlist" : "wishlist wishlist-light"}>
             <h1 className="title-xl-wt-5 mg-2-bot text-center">My Wishlist</h1>
             {wishlist.length === 0 ? (
               <div className="emptyWishlistMsg">

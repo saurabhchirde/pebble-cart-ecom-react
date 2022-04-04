@@ -1,4 +1,4 @@
-import { useCart } from "../../../Context";
+import { useCart, useTheme } from "../../../Context";
 import { useCheckout } from "../../../Context/Checkout/CheckoutProvider";
 import "./OrderSummary.css";
 
@@ -6,9 +6,14 @@ const OrderSummary = () => {
   const { cartState } = useCart();
   const { checkoutState } = useCheckout();
   const { addressOverviewCheck, paymentOverviewCheck } = checkoutState;
+  const { darkTheme } = useTheme();
+
+  const overviewSummaryClass = darkTheme
+    ? "cart-price-table checkout-price-table price-table-dark"
+    : "cart-price-table checkout-price-table price-table-light";
 
   return (
-    <div className="cart-price-table checkout-price-table price-table-dark">
+    <div className={overviewSummaryClass}>
       <h2>Order Summary</h2>
       <hr className="break-line" />
       <div className="cart-product-qty">

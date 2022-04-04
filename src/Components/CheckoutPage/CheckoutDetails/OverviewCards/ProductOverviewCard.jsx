@@ -1,12 +1,19 @@
-import { useCart, useCheckout } from "../../../../Context";
+import { useCart, useCheckout, useTheme } from "../../../../Context";
 import ProductCard from "./PorductCard/ProductCard";
 
 const ProductOverviewCard = () => {
   const { cartState } = useCart();
   const { checkoutDispatch } = useCheckout();
+  const { darkTheme } = useTheme();
 
   return (
-    <div className="checkout-item-overview">
+    <div
+      className={
+        darkTheme
+          ? "checkout-item-overview"
+          : "checkout-item-overview checkout-item-overview-light"
+      }
+    >
       <details>
         <summary>
           <h1>Item Overview</h1>

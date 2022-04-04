@@ -1,7 +1,10 @@
+import { useTheme } from "../../../Context";
+
 const Footer = () => {
+  const { darkTheme } = useTheme();
   return (
     <>
-      <footer>
+      <footer className={darkTheme ? "" : "footer-light"}>
         <div className="footer-main-area">
           <div>
             <h1>Company</h1>
@@ -29,7 +32,9 @@ const Footer = () => {
             <h2>See Authorized Retailers</h2>
           </div>
         </div>
-        <hr className="break-line" />
+        <hr
+          className={darkTheme ? "break-line" : "break-line break-line-light"}
+        />
         <div className="footer-copyright-text">
           <h3>© 2022 Pebble Cart. All right reserved</h3>
           <div className="flex-row">

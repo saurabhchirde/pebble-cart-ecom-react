@@ -1,7 +1,15 @@
+import { useTheme } from "../../../../Context";
+
 const SquareCards = (props) => {
+  const { darkTheme } = useTheme();
+
+  const squareCardClass = darkTheme
+    ? "card-vertical-info card-dark"
+    : "card-vertical-info card-vertical-info-light";
+
   return (
     <>
-      <div className="card-vertical-info card-dark">
+      <div className={squareCardClass}>
         <div className="card-img-container">
           <img src={props.imgSrc} alt="icon" />
         </div>

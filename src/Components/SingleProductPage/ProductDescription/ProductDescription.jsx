@@ -1,6 +1,15 @@
+import { useTheme } from "../../../Context";
+
 const ProductDescription = ({ item }) => {
+  const { darkTheme } = useTheme();
   return (
-    <div className="single-product-description">
+    <div
+      className={
+        darkTheme
+          ? "single-product-description"
+          : "single-product-description single-product-description-light"
+      }
+    >
       <h2>About this item :</h2>
       <ol className="list-basic list-style-number">
         {item.description.map((info, index) => {

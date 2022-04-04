@@ -5,6 +5,7 @@ import {
   useAxiosCalls,
   useCart,
   useModal,
+  useTheme,
 } from "../../../Context";
 import { ratingStarCheck } from "../../../Utils/FilterFunctions/ratingStarCheck";
 import { useEffect } from "react";
@@ -22,6 +23,7 @@ const ProductDetailSection = ({ item }) => {
   const { setShowLogin } = useModal();
   const { addToCartOnServer, increaseCartItemQtyOnServer } = useAxiosCalls();
   const { alertDispatch } = useAlert();
+  const { darkTheme } = useTheme();
 
   const cartConfig = {
     url: "/api/user/cart",
@@ -80,7 +82,13 @@ const ProductDetailSection = ({ item }) => {
 
   return (
     <div className="single-product-detail">
-      <div className="product-details-header">
+      <div
+        className={
+          darkTheme
+            ? "product-details-header"
+            : "product-details-header product-details-header-light"
+        }
+      >
         <h1>{title}</h1>
         <h3>Brand: {brand}</h3>
         <div className="flex-row flex-justify-space-between">
@@ -136,7 +144,13 @@ const ProductDetailSection = ({ item }) => {
           <p>Delivery in {delivery}</p>
         </div>
       </div>
-      <div className="product-details-body">
+      <div
+        className={
+          darkTheme
+            ? "product-details-body"
+            : "product-details-body  product-details-body-light"
+        }
+      >
         <div>
           <h2 className="product-details-price">Rs. {price}/-</h2>
           <div className="product-details-cta">

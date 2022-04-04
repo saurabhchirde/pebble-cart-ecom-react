@@ -1,8 +1,15 @@
+import { useTheme } from "../../../../../Context";
+
 const ProductCard = ({ item }) => {
   const { title, src1, delivery } = item;
+  const { darkTheme } = useTheme();
+
+  const checkoutItemClass = darkTheme
+    ? "cart-item-card checkout-item-card card-dark card-shadow-two"
+    : "cart-item-card checkout-item-card card-light card-shadow-two";
 
   return (
-    <div className="cart-item-card checkout-item-card card-dark card-shadow-two">
+    <div className={checkoutItemClass}>
       <div className="card-img-container">
         <img
           src={src1}

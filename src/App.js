@@ -21,15 +21,24 @@ import Camera from "./Pages/ProductListing/Camera/Camera";
 import Lens from "./Pages/ProductListing/Lens/Lens";
 import Tripod from "./Pages/ProductListing/Tripod/Tripod";
 import Accessories from "./Pages/ProductListing/Accessories/Accessories";
-import { useAnimation, useAuth } from "./Context";
+import { useAnimation, useAuth, useTheme } from "./Context";
 import AnimateCamera from "./Components/Animations/AnimateCamera";
 import AnimateLoader from "./Components/Animations/AnimateLoader";
 import NotFound from "./Pages/NotFound/NotFound";
+import { useEffect } from "react";
 
 const App = () => {
   const { showLogin, showSignup, showSignupAlert, showError } = useModal();
   const { loader, loaderCamera } = useAnimation();
   const { auth } = useAuth();
+  const { darkTheme } = useTheme();
+
+  useEffect(() => {
+    localStorage.setItem("pebbleCartTheme", JSON.stringify(darkTheme));
+    darkTheme
+      ? document.body.classList.remove("lightTheme")
+      : document.body.classList.add("lightTheme");
+  }, [darkTheme]);
 
   return (
     <>

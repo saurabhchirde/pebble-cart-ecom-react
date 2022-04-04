@@ -1,16 +1,18 @@
 import "./Animation.css";
 import { useEffect } from "react";
 import camera_dark from "../../Data/Img/Animation/camera_dark.json";
-import { useAnimation } from "../../Context";
+import camera_light from "../../Data/Img/Animation/camera_light.json";
+import { useAnimation, useTheme } from "../../Context";
 import lottie from "lottie-web";
 
 const AnimateCamera = () => {
   const { setLoaderCamera } = useAnimation();
+  const { darkTheme } = useTheme();
 
   useEffect(() => {
     lottie.loadAnimation({
       container: document.querySelector("#camera-dark"),
-      animationData: camera_dark,
+      animationData: darkTheme ? camera_dark : camera_light,
     });
     const animateTime = setTimeout(() => {
       setLoaderCamera(false);

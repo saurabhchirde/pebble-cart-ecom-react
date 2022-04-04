@@ -1,4 +1,10 @@
-import { useAlert, useAuth, useAxiosCalls, useCart } from "../../Context";
+import {
+  useAlert,
+  useAuth,
+  useAxiosCalls,
+  useCart,
+  useTheme,
+} from "../../Context";
 import "./HorizontalProductsCard.css";
 
 const HorizontalProductsCard = ({ item }) => {
@@ -13,6 +19,7 @@ const HorizontalProductsCard = ({ item }) => {
   const {
     cartState: { cart },
   } = useCart();
+  const { darkTheme } = useTheme();
 
   const cartConfig = {
     url: "/api/user/cart",
@@ -51,9 +58,13 @@ const HorizontalProductsCard = ({ item }) => {
     removeWishlistItemFromServer(wishlistConfig);
   };
 
+  const cartContainerClass = darkTheme
+    ? "card-horizontal card-dark"
+    : "card-horizontal card-light";
+
   return (
     <>
-      <div className="card-horizontal card-dark">
+      <div className={cartContainerClass}>
         <button className="btn primary-text-btn-sm icon-md">
           <i className="fas fa-share-alt"></i>
         </button>

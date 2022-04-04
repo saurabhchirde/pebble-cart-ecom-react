@@ -1,10 +1,11 @@
-import { useAuth } from "../../../../Context";
+import { useAuth, useTheme } from "../../../../Context";
 import { useCheckout } from "../../../../Context/Checkout/CheckoutProvider";
 
 const AddressOverviewCard = () => {
   const { checkoutState, checkoutDispatch } = useCheckout();
   const { addressOverviewCheck } = checkoutState;
   const { auth } = useAuth();
+  const { darkTheme } = useTheme();
 
   const onSelectingAddress = () => {
     checkoutDispatch({ type: "addressSelected" });
@@ -15,7 +16,11 @@ const AddressOverviewCard = () => {
   }`;
 
   return (
-    <div className="contact-address">
+    <div
+      className={
+        darkTheme ? "contact-address" : "contact-address contact-address-light"
+      }
+    >
       <details>
         <summary>
           <h1>Contact & Delivery Address</h1>

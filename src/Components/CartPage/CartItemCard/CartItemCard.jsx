@@ -4,6 +4,7 @@ import {
   useAxiosCalls,
   useCart,
   useModal,
+  useTheme,
 } from "../../../Context";
 import { couponCheck } from "../../../Utils/couponCheck";
 import { useEffect } from "react";
@@ -22,6 +23,7 @@ const CartItemCard = ({ item }) => {
     decreaseCartItemQtyOnServer,
   } = useAxiosCalls();
   const { alertDispatch } = useAlert();
+  const { darkTheme } = useTheme();
 
   const cartConfig = {
     url: "/api/user/cart",
@@ -80,8 +82,12 @@ const CartItemCard = ({ item }) => {
     };
   }, [totalPrice, coupon]);
 
+  const cartItemCartClass = darkTheme
+    ? "cart-item-card card-dark"
+    : "cart-item-card card-light cart-item-card-light";
+
   return (
-    <div className="cart-item-card card-dark">
+    <div className={cartItemCartClass}>
       <button
         onClick={onWishlistClickHandler}
         className="btn primary-text-btn-sm icon-lg cart-wishlist-icon"

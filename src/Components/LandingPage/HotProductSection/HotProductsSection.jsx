@@ -1,3 +1,4 @@
+import { useTheme } from "../../../Context";
 import {
   actionCamera,
   polaroidCamera,
@@ -6,9 +7,17 @@ import {
 import HotProductCard from "./HotProductCards/HotProductCard";
 
 const HotProductsSection = () => {
+  const { darkTheme } = useTheme();
+
   return (
     <>
-      <div className="hot-new-products pd-2-tb">
+      <div
+        className={
+          darkTheme
+            ? "hot-new-products pd-2-tb"
+            : "hot-new-products pd-2-tb hot-new-products-light"
+        }
+      >
         <h1>Hot New Products</h1>
         <div className="flex-row-center">
           <HotProductCard title="Mirrorless Cameras" imgSrc={sonyAlphaCamera} />
