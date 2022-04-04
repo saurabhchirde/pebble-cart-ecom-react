@@ -135,6 +135,10 @@ body.lightTheme {
   background-color: var(--light-theme-category-card);
 }
 
+.hero-section-light .card-vertical-info-light:hover {
+  background-color: var(--primary-color);
+}
+
 .hero-categories-light > a > div:hover {
   background-color: var(--light-theme-card-hover);
 }
