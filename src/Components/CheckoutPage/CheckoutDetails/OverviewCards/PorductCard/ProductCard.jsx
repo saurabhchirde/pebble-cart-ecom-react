@@ -6,7 +6,7 @@ const ProductCard = ({ item }) => {
 
   const checkoutItemClass = darkTheme
     ? "cart-item-card checkout-item-card card-dark card-shadow-two"
-    : "cart-item-card checkout-item-card card-light card-shadow-two";
+    : "cart-item-card checkout-item-card checkout-item-card-light card-light ";
 
   return (
     <div className={checkoutItemClass}>

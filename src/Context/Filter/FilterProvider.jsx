@@ -10,6 +10,7 @@ const filterInitialState = {
     twoStar: false,
     threeStar: false,
     fourStar: false,
+    fiveStar: false,
   },
   bySearch: "",
   byCategory: {
