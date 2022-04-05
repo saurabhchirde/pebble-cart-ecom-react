@@ -6,7 +6,8 @@ const filterByRating = (filteredArray, state) => {
     state.byRating.oneStar === false &&
     state.byRating.twoStar === false &&
     state.byRating.threeStar === false &&
-    state.byRating.fourStar === false
+    state.byRating.fourStar === false &&
+    state.byRating.fiveStar === false
   ) {
     return filteredArray;
   }
@@ -23,8 +24,10 @@ const filterByRating = (filteredArray, state) => {
   if (state.byRating.fourStar) {
     tempArray = withoutFiltered.filter((prod) => prod.rating >= 4);
   }
+  if (state.byRating.fiveStar) {
+    tempArray = withoutFiltered.filter((prod) => prod.rating >= 4.8);
+  }
 
-  // console.log(tempArray);
   return tempArray;
 };
 

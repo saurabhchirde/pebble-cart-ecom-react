@@ -135,6 +135,10 @@ body.lightTheme {
   background-color: var(--light-theme-category-card);
 }
 
+.hero-section-light .card-vertical-info-light:hover {
+  background-color: var(--primary-color);
+}
+
 .hero-categories-light > a > div:hover {
   background-color: var(--light-theme-card-hover);
 }
@@ -194,9 +198,17 @@ body.lightTheme {
 .products-light > div > div,
 .wishlist-light > div > div,
 .cart-item-card-light,
-.checkout-item-card-light,
 .similar-products-light > div > div {
   background-color: var(--light-theme-card-bg);
+}
+
+.checkout-item-card-light {
+  background-color: var(--primary-bg);
+  border: none;
+}
+
+.cart-item-card-light {
+  background-color: var(--primary-bg);
 }
 
 .cart-item-card-light:hover {
@@ -204,8 +216,10 @@ body.lightTheme {
 }
 
 #products-light .card-dark .card-text-light .card-price,
+.cart-item-card-light .card-price,
 .cart-products-light .card-price {
   color: var(--text-red);
+  font-weight: 500;
 }
 
 .checkout-price-table {

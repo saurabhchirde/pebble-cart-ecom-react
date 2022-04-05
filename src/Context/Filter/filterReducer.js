@@ -82,50 +82,16 @@ const filterReducer = (filterState, action) => {
       };
 
     //   ratings
-    case "4+":
-      return {
-        ...filterState,
-        byRating: {
-          oneStar: false,
-          twoStar: false,
-          threeStar: false,
-          fourStar: true,
-        },
-        sort: action.payload,
-      };
 
-    case "3+":
+    case "ratings":
       return {
         ...filterState,
         byRating: {
-          oneStar: false,
-          twoStar: false,
-          threeStar: true,
-          fourStar: false,
-        },
-        sort: action.payload,
-      };
-
-    case "2+":
-      return {
-        ...filterState,
-        byRating: {
-          oneStar: false,
-          twoStar: true,
-          threeStar: false,
-          fourStar: false,
-        },
-        sort: action.payload,
-      };
-
-    case "1+":
-      return {
-        ...filterState,
-        byRating: {
-          oneStar: true,
-          twoStar: false,
-          threeStar: false,
-          fourStar: false,
+          oneStar: action.payload >= 1,
+          twoStar: action.payload >= 2,
+          threeStar: action.payload >= 3,
+          fourStar: action.payload >= 4,
+          fiveStar: action.payload >= 5,
         },
         sort: action.payload,
       };
