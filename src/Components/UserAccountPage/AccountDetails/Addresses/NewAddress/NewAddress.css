@@ -1,0 +1,29 @@
+.new-address h2 {
+  font-size: 1.2rem;
+}
+
+.new-address {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.8rem 0;
+  cursor: pointer;
+}
+
+.new-address i {
+  margin-right: 1rem;
+  font-size: 1.2rem;
+}
+
+.address-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.address-modal-close-btn {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}

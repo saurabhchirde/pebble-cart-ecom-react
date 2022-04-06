@@ -21,17 +21,17 @@ const PebbleCartProviders = ({ children }) => {
           <AnimationProvider>
             <AlertProvider>
               <ModalProvider>
-                <ScrollToTop>
-                  <ProductsProvider>
-                    <CartProvider>
-                      <FilterProvider>
+                <ProductsProvider>
+                  <CartProvider>
+                    <FilterProvider>
+                      <ScrollToTop>
                         <CheckoutProvider>
                           <AxiosCallProvider>{children}</AxiosCallProvider>
-                        </CheckoutProvider>
-                      </FilterProvider>
-                    </CartProvider>
-                  </ProductsProvider>
-                </ScrollToTop>
+                        </CheckoutProvider>{" "}
+                      </ScrollToTop>
+                    </FilterProvider>
+                  </CartProvider>
+                </ProductsProvider>
               </ModalProvider>
             </AlertProvider>
           </AnimationProvider>

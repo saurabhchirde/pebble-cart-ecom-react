@@ -4,14 +4,15 @@ import logoIcon from "../../../Data/logo/icon.svg";
 import NavbarAvatar from "./Avatar/NavbarAvatar";
 import { useAuth, useFilter, useModal, useTheme } from "../../../Context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import IconButton from "../Button/IconButton";
 
 const MobileNavigationBar = () => {
   const { auth, authDispatch, showProfileMenu, setShowProfileMenu } = useAuth();
   const { filterDispatch, searchInput, setSearchInput } = useFilter();
   const location = useLocation();
   const navigate = useNavigate();
-  const { setError, setShowError } = useModal();
-  const { darkTheme } = useTheme();
+  const { setAlertText, setShowAlert, setShowNavMenu } = useModal();
+  const { darkTheme, setDarkTheme } = useTheme();
 
   const showSearch = location.pathname.includes("products") ? true : false;
 
@@ -26,8 +27,8 @@ const MobileNavigationBar = () => {
 
   const logoutClickHandler = () => {
     authDispatch({ type: "logout" });
-    setError("Logged out successfully");
-    setShowError(true);
+    setAlertText("Logged out successfully");
+    setShowAlert(true);
     if (
       location.pathname.includes(
         "checkout" || "user" || "profile" || "settings"
@@ -41,16 +42,33 @@ const MobileNavigationBar = () => {
     setShowProfileMenu((show) => !show);
   };
 
+  const toggleAccountNavMenu = () => {
+    setShowNavMenu((show) => !show);
+  };
+
+  const onThemeTogglerClick = () => {
+    setDarkTheme((preTheme) => !preTheme);
+  };
+
   const navBarClass = darkTheme
     ? "mobile-navigation-bar dark-nav-bar"
     : "mobile-navigation-bar";
 
+  const themeIcon = darkTheme ? "fa fa-sun" : "fa fa-moon";
+
   return (
     <>
       <nav className={navBarClass}>
-        <Link to="/">
-          <img className="logo" src={logoIcon} alt="logo" />
-        </Link>
+        <div className="nav-header">
+          {location.pathname.includes("account") && (
+            <div onClick={toggleAccountNavMenu} className="hamburger">
+              <i className="fas fa-bars"></i>
+            </div>
+          )}
+          <Link to="/">
+            <img className="logo" src={logoIcon} alt="logo" />
+          </Link>
+        </div>
         {showSearch && (
           <SearchBar
             searchWrapper="search-container"
@@ -69,25 +87,34 @@ const MobileNavigationBar = () => {
             />
           )}
         </div>
-        {auth.login && (
-          <div>
-            <NavbarAvatar
-              onClick={toggleProfileMenu}
-              avatarWrapper="badge-container"
-              avatarClassName="avatar text-avatar-xsm-round"
-              imgDisplay="hide"
-              src={auth.user.dp !== "" ? auth.user.dp.toUpperCase() : ""}
-            />
-            {showProfileMenu && (
-              <div className="profile-hover-menu card-shadow-two">
-                <h2>Profile</h2>
-                <h2>Support</h2>
-                <h2>Settings</h2>
-                <h2 onClick={logoutClickHandler}>Logout</h2>
-              </div>
-            )}
-          </div>
-        )}
+        <div className="profile-theme-toggle">
+          {auth.login && (
+            <div>
+              <NavbarAvatar
+                onClick={toggleProfileMenu}
+                avatarWrapper="badge-container"
+                avatarClassName="avatar text-avatar-xsm-round"
+                imgDisplay="hide"
+                src={auth.user.dp !== "" ? auth.user.dp.toUpperCase() : ""}
+              />
+              {showProfileMenu && (
+                <div className="profile-hover-menu card-shadow-two">
+                  <Link to="account">
+                    <h2>Profile</h2>
+                  </Link>
+                  <h2>Support</h2>
+                  <h2>Settings</h2>
+                  <h2 onClick={logoutClickHandler}>Logout</h2>
+                </div>
+              )}
+            </div>
+          )}
+          <IconButton
+            onClick={onThemeTogglerClick}
+            icon={themeIcon}
+            btnClassName="btn icon-btn-md"
+          />
+        </div>
       </nav>
     </>
   );

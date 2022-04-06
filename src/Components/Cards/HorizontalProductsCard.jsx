@@ -48,13 +48,13 @@ const HorizontalProductsCard = ({ item }) => {
       alertDispatch({ type: "alreadyInCart" });
     } else {
       addToCartOnServer(cartConfig);
+      alertDispatch({ type: "addToCartAlert" });
     }
-    alertDispatch({ type: "addToCartAlert" });
     removeWishlistItemFromServer(wishlistConfig);
   };
 
   const onRemoveWishlistClickHandler = () => {
-    alertDispatch({ type: "removeFromWishlistAlert" });
+    // alertDispatch({ type: "removeFromWishlistAlert" });
     removeWishlistItemFromServer(wishlistConfig);
   };
 

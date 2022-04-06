@@ -8,13 +8,15 @@ const SingleProduct = () => {
   const { item } = location.state ?? null;
 
   return (
-    <section className="single-product">
-      <div className="flex-row flex-wrap">
-        <ProductImageSection item={item} />
-        <ProductDetailSection item={item} />
-      </div>
-      <ProductDescription item={item} />
-    </section>
+    <>
+      <section className="single-product">
+        <div className="flex-row flex-wrap">
+          <ProductImageSection item={item} />
+          <ProductDetailSection item={item} />
+        </div>
+        <ProductDescription item={item} />
+      </section>
+    </>
   );
 };
 

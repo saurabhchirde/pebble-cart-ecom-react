@@ -1,0 +1,9 @@
+.contact-address details > button {
+  margin-left: 5px;
+}
+
+.checkout-address-section {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}

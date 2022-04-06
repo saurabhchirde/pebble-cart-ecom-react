@@ -1,0 +1,12 @@
+.account-body {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 70%;
+}
+
+@media screen and (max-width: 580px) {
+  .account-body {
+    width: 100%;
+  }
+}

@@ -17,6 +17,7 @@ export const users = [
     password: bcyrpt.hashSync("saurabh@123", 5),
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    addresses: [],
   },
   {
     _id: uuid(),
@@ -26,5 +27,6 @@ export const users = [
     password: bcyrpt.hashSync("test@123", 5),
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    addresses: [],
   },
 ];

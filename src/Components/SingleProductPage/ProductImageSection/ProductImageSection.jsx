@@ -6,6 +6,7 @@ import {
   useModal,
 } from "../../../Context";
 import { useState } from "react";
+import Alert from "../../Alert/Alert";
 
 const ProductImageSection = ({ item }) => {
   const { src1, src2, src3, src4, src5 } = item;
@@ -19,7 +20,8 @@ const ProductImageSection = ({ item }) => {
     addWishlist,
     setAddWishlist,
   } = useCart();
-  const { alertDispatch } = useAlert();
+  const { alertDispatch, addToWishlistAlert, removeFromWishlistAlert } =
+    useAlert();
 
   const wishlistConfig = {
     url: "/api/user/wishlist",
@@ -36,19 +38,19 @@ const ProductImageSection = ({ item }) => {
         alertDispatch({ type: "alreadyInWishlist" });
       } else {
         addToWishlistOnServer(wishlistConfig);
+        alertDispatch({ type: "addToWishlistAlert" });
       }
-      alertDispatch({ type: "addToWishlistAlert" });
     } else {
       setShowLogin(true);
     }
   };
 
   const removeFromWishlist = () => {
-    if (auth.login) {
-      alertDispatch({ type: "removeFromWishlistAlert" });
-      setAddWishlist("far fa-heart");
-      removeWishlistItemFromServer(wishlistConfig);
-    }
+    // if (auth.login) {
+    removeWishlistItemFromServer(wishlistConfig);
+    alertDispatch({ type: "removeFromWishlistAlert" });
+    setAddWishlist("far fa-heart");
+    // }
   };
 
   const wishlistButtonStatus = () => {
@@ -76,27 +78,70 @@ const ProductImageSection = ({ item }) => {
   };
 
   return (
-    <div className="single-product-image">
-      <button
-        onClick={wishlistButtonStatus}
-        className="btn primary-text-btn-sm icon-md"
-      >
-        <i className={addWishlist}></i>
-      </button>
-      <img
-        className="main-image"
-        src={currentImg}
-        alt="product-image"
-        loading="lazy"
-      />
-      <div className="single-product-image-options">
-        <img src={src1} alt="product-image" loading="lazy" onClick={onClick1} />
-        <img src={src2} alt="product-image" loading="lazy" onClick={onClick2} />
-        <img src={src3} alt="product-image" loading="lazy" onClick={onClick3} />
-        <img src={src4} alt="product-image" loading="lazy" onClick={onClick4} />
-        <img src={src5} alt="product-image" loading="lazy" onClick={onClick5} />
+    <>
+      {addToWishlistAlert && (
+        <Alert
+          alert="alert-success"
+          icon="fas fa-check-circle alert-icon"
+          text="Item Added to Wishlist"
+          dispatchType="hideAddToWishlistAlert"
+        />
+      )}
+      {removeFromWishlistAlert && (
+        <Alert
+          alert="alert-info"
+          icon="fas fa-info alert-icon"
+          text="Item Removed from Wishlist"
+          dispatchType="hideRemoveFromWishlistAlert"
+        />
+      )}
+      <div className="single-product-image">
+        <button
+          onClick={wishlistButtonStatus}
+          className="btn primary-text-btn-sm icon-md"
+        >
+          <i className={addWishlist}></i>
+        </button>
+        <img
+          className="main-image"
+          src={currentImg}
+          alt="product-image"
+          loading="lazy"
+        />
+        <div className="single-product-image-options">
+          <img
+            src={src1}
+            alt="product-image"
+            loading="lazy"
+            onClick={onClick1}
+          />
+          <img
+            src={src2}
+            alt="product-image"
+            loading="lazy"
+            onClick={onClick2}
+          />
+          <img
+            src={src3}
+            alt="product-image"
+            loading="lazy"
+            onClick={onClick3}
+          />
+          <img
+            src={src4}
+            alt="product-image"
+            loading="lazy"
+            onClick={onClick4}
+          />
+          <img
+            src={src5}
+            alt="product-image"
+            loading="lazy"
+            onClick={onClick5}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -56,7 +56,6 @@ const ProductsCard = ({ item }) => {
       } else {
         addToCartOnServer(cartConfig);
       }
-      alertDispatch({ type: "addToCartAlert" });
     } else {
       setShowLogin(true);
     }
@@ -69,7 +68,6 @@ const ProductsCard = ({ item }) => {
       } else {
         addToWishlistOnServer(wishlistConfig);
       }
-      alertDispatch({ type: "addToWishlistAlert" });
     } else {
       setShowLogin(true);
     }
@@ -78,7 +76,6 @@ const ProductsCard = ({ item }) => {
   const removeFromWishlist = () => {
     if (auth.login) {
       setAddWishlist("far fa-heart");
-      alertDispatch({ type: "removeFromWishlistAlert" });
       removeWishlistItemFromServer(wishlistConfig);
     }
   };
@@ -128,13 +125,13 @@ const ProductsCard = ({ item }) => {
             <h2>New Arrival</h2>
           </div>
         )}
-        <Link to="/products/product-details" state={{ item: item }}>
+        <Link to={`${item._id}`} state={{ item: item }}>
           <div className="card-img-container">
             <img src={src1} alt="product" loading="lazy" />
           </div>
         </Link>
         <div className="card-body">
-          <Link to="/products/product-details" state={{ item: item }}>
+          <Link to={`${item._id}`} state={{ item: item }}>
             <div className="card-text">
               <h1 className="card-title">{title}</h1>
               <div className="card-price-rating">

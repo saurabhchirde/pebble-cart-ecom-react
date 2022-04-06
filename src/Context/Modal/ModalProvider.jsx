@@ -6,10 +6,9 @@ const ModalProvider = ({ children }) => {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
   const [showSignupAlert, setShowSignupAlert] = useState(false);
-  const [error, setError] = useState("");
-  const [showError, setShowError] = useState(false);
   const [alertText, setAlertText] = useState("");
   const [showAlert, setShowAlert] = useState(false);
+  const [showNavMenu, setShowNavMenu] = useState(false);
 
   return (
     <modalContext.Provider
@@ -20,14 +19,12 @@ const ModalProvider = ({ children }) => {
         setShowSignup,
         showSignupAlert,
         setShowSignupAlert,
-        error,
-        setError,
-        showError,
-        setShowError,
         alertText,
         setAlertText,
         showAlert,
         setShowAlert,
+        showNavMenu,
+        setShowNavMenu,
       }}
     >
       {children}
