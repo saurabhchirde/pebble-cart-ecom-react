@@ -1,4 +1,4 @@
-import "./AnimateLoader.css";
+import "./Animation.css";
 import { useEffect } from "react";
 import login1 from "../../Data/Img/Animation/login_1.json";
 import { useAnimation } from "../../Context";
@@ -14,11 +14,11 @@ const AnimateLogin = () => {
     });
     const animateTime = setTimeout(() => {
       setLoginAnimate(false);
-    }, 2500);
+    }, 1500);
     return () => {
       clearTimeout(animateTime);
     };
-  }, []);
+  }, [setLoginAnimate]);
 
   return (
     <div className="loader-animation">

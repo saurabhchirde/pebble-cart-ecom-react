@@ -35,6 +35,10 @@
   animation: loader 2500ms ease-in-out;
 }
 
+#login_Animate{
+  width:10rem;
+}
+
 @keyframes loader {
   0% {
     opacity: 0.4;

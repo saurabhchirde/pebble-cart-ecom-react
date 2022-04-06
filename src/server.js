@@ -106,7 +106,7 @@ export function makeServer({ environment = "development" } = {}) {
       // address routes (private)
       this.get("/user/addresses", getAddressHandler.bind(this));
       this.post("/user/addresses", addAddressHandler.bind(this));
-      this.post("/user/addresses/:addressId", updateAddressHandler.bind(this));
+      this.post("/addresses/:addressId", updateAddressHandler.bind(this));
       this.delete(
         "/user/addresses/:addressId",
         removeAddressHandler.bind(this)

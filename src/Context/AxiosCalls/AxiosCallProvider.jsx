@@ -13,8 +13,8 @@ const AxiosCallProvider = ({ children }) => {
   const { setAlertText, setShowAlert, setShowLogin, setShowSignupAlert } =
     useModal();
   const { alertDispatch } = useAlert();
-  const { authDispatch } = useAuth();
-  const { showLoader } = useAnimation();
+  const { authDispatch, setLoginInput, setShowAddressModal } = useAuth();
+  const { showLoader, setLoginAnimate } = useAnimation();
 
   // login
   const userLogin = async (loginConfig) => {
@@ -24,9 +24,11 @@ const AxiosCallProvider = ({ children }) => {
       showLoader();
       const response = await axios.post(url, data);
       if (response.status === 200) {
+        setLoginAnimate(true);
         setAlertText(
           `Welcome back ${response.data.foundUser.firstName} ${response.data.foundUser.lastName}`
         );
+        showLoader();
         //save login credentials
         authDispatch({
           type: "login",
@@ -38,10 +40,11 @@ const AxiosCallProvider = ({ children }) => {
           payload: response.data.foundUser,
         });
 
-        console.log(response.data);
-
-        showLoader();
-        setShowAlert(true);
+        const successAnimation = setTimeout(() => {
+          setShowAlert(true);
+        }, 1800);
+        clearTimeout(successAnimation);
+        setLoginInput({ email: "", password: "" });
         setShowLogin(false);
       }
 
@@ -208,9 +211,11 @@ const AxiosCallProvider = ({ children }) => {
         type: "addAddressOnServer",
         payload: response.data.addresses,
       });
+
+      alertDispatch({ type: "addAddressAlert" });
       showLoader();
     } catch (error) {
-      setAlertText(error.response.data.errors);
+      setAlertText("Server Down, try later");
       showLoader();
       setShowAlert(true);
     }
@@ -230,26 +235,31 @@ const AxiosCallProvider = ({ children }) => {
       alertDispatch({ type: "addressDeletedAlert" });
       showLoader();
     } catch (error) {
-      setAlertText(error.response.data.errors);
+      setAlertText("Server Down, try later");
       showLoader();
       setShowAlert(true);
     }
   };
 
   // update address
-  const updateAddressOnServer = async (addressConfig) => {
-    const { url, headers, address } = addressConfig;
+  const updateAddressOnServer = async (updateAddressConfig) => {
+    const { url, body, headers } = updateAddressConfig;
+    const { address } = body;
     try {
       showLoader();
-      const response = await axios.post(`${url}/${address._id}`, headers);
+      const response = await axios.post(`${url}/${address._id}`, body, headers);
+      console.log("Update", response);
       authDispatch({
         type: "updateAddressOnServer",
         payload: response.data.addresses,
       });
-      console.log("Update", response.data.addresses);
+      setShowAddressModal(false);
+      setAlertText("Address updated successfully");
+      setShowAlert(true);
+      console.log("Update", response.data);
       showLoader();
     } catch (error) {
-      setAlertText(error.response.data.errors);
+      setAlertText("Server Down, try later");
       showLoader();
       setShowAlert(true);
     }

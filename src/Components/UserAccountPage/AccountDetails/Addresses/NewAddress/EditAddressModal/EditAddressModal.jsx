@@ -2,18 +2,18 @@ import { useAuth, useAxiosCalls } from "../../../../../../Context";
 import InputTypeOne from "../../../../../UI/Input/InputTypeOne";
 import Button from "../../../../../UI/Button/Button";
 
-const NewAddressModal = () => {
+const EditAddressModal = () => {
   const {
     auth,
     newAddress,
     setNewAddress,
     initialAddressState,
-    setShowAddressModal,
+    setShowEditAddressModal,
   } = useAuth();
-  const { addAddressOnServer } = useAxiosCalls();
+  const { updateAddressOnServer } = useAxiosCalls();
 
-  const addressConfig = {
-    url: "/api/user/addresses",
+  const updateAddressConfig = {
+    url: "/api/addresses",
     body: {
       address: { ...newAddress },
     },
@@ -22,8 +22,8 @@ const NewAddressModal = () => {
 
   const onSignupFormSubmitHandler = (e) => {
     e.preventDefault();
-    addAddressOnServer(addressConfig);
-    setShowAddressModal(false);
+    updateAddressOnServer(updateAddressConfig);
+    setShowEditAddressModal(false);
     setNewAddress(initialAddressState);
   };
 
@@ -40,12 +40,12 @@ const NewAddressModal = () => {
   };
 
   const onCloseClick = () => {
-    setShowAddressModal(false);
+    setShowEditAddressModal(false);
   };
 
   return (
     <>
-      {/* using signup modal to avoid repeating css */}
+      {/* using signup modal to avoid writing unnecessary css */}
       <div
         onClick={onCloseClick}
         className="modal-backdrop address-modal"
@@ -106,7 +106,7 @@ const NewAddressModal = () => {
             btnWrapper="signup-btn"
             type="submit"
             btnClassName="btn primary-btn-md"
-            label=" Add"
+            label="Edit Address"
           />
         </form>
       </div>
@@ -114,4 +114,4 @@ const NewAddressModal = () => {
   );
 };
 
-export default NewAddressModal;
+export default EditAddressModal;

@@ -25,11 +25,14 @@ const Signup = () => {
   const emailValidate =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  const passwordValid = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+  const passwordValidate = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
 
   const onSignupFormSubmitHandler = (e) => {
     e.preventDefault();
-    if (user.password.match(passwordValid) && user.email.match(emailValidate)) {
+    if (
+      user.password.match(passwordValidate) &&
+      user.email.match(emailValidate)
+    ) {
       userSignup(signupConfig);
       setShowSignup(false);
       setUser(initialSignupState);

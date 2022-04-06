@@ -2,10 +2,12 @@ import { useAuth, useTheme } from "../../../../../Context";
 import "./NewAddress.css";
 import "../SingleAddress/SingleAddress.css";
 import NewAddressModal from "./NewAddressModal/NewAddressModal";
+import EditAddressModal from "./EditAddressModal/EditAddressModal";
 
 const NewAddress = () => {
   const { darkTheme } = useTheme();
-  const { showAddressModal, setShowAddressModal } = useAuth();
+  const { showAddressModal, setShowAddressModal, showEditAddressModal } =
+    useAuth();
 
   const newAddressHandler = () => {
     setShowAddressModal(true);
@@ -13,9 +15,8 @@ const NewAddress = () => {
 
   return (
     <>
-      {showAddressModal && (
-        <NewAddressModal setShowAddressModal={setShowAddressModal} />
-      )}
+      {showEditAddressModal && <EditAddressModal />}
+      {showAddressModal && <NewAddressModal />}
       <div
         className={darkTheme ? "address-dark" : "address-light"}
         onClick={newAddressHandler}

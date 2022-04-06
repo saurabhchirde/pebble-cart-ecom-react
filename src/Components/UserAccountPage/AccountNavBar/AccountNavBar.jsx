@@ -10,8 +10,8 @@ const AccountNavBar = () => {
       <div
         className={
           darkTheme
-            ? "account-nav-bar-dark nav-bar nav-desktop"
-            : "account-nav-bar-light nav-bar nav-desktop"
+            ? "account-nav-bar-dark nav-bar user-nav-desktop"
+            : "account-nav-bar-light nav-bar user-nav-desktop"
         }
       >
         <div className="user-name">

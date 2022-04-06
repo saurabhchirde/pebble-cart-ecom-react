@@ -23,7 +23,9 @@ const ProductDetailSection = ({ item }) => {
   const navigate = useNavigate();
   const { setShowLogin } = useModal();
   const { addToCartOnServer, increaseCartItemQtyOnServer } = useAxiosCalls();
-  const { alertDispatch, addToCartAlert } = useAlert();
+  const {
+    alertState: { addToCartAlert },
+  } = useAlert();
   const { darkTheme } = useTheme();
 
   const cartConfig = {
@@ -42,7 +44,6 @@ const ProductDetailSection = ({ item }) => {
       } else {
         addToCartOnServer(cartConfig);
       }
-      alertDispatch({ type: "addToCartAlert" });
     } else {
       setShowLogin(true);
     }
@@ -79,7 +80,7 @@ const ProductDetailSection = ({ item }) => {
     } else {
       setAddWishlist("far fa-heart");
     }
-  }, [cart, wishlist]);
+  }, [cart, wishlist, setAddButton, setAddWishlist]);
 
   return (
     <>

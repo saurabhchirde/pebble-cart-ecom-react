@@ -11,6 +11,7 @@ const alertInitialState = {
   removeFromCartAlert: false,
   addToWishlistAlert: false,
   removeFromWishlistAlert: false,
+  addAddressAlert: false,
   addressDeletedAlert: false,
 };
 

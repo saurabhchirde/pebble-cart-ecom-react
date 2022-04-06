@@ -7,7 +7,7 @@
   flex-direction: column;
 }
 
-.nav-desktop {
+.user-nav-desktop {
   display: flex;
 }
 
@@ -87,7 +87,7 @@
     width: 18rem;
   }
 
-  .nav-desktop {
+  .user-nav-desktop {
     display: none;
   }
 

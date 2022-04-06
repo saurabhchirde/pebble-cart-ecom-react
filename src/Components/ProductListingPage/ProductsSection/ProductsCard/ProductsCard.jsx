@@ -108,7 +108,7 @@ const ProductsCard = ({ item }) => {
     } else {
       setAddWishlist("far fa-heart");
     }
-  }, [cart, wishlist]);
+  }, [cart, wishlist, setAddButton, setAddWishlist]);
 
   const productCardClass = darkTheme
     ? "card-vertical card-dark"

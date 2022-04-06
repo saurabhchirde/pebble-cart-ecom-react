@@ -88,6 +88,18 @@ const alertReducer = (alertState, action) => {
       };
 
     // address
+    case "addAddressAlert":
+      return {
+        ...alertState,
+        addAddressAlert: true,
+      };
+
+    case "hideAddAddressAlert":
+      return {
+        ...alertState,
+        addAddressAlert: false,
+      };
+
     case "addressDeletedAlert":
       return {
         ...alertState,

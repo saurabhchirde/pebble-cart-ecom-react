@@ -23,6 +23,8 @@ const initialAddressState = {
   address: "",
   pinCode: 0,
   mobile: 0,
+  createdAt: "",
+  updatedAt: "",
 };
 
 const authReducer = (auth, action) => {
@@ -99,6 +101,8 @@ const AuthProvider = ({ children }) => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [newAddress, setNewAddress] = useState(initialAddressState);
   const [showAddressModal, setShowAddressModal] = useState(false);
+  const [loginInput, setLoginInput] = useState({ email: "", password: "" });
+  const [showEditAddressModal, setShowEditAddressModal] = useState(false);
 
   useSessionStorageSet("authState", auth);
   return (
@@ -106,6 +110,8 @@ const AuthProvider = ({ children }) => {
       value={{
         auth,
         authDispatch,
+        loginInput,
+        setLoginInput,
         newAddress,
         setNewAddress,
         initialAddressState,
@@ -113,6 +119,8 @@ const AuthProvider = ({ children }) => {
         setShowAddressModal,
         showProfileMenu,
         setShowProfileMenu,
+        showEditAddressModal,
+        setShowEditAddressModal,
       }}
     >
       {children}

@@ -27,10 +27,11 @@ import AnimateLoader from "./Components/Animations/AnimateLoader";
 import NotFound from "./Pages/NotFound/NotFound";
 import { useEffect } from "react";
 import AccountPage from "./Pages/AccountPage/AccountPage";
+import AnimateLogin from "./Components/Animations/AnimateLogin";
 
 const App = () => {
   const { showLogin, showSignup, showSignupAlert, showAlert } = useModal();
-  const { loader, loaderCamera } = useAnimation();
+  const { loader, loaderCamera, loginAnimate } = useAnimation();
   const { auth } = useAuth();
   const { darkTheme } = useTheme();
 
@@ -48,6 +49,7 @@ const App = () => {
       {showSignup && <Signup />}
       {showSignupAlert && <SignupAlertModal />}
       {showAlert && <AlertModal />}
+      {loginAnimate && <AnimateLogin />}
       {loaderCamera && <AnimateCamera />}
       {!loaderCamera && (
         <div className="app">

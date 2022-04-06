@@ -20,8 +20,10 @@ const ProductImageSection = ({ item }) => {
     addWishlist,
     setAddWishlist,
   } = useCart();
-  const { alertDispatch, addToWishlistAlert, removeFromWishlistAlert } =
-    useAlert();
+  const {
+    alertDispatch,
+    alertState: { addToWishlistAlert, removeFromWishlistAlert },
+  } = useAlert();
 
   const wishlistConfig = {
     url: "/api/user/wishlist",
@@ -38,7 +40,6 @@ const ProductImageSection = ({ item }) => {
         alertDispatch({ type: "alreadyInWishlist" });
       } else {
         addToWishlistOnServer(wishlistConfig);
-        alertDispatch({ type: "addToWishlistAlert" });
       }
     } else {
       setShowLogin(true);
@@ -46,11 +47,10 @@ const ProductImageSection = ({ item }) => {
   };
 
   const removeFromWishlist = () => {
-    // if (auth.login) {
-    removeWishlistItemFromServer(wishlistConfig);
-    alertDispatch({ type: "removeFromWishlistAlert" });
-    setAddWishlist("far fa-heart");
-    // }
+    if (auth.login) {
+      removeWishlistItemFromServer(wishlistConfig);
+      setAddWishlist("far fa-heart");
+    }
   };
 
   const wishlistButtonStatus = () => {

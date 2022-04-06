@@ -54,7 +54,6 @@ const HorizontalProductsCard = ({ item }) => {
   };
 
   const onRemoveWishlistClickHandler = () => {
-    // alertDispatch({ type: "removeFromWishlistAlert" });
     removeWishlistItemFromServer(wishlistConfig);
   };
 
