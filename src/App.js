@@ -27,7 +27,6 @@ import AnimateLoader from "./Components/Animations/AnimateLoader";
 import NotFound from "./Pages/NotFound/NotFound";
 import { useEffect } from "react";
 import AccountPage from "./Pages/AccountPage/AccountPage";
-import AnimateLogin from "./Components/Animations/AnimateLogin";
 
 const App = () => {
   const { showLogin, showSignup, showSignupAlert, showAlert } = useModal();
