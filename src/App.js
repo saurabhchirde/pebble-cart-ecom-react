@@ -59,6 +59,7 @@ const App = () => {
               {/* public routes */}
               <Route path="/" element={<LandingPage />} />
               <Route path="products" element={<ProductListingPage />} />
+              <Route path="/products/search" element={<ProductListingPage />} />
               <Route path="/products/camera" element={<Camera />} />
               <Route path="/products/lenses" element={<Lens />} />
               <Route path="/products/tripods" element={<Tripod />} />
@@ -71,6 +72,7 @@ const App = () => {
               {auth.login && (
                 <Route path="cart/checkout" element={<CheckoutPage />} />
               )}
+
               <Route path="mockman" element={<Mockman />} />
               <Route path="*" element={<NotFound />} />
             </Routes>

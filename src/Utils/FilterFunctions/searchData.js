@@ -1,12 +1,13 @@
-const searchData = (filteredArray, state) => {
+const searchData = (filteredArray, { bySearch }) => {
   let withoutSearch = [...filteredArray];
+
   let tempArray = [];
-  if (state.bySearch === "") {
+  if (bySearch === "") {
     return withoutSearch;
   } else {
     tempArray.push(
       ...withoutSearch.filter((prod) =>
-        prod.title.toLowerCase().includes(state.bySearch.toLowerCase())
+        prod.title.toLowerCase().includes(bySearch.toLowerCase())
       )
     );
   }
