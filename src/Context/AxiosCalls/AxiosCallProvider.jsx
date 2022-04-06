@@ -14,7 +14,7 @@ const AxiosCallProvider = ({ children }) => {
     useModal();
   const { alertDispatch } = useAlert();
   const { authDispatch, setLoginInput, setShowAddressModal } = useAuth();
-  const { showLoader, setLoginAnimate } = useAnimation();
+  const { showLoader } = useAnimation();
 
   // login
   const userLogin = async (loginConfig) => {
@@ -24,7 +24,6 @@ const AxiosCallProvider = ({ children }) => {
       showLoader();
       const response = await axios.post(url, data);
       if (response.status === 200) {
-        setLoginAnimate(true);
         setAlertText(
           `Welcome back ${response.data.foundUser.firstName} ${response.data.foundUser.lastName}`
         );
@@ -39,11 +38,7 @@ const AxiosCallProvider = ({ children }) => {
           type: "authCartInitiate",
           payload: response.data.foundUser,
         });
-
-        const successAnimation = setTimeout(() => {
-          setShowAlert(true);
-        }, 1800);
-        clearTimeout(successAnimation);
+        setShowAlert(true);
         setLoginInput({ email: "", password: "" });
         setShowLogin(false);
       }

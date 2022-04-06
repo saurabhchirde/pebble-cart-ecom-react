@@ -5,7 +5,6 @@ const animationContext = createContext(null);
 const AnimationProvider = ({ children }) => {
   const [loader, setLoader] = useState(false);
   const [loaderCamera, setLoaderCamera] = useState(true);
-  const [loginAnimate, setLoginAnimate] = useState(false);
 
   const showLoader = () => {
     setLoader((loader) => !loader);
@@ -19,8 +18,6 @@ const AnimationProvider = ({ children }) => {
         showLoader,
         loaderCamera,
         setLoaderCamera,
-        loginAnimate,
-        setLoginAnimate,
       }}
     >
       {children}

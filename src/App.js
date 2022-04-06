@@ -31,7 +31,7 @@ import AnimateLogin from "./Components/Animations/AnimateLogin";
 
 const App = () => {
   const { showLogin, showSignup, showSignupAlert, showAlert } = useModal();
-  const { loader, loaderCamera, loginAnimate } = useAnimation();
+  const { loader, loaderCamera } = useAnimation();
   const { auth } = useAuth();
   const { darkTheme } = useTheme();
 
@@ -49,7 +49,6 @@ const App = () => {
       {showSignup && <Signup />}
       {showSignupAlert && <SignupAlertModal />}
       {showAlert && <AlertModal />}
-      {loginAnimate && <AnimateLogin />}
       {loaderCamera && <AnimateCamera />}
       {!loaderCamera && (
         <div className="app">
