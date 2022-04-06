@@ -26,9 +26,10 @@ import AnimateCamera from "./Components/Animations/AnimateCamera";
 import AnimateLoader from "./Components/Animations/AnimateLoader";
 import NotFound from "./Pages/NotFound/NotFound";
 import { useEffect } from "react";
+import AccountPage from "./Pages/AccountPage/AccountPage";
 
 const App = () => {
-  const { showLogin, showSignup, showSignupAlert, showError } = useModal();
+  const { showLogin, showSignup, showSignupAlert, showAlert } = useModal();
   const { loader, loaderCamera } = useAnimation();
   const { auth } = useAuth();
   const { darkTheme } = useTheme();
@@ -46,7 +47,7 @@ const App = () => {
       {showLogin && <Login />}
       {showSignup && <Signup />}
       {showSignupAlert && <SignupAlertModal />}
-      {showError && <AlertModal />}
+      {showAlert && <AlertModal />}
       {loaderCamera && <AnimateCamera />}
       {!loaderCamera && (
         <div className="app">
@@ -62,11 +63,9 @@ const App = () => {
               <Route path="/products/lenses" element={<Lens />} />
               <Route path="/products/tripods" element={<Tripod />} />
               <Route path="/products/accessories" element={<Accessories />} />
-              <Route
-                path="products/product-details"
-                element={<SingleProduct />}
-              />
+              <Route path="/products/:productID" element={<SingleProduct />} />
               {/* private routes */}
+              {auth.login && <Route path="account" element={<AccountPage />} />}
               <Route path="wishlist" element={<WishlistPage />} />
               <Route path="cart" element={<CartPage />} />
               {auth.login && (

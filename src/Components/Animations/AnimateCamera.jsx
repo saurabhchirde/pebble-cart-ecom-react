@@ -20,7 +20,7 @@ const AnimateCamera = () => {
     return () => {
       clearTimeout(animateTime);
     };
-  }, []);
+  }, [setLoaderCamera]);
 
   return (
     <div className="camera-animation">

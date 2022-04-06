@@ -56,7 +56,13 @@ const CartPage = () => {
             </div>
           ) : (
             <div className="flex-row flex-justify-space-between">
-              <div className="cart-products">
+              <div
+                className={
+                  darkTheme
+                    ? "cart-products"
+                    : "cart-products cart-products-light"
+                }
+              >
                 {cartState.cart.map((item) => {
                   return <CartItemCard item={item} key={item._id} />;
                 })}

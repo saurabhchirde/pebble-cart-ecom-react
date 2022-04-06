@@ -1,16 +1,14 @@
 import { useState } from "react";
-import { useAxiosCalls, useModal } from "../../../Context";
+import { useAuth, useAxiosCalls, useModal } from "../../../Context";
 import Button from "../Button/Button";
 import InputTypeOne from "../Input/InputTypeOne";
 import "./Login.css";
 
 const Login = () => {
-  const [loginInput, setLoginInput] = useState({
-    email: "",
-    password: "",
-  });
+  const { loginInput, setLoginInput } = useAuth();
 
-  const { setShowLogin, setShowSignup } = useModal();
+  const { setShowLogin, setShowSignup, setAlertText, setShowAlert } =
+    useModal();
   const { userLogin } = useAxiosCalls();
 
   const loginConfig = {
@@ -18,11 +16,28 @@ const Login = () => {
     data: loginInput,
   };
 
+  const testLoginConfig = {
+    url: "/api/auth/login",
+    data: {
+      email: "test@gmail.com",
+      password: "test@123",
+    },
+  };
+
+  const emailValidate =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
   const onLoginClickFormHandler = () => {
-    if (loginInput.name === "" || loginInput.password === "") {
-      return;
+    if (loginInput.email.trim() === "" || loginInput.password.trim() === "") {
+      setAlertText("Input cannot be blank, try again");
+      setShowAlert(true);
     } else {
-      userLogin(loginConfig);
+      if (loginInput.email.match(emailValidate)) {
+        userLogin(loginConfig);
+      } else {
+        setAlertText("Entered email is wrong, please try again");
+        setShowAlert(true);
+      }
     }
   };
 
@@ -43,11 +58,7 @@ const Login = () => {
   };
 
   const onTestButtonClickFormHandler = () => {
-    setLoginInput({
-      email: "test@gmail.com",
-      password: "test@123",
-    });
-    userLogin(loginConfig);
+    userLogin(testLoginConfig);
   };
 
   return (
@@ -73,8 +84,7 @@ const Login = () => {
           <InputTypeOne
             type="email"
             name="email"
-            // required="required"    commented for development
-            autoComplete="email"
+            required="required"
             placeholder="Enter your email *"
             iconWrapper="input-icon"
             icon="far fa-envelope"
@@ -85,8 +95,7 @@ const Login = () => {
           <InputTypeOne
             type="password"
             name="password"
-            // required="required"     commented for development
-            autoComplete="current-password"
+            required="required"
             placeholder="Enter your password *"
             iconWrapper="input-icon"
             icon="fas fa-key"

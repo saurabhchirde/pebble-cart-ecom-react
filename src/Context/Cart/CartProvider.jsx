@@ -24,8 +24,8 @@ const cartContext = createContext({});
 
 const CartProvider = ({ children }) => {
   const [cartState, cartDispatch] = useReducer(cartReducer, initialCartState);
-  const { auth } = useAuth();
-  const { setError, setShowError } = useModal();
+  const { auth, authDispatch } = useAuth();
+  const { setAlertText, setShowAlert } = useModal();
   const [addButton, setAddButton] = useState("Add to Cart");
   const [addWishlist, setAddWishlist] = useState("far fa-heart");
 
@@ -40,6 +40,10 @@ const CartProvider = ({ children }) => {
             headers: { authorization: auth.token },
           });
 
+          const respAddresses = await axios.get("/api/user/addresses", {
+            headers: { authorization: auth.token },
+          });
+
           cartDispatch({
             type: "getCartFromServer",
             payload: respCart.data.cart,
@@ -48,9 +52,13 @@ const CartProvider = ({ children }) => {
             type: "getWishlistFromServer",
             payload: respWishlist.data.wishlist,
           });
+          authDispatch({
+            type: "getAddressesFromServer",
+            payload: respAddresses.data.addresses,
+          });
         } catch (error) {
-          setError(error.message);
-          setShowError(true);
+          setAlertText(error.message);
+          setShowAlert(true);
         }
       };
       fetchData();

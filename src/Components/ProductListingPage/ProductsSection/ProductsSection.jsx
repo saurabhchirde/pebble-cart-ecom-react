@@ -27,7 +27,7 @@ const ProductsSection = () => {
     } else {
       filterDispatch({ type: "Clear" });
     }
-  }, [location.pathname]);
+  }, [location.pathname, filterDispatch]);
 
   const categoryName =
     filterState.byCategory.camera &&

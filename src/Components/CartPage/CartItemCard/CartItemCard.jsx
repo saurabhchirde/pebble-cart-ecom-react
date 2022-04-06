@@ -15,7 +15,7 @@ const CartItemCard = ({ item }) => {
     cartState: { wishlist, totalPrice, coupon },
   } = useCart();
   const { auth } = useAuth();
-  const { setError, setShowError } = useModal();
+  const { setAlertText, setShowAlert } = useModal();
   const {
     addToWishlistOnServer,
     removeCartItemFromServer,
@@ -46,7 +46,7 @@ const CartItemCard = ({ item }) => {
       product: { ...item, qty: 1 },
     },
     headers: { headers: { authorization: auth.token } },
-    dispatch: { setError, setShowError },
+    dispatch: { setAlertText, setShowAlert },
     item: item,
   };
 
@@ -55,23 +55,20 @@ const CartItemCard = ({ item }) => {
       alertDispatch({ type: "alreadyInWishlist" });
     } else {
       addToWishlistOnServer(wishlistConfig);
+      alertDispatch({ type: "addToWishlistAlert" });
     }
     removeCartItemFromServer(cartConfig);
-    alertDispatch({ type: "addToWishlistAlert" });
   };
 
   const onRemoveClickHandler = () => {
-    alertDispatch({ type: "removeFromCartAlert" });
     removeCartItemFromServer(cartConfig);
   };
 
   const increaseQty = () => {
-    alertDispatch({ type: "cartEditedAlert" });
     increaseCartItemQtyOnServer(cartConfig);
   };
 
   const decreaseQty = () => {
-    alertDispatch({ type: "cartEditedAlert" });
     decreaseCartItemQtyOnServer(cartConfig);
   };
 

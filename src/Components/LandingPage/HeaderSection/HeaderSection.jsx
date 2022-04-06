@@ -29,7 +29,7 @@ const HeaderSection = () => {
     return () => {
       clearInterval(imgTime);
     };
-  }, [currImg]);
+  }, [currImg, setCurrImg]);
 
   return (
     <>

@@ -58,7 +58,7 @@ const PriceCard = () => {
     return () => {
       // to unmount useEffect
     };
-  }, [cartState.cart]);
+  }, [cartState.cart, cartDispatch]);
 
   // to update total price after changing qty
   useEffect(() => {
@@ -69,7 +69,7 @@ const PriceCard = () => {
     return () => {
       // to unmount useEffect
     };
-  }, [cartState.totalQty]);
+  }, [cartState.totalQty, cartDispatch]);
 
   const cartPriceTableClass = darkTheme
     ? "cart-price-table price-table-dark"

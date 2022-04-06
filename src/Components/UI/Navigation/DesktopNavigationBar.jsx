@@ -20,7 +20,7 @@ const DesktopNavigationBar = () => {
     cartState: { cart, wishlist },
   } = useCart();
 
-  const { setShowLogin, setError, setShowError } = useModal();
+  const { setShowLogin, setAlertText, setShowAlert } = useModal();
   const { filterDispatch, searchInput, setSearchInput } = useFilter();
   const { auth, authDispatch, showProfileMenu, setShowProfileMenu } = useAuth();
   const { darkTheme, setDarkTheme } = useTheme();
@@ -52,15 +52,12 @@ const DesktopNavigationBar = () => {
 
   const logoutClickHandler = () => {
     authDispatch({ type: "logout" });
-    setError("Logged out successfully");
-    setShowError(true);
-    if (
-      location.pathname.includes(
-        "checkout" || "user" || "profile" || "settings"
-      )
-    ) {
+    setAlertText("Logged out successfully");
+    setShowAlert(true);
+    if (location.pathname.includes("checkout" || "account" || "settings")) {
       navigate("/products");
     }
+    navigate("/");
   };
 
   const toggleProfileMenu = () => {
@@ -131,10 +128,7 @@ const DesktopNavigationBar = () => {
             </Link>
           )}
           {auth.login && (
-            <div
-              onMouseEnter={toggleProfileMenu}
-              onMouseLeave={toggleProfileMenu}
-            >
+            <div onClick={toggleProfileMenu}>
               <NavbarAvatar
                 avatarWrapper="badge-container"
                 avatarClassName="avatar text-avatar-xsm-round"
@@ -143,7 +137,7 @@ const DesktopNavigationBar = () => {
               />
               {showProfileMenu && (
                 <div className="profile-hover-menu card-shadow-two">
-                  <Link to="user">
+                  <Link to="account">
                     <h2>Profile</h2>
                   </Link>
                   <h2>Support</h2>

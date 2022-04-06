@@ -87,6 +87,31 @@ const alertReducer = (alertState, action) => {
         alreadyInWishlist: false,
       };
 
+    // address
+    case "addAddressAlert":
+      return {
+        ...alertState,
+        addAddressAlert: true,
+      };
+
+    case "hideAddAddressAlert":
+      return {
+        ...alertState,
+        addAddressAlert: false,
+      };
+
+    case "addressDeletedAlert":
+      return {
+        ...alertState,
+        addressDeletedAlert: true,
+      };
+
+    case "hideAddressDeletedAlert":
+      return {
+        ...alertState,
+        addressDeletedAlert: false,
+      };
+
     default:
       return alertState;
   }

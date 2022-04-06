@@ -8,7 +8,7 @@ const Alert = (props) => {
   useEffect(() => {
     const alertTime = setTimeout(() => {
       alertDispatch({ type: props.dispatchType });
-    }, 700);
+    }, 1000);
     return () => {
       clearTimeout(alertTime);
     };

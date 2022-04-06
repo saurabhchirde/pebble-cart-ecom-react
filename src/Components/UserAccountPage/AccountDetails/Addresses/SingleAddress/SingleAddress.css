@@ -1,0 +1,43 @@
+.address-dark {
+  background-color: var(--dark-theme-card-hover);
+}
+
+.address-light {
+  background-color: var(--light-theme-card-hover);
+}
+
+.address-light,
+.address-dark {
+  width: 95%;
+  margin: 0 auto;
+  text-align: left;
+  border-radius: 4px;
+}
+
+.address-light .address-text,
+.address-dark .address-text {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 1rem;
+  width: 100%;
+}
+
+.address-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  border-top: 1px solid var(--btn-hover);
+}
+
+.address-cta-edit {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.address-cta-edit button {
+  font-weight: 500;
+}

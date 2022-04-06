@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 const NavbarLoginButton = (props) => {
   const { auth, authDispatch } = useAuth();
-  const { setShowLogin, setShowSignup, setError, setShowError } = useModal();
+  const { setShowLogin, setShowSignup, setAlertText, setShowAlert } =
+    useModal();
   const navigate = useNavigate();
 
   const onNavbarLoginClickHandler = () => {
@@ -12,8 +13,8 @@ const NavbarLoginButton = (props) => {
       setShowLogin(true);
       setShowSignup(false);
     } else {
-      setError(`Logged out successfully`);
-      setShowError(true);
+      setAlertText(`Logged out successfully`);
+      setShowAlert(true);
       authDispatch({ type: "logout" });
       navigate("/products");
       setShowLogin(false);

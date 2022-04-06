@@ -4,14 +4,16 @@ import { useCart } from "../Cart/CartProvider";
 import { useModal } from "../Modal/ModalProvider";
 import { useAuth } from "../Auth/AuthProvider";
 import { useAnimation } from "../Animation/AnimationProvider";
+import { useAlert } from "../Alerts/AlertsProvider";
 
 const axiosContext = createContext(null);
 
 const AxiosCallProvider = ({ children }) => {
   const { cartDispatch } = useCart();
-  const { setError, setShowError, setShowLogin, setShowSignupAlert } =
+  const { setAlertText, setShowAlert, setShowLogin, setShowSignupAlert } =
     useModal();
-  const { authDispatch } = useAuth();
+  const { alertDispatch } = useAlert();
+  const { authDispatch, setLoginInput, setShowAddressModal } = useAuth();
   const { showLoader } = useAnimation();
 
   // login
@@ -22,9 +24,10 @@ const AxiosCallProvider = ({ children }) => {
       showLoader();
       const response = await axios.post(url, data);
       if (response.status === 200) {
-        setError(
+        setAlertText(
           `Welcome back ${response.data.foundUser.firstName} ${response.data.foundUser.lastName}`
         );
+        showLoader();
         //save login credentials
         authDispatch({
           type: "login",
@@ -35,27 +38,19 @@ const AxiosCallProvider = ({ children }) => {
           type: "authCartInitiate",
           payload: response.data.foundUser,
         });
-
-        showLoader();
-        setShowError(true);
+        setShowAlert(true);
+        setLoginInput({ email: "", password: "" });
         setShowLogin(false);
       }
 
       if (response.status === 201) {
-        setError("Invalid Password, Try Again");
+        setAlertText("Invalid Password, Try Again");
         showLoader();
-        setShowError(true);
+        setShowAlert(true);
       }
     } catch (error) {
-      let msg = JSON.stringify(error);
-      let parsedMsg = JSON.parse(msg);
-      const alertText =
-        parsedMsg.status === 404
-          ? "Email Address doesn't Exist, Please Signup"
-          : "Server Error, Try Again";
-
-      setError(alertText);
-      setShowError(true);
+      setAlertText(error.response.data.errors);
+      setShowAlert(true);
       showLoader();
     }
   };
@@ -72,9 +67,9 @@ const AxiosCallProvider = ({ children }) => {
       }
       showLoader();
     } catch (error) {
-      setError(error.message);
+      setAlertText(error.response.data.errors);
       showLoader();
-      setShowError(true);
+      setShowAlert(true);
     }
   };
 
@@ -86,11 +81,12 @@ const AxiosCallProvider = ({ children }) => {
       showLoader();
       const response = await axios.post(url, body, headers);
       cartDispatch({ type: "addToCartServer", payload: response.data.cart });
+      alertDispatch({ type: "addToCartAlert" });
       showLoader();
     } catch (error) {
-      setError(error.message);
+      setAlertText("Server Down, Try Later");
       showLoader();
-      setShowError(true);
+      setShowAlert(true);
     }
   };
 
@@ -105,11 +101,12 @@ const AxiosCallProvider = ({ children }) => {
         type: "removeFromCartServer",
         payload: response.data.cart,
       });
+      alertDispatch({ type: "removeFromCartAlert" });
       showLoader();
     } catch (error) {
-      setError(error.message);
+      setAlertText(error.response.data.errors);
       showLoader();
-      setShowError(true);
+      setShowAlert(true);
     }
   };
 
@@ -127,11 +124,12 @@ const AxiosCallProvider = ({ children }) => {
         type: "incQtyOnCartServer",
         payload: response.data.cart,
       });
+      alertDispatch({ type: "cartEditedAlert" });
       showLoader();
     } catch (error) {
-      setError(error.message);
+      setAlertText(error.response.data.errors);
       showLoader();
-      setShowError(true);
+      setShowAlert(true);
     }
   };
 
@@ -149,11 +147,12 @@ const AxiosCallProvider = ({ children }) => {
         type: "decQtyOnCartServer",
         payload: response.data.cart,
       });
+      alertDispatch({ type: "cartEditedAlert" });
       showLoader();
     } catch (error) {
-      setError(error.message);
+      setAlertText(error.response.data.errors);
       showLoader();
-      setShowError(true);
+      setShowAlert(true);
     }
   };
 
@@ -167,11 +166,12 @@ const AxiosCallProvider = ({ children }) => {
         type: "addToWishlistServer",
         payload: response.data.wishlist,
       });
+      alertDispatch({ type: "addToWishlistAlert" });
       showLoader();
     } catch (error) {
-      setError(error.message);
+      setAlertText(error.response.data.errors);
       showLoader();
-      setShowError(true);
+      setShowAlert(true);
     }
   };
 
@@ -186,11 +186,77 @@ const AxiosCallProvider = ({ children }) => {
         type: "removeFromWishlistServer",
         payload: response.data.wishlist,
       });
+      alertDispatch({ type: "removeFromWishlistAlert" });
       showLoader();
     } catch (error) {
-      setError(error.message);
+      setAlertText(error.response.data.errors);
       showLoader();
-      setShowError(true);
+      setShowAlert(true);
+    }
+  };
+
+  // addresses
+  const addAddressOnServer = async (addressConfig) => {
+    const { url, body, headers } = addressConfig;
+
+    try {
+      showLoader();
+      const response = await axios.post(url, body, headers);
+      authDispatch({
+        type: "addAddressOnServer",
+        payload: response.data.addresses,
+      });
+
+      alertDispatch({ type: "addAddressAlert" });
+      showLoader();
+    } catch (error) {
+      setAlertText("Server Down, try later");
+      showLoader();
+      setShowAlert(true);
+    }
+  };
+
+  // remove from address
+  const removeAddressFromServer = async (addressConfig) => {
+    const { url, headers, address } = addressConfig;
+
+    try {
+      showLoader();
+      const response = await axios.delete(`${url}/${address._id}`, headers);
+      authDispatch({
+        type: "removeAddressFromServer",
+        payload: response.data.addresses,
+      });
+      alertDispatch({ type: "addressDeletedAlert" });
+      showLoader();
+    } catch (error) {
+      setAlertText("Server Down, try later");
+      showLoader();
+      setShowAlert(true);
+    }
+  };
+
+  // update address
+  const updateAddressOnServer = async (updateAddressConfig) => {
+    const { url, body, headers } = updateAddressConfig;
+    const { address } = body;
+    try {
+      showLoader();
+      const response = await axios.post(`${url}/${address._id}`, body, headers);
+      console.log("Update", response);
+      authDispatch({
+        type: "updateAddressOnServer",
+        payload: response.data.addresses,
+      });
+      setShowAddressModal(false);
+      setAlertText("Address updated successfully");
+      setShowAlert(true);
+      console.log("Update", response.data);
+      showLoader();
+    } catch (error) {
+      setAlertText("Server Down, try later");
+      showLoader();
+      setShowAlert(true);
     }
   };
 
@@ -205,6 +271,9 @@ const AxiosCallProvider = ({ children }) => {
         decreaseCartItemQtyOnServer,
         addToWishlistOnServer,
         removeWishlistItemFromServer,
+        addAddressOnServer,
+        removeAddressFromServer,
+        updateAddressOnServer,
       }}
     >
       {children}
