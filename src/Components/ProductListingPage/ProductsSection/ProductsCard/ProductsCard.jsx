@@ -125,13 +125,13 @@ const ProductsCard = ({ item }) => {
             <h2>New Arrival</h2>
           </div>
         )}
-        <Link to={`${item._id}`} state={{ item: item }}>
+        <Link to={`/products/${item._id}`} state={{ item: item }}>
           <div className="card-img-container">
             <img src={src1} alt="product" loading="lazy" />
           </div>
         </Link>
         <div className="card-body">
-          <Link to={`${item._id}`} state={{ item: item }}>
+          <Link to={`/products/${item._id}`} state={{ item: item }}>
             <div className="card-text">
               <h1 className="card-title">{title}</h1>
               <div className="card-price-rating">

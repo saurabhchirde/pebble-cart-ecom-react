@@ -26,12 +26,13 @@ const DesktopNavigationBar = () => {
   const { darkTheme, setDarkTheme } = useTheme();
   const location = useLocation();
   const navigate = useNavigate();
-  const showSearch = location.pathname.includes("products") ? true : false;
   const hideOnCheckout = location.pathname.includes("/checkout") ? false : true;
 
   const onSearchSubmitHandler = (e) => {
     e.preventDefault();
     filterDispatch({ type: "bySearch", payload: searchInput });
+    navigate(`/products/search?query=${searchInput}`);
+    setSearchInput("");
   };
 
   const onSearchInputHandler = (e) => {
@@ -83,17 +84,15 @@ const DesktopNavigationBar = () => {
             alt="logo"
           />
         </Link>
-        {showSearch && (
-          <SearchBar
-            searchWrapper="search-container"
-            micIcon="hide"
-            searchIcon="fas fa-search"
-            placeholder="Search"
-            onChange={onSearchInputHandler}
-            onSubmit={onSearchSubmitHandler}
-            value={searchInput}
-          />
-        )}
+        <SearchBar
+          searchWrapper="search-container"
+          micIcon="hide"
+          searchIcon="fas fa-search"
+          placeholder="Search"
+          onChange={onSearchInputHandler}
+          onSubmit={onSearchSubmitHandler}
+          value={searchInput}
+        />
         <div className="nav-bar-btns">
           {!auth.login && (
             <NavbarLoginButton

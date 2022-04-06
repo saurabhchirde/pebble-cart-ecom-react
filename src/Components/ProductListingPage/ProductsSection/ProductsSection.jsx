@@ -8,26 +8,30 @@ import { useEffect } from "react";
 const ProductsSection = () => {
   const { filterState, filterDispatch } = useFilter();
   const { productState } = useProductProvider();
-  const location = useLocation();
+  const { pathname, search } = useLocation();
   const { darkTheme } = useTheme();
+  const urlParam = new URLSearchParams(search);
+  const searchQuery = urlParam.get("query");
 
   useEffect(() => {
-    if (location.pathname === "/products/camera") {
+    if (pathname === "/products/camera") {
       filterDispatch({ type: "Clear" });
       filterDispatch({ type: "Camera", payload: "Camera" });
-    } else if (location.pathname === "/products/lenses") {
+    } else if (pathname === "/products/lenses") {
       filterDispatch({ type: "Clear" });
       filterDispatch({ type: "Lenses", payload: "Lenses" });
-    } else if (location.pathname === "/products/tripods") {
+    } else if (pathname === "/products/tripods") {
       filterDispatch({ type: "Clear" });
       filterDispatch({ type: "Tripods", payload: "Tripods" });
-    } else if (location.pathname === "/products/accessories") {
+    } else if (pathname === "/products/accessories") {
       filterDispatch({ type: "Clear" });
       filterDispatch({ type: "Accessories", payload: "Accessories" });
+    } else if (searchQuery) {
+      filterDispatch({ type: "bySearch", payload: searchQuery });
     } else {
       filterDispatch({ type: "Clear" });
     }
-  }, [location.pathname, filterDispatch]);
+  }, [pathname, filterDispatch]);
 
   const categoryName =
     filterState.byCategory.camera &&

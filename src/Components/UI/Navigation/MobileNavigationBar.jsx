@@ -14,11 +14,11 @@ const MobileNavigationBar = () => {
   const { setAlertText, setShowAlert, setShowNavMenu } = useModal();
   const { darkTheme, setDarkTheme } = useTheme();
 
-  const showSearch = location.pathname.includes("products") ? true : false;
-
   const onSearchSubmitHandler = (e) => {
     e.preventDefault();
     filterDispatch({ type: "bySearch", payload: searchInput });
+    navigate(`/products/search?query=${searchInput}`);
+    setSearchInput("");
   };
 
   const onSearchInputHandler = (e) => {
@@ -69,16 +69,15 @@ const MobileNavigationBar = () => {
             <img className="logo" src={logoIcon} alt="logo" />
           </Link>
         </div>
-        {showSearch && (
-          <SearchBar
-            searchWrapper="search-container"
-            micIcon="hide"
-            searchIcon="fas fa-search"
-            placeholder="Search"
-            onChange={onSearchInputHandler}
-            onSubmit={onSearchSubmitHandler}
-          />
-        )}
+        <SearchBar
+          searchWrapper="search-container"
+          micIcon="hide"
+          searchIcon="fas fa-search"
+          placeholder="Search"
+          onChange={onSearchInputHandler}
+          onSubmit={onSearchSubmitHandler}
+          value={searchInput}
+        />
         <div className="nav-bar-btns">
           {!auth.login && (
             <NavbarLoginButton

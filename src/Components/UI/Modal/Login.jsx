@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useAuth, useAxiosCalls, useModal } from "../../../Context";
 import Button from "../Button/Button";
 import InputTypeOne from "../Input/InputTypeOne";
