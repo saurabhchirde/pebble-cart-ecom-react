@@ -15,10 +15,19 @@ const CheckoutPage = () => {
       <div className="flex-row flex-justify-space-between">
         {cartState.cart.length < 1 ? (
           <div className="checkout-empty-cart">
-            <h2>Your cart is Empty</h2>
-            <Link to="/products">
-              <Button label="Show Now" btnClassName="btn primary-btn-lg" />
-            </Link>
+            <h2 style={{ color: darkTheme ? "#fff" : "#333" }}>
+              Your cart is Empty
+            </h2>
+            <div className="flex-row-center">
+              <Link to="/products">
+                <Button label="Show Now" btnClassName="btn primary-btn-lg" />
+              </Link>
+              <Link to="/account/orders">
+                <button className="btn primary-outline-btn-lg">
+                  Check Orders
+                </button>
+              </Link>
+            </div>
           </div>
         ) : (
           <>

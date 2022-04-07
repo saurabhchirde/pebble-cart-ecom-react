@@ -17,7 +17,7 @@ const OrderSummary = () => {
     showLoader();
     setTimeout(() => {
       showLoader();
-      setAlertText("Your order is Successful");
+      setAlertText("Successfully placed your order");
       setShowAlert(true);
       cartDispatch({
         type: "makePayment",
