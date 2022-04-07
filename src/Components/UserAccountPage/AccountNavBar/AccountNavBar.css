@@ -3,25 +3,32 @@
   height: 95vh;
   min-width: 17rem;
   top: 4rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .account-nav-bar-dark,
 .account-nav-bar-light {
   padding: 1rem;
-  color: var(--title-color);
+  color: var(--text-light);
 }
 
 .account-nav-bar-dark {
-  background-color: var(--secondary-dark-bg);
   color: var(--text-light);
 }
+
 .account-nav-bar-light {
-  background-color: var(--secondary-light-bg);
   color: var(--text-dark);
 }
 
 .user-name {
-  margin-top: 8px;
+  margin-top: 1.4rem;
+}
+
+.user-name > div {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-left: 1rem;
 }
 
 .user-name,
@@ -45,9 +52,19 @@
   margin-left: 10px;
 }
 
-.nav-menu h2 {
-  font-weight: 500;
-  font-size: 1.1rem;
+.nav-menu-title {
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.account-nav-bar-dark .nav-menu h2,
+.account-nav-bar-dark .user-name h1 {
+  color: var(--text-light);
+}
+
+.account-nav-bar-light .nav-menu h2,
+.account-nav-bar-light .user-name h1 {
+  color: var(--text-dark);
 }
 
 .nav-orders,
@@ -56,7 +73,7 @@
 .nav-support,
 .nav-settings {
   width: 95%;
-  padding: 10px 0;
+  padding: 0.7rem 1rem;
   margin: 10px;
 }
 
@@ -68,6 +85,12 @@
   margin-right: 10px;
   font-size: 1.2rem;
   color: var(--primary-color);
+}
+
+.active-nav {
+  border-radius: 4px;
+  outline: 1px solid var(--primary-color);
+  transition: 0.3s ease-in;
 }
 
 @media screen and (max-width: 580px) {

@@ -1,12 +1,111 @@
-.account-body {
+.account-body-dark,
+.account-body-light {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 1rem;
+  width: 100%;
+  gap: 10px;
+  margin: 1rem auto;
+}
+
+.account-body-dark a,
+.account-body-light a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10rem;
+  width: 15rem;
   margin: 0 auto;
-  width: 70%;
+}
+
+.account-body-dark a:hover,
+.account-body-light a:hover {
+  background-color: var(--primary-color);
+  color: var(--text-white);
+}
+
+.account-body-light a:hover {
+  color: var(--text-dark);
+}
+
+.account-body-dark i,
+.account-body-light i {
+  font-size: 2.5rem;
+  color: var(--text-white);
+}
+
+.account-body-light i {
+  color: var(--text-dark);
+}
+
+.account-body-dark h2,
+.account-body-light h2 {
+  color: var(--text-lighter);
+  margin-left: 1.3rem;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.account-body-light h2 {
+  color: var(--text-dark);
+}
+
+.account-menu-overview {
+  background-color: var(--btn-hover);
+  border-radius: 10px;
 }
 
 @media screen and (max-width: 580px) {
-  .account-body {
+  .account-body-dark,
+  .account-body-light {
     width: 100%;
+  }
+
+  .account-body-dark a,
+  .account-body-light a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 10rem;
+    width: 9.5rem;
+    margin: 0 auto;
+  }
+
+  .account-body-dark a:hover,
+  .account-body-light a:hover {
+    background-color: var(--primary-color);
+    color: var(--text-white);
+  }
+
+  .account-body-light a:hover {
+    color: var(--text-dark);
+  }
+
+  .account-body-dark i,
+  .account-body-light i {
+    font-size: 1.4rem;
+    color: var(--text-white);
+  }
+
+  .account-body-light i {
+    color: var(--text-dark);
+  }
+
+  .account-body-dark h2,
+  .account-body-light h2 {
+    color: var(--text-lighter);
+    margin: 10px 0 0 0;
+    font-weight: 500;
+    font-size: 1.2rem;
+  }
+
+  .account-body-light h2 {
+    color: var(--text-dark);
+  }
+
+  .account-menu-overview {
+    background-color: var(--btn-hover);
+    border-radius: 10px;
   }
 }

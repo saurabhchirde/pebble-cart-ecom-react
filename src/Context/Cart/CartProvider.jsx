@@ -11,6 +11,7 @@ import axios from "axios";
 import { useModal } from "../Modal/ModalProvider";
 
 const initialCartState = {
+  orderedProduct: { productList: [], amountPaid: "", orderNumber: "" },
   cart: [],
   wishlist: [],
   totalQty: 0,

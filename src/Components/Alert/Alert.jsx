@@ -12,7 +12,7 @@ const Alert = (props) => {
     return () => {
       clearTimeout(alertTime);
     };
-  }, [props.dispatchType]);
+  }, [props.dispatchType, alertDispatch]);
 
   return (
     <div className={props.alert}>

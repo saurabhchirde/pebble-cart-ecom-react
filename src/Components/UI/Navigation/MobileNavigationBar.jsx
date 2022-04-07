@@ -101,8 +101,12 @@ const MobileNavigationBar = () => {
                   <Link to="account">
                     <h2>Profile</h2>
                   </Link>
-                  <h2>Support</h2>
-                  <h2>Settings</h2>
+                  <Link to="account/support">
+                    <h2>Support</h2>
+                  </Link>
+                  <Link to="account/settings">
+                    <h2>Settings</h2>
+                  </Link>
                   <h2 onClick={logoutClickHandler}>Logout</h2>
                 </div>
               )}

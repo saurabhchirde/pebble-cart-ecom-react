@@ -1,9 +1,27 @@
 import { useAuth, useTheme } from "../../../Context";
 import "./AccountNavBar.css";
+import { NavLink, useLocation } from "react-router-dom";
 
 const AccountNavBar = () => {
   const { auth } = useAuth();
   const { darkTheme } = useTheme();
+  const { pathname } = useLocation();
+
+  const activeOrder = pathname.includes("orders")
+    ? "active-nav nav-orders"
+    : "nav-orders";
+  const activePayment = pathname.includes("payments")
+    ? "active-nav nav-payment-details"
+    : "nav-payment-details";
+  const activeAddress = pathname.includes("addresses")
+    ? "active-nav nav-addresses"
+    : " nav-addresses";
+  const activeSupport = pathname.includes("support")
+    ? "active-nav nav-support"
+    : "nav-support";
+  const activeSettings = pathname.includes("settings")
+    ? "active-nav nav-settings"
+    : "nav-settings";
 
   return (
     <>
@@ -14,41 +32,56 @@ const AccountNavBar = () => {
             : "account-nav-bar-light nav-bar user-nav-desktop"
         }
       >
-        <div className="user-name">
-          <div className="badge-container">
+        <NavLink to="/account">
+          <div className="user-name">
             <div className="avatar text-avatar-sm-round">{auth.user.dp}</div>
-            <span className="status-badge status-online"></span>
+            <h1>
+              {`${auth.user.firstName[0].toUpperCase()}${auth.user.firstName.slice(
+                1
+              )}`}
+              {` ${auth.user.lastName[0].toUpperCase()}${auth.user.lastName.slice(
+                1
+              )}`}
+            </h1>
           </div>
-          <h1>
-            {`${auth.user.firstName[0].toUpperCase()}${auth.user.firstName.slice(
-              1
-            )}`}
-            {` ${auth.user.lastName[0].toUpperCase()}${auth.user.lastName.slice(
-              1
-            )}`}
-          </h1>
-        </div>
+        </NavLink>
         <div className="nav-menu">
-          <div className="nav-orders">
-            <i className="fas fa-box-open"></i>
-            <h2>Your Orders</h2>
-          </div>
-          <div className="nav-payment-details">
-            <i className="fas fa-credit-card"></i>
-            <h2>Payment Details</h2>
-          </div>
-          <div className="nav-addresses">
-            <i className="fas fa-address-book"></i>
-            <h2>Addresses</h2>
-          </div>
-          <div className="nav-support">
-            <i className="fas fa-question-circle"></i>
-            <h2>Support</h2>
-          </div>
-          <div className="nav-settings">
-            <i className="fas fa-cog"></i>
-            <h2>Settings</h2>
-          </div>
+          <NavLink to={pathname.includes("orders") ? "" : "/account/orders"}>
+            <div className={activeOrder}>
+              <i className="fas fa-box-open"></i>
+              <h2 className="nav-menu-title">Your Orders</h2>
+            </div>
+          </NavLink>
+          <NavLink
+            to={pathname.includes("payments") ? "" : "/account/payments"}
+          >
+            <div className={activePayment}>
+              <i className="fas fa-credit-card"></i>
+              <h2 className="nav-menu-title">Payment Details</h2>
+            </div>
+          </NavLink>
+          <NavLink
+            to={pathname.includes("addresses") ? "" : "/account/addresses"}
+          >
+            <div className={activeAddress}>
+              <i className="fas fa-address-book"></i>
+              <h2 className="nav-menu-title">Addresses</h2>
+            </div>
+          </NavLink>
+          <NavLink to={pathname.includes("support") ? "" : "/account/support"}>
+            <div className={activeSupport}>
+              <i className="fas fa-question-circle"></i>
+              <h2 className="nav-menu-title">Support</h2>
+            </div>
+          </NavLink>
+          <NavLink
+            to={pathname.includes("settings") ? "" : "/account/settings"}
+          >
+            <div className={activeSettings}>
+              <i className="fas fa-cog"></i>
+              <h2 className="nav-menu-title">Settings</h2>
+            </div>
+          </NavLink>
         </div>
       </div>
     </>

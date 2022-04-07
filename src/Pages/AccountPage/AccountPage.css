@@ -2,3 +2,28 @@
   display: flex;
   margin: 0 auto;
 }
+
+.my-account-section {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: auto;
+  margin-top: 2rem;
+}
+
+.my-account-section h1 {
+  font-weight: 500;
+}
+
+.my-account-title-dark,
+.my-account-title-light {
+  font-size: 1.4rem;
+}
+
+.my-account-title-dark {
+  color: var(--text-lighter);
+}
+
+.my-account-title-light {
+  color: var(--text-dark);
+}
