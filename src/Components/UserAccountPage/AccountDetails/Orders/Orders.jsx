@@ -43,7 +43,7 @@ const Orders = () => {
                   Track Order
                 </button>
                 <div className="order-card-total-price">
-                  <p>total amount</p>
+                  <p>Bill Amount</p>
                   <p>Rs.{amountPaid}/-</p>
                 </div>
               </div>
