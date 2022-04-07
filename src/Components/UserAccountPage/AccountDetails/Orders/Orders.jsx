@@ -26,7 +26,7 @@ const Orders = () => {
           {productList.map((product) => (
             <SingleProduct key={product._id} product={product} />
           ))}
-          {productList.length > 1 ? (
+          {productList.length > 0 ? (
             <div className="order-card-bottom-section">
               <div className="order-card-bottom-left">
                 <div className="order-card-date-section">
