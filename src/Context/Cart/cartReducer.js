@@ -9,6 +9,7 @@ const cartReducer = (cartState, action) => {
         totalPrice: 0,
         discount: 0,
         coupon: "",
+        orderedProduct: [],
       };
 
     case "updateCartOnServer":
@@ -22,6 +23,19 @@ const cartReducer = (cartState, action) => {
       return {
         ...cartState,
         discount: action.payload,
+      };
+
+    case "makePayment":
+      return {
+        ...cartState,
+        orderedProduct: {
+          ...cartState.orderedProduct,
+          productList: action.payload.productList,
+          amountPaid: action.payload.amountPaid,
+          orderNumber: action.payload.orderNumber,
+          date: new Date().toLocaleDateString(),
+        },
+        cart: [],
       };
 
     case "getCartFromServer":
@@ -49,7 +63,7 @@ const cartReducer = (cartState, action) => {
       return { ...cartState, wishlist: action.payload };
 
     case "emptyCart":
-      return { ...cartState, cart: [], wishlist: [] };
+      return { ...cartState, cart: [], wishlist: [], orderedProduct: [] };
 
     //client side
 

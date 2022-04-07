@@ -78,27 +78,20 @@ const ProductsSection = () => {
       : null;
 
   return (
-    <>
-      <section className={darkTheme ? "products" : "products products-light"}>
-        <h1>Showing All {categoryName !== null ? categoryName : "Products"}</h1>
-        <div className="flex-row flex-wrap">
-          {finalFilteredData(productState.products, filterState).length ===
-          0 ? (
-            <h1 className="no-product-error">
-              No Products Found For The Selected Options, Try Again.
-            </h1>
-          ) : (
-            finalFilteredData(productState.products, filterState).map(
-              (item) => {
-                return (
-                  <ProductsCard item={{ ...item, qty: 1 }} key={item._id} />
-                );
-              }
-            )
-          )}
-        </div>
-      </section>
-    </>
+    <section className={darkTheme ? "products" : "products products-light"}>
+      <h1>Showing All {categoryName !== null ? categoryName : "Products"}</h1>
+      <div className="flex-row flex-wrap">
+        {finalFilteredData(productState.products, filterState).length === 0 ? (
+          <h1 className="no-product-error">
+            No Products Found For The Selected Options, Try Again.
+          </h1>
+        ) : (
+          finalFilteredData(productState.products, filterState).map((item) => {
+            return <ProductsCard item={{ ...item, qty: 1 }} key={item._id} />;
+          })
+        )}
+      </div>
+    </section>
   );
 };
 

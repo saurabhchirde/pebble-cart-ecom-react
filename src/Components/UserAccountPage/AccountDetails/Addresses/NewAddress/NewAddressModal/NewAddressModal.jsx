@@ -85,7 +85,7 @@ const NewAddressModal = () => {
             type="number"
             name="pinCode"
             required="required"
-            autoComplete="pin"
+            autoComplete="postal-code"
             placeholder="Enter your pin code"
             inputWrapper="outline-number-input"
             onChange={onInputChangeHandler}
@@ -96,7 +96,7 @@ const NewAddressModal = () => {
             type="tel"
             name="mobile"
             required="required"
-            autoComplete="mobile"
+            autoComplete="tel"
             placeholder="Enter your Mobile"
             inputWrapper="outline-tel-input"
             onChange={onInputChangeHandler}

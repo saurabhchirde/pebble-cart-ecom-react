@@ -51,10 +51,10 @@ const AddressOverviewCard = () => {
               <>
                 {addresses.map((address) => {
                   return (
-                    <div className="checkout-address-section">
+                    <div key={address._id} className="checkout-address-section">
                       <label htmlFor="address-select">
                         <input type="radio" name="radio" id="address-select" />
-                        <SingleAddress key={address._id} props={address} />
+                        <SingleAddress props={address} />
                       </label>
                     </div>
                   );

@@ -1,12 +1,34 @@
-import { useCart, useTheme } from "../../../Context";
+import { useAnimation, useCart, useModal, useTheme } from "../../../Context";
 import { useCheckout } from "../../../Context/Checkout/CheckoutProvider";
 import "./OrderSummary.css";
 
 const OrderSummary = () => {
-  const { cartState } = useCart();
+  const { cartState, cartDispatch } = useCart();
   const { checkoutState } = useCheckout();
   const { addressOverviewCheck, paymentOverviewCheck } = checkoutState;
   const { darkTheme } = useTheme();
+  const { setAlertText, setShowAlert } = useModal();
+  const { showLoader } = useAnimation();
+
+  const amountPaid = Math.trunc(cartState.totalPrice - cartState.discount);
+  const orderNumber = `258-487489-${Math.random() * 50}`;
+
+  const makePaymentClickHandler = () => {
+    showLoader();
+    setTimeout(() => {
+      showLoader();
+      setAlertText("Your order is Successful");
+      setShowAlert(true);
+      cartDispatch({
+        type: "makePayment",
+        payload: {
+          productList: cartState.cart,
+          amountPaid: amountPaid,
+          orderNumber: orderNumber,
+        },
+      });
+    }, 4000);
+  };
 
   const overviewSummaryClass = darkTheme
     ? "cart-price-table checkout-price-table price-table-dark"
@@ -32,7 +54,12 @@ const OrderSummary = () => {
       <hr className="break-line" />
       <div className="payment-btn">
         {addressOverviewCheck && paymentOverviewCheck && (
-          <button className="btn primary-btn-md">Make Payment</button>
+          <button
+            onClick={makePaymentClickHandler}
+            className="btn primary-btn-md"
+          >
+            Make Payment
+          </button>
         )}
       </div>
       <p className="text-center">

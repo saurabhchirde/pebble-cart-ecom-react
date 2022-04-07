@@ -1,97 +1,29 @@
-.nav-bar {
-  position: sticky;
-  height: 95vh;
-  min-width: 17rem;
-  top: 4rem;
-  display: flex;
-  flex-direction: column;
-}
-
 .user-nav-desktop {
   display: flex;
 }
 
-.nav-bar-mobile {
+.nav-bar-mobile,
+.nav-bar-mobile-light {
   display: none;
 }
 
-.account-nav-bar-dark,
-.account-nav-bar-light {
-  padding: 1rem;
-  color: var(--title-color);
-}
-
-.account-nav-bar-dark {
+.nav-bar-mobile {
   background-color: var(--secondary-dark-bg);
   color: var(--text-light);
 }
-.account-nav-bar-light {
+
+.nav-bar-mobile-light {
   background-color: var(--secondary-light-bg);
   color: var(--text-dark);
 }
 
-.user-name {
-  margin-top: 8px;
-}
-
-.user-name,
-.nav-orders,
-.nav-payment-details,
-.nav-addresses,
-.nav-support,
-.nav-settings {
-  display: flex;
-  align-items: center;
-}
-
-.user-name h1 {
-  font-size: 1.1rem;
-  margin-left: 10px;
-  font-weight: 500;
-}
-
-.nav-menu {
-  margin-top: 2rem;
-  margin-left: 10px;
-}
-
-.nav-menu h2 {
-  font-weight: 500;
-  font-size: 1.1rem;
-}
-
-.nav-orders,
-.nav-payment-details,
-.nav-addresses,
-.nav-support,
-.nav-settings {
-  width: 95%;
-  padding: 10px 0;
-  margin: 10px;
-}
-
-.nav-orders i,
-.nav-payment-details i,
-.nav-addresses i,
-.nav-support i,
-.nav-settings i {
-  margin-right: 10px;
-  font-size: 1.2rem;
-  color: var(--primary-color);
-}
-
 @media screen and (max-width: 580px) {
-  .nav-bar {
-    position: fixed;
-    z-index: 2;
-    width: 18rem;
-  }
-
   .user-nav-desktop {
     display: none;
   }
 
-  .nav-bar-mobile {
+  .nav-bar-mobile,
+  .nav-bar-mobile-light {
     display: flex;
   }
 }

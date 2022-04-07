@@ -27,6 +27,11 @@ import AnimateLoader from "./Components/Animations/AnimateLoader";
 import NotFound from "./Pages/NotFound/NotFound";
 import { useEffect } from "react";
 import AccountPage from "./Pages/AccountPage/AccountPage";
+import Orders from "./Components/UserAccountPage/AccountDetails/Orders/Orders";
+import Settings from "./Components/UserAccountPage/AccountDetails/Settings/Settings";
+import Payments from "./Components/UserAccountPage/AccountDetails/Payments/Payments";
+import Addresses from "./Components/UserAccountPage/AccountDetails/Addresses/Addresses";
+import Support from "./Components/UserAccountPage/AccountDetails/Support/Support";
 
 const App = () => {
   const { showLogin, showSignup, showSignupAlert, showAlert } = useModal();
@@ -67,12 +72,26 @@ const App = () => {
               <Route path="/products/:productID" element={<SingleProduct />} />
               {/* private routes */}
               {auth.login && <Route path="account" element={<AccountPage />} />}
+              {auth.login && (
+                <Route path="account/addresses" element={<Addresses />} />
+              )}
+              {auth.login && (
+                <Route path="account/orders" element={<Orders />} />
+              )}
+              {auth.login && (
+                <Route path="account/payments" element={<Payments />} />
+              )}
+              {auth.login && (
+                <Route path="account/settings" element={<Settings />} />
+              )}
+              {auth.login && (
+                <Route path="account/support" element={<Support />} />
+              )}
               <Route path="wishlist" element={<WishlistPage />} />
               <Route path="cart" element={<CartPage />} />
               {auth.login && (
                 <Route path="cart/checkout" element={<CheckoutPage />} />
               )}
-
               <Route path="mockman" element={<Mockman />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
