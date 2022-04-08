@@ -7,6 +7,22 @@ const AccountNavBarMobile = () => {
   const { darkTheme } = useTheme();
   const { pathname } = useLocation();
 
+  const activeOrder = pathname.includes("orders")
+    ? "active-nav nav-orders"
+    : "nav-orders";
+  const activePayment = pathname.includes("payments")
+    ? "active-nav nav-payment-details"
+    : "nav-payment-details";
+  const activeAddress = pathname.includes("addresses")
+    ? "active-nav nav-addresses"
+    : " nav-addresses";
+  const activeSupport = pathname.includes("support")
+    ? "active-nav nav-support"
+    : "nav-support";
+  const activeSettings = pathname.includes("settings")
+    ? "active-nav nav-settings"
+    : "nav-settings";
+
   return (
     <>
       <div
@@ -31,7 +47,7 @@ const AccountNavBarMobile = () => {
         </NavLink>
         <div className="nav-menu">
           <NavLink to={pathname.includes("orders") ? "" : "/account/orders"}>
-            <div className="nav-orders">
+            <div className={activeOrder}>
               <i className="fas fa-box-open"></i>
               <h2 className="nav-menu-title">Your Orders</h2>
             </div>
@@ -39,7 +55,7 @@ const AccountNavBarMobile = () => {
           <NavLink
             to={pathname.includes("payments") ? "" : "/account/payments"}
           >
-            <div className="nav-payment-details">
+            <div className={activePayment}>
               <i className="fas fa-credit-card"></i>
               <h2 className="nav-menu-title">Payment Details</h2>
             </div>
@@ -47,13 +63,13 @@ const AccountNavBarMobile = () => {
           <NavLink
             to={pathname.includes("addresses") ? "" : "/account/addresses"}
           >
-            <div className="nav-addresses">
+            <div className={activeAddress}>
               <i className="fas fa-address-book"></i>
               <h2 className="nav-menu-title">Addresses</h2>
             </div>
           </NavLink>
           <NavLink to={pathname.includes("support") ? "" : "/account/support"}>
-            <div className="nav-support">
+            <div className={activeSupport}>
               <i className="fas fa-question-circle"></i>
               <h2 className="nav-menu-title">Support</h2>
             </div>
@@ -61,7 +77,7 @@ const AccountNavBarMobile = () => {
           <NavLink
             to={pathname.includes("settings") ? "" : "/account/settings"}
           >
-            <div className="nav-settings">
+            <div className={activeSettings}>
               <i className="fas fa-cog"></i>
               <h2 className="nav-menu-title">Settings</h2>
             </div>

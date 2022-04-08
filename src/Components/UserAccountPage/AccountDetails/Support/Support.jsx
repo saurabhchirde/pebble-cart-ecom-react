@@ -16,7 +16,7 @@ const Support = () => {
           <h2>My Account</h2>
           <h2>Support</h2>
         </div>
-        <h1 className="title-lg-wt-5 text-center mg-4-top">
+        <h1 className="title-lg-wt-5 text-center mg-2-top">
           Under Construction...
         </h1>
       </div>

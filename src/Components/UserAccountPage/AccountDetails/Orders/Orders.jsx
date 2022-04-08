@@ -3,6 +3,8 @@ import { AccountNavBarMobile } from "../../AccountNavBarMobile/AccountNavBarMobi
 import { AccountNavBar } from "../../AccountNavBar/AccountNavBar";
 import "./Orders.css";
 import SingleProduct from "./SingleProduct/SingleProduct";
+import { Link } from "react-router-dom";
+import OrderDetails from "./OrderDetails/OrderDetails";
 
 const Orders = () => {
   const { showNavMenu } = useModal();
@@ -22,36 +24,23 @@ const Orders = () => {
           <h2>My Account</h2>
           <h2>Your Orders</h2>
         </div>
-        <div className="ordered-product-container">
-          {productList.map((product) => (
-            <SingleProduct key={product._id} product={product} />
-          ))}
-          {productList.length > 0 ? (
-            <div className="order-card-bottom-section">
-              <div className="order-card-bottom-left">
-                <div className="order-card-date-section">
-                  <p>Order Date</p>
-                  <p>{date}</p>
-                </div>
-                <div className="order-card-details-section">
-                  <p>Order details</p>
-                  <p>{orderNumber}</p>
-                </div>
-              </div>
-              <div className="order-card-bottom-right">
-                <button className="btn primary-outline-btn-md product-track-order-btn">
-                  Track Order
-                </button>
-                <div className="order-card-total-price">
-                  <p>Bill Amount</p>
-                  <p>Rs.{amountPaid}/-</p>
-                </div>
-              </div>
-            </div>
-          ) : (
-            <h2 className="title-lg-wt-5 mg-2-top">No Orders</h2>
-          )}
-        </div>
+        {productList?.length > 0 ? (
+          <div className="ordered-product-container">
+            {productList.map((product) => (
+              <SingleProduct key={product._id} product={product} />
+            ))}
+            {productList.length > 0 ? (
+              <OrderDetails details={{ amountPaid, orderNumber, date }} />
+            ) : null}
+          </div>
+        ) : (
+          <div>
+            <h2 className="title-lg-wt-5 text-center mg-2-tb">No Orders</h2>
+            <Link to="/products">
+              <button className="btn primary-btn-md">Shop Now</button>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

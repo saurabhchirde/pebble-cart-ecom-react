@@ -1,7 +1,7 @@
 import "./SingleProduct.css";
 
 const SingleProduct = ({ product }) => {
-  const { delivery, title, src1 } = product;
+  const { delivery, title, src1, qty } = product;
 
   return (
     <div className="order-card-top-section">
@@ -14,9 +14,12 @@ const SingleProduct = ({ product }) => {
           </button>
         </div>
       </div>
-      <p className="ordered-product-delivery-details">
-        Est. deliverey: {delivery}
-      </p>
+      <div>
+        <p className="ordered-product-delivery-details">
+          Est. deliverey: {delivery}
+        </p>
+        <p className="mg-1-top">Qty : {qty} </p>
+      </div>
     </div>
   );
 };
