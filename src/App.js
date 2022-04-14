@@ -48,13 +48,13 @@ const App = () => {
 
   return (
     <>
-      {loader && <AnimateLoader />}
+      {/* {loader && <AnimateLoader />} */}
       {showLogin && <Login />}
       {showSignup && <Signup />}
       {showSignupAlert && <SignupAlertModal />}
       {showAlert && <AlertModal />}
-      {loaderCamera && <AnimateCamera />}
-      {!loaderCamera && (
+      {/* {loaderCamera && <AnimateCamera />} */}
+      {loaderCamera && (
         <div className="app">
           <DesktopNavigationBar />
           <MobileNavigationBar />
