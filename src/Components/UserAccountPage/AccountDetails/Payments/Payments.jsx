@@ -95,10 +95,6 @@ const Payments = () => {
                 btnClassName="btn primary-outline-btn-md"
               />
             </div>
-            <div>
-              <Button label="Edit" btnClassName="btn primary-text-btn-md" />
-              <Button label="Delete" btnClassName="btn secondary-text-btn-md" />
-            </div>
           </div>
           <div className="payment-cards-detail">
             {cardDetails.map((card) => (

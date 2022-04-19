@@ -1,3 +1,5 @@
+import { useState } from "react";
+import IconButton from "../../../../UI/Button/IconButton";
 import "./CreditCard.css";
 
 export const CreditCard = ({ details }) => {
@@ -14,6 +16,11 @@ export const CreditCard = ({ details }) => {
     expDate,
     expYear,
   } = details;
+  const [showOption, setShowOption] = useState(false);
+
+  const onCardOptionClickHandler = () => {
+    setShowOption((show) => !show);
+  };
 
   return (
     <div
@@ -22,6 +29,22 @@ export const CreditCard = ({ details }) => {
         background: `linear-gradient(${gradientAngle}, ${color1}, ${color2}, ${color3})`,
       }}
     >
+      <IconButton
+        onClick={onCardOptionClickHandler}
+        icon="fa fa-ellipsis-v"
+        btnClassName="btn icon-btn-sm"
+      />
+      {showOption && (
+        <div
+          className="card-option-menu"
+          onMouseLeave={() => {
+            setShowOption(false);
+          }}
+        >
+          <h2>Edit</h2>
+          <h2>Delete</h2>
+        </div>
+      )}
       <div className="atm-card-header">
         <p>{bank}</p>
         <p>{card}</p>
