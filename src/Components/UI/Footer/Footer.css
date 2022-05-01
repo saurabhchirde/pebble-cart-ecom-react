@@ -1,3 +1,7 @@
-footer {
-  height: 100vh;
+.footer-copyright-text a {
+  margin-left: 5px;
+}
+
+.copyright-text {
+  color: var(--title-color);
 }

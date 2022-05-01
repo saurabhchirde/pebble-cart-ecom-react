@@ -190,7 +190,8 @@ body.lightTheme {
 
 .cart-light > h1,
 .wishlist-light > h1,
-.similar-products-light > h1 {
+.similar-products-light > h1,
+.copyright-text-light {
   color: var(--light-theme-title-color);
 }
 
@@ -317,6 +318,9 @@ footer .footer-light {
   margin: 12px;
   cursor: pointer;
 }
+
+/* .footer-copyright-text .copyright-text-light {
+} */
 
 @media screen and (max-width: 1050px) {
   .single-product-image .main-image {
