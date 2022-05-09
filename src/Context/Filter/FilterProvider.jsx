@@ -3,6 +3,7 @@ import { filterReducer } from "./filterReducer";
 
 const filterInitialState = {
   sort: "",
+  byPrice: "",
   bySort: { newest: true, lowTohHigh: false, highToLow: false },
   byStock: false,
   byRating: {

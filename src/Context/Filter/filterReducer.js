@@ -82,7 +82,6 @@ const filterReducer = (filterState, action) => {
       };
 
     //   ratings
-
     case "ratings":
       return {
         ...filterState,
@@ -93,6 +92,14 @@ const filterReducer = (filterState, action) => {
           fourStar: action.payload >= 4,
           fiveStar: action.payload >= 5,
         },
+        sort: action.payload,
+      };
+
+    //   price slider
+    case "price":
+      return {
+        ...filterState,
+        byPrice: action.payload,
         sort: action.payload,
       };
 
@@ -135,6 +142,7 @@ const filterReducer = (filterState, action) => {
     case "Clear":
       return {
         sort: "Newest",
+        byPrice: "",
         bySort: { newest: true, lowTohHigh: false, highToLow: false },
         byStock: false,
         byRating: {

@@ -7,6 +7,7 @@ import CategorySection from "./CategorySection/CategorySection";
 import IncludeOutOfStock from "./IncludeOutOfStock/IncludeOutOfStock";
 import RatingSection from "./RatingSection/RatingSection";
 import { useState } from "react";
+import PriceSection from "./PriceSection/PriceSection";
 
 const FilterSection = (props) => {
   const { filterDispatch, setSearchInput } = useFilter();
@@ -51,6 +52,7 @@ const FilterSection = (props) => {
             <Button onClick={clearClickHandler} type="reset" label="Clear" />
           </div>
         )}
+        <PriceSection />
         <CategorySection props={props} />
         <BrandSection />
         <RatingSection />
