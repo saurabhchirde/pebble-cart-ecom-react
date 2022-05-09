@@ -1,5 +1,6 @@
-import { useAnimation, useCart, useModal, useTheme } from "../../../Context";
+import { useAnimation, useCart, useTheme } from "../../../Context";
 import { useCheckout } from "../../../Context/Checkout/CheckoutProvider";
+import { AlertToast } from "../../Alert/AlertToast";
 import "./OrderSummary.css";
 
 const OrderSummary = () => {
@@ -7,7 +8,6 @@ const OrderSummary = () => {
   const { checkoutState } = useCheckout();
   const { addressOverviewCheck, paymentOverviewCheck } = checkoutState;
   const { darkTheme } = useTheme();
-  const { setAlertText, setShowAlert } = useModal();
   const { showLoader } = useAnimation();
 
   const amountPaid = Math.trunc(cartState.totalPrice - cartState.discount);
@@ -17,8 +17,7 @@ const OrderSummary = () => {
     showLoader();
     setTimeout(() => {
       showLoader();
-      setAlertText("Successfully placed your order");
-      setShowAlert(true);
+      AlertToast("success", "Successfully placed your order");
       cartDispatch({
         type: "makePayment",
         payload: {

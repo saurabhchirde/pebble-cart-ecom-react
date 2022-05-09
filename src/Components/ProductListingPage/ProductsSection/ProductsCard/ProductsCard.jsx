@@ -3,13 +3,13 @@ import {
   useCart,
   useModal,
   useAxiosCalls,
-  useAlert,
   useTheme,
 } from "../../../../Context";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./ProductsCard.css";
 import { useEffect, useState } from "react";
+import { AlertToast } from "../../../Alert/AlertToast";
 
 const ProductsCard = ({ item }) => {
   const { title, price, rating, totalRating, src1, newestArrival, inStock } =
@@ -26,7 +26,6 @@ const ProductsCard = ({ item }) => {
     addToWishlistOnServer,
     removeWishlistItemFromServer,
   } = useAxiosCalls();
-  const { alertDispatch } = useAlert();
   const [addButton, setAddButton] = useState("Add to Cart");
   const [addWishlist, setAddWishlist] = useState("far fa-heart");
   const { darkTheme } = useTheme();
@@ -53,8 +52,10 @@ const ProductsCard = ({ item }) => {
     if (auth.login) {
       if (cart.findIndex((el) => el._id === item._id) !== -1) {
         increaseCartItemQtyOnServer(cartConfig);
+        AlertToast("info", "Quantity Updated");
       } else {
         addToCartOnServer(cartConfig);
+        AlertToast("success", "Item Added to Cart");
       }
     } else {
       setShowLogin(true);
@@ -63,11 +64,8 @@ const ProductsCard = ({ item }) => {
 
   const addWishlistClick = () => {
     if (auth.login) {
-      if (wishlist.findIndex((el) => el._id === item._id) !== -1) {
-        alertDispatch({ type: "alreadyInWishlist" });
-      } else {
-        addToWishlistOnServer(wishlistConfig);
-      }
+      addToWishlistOnServer(wishlistConfig);
+      AlertToast("success", "Added to Wishlist");
     } else {
       setShowLogin(true);
     }
@@ -77,6 +75,7 @@ const ProductsCard = ({ item }) => {
     if (auth.login) {
       setAddWishlist("far fa-heart");
       removeWishlistItemFromServer(wishlistConfig);
+      AlertToast("info", "Item Removed from Wishlist");
     }
   };
 

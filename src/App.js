@@ -32,6 +32,7 @@ import Settings from "./Components/UserAccountPage/AccountDetails/Settings/Setti
 import Payments from "./Components/UserAccountPage/AccountDetails/Payments/Payments";
 import Addresses from "./Components/UserAccountPage/AccountDetails/Addresses/Addresses";
 import Support from "./Components/UserAccountPage/AccountDetails/Support/Support";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   const { showLogin, showSignup, showSignupAlert, showAlert } = useModal();
@@ -48,13 +49,14 @@ const App = () => {
 
   return (
     <>
-      {/* {loader && <AnimateLoader />} */}
+      <ToastContainer />
+      {loader && <AnimateLoader />}
       {showLogin && <Login />}
       {showSignup && <Signup />}
       {showSignupAlert && <SignupAlertModal />}
       {showAlert && <AlertModal />}
-      {/* {loaderCamera && <AnimateCamera />} */}
-      {loaderCamera && (
+      {loaderCamera && <AnimateCamera />}
+      {!loaderCamera && (
         <div className="app">
           <DesktopNavigationBar />
           <MobileNavigationBar />

@@ -3,6 +3,7 @@ import { useCheckout } from "../../../../Context/Checkout/CheckoutProvider";
 import SingleAddress from "../../../UserAccountPage/AccountDetails/Addresses/SingleAddress/SingleAddress";
 import NewAddressModal from "../../../UserAccountPage/AccountDetails/Addresses/NewAddress/NewAddressModal/NewAddressModal";
 import "./AddressOverViewCard.css";
+import { useEffect } from "react";
 
 const AddressOverviewCard = () => {
   const { checkoutState, checkoutDispatch } = useCheckout();
@@ -25,11 +26,17 @@ const AddressOverviewCard = () => {
   };
 
   const checkIconStatus =
-    addresses.length > 1
+    addresses.length > 0
       ? `${
           addressOverviewCheck ? "fas fa-check-circle" : "far fa-check-circle"
         }`
       : "far fa-check-circle";
+
+  useEffect(() => {
+    if (addresses.length < 1) {
+      checkoutDispatch({ type: "addressDeSelected" });
+    }
+  }, [addresses.length]);
 
   return (
     <div

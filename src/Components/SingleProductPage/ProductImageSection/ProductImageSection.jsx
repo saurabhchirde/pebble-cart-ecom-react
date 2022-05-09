@@ -1,12 +1,6 @@
-import {
-  useAlert,
-  useAuth,
-  useAxiosCalls,
-  useCart,
-  useModal,
-} from "../../../Context";
+import { useAuth, useAxiosCalls, useCart, useModal } from "../../../Context";
 import { useState } from "react";
-import Alert from "../../Alert/Alert";
+import { AlertToast } from "../../Alert/AlertToast";
 
 const ProductImageSection = ({ item }) => {
   const { src1, src2, src3, src4, src5 } = item;
@@ -15,15 +9,7 @@ const ProductImageSection = ({ item }) => {
   const [currentImg, setCurrentImg] = useState(src1);
   const { addToWishlistOnServer, removeWishlistItemFromServer } =
     useAxiosCalls();
-  const {
-    cartState: { wishlist },
-    addWishlist,
-    setAddWishlist,
-  } = useCart();
-  const {
-    alertDispatch,
-    alertState: { addToWishlistAlert, removeFromWishlistAlert },
-  } = useAlert();
+  const { addWishlist, setAddWishlist } = useCart();
 
   const wishlistConfig = {
     url: "/api/user/wishlist",
@@ -36,11 +22,8 @@ const ProductImageSection = ({ item }) => {
 
   const addWishlistClick = () => {
     if (auth.login) {
-      if (wishlist.findIndex((el) => el._id === item._id) !== -1) {
-        alertDispatch({ type: "alreadyInWishlist" });
-      } else {
-        addToWishlistOnServer(wishlistConfig);
-      }
+      addToWishlistOnServer(wishlistConfig);
+      AlertToast("success", "Added to Wishlist");
     } else {
       setShowLogin(true);
     }
@@ -49,6 +32,7 @@ const ProductImageSection = ({ item }) => {
   const removeFromWishlist = () => {
     if (auth.login) {
       removeWishlistItemFromServer(wishlistConfig);
+      AlertToast("info", "Item Removed from Wishlist");
       setAddWishlist("far fa-heart");
     }
   };
@@ -78,70 +62,27 @@ const ProductImageSection = ({ item }) => {
   };
 
   return (
-    <>
-      {addToWishlistAlert && (
-        <Alert
-          alert="alert-success"
-          icon="fas fa-check-circle alert-icon"
-          text="Item Added to Wishlist"
-          dispatchType="hideAddToWishlistAlert"
-        />
-      )}
-      {removeFromWishlistAlert && (
-        <Alert
-          alert="alert-info"
-          icon="fas fa-info alert-icon"
-          text="Item Removed from Wishlist"
-          dispatchType="hideRemoveFromWishlistAlert"
-        />
-      )}
-      <div className="single-product-image">
-        <button
-          onClick={wishlistButtonStatus}
-          className="btn primary-text-btn-sm icon-md"
-        >
-          <i className={addWishlist}></i>
-        </button>
-        <img
-          className="main-image"
-          src={currentImg}
-          alt="product-image"
-          loading="lazy"
-        />
-        <div className="single-product-image-options">
-          <img
-            src={src1}
-            alt="product-image"
-            loading="lazy"
-            onClick={onClick1}
-          />
-          <img
-            src={src2}
-            alt="product-image"
-            loading="lazy"
-            onClick={onClick2}
-          />
-          <img
-            src={src3}
-            alt="product-image"
-            loading="lazy"
-            onClick={onClick3}
-          />
-          <img
-            src={src4}
-            alt="product-image"
-            loading="lazy"
-            onClick={onClick4}
-          />
-          <img
-            src={src5}
-            alt="product-image"
-            loading="lazy"
-            onClick={onClick5}
-          />
-        </div>
+    <div className="single-product-image">
+      <button
+        onClick={wishlistButtonStatus}
+        className="btn primary-text-btn-sm icon-md"
+      >
+        <i className={addWishlist}></i>
+      </button>
+      <img
+        className="main-image"
+        src={currentImg}
+        alt="product-image"
+        loading="lazy"
+      />
+      <div className="single-product-image-options">
+        <img src={src1} alt="product-image" loading="lazy" onClick={onClick1} />
+        <img src={src2} alt="product-image" loading="lazy" onClick={onClick2} />
+        <img src={src3} alt="product-image" loading="lazy" onClick={onClick3} />
+        <img src={src4} alt="product-image" loading="lazy" onClick={onClick4} />
+        <img src={src5} alt="product-image" loading="lazy" onClick={onClick5} />
       </div>
-    </>
+    </div>
   );
 };
 

@@ -4,7 +4,7 @@ import { useCart } from "../Cart/CartProvider";
 import { useModal } from "../Modal/ModalProvider";
 import { useAuth } from "../Auth/AuthProvider";
 import { useAnimation } from "../Animation/AnimationProvider";
-import { useAlert } from "../Alerts/AlertsProvider";
+import { AlertToast } from "../../Components/Alert/AlertToast";
 
 const axiosContext = createContext(null);
 
@@ -12,7 +12,6 @@ const AxiosCallProvider = ({ children }) => {
   const { cartDispatch } = useCart();
   const { setAlertText, setShowAlert, setShowLogin, setShowSignupAlert } =
     useModal();
-  const { alertDispatch } = useAlert();
   const { authDispatch, setLoginInput, setShowAddressModal } = useAuth();
   const { showLoader } = useAnimation();
 
@@ -81,12 +80,10 @@ const AxiosCallProvider = ({ children }) => {
       showLoader();
       const response = await axios.post(url, body, headers);
       cartDispatch({ type: "addToCartServer", payload: response.data.cart });
-      alertDispatch({ type: "addToCartAlert" });
       showLoader();
     } catch (error) {
-      setAlertText("Server Down, Try Later");
+      AlertToast("error", "Server Down, Try Later");
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -101,12 +98,10 @@ const AxiosCallProvider = ({ children }) => {
         type: "removeFromCartServer",
         payload: response.data.cart,
       });
-      alertDispatch({ type: "removeFromCartAlert" });
       showLoader();
     } catch (error) {
-      setAlertText(error.response.data.errors);
+      AlertToast("error", error.response.data.errors);
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -124,12 +119,10 @@ const AxiosCallProvider = ({ children }) => {
         type: "incQtyOnCartServer",
         payload: response.data.cart,
       });
-      alertDispatch({ type: "cartEditedAlert" });
       showLoader();
     } catch (error) {
-      setAlertText(error.response.data.errors);
+      AlertToast("error", error.response.data.errors);
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -147,12 +140,10 @@ const AxiosCallProvider = ({ children }) => {
         type: "decQtyOnCartServer",
         payload: response.data.cart,
       });
-      alertDispatch({ type: "cartEditedAlert" });
       showLoader();
     } catch (error) {
-      setAlertText(error.response.data.errors);
+      AlertToast("error", error.response.data.errors);
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -166,12 +157,10 @@ const AxiosCallProvider = ({ children }) => {
         type: "addToWishlistServer",
         payload: response.data.wishlist,
       });
-      alertDispatch({ type: "addToWishlistAlert" });
       showLoader();
     } catch (error) {
-      setAlertText(error.response.data.errors);
+      AlertToast("error", error.response.data.errors);
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -186,12 +175,10 @@ const AxiosCallProvider = ({ children }) => {
         type: "removeFromWishlistServer",
         payload: response.data.wishlist,
       });
-      alertDispatch({ type: "removeFromWishlistAlert" });
       showLoader();
     } catch (error) {
-      setAlertText(error.response.data.errors);
+      AlertToast("error", error.response.data.errors);
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -206,13 +193,10 @@ const AxiosCallProvider = ({ children }) => {
         type: "addAddressOnServer",
         payload: response.data.addresses,
       });
-
-      alertDispatch({ type: "addAddressAlert" });
       showLoader();
     } catch (error) {
-      setAlertText("Server Down, try later");
+      AlertToast("error", error.response.data.errors);
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -227,12 +211,10 @@ const AxiosCallProvider = ({ children }) => {
         type: "removeAddressFromServer",
         payload: response.data.addresses,
       });
-      alertDispatch({ type: "addressDeletedAlert" });
       showLoader();
     } catch (error) {
-      setAlertText("Server Down, try later");
+      AlertToast("error", "Server Down, try later");
       showLoader();
-      setShowAlert(true);
     }
   };
 
@@ -243,20 +225,15 @@ const AxiosCallProvider = ({ children }) => {
     try {
       showLoader();
       const response = await axios.post(`${url}/${address._id}`, body, headers);
-      console.log("Update", response);
       authDispatch({
         type: "updateAddressOnServer",
         payload: response.data.addresses,
       });
       setShowAddressModal(false);
-      setAlertText("Address updated successfully");
-      setShowAlert(true);
-      console.log("Update", response.data);
       showLoader();
     } catch (error) {
-      setAlertText("Server Down, try later");
+      AlertToast("error", "Server Down, try later");
       showLoader();
-      setShowAlert(true);
     }
   };
 

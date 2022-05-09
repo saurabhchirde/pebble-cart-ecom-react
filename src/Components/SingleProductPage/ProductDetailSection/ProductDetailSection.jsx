@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import {
-  useAlert,
   useAuth,
   useAxiosCalls,
   useCart,
@@ -8,8 +7,8 @@ import {
   useTheme,
 } from "../../../Context";
 import { ratingStarCheck } from "../../../Utils/FilterFunctions/ratingStarCheck";
+import { AlertToast } from "../../Alert/AlertToast";
 import { useEffect } from "react";
-import Alert from "../../Alert/Alert";
 
 const ProductDetailSection = ({ item }) => {
   const {
@@ -23,9 +22,6 @@ const ProductDetailSection = ({ item }) => {
   const navigate = useNavigate();
   const { setShowLogin } = useModal();
   const { addToCartOnServer, increaseCartItemQtyOnServer } = useAxiosCalls();
-  const {
-    alertState: { addToCartAlert },
-  } = useAlert();
   const { darkTheme } = useTheme();
 
   const cartConfig = {
@@ -41,8 +37,10 @@ const ProductDetailSection = ({ item }) => {
     if (auth.login) {
       if (cart.findIndex((el) => el._id === item._id) !== -1) {
         increaseCartItemQtyOnServer(cartConfig);
+        AlertToast("info", "Quantity Updated");
       } else {
         addToCartOnServer(cartConfig);
+        AlertToast("success", "Item Added to Cart");
       }
     } else {
       setShowLogin(true);
@@ -53,6 +51,7 @@ const ProductDetailSection = ({ item }) => {
     if (auth.login) {
       if (!cart.findIndex((el) => el._id === item._id) !== -1) {
         addToCartOnServer(cartConfig);
+        AlertToast("success", "Item Added to Cart");
       }
       navigate("/cart");
     } else {
@@ -84,14 +83,6 @@ const ProductDetailSection = ({ item }) => {
 
   return (
     <>
-      {addToCartAlert && (
-        <Alert
-          alert="alert-success"
-          icon="fas fa-check-circle alert-icon"
-          text="Item Added to Cart"
-          dispatchType="hideAddToCartAlert"
-        />
-      )}
       <div className="single-product-detail">
         <div
           className={

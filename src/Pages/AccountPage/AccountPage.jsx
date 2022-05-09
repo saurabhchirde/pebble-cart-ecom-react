@@ -13,7 +13,6 @@ const AccountPage = () => {
   const { darkTheme } = useTheme();
 
   const hideNav = pathname === "/account" ? false : true;
-  console.log(hideNav);
   return (
     <div className="account-page-main">
       {showNavMenu && <AccountNavBarMobile />}

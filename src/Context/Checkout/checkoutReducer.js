@@ -36,6 +36,12 @@ const checkoutReducer = (checkoutState, action) => {
         addressOverviewCheck: true,
       };
 
+    case "addressDeSelected":
+      return {
+        ...checkoutState,
+        addressOverviewCheck: false,
+      };
+
     default:
       return checkoutState;
   }

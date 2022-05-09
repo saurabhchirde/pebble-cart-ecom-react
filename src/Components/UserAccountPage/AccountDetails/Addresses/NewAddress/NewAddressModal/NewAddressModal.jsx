@@ -1,6 +1,7 @@
 import { useAuth, useAxiosCalls } from "../../../../../../Context";
 import InputTypeOne from "../../../../../UI/Input/InputTypeOne";
 import Button from "../../../../../UI/Button/Button";
+import { AlertToast } from "../../../../../Alert/AlertToast";
 
 const NewAddressModal = () => {
   const {
@@ -23,6 +24,7 @@ const NewAddressModal = () => {
   const onSignupFormSubmitHandler = (e) => {
     e.preventDefault();
     addAddressOnServer(addressConfig);
+    AlertToast("success", "New Address Added ");
     setShowAddressModal(false);
     setNewAddress(initialAddressState);
   };
