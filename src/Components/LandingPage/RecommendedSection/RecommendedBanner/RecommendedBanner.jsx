@@ -39,38 +39,36 @@ const RecommendedBanner = (props) => {
   };
 
   return (
-    <>
-      <div
-        className={
-          darkTheme
-            ? "recommended-banner"
-            : "recommended-banner recommended-banner-light"
-        }
-      >
-        <div>
-          <p>{props.subTitle} </p>
-          <h1>{props.title}</h1>
-          <p>{props.description}</p>
-          <button onClick={onBuyNowClickHandler} className="btn primary-btn-md">
-            {props.btnLabel}
+    <div
+      className={
+        darkTheme
+          ? "recommended-banner"
+          : "recommended-banner recommended-banner-light"
+      }
+    >
+      <div>
+        <p>{props.subTitle} </p>
+        <h1>{props.title}</h1>
+        <p>{props.description}</p>
+        <button onClick={onBuyNowClickHandler} className="btn primary-btn-md">
+          {props.btnLabel}
+        </button>
+        <Link
+          to={`products/${productState.products[1]._id}`}
+          state={{ item: { ...productState.products[1], qty: 1 } }}
+        >
+          <button className="btn primary-text-btn-md">
+            {props.readMoreLabel}
           </button>
-          <Link
-            to="products/product-details"
-            state={{ item: { ...productState.products[1], qty: 1 } }}
-          >
-            <button className="btn primary-text-btn-md">
-              {props.readMoreLabel}
-            </button>
-          </Link>
-        </div>
-        <img
-          src={canon6dCamera}
-          alt="camera"
-          loading="lazy"
-          className="img-responsive"
-        />
+        </Link>
       </div>
-    </>
+      <img
+        src={canon6dCamera}
+        alt="camera"
+        loading="lazy"
+        className="img-responsive"
+      />
+    </div>
   );
 };
 export default RecommendedBanner;

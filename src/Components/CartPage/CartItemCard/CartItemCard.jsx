@@ -12,7 +12,7 @@ import { useEffect } from "react";
 const CartItemCard = ({ item }) => {
   const { title, price, src1 } = item;
   const {
-    cartState: { wishlist, totalPrice, coupon },
+    cartState: { totalPrice, coupon },
   } = useCart();
   const { auth } = useAuth();
   const { setAlertText, setShowAlert } = useModal();

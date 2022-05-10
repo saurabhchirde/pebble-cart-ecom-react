@@ -36,7 +36,7 @@ const Footer = () => {
           </div>
           <div>
             <h1>Where To Buy </h1>
-            <h2>See Authorized Retailers</h2>
+            <h2>Authorized Retailers</h2>
           </div>
         </div>
         <hr
