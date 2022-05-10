@@ -1,3 +1,7 @@
+.price-slider-title span {
+  font-size: 0.9rem;
+}
+
 .price-slider-label-dark,
 .price-slider-label-light {
   display: flex;

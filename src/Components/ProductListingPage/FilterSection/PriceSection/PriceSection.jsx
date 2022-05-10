@@ -11,8 +11,10 @@ const PriceSection = () => {
   };
 
   return (
-    <div className="rating">
-      <h2>Price</h2>
+    <div className="price-slider">
+      <h2 className="price-slider-title">
+        Price <span>(min)</span>
+      </h2>
       <div
         className={
           darkTheme ? "price-slider-label-dark" : "price-slider-label-light"
