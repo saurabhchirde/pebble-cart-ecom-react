@@ -1,6 +1,8 @@
 import { useAuth, useAxiosCalls, useModal } from "../../../Context";
 import Button from "../Button/Button";
 import InputTypeOne from "../Input/InputTypeOne";
+import InputTypePassword from "../Input/InputTypePassword";
+import { useState } from "react";
 import "./Login.css";
 
 const Login = () => {
@@ -9,6 +11,7 @@ const Login = () => {
   const { setShowLogin, setShowSignup, setAlertText, setShowAlert } =
     useModal();
   const { userLogin } = useAxiosCalls();
+  const [showPassword, setShowPassword] = useState(false);
 
   const loginConfig = {
     url: "/api/auth/login",
@@ -91,15 +94,19 @@ const Login = () => {
             onChange={onModalInputHandler}
             value={loginInput.email}
           />
-          <InputTypeOne
-            type="password"
+          <InputTypePassword
+            type={showPassword ? "text" : "password"}
             name="password"
             required="required"
             placeholder="Enter your password *"
             iconWrapper="input-icon"
             icon="fas fa-key"
-            inputWrapper="outline-password-input"
+            eyeIcon={showPassword ? "fas fa-eye-slash" : "fas fa-eye"}
+            inputWrapper="outline-password-input password-input-field"
             onChange={onModalInputHandler}
+            onEyeClick={() => {
+              setShowPassword((preData) => !preData);
+            }}
             value={loginInput.password}
           />
           <Button

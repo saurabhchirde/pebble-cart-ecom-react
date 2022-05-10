@@ -16,6 +16,7 @@ const Signup = () => {
     useModal();
   const [user, setUser] = useState(initialSignupState);
   const { userSignup } = useAxiosCalls();
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const signupConfig = {
     url: "/api/auth/signup",
@@ -33,9 +34,16 @@ const Signup = () => {
       user.password.match(passwordValidate) &&
       user.email.match(emailValidate)
     ) {
-      userSignup(signupConfig);
-      setShowSignup(false);
-      setUser(initialSignupState);
+      if (user.password === confirmPassword) {
+        userSignup(signupConfig);
+        setShowSignup(false);
+        setUser(initialSignupState);
+        setConfirmPassword("");
+      } else {
+        setAlertText("Password mismatched");
+        setConfirmPassword("");
+        setShowAlert(true);
+      }
     } else {
       setAlertText(
         "Minimum 8 char, 1 Uppercase, 1 Lowercase, 1 number & 1 Special Character required"
@@ -54,6 +62,10 @@ const Signup = () => {
         [name]: value,
       };
     });
+  };
+
+  const onConfirmPasswordHandler = (e) => {
+    setConfirmPassword(e.target.value);
   };
 
   const onCloseClick = () => {
@@ -109,7 +121,7 @@ const Signup = () => {
           />
           <InputTypeOne
             label="Password *"
-            type="text"
+            type="password"
             name="password"
             required="required"
             autoComplete="current-password"
@@ -117,6 +129,16 @@ const Signup = () => {
             inputWrapper="outline-password-input"
             onChange={onInputChangeHandler}
             value={user.password}
+          />
+          <InputTypeOne
+            label="Confirm Password *"
+            type="text"
+            name="confirm-password"
+            required="required"
+            placeholder="Confirm password"
+            inputWrapper="outline-password-input"
+            onChange={onConfirmPasswordHandler}
+            value={confirmPassword}
           />
           <p>
             By continuing you agree to our Terms of Service and
