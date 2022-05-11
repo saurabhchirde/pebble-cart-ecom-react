@@ -4,7 +4,7 @@ import { v4 as uuid } from "uuid";
 import {
   useSessionStorageGet,
   useSessionStorageSet,
-} from "../../Hooks/useSessionStorage";
+} from "Hooks/useSessionStorage";
 
 const initialAuthState = {
   login: false,

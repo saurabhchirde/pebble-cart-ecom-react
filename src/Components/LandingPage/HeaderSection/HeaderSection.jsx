@@ -1,5 +1,4 @@
-import HeaderBanner from "./HeaderBanner/HeaderBanner";
-import SquareCards from "./SquareCards/SquareCards";
+import { HeaderBanner, SquareCards } from "Components";
 import {
   cameraIcon,
   lensIcon,
@@ -8,12 +7,12 @@ import {
   sonyAlphaCamera,
   polaroidCamera,
   actionCamera,
-} from "../../../Data/Img/Products/ProductImages";
+} from "Data/Img/Products/ProductImages";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useTheme } from "../../../Context";
+import { useTheme } from "Context";
 
-const HeaderSection = () => {
+export const HeaderSection = () => {
   const [currImg, setCurrImg] = useState(0);
   const banner = [sonyAlphaCamera, polaroidCamera, actionCamera];
   const { darkTheme } = useTheme();
@@ -68,5 +67,3 @@ const HeaderSection = () => {
     </>
   );
 };
-
-export default HeaderSection;

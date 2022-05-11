@@ -1,7 +1,6 @@
-import FilterSection from "../../../Components/ProductListingPage/FilterSection/FilterSection";
-import ProductsSection from "../../../Components/ProductListingPage/ProductsSection/ProductsSection";
+import { FilterSection, ProductsSection } from "Components";
 
-const Lens = () => {
+export const Lens = () => {
   return (
     <div className="product-page-main mg-3-bot">
       <FilterSection
@@ -14,5 +13,3 @@ const Lens = () => {
     </div>
   );
 };
-
-export default Lens;

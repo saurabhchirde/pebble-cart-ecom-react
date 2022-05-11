@@ -1,8 +1,7 @@
-import { useAuth, useAxiosCalls } from "../../../../../../Context";
-import InputTypeOne from "../../../../../UI/Input/InputTypeOne";
-import Button from "../../../../../UI/Button/Button";
+import { useAuth, useAxiosCalls } from "Context";
+import { InputTypeOne, Button, AlertToast } from "Components";
 
-const NewAddressModal = () => {
+export const NewAddressModal = () => {
   const {
     auth,
     newAddress,
@@ -23,6 +22,7 @@ const NewAddressModal = () => {
   const onSignupFormSubmitHandler = (e) => {
     e.preventDefault();
     addAddressOnServer(addressConfig);
+    AlertToast("success", "New Address Added ");
     setShowAddressModal(false);
     setNewAddress(initialAddressState);
   };
@@ -113,5 +113,3 @@ const NewAddressModal = () => {
     </>
   );
 };
-
-export default NewAddressModal;

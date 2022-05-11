@@ -1,6 +1,6 @@
 import "./SingleProduct.css";
 
-const SingleProduct = ({ product }) => {
+export const SingleProduct = ({ product }) => {
   const { delivery, title, src1, qty } = product;
 
   return (
@@ -23,5 +23,3 @@ const SingleProduct = ({ product }) => {
     </div>
   );
 };
-
-export default SingleProduct;

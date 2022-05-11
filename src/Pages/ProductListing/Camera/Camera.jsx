@@ -1,7 +1,6 @@
-import FilterSection from "../../../Components/ProductListingPage/FilterSection/FilterSection";
-import ProductsSection from "../../../Components/ProductListingPage/ProductsSection/ProductsSection";
+import { FilterSection, ProductsSection } from "Components";
 
-const Camera = () => {
+export const Camera = () => {
   return (
     <div className="product-page-main mg-3-bot">
       <FilterSection
@@ -14,5 +13,3 @@ const Camera = () => {
     </div>
   );
 };
-
-export default Camera;

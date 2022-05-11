@@ -1,18 +1,12 @@
-import {
-  useAlert,
-  useAuth,
-  useAxiosCalls,
-  useCart,
-  useModal,
-  useTheme,
-} from "../../../Context";
-import { couponCheck } from "../../../Utils/couponCheck";
+import { useAuth, useAxiosCalls, useCart, useModal, useTheme } from "Context";
+import { couponCheck } from "Utils/couponCheck";
+import { AlertToast } from "Components";
 import { useEffect } from "react";
 
-const CartItemCard = ({ item }) => {
+export const CartItemCard = ({ item }) => {
   const { title, price, src1 } = item;
   const {
-    cartState: { wishlist, totalPrice, coupon },
+    cartState: { totalPrice, coupon },
   } = useCart();
   const { auth } = useAuth();
   const { setAlertText, setShowAlert } = useModal();
@@ -22,7 +16,6 @@ const CartItemCard = ({ item }) => {
     increaseCartItemQtyOnServer,
     decreaseCartItemQtyOnServer,
   } = useAxiosCalls();
-  const { alertDispatch } = useAlert();
   const { darkTheme } = useTheme();
 
   const cartConfig = {
@@ -51,25 +44,24 @@ const CartItemCard = ({ item }) => {
   };
 
   const onWishlistClickHandler = () => {
-    if (wishlist.findIndex((el) => el._id === item._id) !== -1) {
-      alertDispatch({ type: "alreadyInWishlist" });
-    } else {
-      addToWishlistOnServer(wishlistConfig);
-      alertDispatch({ type: "addToWishlistAlert" });
-    }
+    addToWishlistOnServer(wishlistConfig);
     removeCartItemFromServer(cartConfig);
+    AlertToast("info", "Item Removed from the Cart, and added to wishlist");
   };
 
   const onRemoveClickHandler = () => {
     removeCartItemFromServer(cartConfig);
+    AlertToast("info", "Item Removed from the Cart");
   };
 
   const increaseQty = () => {
     increaseCartItemQtyOnServer(cartConfig);
+    AlertToast("info", "Quantity Updated");
   };
 
   const decreaseQty = () => {
     decreaseCartItemQtyOnServer(cartConfig);
+    AlertToast("info", "Quantity Updated");
   };
 
   useEffect(() => {
@@ -130,5 +122,3 @@ const CartItemCard = ({ item }) => {
     </div>
   );
 };
-
-export default CartItemCard;

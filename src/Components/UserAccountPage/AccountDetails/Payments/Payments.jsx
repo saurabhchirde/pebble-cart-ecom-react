@@ -1,9 +1,15 @@
-import { useModal, useTheme } from "../../../../Context";
-import { AccountNavBarMobile } from "../../AccountNavBarMobile/AccountNavBarMobile";
-import { AccountNavBar } from "../../AccountNavBar/AccountNavBar";
+import { useModal, useTheme } from "Context";
+import {
+  AccountNavBarMobile,
+  AccountNavBar,
+  CreditCard,
+  Button,
+} from "Components";
 import "./Payments.css";
+import { cardDetails } from "Data/payment";
+import { upiAddresses } from "Data/payment";
 
-const Payments = () => {
+export const Payments = () => {
   const { showNavMenu } = useModal();
   const { darkTheme } = useTheme();
 
@@ -16,12 +22,43 @@ const Payments = () => {
           <h2>My Account</h2>
           <h2>Payment Details</h2>
         </div>
-        <h1 className="title-lg-wt-5 text-center mg-2-top">
-          Under Construction...
-        </h1>
+        <div className="payment-cards-container">
+          <div className="payment-cards-title">
+            <div>
+              <h2>Credit & Debit Cards</h2>
+              <Button
+                label="Add New"
+                btnClassName="btn primary-outline-btn-md"
+              />
+            </div>
+          </div>
+          <div className="payment-cards-detail">
+            {cardDetails.map((card) => (
+              <CreditCard key={card._id} details={card} />
+            ))}
+          </div>
+        </div>
+        <div className="payment-upi-container">
+          <div className="payment-upi-title">
+            <div>
+              <h2>Saved UPI Addresses</h2>
+              <Button
+                label="Add New"
+                btnClassName="btn primary-outline-btn-md"
+              />
+            </div>
+            <div>
+              <Button label="Edit" btnClassName="btn primary-text-btn-md" />
+              <Button label="Delete" btnClassName="btn secondary-text-btn-md" />
+            </div>
+          </div>
+          <ol className="list-basic list-style-number payment-upi-detail">
+            {upiAddresses.map((address) => (
+              <li key={address._id}>{address.address}</li>
+            ))}
+          </ol>
+        </div>
       </div>
     </div>
   );
 };
-
-export default Payments;

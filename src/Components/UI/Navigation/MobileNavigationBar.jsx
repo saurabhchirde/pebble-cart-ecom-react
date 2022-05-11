@@ -1,12 +1,14 @@
-import NavbarLoginButton from "./NavbarLoginButton/NavbarLoginButton";
-import SearchBar from "./SearchBar/SearchBar";
-import logoIcon from "../../../Data/logo/icon.svg";
-import NavbarAvatar from "./Avatar/NavbarAvatar";
-import { useAuth, useFilter, useModal, useTheme } from "../../../Context";
+import {
+  NavbarLoginButton,
+  SearchBar,
+  NavbarAvatar,
+  IconButton,
+} from "Components";
+import logoIcon from "Data/logo/icon.svg";
+import { useAuth, useFilter, useModal, useTheme } from "Context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import IconButton from "../Button/IconButton";
 
-const MobileNavigationBar = () => {
+export const MobileNavigationBar = () => {
   const { auth, authDispatch, showProfileMenu, setShowProfileMenu } = useAuth();
   const { filterDispatch, searchInput, setSearchInput } = useFilter();
   const location = useLocation();
@@ -122,5 +124,3 @@ const MobileNavigationBar = () => {
     </>
   );
 };
-
-export default MobileNavigationBar;

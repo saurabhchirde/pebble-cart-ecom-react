@@ -4,12 +4,11 @@ import {
   visa,
   payPal,
   mastercard,
-} from "../../../../Data/Img/Payment/PaymentIcon";
-import { useCheckout } from "../../../../Context/Checkout/CheckoutProvider";
+} from "Data/Img/Payment/PaymentIcon";
+import { useCheckout, useTheme } from "Context";
 import "./PaymentOverviewCard.css";
-import { useTheme } from "../../../../Context";
 
-const PaymentOverviewCard = () => {
+export const PaymentOverviewCard = () => {
   const { checkoutState, checkoutDispatch } = useCheckout();
   const { paymentOverviewCheck } = checkoutState;
   const { darkTheme } = useTheme();
@@ -79,5 +78,3 @@ const PaymentOverviewCard = () => {
     </div>
   );
 };
-
-export default PaymentOverviewCard;

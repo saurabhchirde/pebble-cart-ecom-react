@@ -1,3 +1,18 @@
-footer {
-  height: 100vh;
+.footer-copyright-text a {
+  margin-left: 5px;
+}
+
+.copyright-text {
+  color: var(--title-color);
+}
+
+@media screen and (max-width: 500px) {
+  .recommended-banner div p {
+    font-size: 1.2rem;
+  }
+
+  .footer-main-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }

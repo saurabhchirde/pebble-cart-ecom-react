@@ -1,8 +1,8 @@
 import React from "react";
-import { useFilter } from "../../../../Context";
-import InputTypeTwo from "../../../UI/Input/InputTypeTwo";
+import { useFilter } from "Context";
+import { InputTypeTwo } from "Components";
 
-const IncludeOutOfStock = () => {
+export const IncludeOutOfStock = () => {
   const { filterState, filterDispatch } = useFilter();
   const { byStock } = filterState;
 
@@ -25,5 +25,3 @@ const IncludeOutOfStock = () => {
     </div>
   );
 };
-
-export default IncludeOutOfStock;

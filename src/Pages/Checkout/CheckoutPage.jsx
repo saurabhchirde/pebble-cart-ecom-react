@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
-import CheckoutDetails from "../../Components/CheckoutPage/CheckoutDetails/CheckoutDetails";
-import OrderSummary from "../../Components/CheckoutPage/OrderSummary/OrderSummary";
-import Button from "../../Components/UI/Button/Button";
-import { useCart, useTheme } from "../../Context";
+import { CheckoutDetails, OrderSummary, Button } from "Components";
+import { useCart, useTheme } from "Context";
 import "./CheckoutPage.css";
 
-const CheckoutPage = () => {
+export const CheckoutPage = () => {
   const { darkTheme } = useTheme();
   const { cartState } = useCart();
 
@@ -39,5 +37,3 @@ const CheckoutPage = () => {
     </div>
   );
 };
-
-export default CheckoutPage;

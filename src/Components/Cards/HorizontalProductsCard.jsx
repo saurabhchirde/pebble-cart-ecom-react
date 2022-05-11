@@ -1,13 +1,8 @@
-import {
-  useAlert,
-  useAuth,
-  useAxiosCalls,
-  useCart,
-  useTheme,
-} from "../../Context";
+import { useAuth, useAxiosCalls, useCart, useTheme } from "Context";
+import { AlertToast } from "Components";
 import "./HorizontalProductsCard.css";
 
-const HorizontalProductsCard = ({ item }) => {
+export const HorizontalProductsCard = ({ item }) => {
   const { title, price, src1 } = item;
   const { auth } = useAuth();
   const {
@@ -15,7 +10,6 @@ const HorizontalProductsCard = ({ item }) => {
     increaseCartItemQtyOnServer,
     removeWishlistItemFromServer,
   } = useAxiosCalls();
-  const { alertDispatch } = useAlert();
   const {
     cartState: { cart },
   } = useCart();
@@ -45,16 +39,17 @@ const HorizontalProductsCard = ({ item }) => {
   const onMoveToCartClickHandler = () => {
     if (cart.findIndex((el) => el._id === item._id) !== -1) {
       increaseCartItemQtyOnServer(cartConfig);
-      alertDispatch({ type: "alreadyInCart" });
+      AlertToast("info", "Quantity Updated");
     } else {
       addToCartOnServer(cartConfig);
-      alertDispatch({ type: "addToCartAlert" });
+      AlertToast("success", "Item Moved to Cart");
     }
     removeWishlistItemFromServer(wishlistConfig);
   };
 
   const onRemoveWishlistClickHandler = () => {
     removeWishlistItemFromServer(wishlistConfig);
+    AlertToast("info", "Item Removed from Wishlist");
   };
 
   const cartContainerClass = darkTheme
@@ -98,5 +93,3 @@ const HorizontalProductsCard = ({ item }) => {
     </>
   );
 };
-
-export default HorizontalProductsCard;

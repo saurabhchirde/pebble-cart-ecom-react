@@ -1,11 +1,11 @@
-import { useFilter, useProductProvider, useTheme } from "../../../Context";
-import ProductsCard from "./ProductsCard/ProductsCard";
-import { finalFilteredData } from "../../../Utils/FilterFunctions/finalFilteredData";
+import { useFilter, useProductProvider, useTheme } from "Context";
+import { ProductsCard } from "Components";
+import { finalFilteredData } from "Utils/FilterFunctions/finalFilteredData";
 import "./ProductSection.css";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
-const ProductsSection = () => {
+export const ProductsSection = () => {
   const { filterState, filterDispatch } = useFilter();
   const { productState } = useProductProvider();
   const { pathname, search } = useLocation();
@@ -94,5 +94,3 @@ const ProductsSection = () => {
     </section>
   );
 };
-
-export default ProductsSection;

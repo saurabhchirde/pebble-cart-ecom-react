@@ -18,5 +18,4 @@ export {
   AxiosCallProvider,
   useAxiosCalls,
 } from "./AxiosCalls/AxiosCallProvider";
-export { AlertProvider, useAlert } from "./Alerts/AlertsProvider";
 export { ThemeProvider, useTheme } from "./ThemeProvider/ThemeProvider";

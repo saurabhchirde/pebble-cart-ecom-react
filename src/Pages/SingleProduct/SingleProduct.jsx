@@ -1,9 +1,11 @@
-import ProductDetailSection from "../../Components/SingleProductPage/ProductDetailSection/ProductDetailSection";
-import ProductDescription from "../../Components/SingleProductPage/ProductDescription/ProductDescription";
-import ProductImageSection from "../../Components/SingleProductPage/ProductImageSection/ProductImageSection";
+import {
+  ProductDetailSection,
+  ProductDescription,
+  ProductImageSection,
+} from "Components";
 import { useLocation } from "react-router-dom";
 
-const SingleProduct = () => {
+export const SingleProduct = () => {
   const location = useLocation();
   const { item } = location.state ?? null;
 
@@ -19,5 +21,3 @@ const SingleProduct = () => {
     </>
   );
 };
-
-export default SingleProduct;

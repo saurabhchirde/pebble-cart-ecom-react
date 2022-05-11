@@ -1,9 +1,8 @@
-import { useCart, useCheckout, useTheme } from "../../../../Context";
-import ProductCard from "./PorductCard/ProductCard";
+import { useCart, useTheme } from "Context";
+import { ProductCard } from "Components";
 
-const ProductOverviewCard = () => {
+export const ProductOverviewCard = () => {
   const { cartState } = useCart();
-  const { checkoutDispatch } = useCheckout();
   const { darkTheme } = useTheme();
 
   return (
@@ -17,12 +16,7 @@ const ProductOverviewCard = () => {
       <details>
         <summary>
           <h1>Item Overview</h1>
-          <i
-            onClick={() => {
-              checkoutDispatch({ type: "productOverviewToggle" });
-            }}
-            className="fas fa-check-circle"
-          ></i>
+          <i className="fas fa-check-circle"></i>
         </summary>
         {cartState.cart.map((item) => {
           return <ProductCard key={item._id} item={item} />;
@@ -31,5 +25,3 @@ const ProductOverviewCard = () => {
     </div>
   );
 };
-
-export default ProductOverviewCard;

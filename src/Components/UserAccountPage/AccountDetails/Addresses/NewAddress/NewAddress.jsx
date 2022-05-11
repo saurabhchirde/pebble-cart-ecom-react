@@ -1,10 +1,9 @@
-import { useAuth, useTheme } from "../../../../../Context";
+import { useAuth, useTheme } from "Context";
 import "./NewAddress.css";
 import "../SingleAddress/SingleAddress.css";
-import NewAddressModal from "./NewAddressModal/NewAddressModal";
-import EditAddressModal from "./EditAddressModal/EditAddressModal";
+import { NewAddressModal, EditAddressModal } from "Components";
 
-const NewAddress = () => {
+export const NewAddress = () => {
   const { darkTheme } = useTheme();
   const { showAddressModal, setShowAddressModal, showEditAddressModal } =
     useAuth();
@@ -29,5 +28,3 @@ const NewAddress = () => {
     </>
   );
 };
-
-export default NewAddress;

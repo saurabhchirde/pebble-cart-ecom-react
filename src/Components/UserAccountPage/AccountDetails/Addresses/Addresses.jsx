@@ -1,11 +1,13 @@
-import { useAuth, useTheme, useModal } from "../../../../Context";
+import { useAuth, useTheme, useModal } from "Context";
 import "./Addresses.css";
-import NewAddress from "./NewAddress/NewAddress";
-import SingleAddress from "./SingleAddress/SingleAddress";
-import { AccountNavBar } from "../../AccountNavBar/AccountNavBar";
-import { AccountNavBarMobile } from "../../AccountNavBarMobile/AccountNavBarMobile";
+import {
+  NewAddress,
+  SingleAddress,
+  AccountNavBar,
+  AccountNavBarMobile,
+} from "Components";
 
-const Addresses = () => {
+export const Addresses = () => {
   const {
     auth: {
       user: { addresses },
@@ -31,5 +33,3 @@ const Addresses = () => {
     </div>
   );
 };
-
-export default Addresses;

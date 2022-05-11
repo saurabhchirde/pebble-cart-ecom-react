@@ -1,8 +1,8 @@
-import Button from "../../../UI/Button/Button";
+import { Button } from "Components";
 import { Link } from "react-router-dom";
-import { useTheme } from "../../../../Context";
+import { useTheme } from "Context";
 
-const HeaderBanner = (props) => {
+export const HeaderBanner = (props) => {
   const { darkTheme } = useTheme();
 
   return (
@@ -30,5 +30,3 @@ const HeaderBanner = (props) => {
     </>
   );
 };
-
-export default HeaderBanner;

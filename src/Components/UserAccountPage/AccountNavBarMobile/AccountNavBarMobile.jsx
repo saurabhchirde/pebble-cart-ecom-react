@@ -1,8 +1,8 @@
-import { useAuth, useTheme } from "../../../Context";
+import { useAuth, useTheme } from "Context";
 import { NavLink, useLocation } from "react-router-dom";
 import "./AccountNavBarMobile.css";
 
-const AccountNavBarMobile = () => {
+export const AccountNavBarMobile = () => {
   const { auth } = useAuth();
   const { darkTheme } = useTheme();
   const { pathname } = useLocation();
@@ -87,5 +87,3 @@ const AccountNavBarMobile = () => {
     </>
   );
 };
-
-export { AccountNavBarMobile };

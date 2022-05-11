@@ -1,10 +1,9 @@
-import { useAuth, useCart, useTheme } from "../../../Context";
-import BadgeIconButton from "../Button/BadgeIconButton";
-import IconButton from "../Button/IconButton";
+import { useAuth, useCart, useTheme } from "Context";
+import { BadgeIconButton, IconButton } from "Components";
 import "./MobileNavigationBarBottom.css";
 import { Link } from "react-router-dom";
 
-const MobileNavigationBarBottom = () => {
+export const MobileNavigationBarBottom = () => {
   const {
     cartState: { cart, wishlist },
   } = useCart();
@@ -43,5 +42,3 @@ const MobileNavigationBarBottom = () => {
     </>
   );
 };
-
-export default MobileNavigationBarBottom;

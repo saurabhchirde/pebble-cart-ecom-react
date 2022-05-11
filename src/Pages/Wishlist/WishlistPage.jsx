@@ -1,47 +1,21 @@
-import HorizontalProductsCard from "../../Components/Cards/HorizontalProductsCard";
-import { useAlert, useAuth, useCart, useTheme } from "../../Context";
+import {
+  HorizontalProductsCard,
+  FloatingButton,
+  NewArrivals,
+} from "Components";
+import { useAuth, useCart, useTheme } from "Context";
 import { Link } from "react-router-dom";
 import "./WishlistPage.css";
-import FloatingButton from "../../Components/UI/Button/FloatingButton";
-import NewArrivals from "../../Components/NewArrivals/NewArrivals";
-import Alert from "../../Components/Alert/Alert";
 
-const WishlistPage = () => {
+export const WishlistPage = () => {
   const { auth } = useAuth();
   const {
     cartState: { wishlist },
   } = useCart();
-  const {
-    alertState: { addToCartAlert, removeFromWishlistAlert, alreadyInCart },
-  } = useAlert();
   const { darkTheme } = useTheme();
 
   return (
     <>
-      {addToCartAlert && (
-        <Alert
-          alert="alert-success"
-          icon="fas fa-check-circle alert-icon"
-          text="Item Moved to Cart"
-          dispatchType="hideAddToCartAlert"
-        />
-      )}
-      {alreadyInCart && (
-        <Alert
-          alert="alert-info"
-          icon="fas fa-info alert-icon"
-          text="Already in your Cart"
-          dispatchType="hideAlreadyInCart"
-        />
-      )}
-      {removeFromWishlistAlert && (
-        <Alert
-          alert="alert-info"
-          icon="fas fa-info alert-icon"
-          text="Item Removed from Wishlist"
-          dispatchType="hideRemoveFromWishlistAlert"
-        />
-      )}
       {!auth.login && (
         <h1 className="notLoggedIn">
           Please login, to add items in your wishlist
@@ -75,5 +49,3 @@ const WishlistPage = () => {
     </>
   );
 };
-
-export default WishlistPage;

@@ -1,6 +1,6 @@
-import { useTheme } from "../../../../../Context";
+import { useTheme } from "Context";
 
-const ProductCard = ({ item }) => {
+export const ProductCard = ({ item }) => {
   const { title, src1, delivery } = item;
   const { darkTheme } = useTheme();
 
@@ -27,5 +27,3 @@ const ProductCard = ({ item }) => {
     </div>
   );
 };
-
-export default ProductCard;
