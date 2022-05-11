@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import ButtonSimple from "../../Components/UI/Button/ButtonSimple";
-import { useAuth } from "../../Context";
+import { ButtonSimple } from "Components";
+import { useAuth } from "Context";
 import "./NotFound.css";
 
-const NotFound = () => {
+export const NotFound = () => {
   const { auth } = useAuth();
 
   return (
@@ -33,5 +33,3 @@ const NotFound = () => {
     </div>
   );
 };
-
-export default NotFound;

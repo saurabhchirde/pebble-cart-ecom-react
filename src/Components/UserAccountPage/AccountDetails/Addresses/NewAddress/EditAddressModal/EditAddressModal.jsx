@@ -1,8 +1,7 @@
-import { useAuth, useAxiosCalls } from "../../../../../../Context";
-import InputTypeOne from "../../../../../UI/Input/InputTypeOne";
-import Button from "../../../../../UI/Button/Button";
+import { useAuth, useAxiosCalls } from "Context";
+import { InputTypeOne, Button } from "Components";
 
-const EditAddressModal = () => {
+export const EditAddressModal = () => {
   const {
     auth,
     newAddress,
@@ -113,5 +112,3 @@ const EditAddressModal = () => {
     </>
   );
 };
-
-export default EditAddressModal;

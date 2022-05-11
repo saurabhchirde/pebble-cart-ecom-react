@@ -1,6 +1,6 @@
 import React from "react";
 
-const ButtonSimple = (props) => {
+export const ButtonSimple = (props) => {
   return (
     <>
       <button onClick={props.onClick} className={props.btnClassName}>
@@ -9,5 +9,3 @@ const ButtonSimple = (props) => {
     </>
   );
 };
-
-export default ButtonSimple;

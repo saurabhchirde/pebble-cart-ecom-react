@@ -1,8 +1,10 @@
-import AddressOverviewCard from "./OverviewCards/AddressOverviewCard";
-import PaymentOverviewCard from "./OverviewCards/PaymentOverviewCard";
-import ProductOverviewCard from "./OverviewCards/ProductOverviewCard";
+import {
+  AddressOverviewCard,
+  PaymentOverviewCard,
+  ProductOverviewCard,
+} from "Components";
 
-const CheckoutDetails = () => {
+export const CheckoutDetails = () => {
   return (
     <div className="checkout-form">
       <ProductOverviewCard />
@@ -11,5 +13,3 @@ const CheckoutDetails = () => {
     </div>
   );
 };
-
-export default CheckoutDetails;

@@ -5,11 +5,11 @@ import {
   useCart,
   useModal,
   useTheme,
-} from "../../../../Context";
-import { useProductProvider } from "../../../../Context/ProductList/ProductsProvider";
-import { canon6dCamera } from "../../../../Data/Img/Products/ProductImages";
+  useProductProvider,
+} from "Context";
+import { canon6dCamera } from "Data/Img/Products/ProductImages";
 
-const RecommendedBanner = (props) => {
+export const RecommendedBanner = (props) => {
   const { productState } = useProductProvider();
   const { auth } = useAuth();
   const navigate = useNavigate();
@@ -71,4 +71,3 @@ const RecommendedBanner = (props) => {
     </div>
   );
 };
-export default RecommendedBanner;

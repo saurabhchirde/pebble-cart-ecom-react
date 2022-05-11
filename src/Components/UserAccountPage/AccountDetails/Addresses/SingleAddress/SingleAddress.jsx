@@ -1,8 +1,8 @@
-import { useAuth, useAxiosCalls, useTheme } from "../../../../../Context";
-import { AlertToast } from "../../../../Alert/AlertToast";
+import { useAuth, useAxiosCalls, useTheme } from "Context";
+import { AlertToast } from "Components";
 import "./SingleAddress.css";
 
-const SingleAddress = ({ props }) => {
+export const SingleAddress = ({ props }) => {
   const { fullName, address, pinCode, mobile } = props;
   const { auth, setNewAddress, setShowEditAddressModal } = useAuth();
   const { removeAddressFromServer } = useAxiosCalls();
@@ -51,5 +51,3 @@ const SingleAddress = ({ props }) => {
     </div>
   );
 };
-
-export default SingleAddress;

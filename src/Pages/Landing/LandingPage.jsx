@@ -1,11 +1,13 @@
-import HeaderSection from "../../Components/LandingPage/HeaderSection/HeaderSection";
-import HotProductsSection from "../../Components/LandingPage/HotProductSection/HotProductsSection";
-import RecommendedSection from "../../Components/LandingPage/RecommendedSection/RecommendedSection";
-import FloatingButton from "../../Components/UI/Button/FloatingButton";
+import {
+  HeaderSection,
+  HotProductsSection,
+  RecommendedSection,
+  FloatingButton,
+} from "Components";
 import { useEffect } from "react";
-import { useTheme } from "../../Context";
+import { useTheme } from "Context";
 
-const LandingPage = () => {
+export const LandingPage = () => {
   const { darkTheme } = useTheme();
 
   useEffect(() => {
@@ -24,5 +26,3 @@ const LandingPage = () => {
     </>
   );
 };
-
-export default LandingPage;

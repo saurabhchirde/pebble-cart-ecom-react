@@ -1,7 +1,7 @@
-import { useTheme } from "../../../Context";
-import RecommendedBanner from "./RecommendedBanner/RecommendedBanner";
+import { useTheme } from "Context";
+import { RecommendedBanner } from "Components";
 
-const RecommendedSection = () => {
+export const RecommendedSection = () => {
   const { darkTheme } = useTheme();
   return (
     <>
@@ -25,5 +25,3 @@ const RecommendedSection = () => {
     </>
   );
 };
-
-export default RecommendedSection;

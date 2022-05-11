@@ -1,15 +1,17 @@
-import { useFilter, useTheme } from "../../../Context";
-import Button from "../../UI/Button/Button";
-import IconButton from "../../UI/Button/IconButton";
-import SortSection from "./SortSection/SortSection";
-import BrandSection from "./BrandSection/BrandSection";
-import CategorySection from "./CategorySection/CategorySection";
-import IncludeOutOfStock from "./IncludeOutOfStock/IncludeOutOfStock";
-import RatingSection from "./RatingSection/RatingSection";
+import { useFilter, useTheme } from "Context";
+import {
+  Button,
+  IconButton,
+  SortSection,
+  BrandSection,
+  CategorySection,
+  IncludeOutOfStock,
+  RatingSection,
+  PriceSection,
+} from "Components";
 import { useState } from "react";
-import PriceSection from "./PriceSection/PriceSection";
 
-const FilterSection = (props) => {
+export const FilterSection = (props) => {
   const { filterDispatch, setSearchInput } = useFilter();
   const [showFilter, setShowFilter] = useState(false);
   const { darkTheme } = useTheme();
@@ -62,4 +64,3 @@ const FilterSection = (props) => {
     </>
   );
 };
-export default FilterSection;

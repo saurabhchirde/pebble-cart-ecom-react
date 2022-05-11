@@ -1,9 +1,9 @@
-import { useAnimation, useCart, useTheme } from "../../../Context";
-import { useCheckout } from "../../../Context/Checkout/CheckoutProvider";
-import { AlertToast } from "../../Alert/AlertToast";
+import { useAnimation, useCart, useTheme } from "Context";
+import { useCheckout } from "Context/Checkout/CheckoutProvider";
+import { AlertToast } from "Components";
 import "./OrderSummary.css";
 
-const OrderSummary = () => {
+export const OrderSummary = () => {
   const { cartState, cartDispatch } = useCart();
   const { checkoutState } = useCheckout();
   const { addressOverviewCheck, paymentOverviewCheck } = checkoutState;
@@ -67,5 +67,3 @@ const OrderSummary = () => {
     </div>
   );
 };
-
-export default OrderSummary;

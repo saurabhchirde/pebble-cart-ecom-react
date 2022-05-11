@@ -1,7 +1,6 @@
-import Button from "../Button/Button";
 import "./Signup.css";
-import InputTypeOne from "../Input/InputTypeOne";
-import { useAxiosCalls, useModal } from "../../../Context";
+import { InputTypeOne, Button } from "Components";
+import { useAxiosCalls, useModal } from "Context";
 import { useState } from "react";
 
 const initialSignupState = {
@@ -11,7 +10,7 @@ const initialSignupState = {
   password: "",
 };
 
-const Signup = () => {
+export const Signup = () => {
   const { setShowLogin, setShowSignup, setAlertText, setShowAlert } =
     useModal();
   const [user, setUser] = useState(initialSignupState);
@@ -162,5 +161,3 @@ const Signup = () => {
     </>
   );
 };
-
-export default Signup;

@@ -4,7 +4,7 @@ import { useCart } from "../Cart/CartProvider";
 import { useModal } from "../Modal/ModalProvider";
 import { useAuth } from "../Auth/AuthProvider";
 import { useAnimation } from "../Animation/AnimationProvider";
-import { AlertToast } from "../../Components/Alert/AlertToast";
+import { AlertToast } from "Components/Alert/AlertToast";
 
 const axiosContext = createContext(null);
 

@@ -1,8 +1,8 @@
-import { useAuth, useAxiosCalls, useCart, useModal } from "../../../Context";
+import { useAuth, useAxiosCalls, useCart, useModal } from "Context";
 import { useState } from "react";
-import { AlertToast } from "../../Alert/AlertToast";
+import { AlertToast } from "Components";
 
-const ProductImageSection = ({ item }) => {
+export const ProductImageSection = ({ item }) => {
   const { src1, src2, src3, src4, src5 } = item;
   const { auth } = useAuth();
   const { setShowLogin } = useModal();
@@ -48,15 +48,19 @@ const ProductImageSection = ({ item }) => {
   const onClick1 = () => {
     setCurrentImg(src1);
   };
+
   const onClick2 = () => {
     setCurrentImg(src2);
   };
+
   const onClick3 = () => {
     setCurrentImg(src3);
   };
+
   const onClick4 = () => {
     setCurrentImg(src4);
   };
+
   const onClick5 = () => {
     setCurrentImg(src5);
   };
@@ -85,5 +89,3 @@ const ProductImageSection = ({ item }) => {
     </div>
   );
 };
-
-export default ProductImageSection;

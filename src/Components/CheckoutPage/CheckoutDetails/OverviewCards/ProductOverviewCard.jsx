@@ -1,7 +1,7 @@
-import { useCart, useTheme } from "../../../../Context";
-import ProductCard from "./PorductCard/ProductCard";
+import { useCart, useTheme } from "Context";
+import { ProductCard } from "Components";
 
-const ProductOverviewCard = () => {
+export const ProductOverviewCard = () => {
   const { cartState } = useCart();
   const { darkTheme } = useTheme();
 
@@ -25,5 +25,3 @@ const ProductOverviewCard = () => {
     </div>
   );
 };
-
-export default ProductOverviewCard;

@@ -1,8 +1,8 @@
-import { useAuth, useTheme } from "../../../Context";
+import { useAuth, useTheme } from "Context";
 import "./AccountNavBar.css";
 import { NavLink, useLocation } from "react-router-dom";
 
-const AccountNavBar = () => {
+export const AccountNavBar = () => {
   const { auth } = useAuth();
   const { darkTheme } = useTheme();
   const { pathname } = useLocation();
@@ -87,5 +87,3 @@ const AccountNavBar = () => {
     </>
   );
 };
-
-export { AccountNavBar };

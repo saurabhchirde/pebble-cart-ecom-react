@@ -1,15 +1,9 @@
-import {
-  useAuth,
-  useAxiosCalls,
-  useCart,
-  useModal,
-  useTheme,
-} from "../../../Context";
-import { couponCheck } from "../../../Utils/couponCheck";
-import { AlertToast } from "../../Alert/AlertToast";
+import { useAuth, useAxiosCalls, useCart, useModal, useTheme } from "Context";
+import { couponCheck } from "Utils/couponCheck";
+import { AlertToast } from "Components";
 import { useEffect } from "react";
 
-const CartItemCard = ({ item }) => {
+export const CartItemCard = ({ item }) => {
   const { title, price, src1 } = item;
   const {
     cartState: { totalPrice, coupon },
@@ -128,5 +122,3 @@ const CartItemCard = ({ item }) => {
     </div>
   );
 };
-
-export default CartItemCard;

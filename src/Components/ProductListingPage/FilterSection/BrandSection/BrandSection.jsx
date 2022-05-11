@@ -1,8 +1,8 @@
 import React from "react";
-import { useFilter } from "../../../../Context";
-import InputTypeTwo from "../../../UI/Input/InputTypeTwo";
+import { useFilter } from "Context";
+import { InputTypeTwo } from "Components";
 
-const BrandSection = () => {
+export const BrandSection = () => {
   const { filterState, filterDispatch } = useFilter();
   const { canon, nikon, sony } = filterState.byBrand;
 
@@ -44,4 +44,3 @@ const BrandSection = () => {
     </div>
   );
 };
-export default BrandSection;

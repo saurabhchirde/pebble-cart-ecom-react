@@ -1,7 +1,7 @@
-import { useTheme } from "../../../Context";
+import { useTheme } from "Context";
 import "./Footer.css";
 
-const Footer = () => {
+export const Footer = () => {
   const { darkTheme } = useTheme();
   return (
     <>
@@ -62,5 +62,3 @@ const Footer = () => {
     </>
   );
 };
-
-export default Footer;

@@ -1,10 +1,9 @@
-import CartItemCard from "../../Components/CartPage/CartItemCard/CartItemCard";
-import { useAuth, useCart, useTheme } from "../../Context";
+import { CartItemCard, PriceCard } from "Components";
+import { useAuth, useCart, useTheme } from "Context";
 import "./CartPage.css";
 import { Link } from "react-router-dom";
-import PriceCard from "../../Components/CartPage/PriceCard/PriceCard";
 
-const CartPage = () => {
+export const CartPage = () => {
   const { cartState } = useCart();
   const { auth } = useAuth();
   const { darkTheme } = useTheme();
@@ -47,5 +46,3 @@ const CartPage = () => {
     </>
   );
 };
-
-export default CartPage;

@@ -1,8 +1,8 @@
-import { useAuth, useAxiosCalls, useCart, useTheme } from "../../Context";
-import { AlertToast } from "../Alert/AlertToast";
+import { useAuth, useAxiosCalls, useCart, useTheme } from "Context";
+import { AlertToast } from "Components";
 import "./HorizontalProductsCard.css";
 
-const HorizontalProductsCard = ({ item }) => {
+export const HorizontalProductsCard = ({ item }) => {
   const { title, price, src1 } = item;
   const { auth } = useAuth();
   const {
@@ -93,5 +93,3 @@ const HorizontalProductsCard = ({ item }) => {
     </>
   );
 };
-
-export default HorizontalProductsCard;

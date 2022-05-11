@@ -1,13 +1,9 @@
 import { useLocation } from "react-router-dom";
-import {
-  AccountDetails,
-  AccountNavBar,
-  AccountNavBarMobile,
-} from "../../Components/UserAccountPage";
-import { useModal, useTheme } from "../../Context";
+import { AccountDetails, AccountNavBar, AccountNavBarMobile } from "Components";
+import { useModal, useTheme } from "Context";
 import "./AccountPage.css";
 
-const AccountPage = () => {
+export const AccountPage = () => {
   const { showNavMenu } = useModal();
   const { pathname } = useLocation();
   const { darkTheme } = useTheme();
@@ -30,5 +26,3 @@ const AccountPage = () => {
     </div>
   );
 };
-
-export default AccountPage;

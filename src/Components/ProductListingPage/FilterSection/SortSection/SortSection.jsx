@@ -1,7 +1,7 @@
-import { useFilter } from "../../../../Context";
-import InputTypeTwo from "../../../UI/Input/InputTypeTwo";
+import { useFilter } from "Context";
+import { InputTypeTwo } from "Components";
 
-const SortSection = () => {
+export const SortSection = () => {
   const { filterState, filterDispatch } = useFilter();
   const { newest, lowTohHigh, highToLow } = filterState.bySort;
 
@@ -41,5 +41,3 @@ const SortSection = () => {
     </div>
   );
 };
-
-export default SortSection;

@@ -1,6 +1,6 @@
-import { useTheme } from "../../../Context";
+import { useTheme } from "Context";
 
-const ProductDescription = ({ item }) => {
+export const ProductDescription = ({ item }) => {
   const { darkTheme } = useTheme();
   return (
     <div
@@ -23,5 +23,3 @@ const ProductDescription = ({ item }) => {
     </div>
   );
 };
-
-export default ProductDescription;

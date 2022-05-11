@@ -1,8 +1,6 @@
-import FilterSection from "../../Components/ProductListingPage/FilterSection/FilterSection";
-import ProductsSection from "../../Components/ProductListingPage/ProductsSection/ProductsSection";
-import FloatingButton from "../../Components/UI/Button/FloatingButton";
+import { FilterSection, ProductsSection, FloatingButton } from "Components";
 
-const ProductListingPage = () => {
+export const ProductListingPage = () => {
   return (
     <>
       <div className="product-page-main mg-3-bot">
@@ -18,5 +16,3 @@ const ProductListingPage = () => {
     </>
   );
 };
-
-export default ProductListingPage;

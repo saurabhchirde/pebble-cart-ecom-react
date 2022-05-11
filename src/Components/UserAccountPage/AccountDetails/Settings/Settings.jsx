@@ -1,8 +1,8 @@
-import { useModal, useTheme } from "../../../../Context";
-import { AccountNavBarMobile } from "../../AccountNavBarMobile/AccountNavBarMobile";
-import { AccountNavBar } from "../../AccountNavBar/AccountNavBar";
+import { useModal, useTheme } from "Context";
+import { AccountNavBarMobile, AccountNavBar } from "Components";
 import "./Settings.css";
-const Settings = () => {
+
+export const Settings = () => {
   const { showNavMenu } = useModal();
   const { darkTheme } = useTheme();
 
@@ -22,5 +22,3 @@ const Settings = () => {
     </div>
   );
 };
-
-export default Settings;

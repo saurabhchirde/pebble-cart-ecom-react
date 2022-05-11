@@ -1,9 +1,8 @@
-import { useModal, useTheme } from "../../../../Context";
-import { AccountNavBarMobile } from "../../AccountNavBarMobile/AccountNavBarMobile";
-import { AccountNavBar } from "../../AccountNavBar/AccountNavBar";
+import { useModal, useTheme } from "Context";
+import { AccountNavBarMobile, AccountNavBar } from "Components";
 import "./Support.css";
 
-const Support = () => {
+export const Support = () => {
   const { showNavMenu } = useModal();
   const { darkTheme } = useTheme();
 
@@ -23,5 +22,3 @@ const Support = () => {
     </div>
   );
 };
-
-export default Support;

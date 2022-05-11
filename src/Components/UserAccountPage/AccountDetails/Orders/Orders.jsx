@@ -1,12 +1,14 @@
-import { useCart, useModal, useTheme } from "../../../../Context";
-import { AccountNavBarMobile } from "../../AccountNavBarMobile/AccountNavBarMobile";
-import { AccountNavBar } from "../../AccountNavBar/AccountNavBar";
+import { useCart, useModal, useTheme } from "Context";
+import {
+  AccountNavBarMobile,
+  AccountNavBar,
+  SingleProduct,
+  OrderDetails,
+} from "Components";
 import "./Orders.css";
-import SingleProduct from "./SingleProduct/SingleProduct";
 import { Link } from "react-router-dom";
-import OrderDetails from "./OrderDetails/OrderDetails";
 
-const Orders = () => {
+export const Orders = () => {
   const { showNavMenu } = useModal();
   const { darkTheme } = useTheme();
   const {
@@ -45,5 +47,3 @@ const Orders = () => {
     </div>
   );
 };
-
-export default Orders;

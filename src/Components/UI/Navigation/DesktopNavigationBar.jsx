@@ -1,21 +1,17 @@
-import logoLight from "../../../Data/logo/logo-light.svg";
-import logoDark from "../../../Data/logo/logo-dark.svg";
-import BadgeIconButton from "../Button/BadgeIconButton";
-import SearchBar from "./SearchBar/SearchBar";
-import NavbarLoginButton from "./NavbarLoginButton/NavbarLoginButton";
-import NavbarAvatar from "./Avatar/NavbarAvatar";
+import logoLight from "Data/logo/logo-light.svg";
+import logoDark from "Data/logo/logo-dark.svg";
 import {
-  useCart,
-  useFilter,
-  useAuth,
-  useModal,
-  useTheme,
-} from "../../../Context";
+  BadgeIconButton,
+  SearchBar,
+  NavbarLoginButton,
+  NavbarAvatar,
+  IconButton,
+} from "Components";
+import { useCart, useFilter, useAuth, useModal, useTheme } from "Context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import IconButton from "../Button/IconButton";
 import "./DesktopNavigationBar.css";
 
-const DesktopNavigationBar = () => {
+export const DesktopNavigationBar = () => {
   const {
     cartState: { cart, wishlist },
   } = useCart();
@@ -160,5 +156,3 @@ const DesktopNavigationBar = () => {
     </>
   );
 };
-
-export default DesktopNavigationBar;

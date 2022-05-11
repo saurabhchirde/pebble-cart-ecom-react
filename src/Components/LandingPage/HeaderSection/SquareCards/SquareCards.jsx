@@ -1,6 +1,6 @@
-import { useTheme } from "../../../../Context";
+import { useTheme } from "Context";
 
-const SquareCards = (props) => {
+export const SquareCards = (props) => {
   const { darkTheme } = useTheme();
 
   const squareCardClass = darkTheme
@@ -20,4 +20,3 @@ const SquareCards = (props) => {
     </>
   );
 };
-export default SquareCards;

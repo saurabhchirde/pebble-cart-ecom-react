@@ -1,37 +1,40 @@
-import DesktopNavigationBar from "../src/Components/UI/Navigation/DesktopNavigationBar";
-import LandingPage from "./Pages/Landing/LandingPage";
-import { useModal } from "./Context/Modal/ModalProvider";
-import Login from "../src/Components/UI/Modal/Login";
-import Signup from "../src/Components/UI/Modal/Signup";
-import MobileNavigationBar from "../src/Components/UI/Navigation/MobileNavigationBar";
-import MobileNavigationBarBottom from "../src/Components/UI/Navigation/MobileNavigationBarBottom";
+import {
+  DesktopNavigationBar,
+  Login,
+  Signup,
+  MobileNavigationBar,
+  MobileNavigationBarBottom,
+  Footer,
+  BodyWrapper,
+  SignupAlertModal,
+  AlertModal,
+  AnimateCamera,
+  AnimateLoader,
+  Orders,
+  Settings,
+  Payments,
+  Addresses,
+  Support,
+} from "Components";
+import {
+  LandingPage,
+  ProductListingPage,
+  WishlistPage,
+  CartPage,
+  CheckoutPage,
+  SingleProduct,
+  NotFound,
+  AccountPage,
+  Accessories,
+  Camera,
+  Lens,
+  Tripod,
+} from "Pages";
 import "./App.css";
-import Footer from "./Components/UI/Footer/Footer";
-import BodyWrapper from "./Components/UI/Wrapper/BodyWrapper";
-import ProductListingPage from "./Pages/ProductListing/ProductListingPage";
-import WishlistPage from "./Pages/Wishlist/WishlistPage";
-import CartPage from "./Pages/Cart/CartPage";
-import CheckoutPage from "./Pages/Checkout/CheckoutPage";
 import Mockman from "mockman-js";
 import { Routes, Route } from "react-router-dom";
-import SingleProduct from "./Pages/SingleProduct/SingleProduct";
-import SignupAlertModal from "./Components/UI/Modal/SignupAlertModal";
-import AlertModal from "./Components/UI/Modal/AlertModal";
-import Camera from "./Pages/ProductListing/Camera/Camera";
-import Lens from "./Pages/ProductListing/Lens/Lens";
-import Tripod from "./Pages/ProductListing/Tripod/Tripod";
-import Accessories from "./Pages/ProductListing/Accessories/Accessories";
-import { useAnimation, useAuth, useTheme } from "./Context";
-import AnimateCamera from "./Components/Animations/AnimateCamera";
-import AnimateLoader from "./Components/Animations/AnimateLoader";
-import NotFound from "./Pages/NotFound/NotFound";
+import { useAnimation, useAuth, useTheme, useModal } from "./Context";
 import { useEffect } from "react";
-import AccountPage from "./Pages/AccountPage/AccountPage";
-import Orders from "./Components/UserAccountPage/AccountDetails/Orders/Orders";
-import Settings from "./Components/UserAccountPage/AccountDetails/Settings/Settings";
-import Payments from "./Components/UserAccountPage/AccountDetails/Payments/Payments";
-import Addresses from "./Components/UserAccountPage/AccountDetails/Addresses/Addresses";
-import Support from "./Components/UserAccountPage/AccountDetails/Support/Support";
 import { ToastContainer } from "react-toastify";
 
 const App = () => {

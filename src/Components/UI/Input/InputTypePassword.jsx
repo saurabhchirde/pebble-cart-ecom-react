@@ -1,4 +1,4 @@
-const InputTypePassword = (props) => {
+export const InputTypePassword = (props) => {
   return (
     <div className={props.inputWrapper}>
       <label>
@@ -19,5 +19,3 @@ const InputTypePassword = (props) => {
     </div>
   );
 };
-
-export default InputTypePassword;

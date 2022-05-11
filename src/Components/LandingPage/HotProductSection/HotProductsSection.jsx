@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
-import { useProductProvider, useTheme } from "../../../Context";
+import { useProductProvider, useTheme } from "Context";
 import {
   actionCamera,
   polaroidCamera,
   sonyAlphaCamera,
-} from "../../../Data/Img/Products/ProductImages";
-import HotProductCard from "./HotProductCards/HotProductCard";
+} from "Data/Img/Products/ProductImages";
+import { HotProductCard } from "Components";
 
-const HotProductsSection = () => {
+export const HotProductsSection = () => {
   const { darkTheme } = useTheme();
   const { productState } = useProductProvider();
 
@@ -47,5 +47,3 @@ const HotProductsSection = () => {
     </div>
   );
 };
-
-export default HotProductsSection;

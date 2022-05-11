@@ -1,16 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import {
-  useAuth,
-  useAxiosCalls,
-  useCart,
-  useModal,
-  useTheme,
-} from "../../../Context";
-import { ratingStarCheck } from "../../../Utils/FilterFunctions/ratingStarCheck";
-import { AlertToast } from "../../Alert/AlertToast";
+import { useAuth, useAxiosCalls, useCart, useModal, useTheme } from "Context";
+import { ratingStarCheck } from "Utils/FilterFunctions/ratingStarCheck";
+import { AlertToast } from "Components";
 import { useEffect } from "react";
 
-const ProductDetailSection = ({ item }) => {
+export const ProductDetailSection = ({ item }) => {
   const {
     cartState: { cart, wishlist },
     addButton,
@@ -189,5 +183,3 @@ const ProductDetailSection = ({ item }) => {
     </>
   );
 };
-
-export default ProductDetailSection;

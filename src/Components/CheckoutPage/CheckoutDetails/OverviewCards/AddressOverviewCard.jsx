@@ -1,11 +1,10 @@
-import { useAuth, useTheme } from "../../../../Context";
-import { useCheckout } from "../../../../Context/Checkout/CheckoutProvider";
-import SingleAddress from "../../../UserAccountPage/AccountDetails/Addresses/SingleAddress/SingleAddress";
-import NewAddressModal from "../../../UserAccountPage/AccountDetails/Addresses/NewAddress/NewAddressModal/NewAddressModal";
+import { useAuth, useTheme } from "Context";
+import { useCheckout } from "Context";
+import { SingleAddress, NewAddressModal } from "Components";
 import "./AddressOverViewCard.css";
 import { useEffect } from "react";
 
-const AddressOverviewCard = () => {
+export const AddressOverviewCard = () => {
   const { checkoutState, checkoutDispatch } = useCheckout();
   const { addressOverviewCheck } = checkoutState;
   const {
@@ -84,5 +83,3 @@ const AddressOverviewCard = () => {
     </div>
   );
 };
-
-export default AddressOverviewCard;

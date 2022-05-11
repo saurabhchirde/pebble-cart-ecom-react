@@ -1,11 +1,9 @@
-import { useAuth, useAxiosCalls, useModal } from "../../../Context";
-import Button from "../Button/Button";
-import InputTypeOne from "../Input/InputTypeOne";
-import InputTypePassword from "../Input/InputTypePassword";
+import { useAuth, useAxiosCalls, useModal } from "Context";
+import { Button, InputTypeOne, InputTypePassword } from "Components";
 import { useState } from "react";
 import "./Login.css";
 
-const Login = () => {
+export const Login = () => {
   const { loginInput, setLoginInput } = useAuth();
 
   const { setShowLogin, setShowSignup, setAlertText, setShowAlert } =
@@ -142,5 +140,3 @@ const Login = () => {
     </>
   );
 };
-
-export default Login;

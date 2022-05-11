@@ -1,6 +1,6 @@
 import "./OrderDetails.css";
 
-const OrderDetails = ({ details }) => {
+export const OrderDetails = ({ details }) => {
   const { amountPaid, orderNumber, date } = details;
 
   return (
@@ -27,5 +27,3 @@ const OrderDetails = ({ details }) => {
     </div>
   );
 };
-
-export default OrderDetails;

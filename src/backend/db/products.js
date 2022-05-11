@@ -78,7 +78,7 @@ import {
   sandisk2563,
   sandisk2564,
   sandisk2565,
-} from "../../Data/Img/Products/ProductImages";
+} from "Data/Img/Products/ProductImages";
 
 /*
   Product Database 

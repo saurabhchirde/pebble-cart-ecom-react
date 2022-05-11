@@ -1,8 +1,8 @@
 import React from "react";
-import { useFilter, useTheme } from "../../../../Context";
+import { useFilter, useTheme } from "Context";
 import "./PriceSection.css";
 
-const PriceSection = () => {
+export const PriceSection = () => {
   const { filterDispatch } = useFilter();
   const { darkTheme } = useTheme();
 
@@ -40,5 +40,3 @@ const PriceSection = () => {
     </div>
   );
 };
-
-export default PriceSection;

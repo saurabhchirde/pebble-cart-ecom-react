@@ -1,9 +1,7 @@
-import { useAuth, useAxiosCalls } from "../../../../../../Context";
-import InputTypeOne from "../../../../../UI/Input/InputTypeOne";
-import Button from "../../../../../UI/Button/Button";
-import { AlertToast } from "../../../../../Alert/AlertToast";
+import { useAuth, useAxiosCalls } from "Context";
+import { InputTypeOne, Button, AlertToast } from "Components";
 
-const NewAddressModal = () => {
+export const NewAddressModal = () => {
   const {
     auth,
     newAddress,
@@ -115,5 +113,3 @@ const NewAddressModal = () => {
     </>
   );
 };
-
-export default NewAddressModal;

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import IconButton from "../../../../UI/Button/IconButton";
+import { IconButton } from "Components";
 import "./CreditCard.css";
 
 export const CreditCard = ({ details }) => {

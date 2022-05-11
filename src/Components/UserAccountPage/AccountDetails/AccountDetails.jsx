@@ -1,8 +1,8 @@
 import "./AccountDetails.css";
 import { Link } from "react-router-dom";
-import { useTheme } from "../../../Context";
+import { useTheme } from "Context";
 
-const AccountDetails = () => {
+export const AccountDetails = () => {
   const { darkTheme } = useTheme();
 
   return (
@@ -26,5 +26,3 @@ const AccountDetails = () => {
     </div>
   );
 };
-
-export { AccountDetails };

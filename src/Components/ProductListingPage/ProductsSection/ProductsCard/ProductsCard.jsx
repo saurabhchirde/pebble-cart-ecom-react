@@ -1,17 +1,11 @@
-import {
-  useAuth,
-  useCart,
-  useModal,
-  useAxiosCalls,
-  useTheme,
-} from "../../../../Context";
+import { useAuth, useCart, useModal, useAxiosCalls, useTheme } from "Context";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./ProductsCard.css";
 import { useEffect, useState } from "react";
-import { AlertToast } from "../../../Alert/AlertToast";
+import { AlertToast } from "Components";
 
-const ProductsCard = ({ item }) => {
+export const ProductsCard = ({ item }) => {
   const { title, price, rating, totalRating, src1, newestArrival, inStock } =
     item;
   const {
@@ -178,4 +172,3 @@ const ProductsCard = ({ item }) => {
     </>
   );
 };
-export default ProductsCard;

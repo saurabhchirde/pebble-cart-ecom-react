@@ -1,11 +1,13 @@
-import HorizontalProductsCard from "../../Components/Cards/HorizontalProductsCard";
-import { useAuth, useCart, useTheme } from "../../Context";
+import {
+  HorizontalProductsCard,
+  FloatingButton,
+  NewArrivals,
+} from "Components";
+import { useAuth, useCart, useTheme } from "Context";
 import { Link } from "react-router-dom";
 import "./WishlistPage.css";
-import FloatingButton from "../../Components/UI/Button/FloatingButton";
-import NewArrivals from "../../Components/NewArrivals/NewArrivals";
 
-const WishlistPage = () => {
+export const WishlistPage = () => {
   const { auth } = useAuth();
   const {
     cartState: { wishlist },
@@ -47,5 +49,3 @@ const WishlistPage = () => {
     </>
   );
 };
-
-export default WishlistPage;

@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useCart, useTheme } from "../../../Context";
-import { couponCheck } from "../../../Utils/couponCheck";
-import { AlertToast } from "../../Alert/AlertToast";
+import { useCart, useTheme } from "Context";
+import { couponCheck } from "Utils/couponCheck";
+import { AlertToast } from "Components";
 import "./PriceCard.css";
 
-const PriceCard = () => {
+export const PriceCard = () => {
   const { cartState, cartDispatch } = useCart();
   const { totalQty, totalPrice, coupon, discount, discountPercentage } =
     cartState;
@@ -134,5 +134,3 @@ const PriceCard = () => {
     </div>
   );
 };
-
-export default PriceCard;
