@@ -2,7 +2,6 @@ const sortByPrice = (filteredArray, state) => {
   let withoutSort = [...filteredArray];
   let tempArray = [];
 
-  // sort by price
   if (
     state.bySort.newest === false &&
     state.bySort.lowTohHigh === false &&

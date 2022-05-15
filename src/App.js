@@ -89,9 +89,6 @@ const App = () => {
               {auth.login && (
                 <Route path="account/settings" element={<Settings />} />
               )}
-              {auth.login && (
-                <Route path="account/support" element={<Support />} />
-              )}
               <Route path="wishlist" element={<WishlistPage />} />
               <Route path="cart" element={<CartPage />} />
               {auth.login && (

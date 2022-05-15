@@ -1,8 +1,8 @@
 .atm-card-wrapper {
-  width: 20rem;
+  width: 19rem;
   height: 12rem;
   border-radius: 10px;
-  padding: 1rem;
+  padding: 10px;
   overflow: hidden;
   margin: 10px;
   position: relative;
@@ -63,7 +63,7 @@
   justify-content: space-between;
   font-size: 0.9rem;
   width: 95%;
-  margin: 5px auto 0;
+  margin: 8px auto 0;
   font-weight: 300;
   letter-spacing: 1px;
 }
@@ -73,14 +73,15 @@
   flex-direction: column;
   width: 95%;
   margin: auto;
-  margin-top: 3.8rem;
+  margin-top: 3rem;
 }
 
 .atm-card-body h1 {
   font-size: 1rem;
-  word-spacing: 1.77rem;
+  word-spacing: 1rem;
   letter-spacing: 1px;
   font-weight: 400;
+  margin-bottom: 0.8rem;
 }
 
 .atm-card-body > h2 {

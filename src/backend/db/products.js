@@ -317,7 +317,7 @@ const products = [
     title: "Polaroid Instant Color Film for 600 cameras and i-Type cameras",
     price: 4050,
     rating: 4.5,
-    totalRating: 313, //
+    totalRating: 313,
     src1: polaroidFilm,
     src2: polaroidFilm2,
     src3: polaroidFilm3,
@@ -393,7 +393,7 @@ const products = [
     title: "Peak Design Cuff Camera Wrist Strap (Black)",
     price: 4500,
     rating: 4,
-    totalRating: 4213, //
+    totalRating: 4213,
     src1: cameraStrap,
     src2: cameraStrap2,
     src3: cameraStrap3,
@@ -440,7 +440,7 @@ const products = [
     title: "SanDisk 128GB Extreme Pro SDXC UHS-I Card - C10, U3, V30, 4K UHD",
     price: 2999,
     rating: 4.2,
-    totalRating: 93250, //
+    totalRating: 93250,
     src1: sandisk128,
     src2: sandisk1282,
     src3: sandisk1283,
@@ -465,7 +465,7 @@ const products = [
     title: "HUMBLE® Octopus Tripod Foldable Flexible Tripod",
     price: 429,
     rating: 3.8,
-    totalRating: 245, //
+    totalRating: 245,
     src1: humbleTripod,
     src2: humbleTripod2,
     src3: humbleTripod3,
@@ -488,7 +488,7 @@ const products = [
     title: "Polaroid Now Camera Bag - Blue, Made from soft materials",
     price: 5449,
     rating: 4.7,
-    totalRating: 20, //
+    totalRating: 20,
     src1: polaroidBag,
     src2: polaroidBag2,
     src3: polaroidBag3,
@@ -512,7 +512,7 @@ const products = [
     title: "GoPro HERO10 Black - Front LCD and Touch Rear Screens,23MP.",
     price: 35400,
     rating: 4.5,
-    totalRating: 103, //
+    totalRating: 103,
     src1: actionCamera,
     src2: actionCamera2,
     src3: actionCamera3,
@@ -537,7 +537,7 @@ const products = [
     title: "Sony DSC W830 Cyber-Shot 20.1 MP Point & Shoot Camera",
     price: 10999,
     rating: 4,
-    totalRating: 13, //
+    totalRating: 13,
     src1: sonySmallCamera,
     src2: sonySmallCamera2,
     src3: sonySmallCamera3,
@@ -561,7 +561,7 @@ const products = [
     title: "Canon EOS 6D DSLR Camera (Kit 24 - 105)  (Black)",
     price: 135100,
     rating: 3.5,
-    totalRating: 40, //
+    totalRating: 40,
     src1: canon6dCamera,
     src2: canon6dCamera2,
     src3: canon6dCamera3,
@@ -586,7 +586,7 @@ const products = [
     title: "Canon EF 85mm f1.2L II USM Lens for Canon DSLR Cameras",
     price: 85100,
     rating: 3.2,
-    totalRating: 13, //
+    totalRating: 13,
     src1: lens85mm,
     src2: lens85mm,
     src3: lens85mm,
@@ -611,7 +611,7 @@ const products = [
     title: "Apexel 4K HD Mobile Phone 5-in-1 Camera Lens Kit",
     price: 540,
     rating: 2.2,
-    totalRating: 25, //
+    totalRating: 25,
     src1: lensForMobile,
     src2: lensForMobile2,
     src3: lensForMobile3,
@@ -633,7 +633,7 @@ const products = [
     title: "Polaroid Originals Now I-Type Instant Camera - (9030)",
     price: 12999,
     rating: 2.1,
-    totalRating: 14, //
+    totalRating: 14,
     src1: polaroidCamera,
     src2: polaroidCamera2,
     src3: polaroidCamera3,
@@ -657,7 +657,7 @@ const products = [
     title: "Sony Alpha ILCE-7RM3A Full-Frame 42.4MP Mirrorless Camera Body",
     price: 202200,
     rating: 1.6,
-    totalRating: 34, //
+    totalRating: 34,
     src1: sonyAlphaCamera,
     src2: sonyAlphaCamera2,
     src3: sonyAlphaCamera3,
@@ -688,7 +688,7 @@ const products = [
     title: "Canon EOS 1500D 24.1 Digital SLR Camera EF S18-55 is II Lens",
     price: 18999,
     rating: 1.8,
-    totalRating: 30, //
+    totalRating: 30,
     src1: cameraCanon,
     src2: cameraCanon2,
     src3: cameraCanon3,
@@ -714,7 +714,7 @@ const products = [
     title: "GoPro HERO10 Black - Front LCD and Touch Rear Screens,23MP.",
     price: 35400,
     rating: 1.4,
-    totalRating: 103, //
+    totalRating: 103,
     src1: actionCamera,
     src2: actionCamera2,
     src3: actionCamera3,
@@ -739,7 +739,7 @@ const products = [
     title: "Sony DSC W830 Cyber-Shot 20.1 MP Point & Shoot Camera",
     price: 10999,
     rating: 3.7,
-    totalRating: 13, //
+    totalRating: 13,
     src1: sonySmallCamera,
     src2: sonySmallCamera2,
     src3: sonySmallCamera3,
@@ -763,7 +763,7 @@ const products = [
     title: "Canon EOS 6D DSLR Camera (Kit 24 - 105)  (Black)",
     price: 135100,
     rating: 4.5,
-    totalRating: 40, //
+    totalRating: 40,
     src1: canon6dCamera,
     src2: canon6dCamera2,
     src3: canon6dCamera3,
@@ -788,7 +788,7 @@ const products = [
     title: "Canon EF 85mm f1.2L II USM Lens for Canon DSLR Cameras",
     price: 85100,
     rating: 4,
-    totalRating: 13, //
+    totalRating: 13,
     src1: lens85mm,
     src2: lens85mm,
     src3: lens85mm,
@@ -813,7 +813,7 @@ const products = [
     title: "Apexel 4K HD Mobile Phone 5-in-1 Camera Lens Kit",
     price: 299,
     rating: 2.6,
-    totalRating: 25, //
+    totalRating: 25,
     src1: lensForMobile,
     src2: lensForMobile2,
     src3: lensForMobile3,
@@ -836,7 +836,7 @@ const products = [
     title: "Canon EOS 1500D 24.1 Digital SLR Camera EF S18-55 is II Lens",
     price: 18999,
     rating: 1.2,
-    totalRating: 30, //
+    totalRating: 30,
     src1: cameraCanon,
     src2: cameraCanon2,
     src3: cameraCanon3,
@@ -862,7 +862,7 @@ const products = [
     title: "GoPro HERO10 Black - Front LCD and Touch Rear Screens,23MP.",
     price: 35400,
     rating: 4.5,
-    totalRating: 103, //
+    totalRating: 103,
     src1: actionCamera,
     src2: actionCamera2,
     src3: actionCamera3,

@@ -16,9 +16,6 @@ export const AccountNavBarMobile = () => {
   const activeAddress = pathname.includes("addresses")
     ? "active-nav nav-addresses"
     : " nav-addresses";
-  const activeSupport = pathname.includes("support")
-    ? "active-nav nav-support"
-    : "nav-support";
   const activeSettings = pathname.includes("settings")
     ? "active-nav nav-settings"
     : "nav-settings";
@@ -66,12 +63,6 @@ export const AccountNavBarMobile = () => {
             <div className={activeAddress}>
               <i className="fas fa-address-book"></i>
               <h2 className="nav-menu-title">Addresses</h2>
-            </div>
-          </NavLink>
-          <NavLink to={pathname.includes("support") ? "" : "/account/support"}>
-            <div className={activeSupport}>
-              <i className="fas fa-question-circle"></i>
-              <h2 className="nav-menu-title">Support</h2>
             </div>
           </NavLink>
           <NavLink

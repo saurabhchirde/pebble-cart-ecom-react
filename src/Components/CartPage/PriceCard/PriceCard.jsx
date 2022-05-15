@@ -54,9 +54,6 @@ export const PriceCard = () => {
       type: "updateCartOnServer",
       payload: updatedPriceDetails,
     });
-    return () => {
-      // to unmount useEffect
-    };
   }, [cartState.cart, cartDispatch]);
 
   // to update total price after changing qty
@@ -65,9 +62,6 @@ export const PriceCard = () => {
       type: "updatedDiscount",
       payload: discount === 0 ? 0 : (totalPrice * discountPercentage) / 100,
     });
-    return () => {
-      // to unmount useEffect
-    };
   }, [cartState.totalQty, cartDispatch]);
 
   const cartPriceTableClass = darkTheme

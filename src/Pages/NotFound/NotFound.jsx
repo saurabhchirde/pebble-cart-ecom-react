@@ -14,22 +14,12 @@ export const NotFound = () => {
         <h1>4</h1>
       </div>
       <h2>Page Not Found</h2>
-      {!auth.login && (
-        <Link to="/">
-          <ButtonSimple
-            label="Back to Home"
-            btnClassName="btn primary-text-btn-lg"
-          />
-        </Link>
-      )}
-      {auth.login && (
-        <Link to="/home">
-          <ButtonSimple
-            label="Back to Home"
-            btnClassName="btn primary-text-btn-lg"
-          />
-        </Link>
-      )}
+      <Link to="/">
+        <ButtonSimple
+          label="Back to Home"
+          btnClassName="btn primary-text-btn-lg"
+        />
+      </Link>
     </div>
   );
 };

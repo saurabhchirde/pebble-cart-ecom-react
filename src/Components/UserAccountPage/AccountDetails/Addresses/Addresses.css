@@ -14,6 +14,7 @@
   background-color: var(--light-theme-card-bg);
   color: var(--text-dark);
 }
+
 .all-address-dark {
   color: var(--text-white);
 }
@@ -22,7 +23,6 @@
 .all-address-dark > div {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: flex-start;
   margin: 1rem auto;
 }
@@ -33,17 +33,25 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
 }
 
 .all-address-light .address-title h2,
 .all-address-dark .address-title h2 {
   font-size: 1rem;
+  margin-right: 10px;
 }
 
 .address-title h2 {
   font-size: 1.2rem;
   font-weight: 500;
+}
+
+.all-address-light .address-title a {
+  color: var(--text-dark);
+}
+
+.all-address-dark .address-title a {
+  color: var(--text-white);
 }
 
 @media screen and (max-width: 580px) {
@@ -66,7 +74,6 @@
   .all-address-light .address-title,
   .all-address-dark .address-title {
     width: 94%;
-    justify-content: space-between;
   }
 
   .all-address-light .address-title h2,

@@ -8,6 +8,7 @@ import {
 import "./Payments.css";
 import { cardDetails } from "Data/payment";
 import { upiAddresses } from "Data/payment";
+import { Link } from "react-router-dom";
 
 export const Payments = () => {
   const { showNavMenu } = useModal();
@@ -19,8 +20,11 @@ export const Payments = () => {
       <AccountNavBar />
       <div className={darkTheme ? "all-address-dark" : "all-address-light"}>
         <div className="address-title">
-          <h2>My Account</h2>
-          <h2>Payment Details</h2>
+          <Link to="/account">
+            <h2>My Account</h2>
+          </Link>
+          {" > "}
+          <h2 className="mg-point6-lt">Payment Details</h2>
         </div>
         <div className="payment-cards-container">
           <div className="payment-cards-title">

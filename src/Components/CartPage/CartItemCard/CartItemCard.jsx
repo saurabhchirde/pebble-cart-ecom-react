@@ -66,9 +66,6 @@ export const CartItemCard = ({ item }) => {
 
   useEffect(() => {
     couponCheck(totalPrice, coupon);
-    return () => {
-      // to unmount useEffect
-    };
   }, [totalPrice, coupon]);
 
   const cartItemCartClass = darkTheme

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { AlertToast } from "Components";
 import { createContext, useContext, useEffect, useReducer } from "react";
 
 const productContext = createContext([]);
@@ -41,7 +42,7 @@ const ProductsProvider = ({ children }) => {
           payload: response.data.products,
         });
       } catch (error) {
-        console.error(error.message);
+        AlertToast("error", error.message);
       }
     };
     getproducts();
@@ -56,7 +57,7 @@ const ProductsProvider = ({ children }) => {
           payload: response.data.categories,
         });
       } catch (error) {
-        console.error(error.message);
+        AlertToast("error", error.message);
       }
     };
     getcategory();
@@ -68,7 +69,7 @@ const ProductsProvider = ({ children }) => {
         const response = await axios.get("/api/brands");
         productDispatch({ type: "getbrands", payload: response.data.brands });
       } catch (error) {
-        console.error(error.message);
+        AlertToast("error", error.message);
       }
     };
     getbrands();

@@ -66,7 +66,6 @@ const cartReducer = (cartState, action) => {
       return { ...cartState, cart: [], wishlist: [], orderedProduct: [] };
 
     //client side
-
     case "couponCode":
       return {
         ...cartState,

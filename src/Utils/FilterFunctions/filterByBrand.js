@@ -32,7 +32,7 @@ const filterByBrand = (filteredArray, state) => {
       ...withoutFiltered.filter((prod) => prod.brand.toLowerCase() === "sony")
     );
   }
-  // console.log(tempArray);
+
   return tempArray;
 };
 

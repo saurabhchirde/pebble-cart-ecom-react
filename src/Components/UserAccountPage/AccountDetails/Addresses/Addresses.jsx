@@ -6,6 +6,7 @@ import {
   AccountNavBar,
   AccountNavBarMobile,
 } from "Components";
+import { Link } from "react-router-dom";
 
 export const Addresses = () => {
   const {
@@ -22,8 +23,11 @@ export const Addresses = () => {
       <AccountNavBar />
       <div className={darkTheme ? "all-address-dark" : "all-address-light"}>
         <div className="address-title">
-          <h2>My Account</h2>
-          <h2>Addresses</h2>
+          <Link to="/account">
+            <h2>My Account</h2>
+          </Link>
+          {" > "}
+          <h2 className="mg-point6-lt">Addresses</h2>
         </div>
         <NewAddress />
         {addresses.map((address) => {
