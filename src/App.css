@@ -12,6 +12,8 @@
   --coupon-error: rgba(252, 0, 0, 0.18);
   --coupon-success: rgba(34, 252, 0, 0.18);
   --available-coupons: rgba(97, 97, 97, 0.139);
+  --navbar-shadow: rgba(0, 0, 0, 0.164);
+  --banner-square-card: black;
 
   /* light mode */
   --light-bg-color: #f1f1f1;
@@ -23,6 +25,7 @@
   --light-theme-title-color: #252525;
   --light-theme-sub-title-color: #484848;
   --payment-card-hover: rgb(176, 176, 176);
+  --banner-square-card-light: rgb(91, 91, 91);
 }
 
 body.lightTheme {
@@ -132,7 +135,7 @@ body.lightTheme {
 }
 
 .hero-section-light .card-vertical-info-light {
-  background-color: var(--light-theme-category-card);
+  background-color: var(--banner-square-card-light);
 }
 
 .hero-section-light .card-vertical-info-light:hover {
