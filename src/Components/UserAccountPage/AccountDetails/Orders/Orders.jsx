@@ -29,7 +29,7 @@ export const Orders = () => {
         </div>
         {orderedProduct?.length > 0 ? (
           orderedProduct.map((order) => (
-            <div className="ordered-product-container">
+            <div className="ordered-product-container" key={order.orderNumber}>
               {order.productList.map((product) => (
                 <SingleProduct key={product._id} product={product} />
               ))}
