@@ -7,6 +7,8 @@ import {
 } from "Data/Img/Payment/PaymentIcon";
 import { useCheckout, useTheme } from "Context";
 import "./PaymentOverviewCard.css";
+import { CreditCard } from "Components";
+import { cardDetails } from "Data/payment";
 
 export const PaymentOverviewCard = () => {
   const { checkoutState, checkoutDispatch } = useCheckout();
@@ -28,10 +30,19 @@ export const PaymentOverviewCard = () => {
       <details>
         <summary>
           <h1>
-            Payment Method <span>(right now we only accept Gpay)</span>
+            Available Payment Methods
+            <span>(right now we only accept Gpay)</span>
           </h1>
           <i className={checkIconStatus}></i>
         </summary>
+        <div>
+          <p className="mg-1-lt">Your saved cards</p>
+          <div className="payment-cards-detail pd-point6-lt">
+            {cardDetails.map((card) => (
+              <CreditCard key={card._id} details={card} />
+            ))}
+          </div>
+        </div>
         <div className="payment-icons">
           <img
             src={applePay}

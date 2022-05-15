@@ -7,6 +7,7 @@ import {
   addItemToCartHandler,
   getCartItemsHandler,
   removeItemFromCartHandler,
+  emptyCartHandler,
   updateCartItemHandler,
 } from "./backend/controllers/CartController";
 // added new controller
@@ -102,6 +103,7 @@ export function makeServer({ environment = "development" } = {}) {
         "/user/cart/:productId",
         removeItemFromCartHandler.bind(this)
       );
+      this.delete("/user/cart", emptyCartHandler.bind(this));
 
       // address routes (private)
       this.get("/user/addresses", getAddressHandler.bind(this));

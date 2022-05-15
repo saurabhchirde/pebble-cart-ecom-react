@@ -28,13 +28,15 @@ const cartReducer = (cartState, action) => {
     case "makePayment":
       return {
         ...cartState,
-        orderedProduct: {
+        orderedProduct: [
+          {
+            productList: action.payload.productList,
+            amountPaid: action.payload.amountPaid,
+            orderNumber: action.payload.orderNumber,
+            date: new Date().toLocaleDateString(),
+          },
           ...cartState.orderedProduct,
-          productList: action.payload.productList,
-          amountPaid: action.payload.amountPaid,
-          orderNumber: action.payload.orderNumber,
-          date: new Date().toLocaleDateString(),
-        },
+        ],
         cart: [],
       };
 

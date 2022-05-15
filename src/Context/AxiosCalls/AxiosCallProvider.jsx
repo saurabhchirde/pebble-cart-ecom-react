@@ -147,6 +147,19 @@ const AxiosCallProvider = ({ children }) => {
     }
   };
 
+  // empty all items from cart
+  const emptyAllCartFromServer = async (cartConfig) => {
+    const { url, headers } = cartConfig;
+    try {
+      showLoader();
+      await axios.delete(url, headers);
+      showLoader();
+    } catch (error) {
+      AlertToast("error", error.response.data.errors);
+      showLoader();
+    }
+  };
+
   // add to wishlist
   const addToWishlistOnServer = async (wishlistConfig) => {
     const { url, body, headers } = wishlistConfig;
@@ -246,6 +259,7 @@ const AxiosCallProvider = ({ children }) => {
         removeCartItemFromServer,
         increaseCartItemQtyOnServer,
         decreaseCartItemQtyOnServer,
+        emptyAllCartFromServer,
         addToWishlistOnServer,
         removeWishlistItemFromServer,
         addAddressOnServer,

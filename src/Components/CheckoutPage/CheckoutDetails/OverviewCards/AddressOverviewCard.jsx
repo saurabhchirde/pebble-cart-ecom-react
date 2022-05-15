@@ -52,20 +52,24 @@ export const AddressOverviewCard = () => {
           <NewAddressModal setShowAddressModal={setShowAddressModal} />
         )}
         <div className="address address-one">
-          <div className="radio-input" onClick={onSelectingAddress}>
+          <div className="radio-input">
             {addresses.length > 0 ? (
-              <>
+              <div className="checkout-address-container">
                 {addresses.map((address) => {
                   return (
-                    <div key={address._id} className="checkout-address-section">
-                      <label htmlFor="address-select">
+                    <label
+                      key={address._id}
+                      htmlFor="address-select"
+                      onClick={onSelectingAddress}
+                    >
+                      <div className="checkout-address-section">
                         <input type="radio" name="radio" id="address-select" />
                         <SingleAddress props={address} />
-                      </label>
-                    </div>
+                      </div>
+                    </label>
                   );
                 })}
-              </>
+              </div>
             ) : (
               <p className="p-lg mg-point6-lt">
                 Please add address to continue

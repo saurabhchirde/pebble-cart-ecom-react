@@ -1,4 +1,10 @@
-import { useAnimation, useCart, useTheme } from "Context";
+import {
+  useAnimation,
+  useAuth,
+  useAxiosCalls,
+  useCart,
+  useTheme,
+} from "Context";
 import { useCheckout } from "Context/Checkout/CheckoutProvider";
 import { AlertToast } from "Components";
 import "./OrderSummary.css";
@@ -9,15 +15,24 @@ export const OrderSummary = () => {
   const { addressOverviewCheck, paymentOverviewCheck } = checkoutState;
   const { darkTheme } = useTheme();
   const { showLoader } = useAnimation();
+  const { auth } = useAuth();
+  const { emptyAllCartFromServer } = useAxiosCalls();
 
   const amountPaid = Math.trunc(cartState.totalPrice - cartState.discount);
   const orderNumber = `258-487489-${Math.random() * 50}`;
+
+  const cartConfig = {
+    url: "/api/user/cart",
+    body: {},
+    headers: { headers: { authorization: auth.token } },
+  };
 
   const makePaymentClickHandler = () => {
     showLoader();
     setTimeout(() => {
       showLoader();
       AlertToast("success", "Successfully placed your order");
+      emptyAllCartFromServer(cartConfig);
       cartDispatch({
         type: "makePayment",
         payload: {

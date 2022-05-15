@@ -12,9 +12,7 @@ export const Orders = () => {
   const { showNavMenu } = useModal();
   const { darkTheme } = useTheme();
   const {
-    cartState: {
-      orderedProduct: { productList, amountPaid, orderNumber, date },
-    },
+    cartState: { orderedProduct },
   } = useCart();
 
   return (
@@ -29,15 +27,15 @@ export const Orders = () => {
           {" > "}
           <h2 className="mg-point6-lt">Your Orders</h2>
         </div>
-        {productList?.length > 0 ? (
-          <div className="ordered-product-container">
-            {productList.map((product) => (
-              <SingleProduct key={product._id} product={product} />
-            ))}
-            {productList.length > 0 ? (
-              <OrderDetails details={{ amountPaid, orderNumber, date }} />
-            ) : null}
-          </div>
+        {orderedProduct?.length > 0 ? (
+          orderedProduct.map((order) => (
+            <div className="ordered-product-container">
+              {order.productList.map((product) => (
+                <SingleProduct key={product._id} product={product} />
+              ))}
+              {<OrderDetails order={order} />}
+            </div>
+          ))
         ) : (
           <div className="flex-row-center">
             <h2 className="title-lg-wt-5 text-center mg-2-tb">No Orders</h2>

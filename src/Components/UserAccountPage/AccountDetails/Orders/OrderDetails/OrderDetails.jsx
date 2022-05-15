@@ -1,7 +1,8 @@
 import "./OrderDetails.css";
 
-export const OrderDetails = ({ details }) => {
-  const { amountPaid, orderNumber, date } = details;
+export const OrderDetails = ({ order }) => {
+  const { amountPaid, orderNumber, date } = order;
+  console.log(order);
 
   return (
     <div className="order-card-bottom-section">
