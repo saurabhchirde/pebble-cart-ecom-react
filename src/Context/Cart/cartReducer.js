@@ -28,6 +28,8 @@ const cartReducer = (cartState, action) => {
     case "makePayment":
       return {
         ...cartState,
+        discount: 0,
+        coupon: "",
         orderedProduct: [
           {
             productList: action.payload.productList,

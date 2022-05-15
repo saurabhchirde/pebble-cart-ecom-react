@@ -42,6 +42,12 @@ const checkoutReducer = (checkoutState, action) => {
         addressOverviewCheck: false,
       };
 
+    case "clearSelections":
+      return {
+        addressOverviewCheck: false,
+        paymentOverviewCheck: false,
+      };
+
     default:
       return checkoutState;
   }

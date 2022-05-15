@@ -3,20 +3,21 @@ import {
   useAuth,
   useAxiosCalls,
   useCart,
+  useModal,
   useTheme,
 } from "Context";
 import { useCheckout } from "Context/Checkout/CheckoutProvider";
-import { AlertToast } from "Components";
 import "./OrderSummary.css";
 
 export const OrderSummary = () => {
   const { cartState, cartDispatch } = useCart();
-  const { checkoutState } = useCheckout();
+  const { checkoutState, checkoutDispatch } = useCheckout();
   const { addressOverviewCheck, paymentOverviewCheck } = checkoutState;
   const { darkTheme } = useTheme();
   const { showLoader } = useAnimation();
   const { auth } = useAuth();
   const { emptyAllCartFromServer } = useAxiosCalls();
+  const { setAlertText, setShowAlert } = useModal();
 
   const amountPaid = Math.trunc(cartState.totalPrice - cartState.discount);
   const orderNumber = `258-487489-${Math.random() * 50}`;
@@ -31,8 +32,12 @@ export const OrderSummary = () => {
     showLoader();
     setTimeout(() => {
       showLoader();
-      AlertToast("success", "Successfully placed your order");
+      setAlertText(
+        `Successfully placed your order, Order number: ${orderNumber}`
+      );
+      setShowAlert(true);
       emptyAllCartFromServer(cartConfig);
+      checkoutDispatch({ type: "clearSelections" });
       cartDispatch({
         type: "makePayment",
         payload: {
