@@ -25,7 +25,7 @@
   --light-theme-title-color: #252525;
   --light-theme-sub-title-color: #484848;
   --payment-card-hover: rgb(176, 176, 176);
-  --banner-square-card-light: rgb(91, 91, 91);
+  --banner-square-card-light: rgb(121, 146, 176);
 }
 
 body.lightTheme {
@@ -318,9 +318,6 @@ body.lightTheme {
   margin: 12px;
   cursor: pointer;
 }
-
-/* .footer-copyright-text .copyright-text-light {
-} */
 
 @media screen and (max-width: 1050px) {
   .single-product-image .main-image {
