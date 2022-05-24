@@ -9,7 +9,7 @@ export const CheckoutDetails = () => {
     <div className="checkout-form">
       <ProductOverviewCard />
       <AddressOverviewCard />
-      <PaymentOverviewCard />
+      {/* <PaymentOverviewCard /> */}
     </div>
   );
 };

@@ -30,3 +30,7 @@
   width: 18rem;
   margin: 10px;
 }
+
+.new-address-button {
+  margin-left: 10px !important;
+}

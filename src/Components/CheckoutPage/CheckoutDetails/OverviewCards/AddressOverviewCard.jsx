@@ -79,7 +79,7 @@ export const AddressOverviewCard = () => {
         </div>
         <button
           onClick={addNewAddressHandler}
-          className="btn primary-text-btn-md"
+          className="btn primary-text-btn-md new-address-button"
         >
           Add new address
         </button>

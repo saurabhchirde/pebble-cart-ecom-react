@@ -1,11 +1,5 @@
-import {
-  useAnimation,
-  useAuth,
-  useAxiosCalls,
-  useCart,
-  useModal,
-  useTheme,
-} from "Context";
+import { AlertToast } from "Components";
+import { useAuth, useAxiosCalls, useCart, useModal, useTheme } from "Context";
 import { useCheckout } from "Context/Checkout/CheckoutProvider";
 import "./OrderSummary.css";
 
@@ -14,13 +8,12 @@ export const OrderSummary = () => {
   const { checkoutState, checkoutDispatch } = useCheckout();
   const { addressOverviewCheck, paymentOverviewCheck } = checkoutState;
   const { darkTheme } = useTheme();
-  const { showLoader } = useAnimation();
   const { auth } = useAuth();
   const { emptyAllCartFromServer } = useAxiosCalls();
   const { setAlertText, setShowAlert } = useModal();
 
   const amountPaid = Math.trunc(cartState.totalPrice - cartState.discount);
-  const orderNumber = `258-487489-${Math.random() * 50}`;
+  const orderNumber = `258-PEBBLE-49-${Math.random() * 50}`;
 
   const cartConfig = {
     url: "/api/user/cart",
@@ -28,25 +21,69 @@ export const OrderSummary = () => {
     headers: { headers: { authorization: auth.token } },
   };
 
-  const makePaymentClickHandler = () => {
-    showLoader();
-    setTimeout(() => {
-      showLoader();
-      setAlertText(
-        `Successfully placed your order, Order number: ${orderNumber}`
+  const loadScript = (src) => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
+    });
+  };
+
+  const makePaymentClickHandler = async () => {
+    try {
+      const res = await loadScript(
+        "https://checkout.razorpay.com/v1/checkout.js"
       );
-      setShowAlert(true);
-      emptyAllCartFromServer(cartConfig);
-      checkoutDispatch({ type: "clearSelections" });
-      cartDispatch({
-        type: "makePayment",
-        payload: {
-          productList: cartState.cart,
-          amountPaid: amountPaid,
-          orderNumber: orderNumber,
+
+      if (!res) {
+        alert("You are offline!, please check your internet");
+        return;
+      }
+
+      const options = {
+        key: process.env.REACT_APP_RAZORPAY_API,
+        amount: amountPaid * 100,
+        currency: "INR",
+        name: "Pebble Cart",
+        description: "Make Payment For Pebble Cart",
+
+        handler: async function (response) {
+          setAlertText(
+            `Successfully placed your order, Order number: ${orderNumber} and Payment id is: ${response.razorpay_payment_id}`
+          );
+          setShowAlert(true);
+          cartDispatch({
+            type: "makePayment",
+            payload: {
+              productList: cartState.cart,
+              amountPaid: amountPaid,
+              orderNumber: orderNumber,
+            },
+          });
+          emptyAllCartFromServer(cartConfig);
+          checkoutDispatch({ type: "clearSelections" });
         },
-      });
-    }, 4000);
+        prefill: {
+          name: "Pebble Cart",
+          email: "buy@pebblecart.com",
+          contact: "9999999999",
+        },
+        notes: {
+          address: "Pebble Cart Office",
+        },
+      };
+
+      const paymentObject = new window.Razorpay(options);
+      paymentObject.open();
+    } catch (error) {
+      AlertToast("error", error);
+    }
   };
 
   const overviewSummaryClass = darkTheme
@@ -72,7 +109,7 @@ export const OrderSummary = () => {
       </div>
       <hr className="break-line" />
       <div className="payment-btn">
-        {addressOverviewCheck && paymentOverviewCheck && (
+        {addressOverviewCheck && (
           <button
             onClick={makePaymentClickHandler}
             className="btn primary-btn-md"
@@ -81,9 +118,7 @@ export const OrderSummary = () => {
           </button>
         )}
       </div>
-      <p className="text-center">
-        Select delivery address and Payment method to continue checking out.
-      </p>
+      <p className="text-center">Select delivery address to make payment.</p>
     </div>
   );
 };
