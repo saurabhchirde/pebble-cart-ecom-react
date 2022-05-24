@@ -55,6 +55,10 @@ body.lightTheme {
   }
 }
 
+.toast-container {
+  margin-top: 3rem;
+}
+
 .single-product {
   margin-bottom: 2rem;
 }

@@ -52,7 +52,7 @@ const App = () => {
 
   return (
     <>
-      <ToastContainer />
+      <ToastContainer className="toast-container"/>
       {loader && <AnimateLoader />}
       {showLogin && <Login />}
       {showSignup && <Signup />}
