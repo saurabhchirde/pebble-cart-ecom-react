@@ -1,4 +1,4 @@
-import { useAuth, useAxiosCalls, useCart, useModal, useTheme } from "Context";
+import { useAuth, useAxiosCalls, useCart, useTheme } from "Context";
 import { couponCheck } from "Utils/couponCheck";
 import { AlertToast } from "Components";
 import { useEffect } from "react";
@@ -9,7 +9,6 @@ export const CartItemCard = ({ item }) => {
     cartState: { totalPrice, coupon },
   } = useCart();
   const { auth } = useAuth();
-  const { setAlertText, setShowAlert } = useModal();
   const {
     addToWishlistOnServer,
     removeCartItemFromServer,
@@ -39,7 +38,6 @@ export const CartItemCard = ({ item }) => {
       product: { ...item, qty: 1 },
     },
     headers: { headers: { authorization: auth.token } },
-    dispatch: { setAlertText, setShowAlert },
     item: item,
   };
 

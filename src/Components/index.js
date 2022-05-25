@@ -27,7 +27,6 @@ export { Footer } from "./UI/Footer/Footer";
 export { InputTypeOne } from "./UI/Input/InputTypeOne";
 export { InputTypePassword } from "./UI/Input/InputTypePassword";
 export { InputTypeTwo } from "./UI/Input/InputTypeTwo";
-export { AlertModal } from "./UI/Modal/AlertModal";
 export { Login } from "./UI/Modal/Login";
 export { Signup } from "./UI/Modal/Signup";
 export { SignupAlertModal } from "./UI/Modal/SignupAlertModal";
@@ -65,3 +64,6 @@ export { BrandSection } from "./ProductListingPage/FilterSection/BrandSection/Br
 export { CategorySection } from "./ProductListingPage/FilterSection/CategorySection/CategorySection";
 export { IncludeOutOfStock } from "./ProductListingPage/FilterSection/IncludeOutOfStock/IncludeOutOfStock";
 export { SortSection } from "./ProductListingPage/FilterSection/SortSection/SortSection";
+export { PaymentConfirmModal } from "./UI/Modal/PaymentConfirmModal";
+export { PaymentSuccess } from "./Animations/PaymentSuccess";
+export { ProtectedRoute } from "./ProtectedRoute/ProtectedRoute";

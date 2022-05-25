@@ -13,6 +13,7 @@ const initialAuthState = {
     firstName: "",
     lastName: "",
     dp: "",
+    email: "",
     addresses: [],
   },
 };
@@ -40,6 +41,7 @@ const authReducer = (auth, action) => {
           dp:
             action.payload.foundUser.firstName.slice(0, 1) +
             action.payload.foundUser.lastName.slice(0, 1),
+          email: action.payload.foundUser.email,
           addresses: action.payload.foundUser.addresses,
         },
       };
@@ -82,6 +84,7 @@ const authReducer = (auth, action) => {
           firstName: "",
           lastName: "",
           dp: "",
+          email: "",
           addresses: [],
         },
       };

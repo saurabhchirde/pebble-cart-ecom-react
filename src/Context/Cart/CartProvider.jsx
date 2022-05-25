@@ -8,7 +8,7 @@ import {
 import { cartReducer } from "./cartReducer";
 import { useAuth } from "../Auth/AuthProvider";
 import axios from "axios";
-import { useModal } from "../Modal/ModalProvider";
+import { AlertToast } from "Components";
 
 const initialCartState = {
   orderedProduct: [],
@@ -26,7 +26,6 @@ const cartContext = createContext({});
 const CartProvider = ({ children }) => {
   const [cartState, cartDispatch] = useReducer(cartReducer, initialCartState);
   const { auth, authDispatch } = useAuth();
-  const { setAlertText, setShowAlert } = useModal();
   const [addButton, setAddButton] = useState("Add to Cart");
   const [addWishlist, setAddWishlist] = useState("far fa-heart");
 
@@ -58,8 +57,7 @@ const CartProvider = ({ children }) => {
             payload: respAddresses.data.addresses,
           });
         } catch (error) {
-          setAlertText(error.message);
-          setShowAlert(true);
+          AlertToast("error", error.response.data.errors[0]);
         }
       };
       fetchData();

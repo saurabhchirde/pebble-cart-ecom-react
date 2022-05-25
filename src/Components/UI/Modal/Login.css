@@ -47,3 +47,12 @@
   transform: translate(-100%, 0);
   cursor: pointer;
 }
+
+.guest-user-btn {
+  width: 100%;
+}
+
+.guest-user-btn button {
+  margin: 0 0 10px;
+  width: 100%;
+}

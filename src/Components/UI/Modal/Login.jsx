@@ -1,13 +1,12 @@
 import { useAuth, useAxiosCalls, useModal } from "Context";
-import { Button, InputTypeOne, InputTypePassword } from "Components";
+import { AlertToast, Button } from "Components";
 import { useState } from "react";
 import "./Login.css";
+import { LoginInputForm } from "./LoginInputForm/LoginInputForm";
 
 export const Login = () => {
   const { loginInput, setLoginInput } = useAuth();
-
-  const { setShowLogin, setShowSignup, setAlertText, setShowAlert } =
-    useModal();
+  const { setShowLogin, setShowSignup } = useModal();
   const { userLogin } = useAxiosCalls();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -16,11 +15,11 @@ export const Login = () => {
     data: loginInput,
   };
 
-  const testLoginConfig = {
+  const guestLoginConfig = {
     url: "/api/auth/login",
     data: {
-      email: "test@gmail.com",
-      password: "test@123",
+      email: "guest@gmail.com",
+      password: "guest@123",
     },
   };
 
@@ -29,14 +28,12 @@ export const Login = () => {
 
   const onLoginClickFormHandler = () => {
     if (loginInput.email.trim() === "" || loginInput.password.trim() === "") {
-      setAlertText("Input cannot be blank, try again");
-      setShowAlert(true);
+      AlertToast("error", "Input cannot be blank, try again");
     } else {
       if (loginInput.email.match(emailValidate)) {
         userLogin(loginConfig);
       } else {
-        setAlertText("Entered email is wrong, please try again");
-        setShowAlert(true);
+        AlertToast("info", "Entered email is wrong, please try again");
       }
     }
   };
@@ -57,8 +54,8 @@ export const Login = () => {
     });
   };
 
-  const onTestButtonClickFormHandler = () => {
-    userLogin(testLoginConfig);
+  const guestButtonClickHandler = () => {
+    userLogin(guestLoginConfig);
   };
 
   return (
@@ -80,62 +77,33 @@ export const Login = () => {
         >
           <i className="fas fa-times"></i>
         </a>
-        <form onSubmit={onLoginSubmitHandler}>
-          <InputTypeOne
-            type="email"
-            name="email"
-            required="required"
-            placeholder="Enter your email *"
-            iconWrapper="input-icon"
-            icon="far fa-envelope"
-            inputWrapper="outline-email-input"
-            onChange={onModalInputHandler}
-            value={loginInput.email}
-          />
-          <InputTypePassword
-            type={showPassword ? "text" : "password"}
-            name="password"
-            required="required"
-            placeholder="Enter your password *"
-            iconWrapper="input-icon"
-            icon="fas fa-key"
-            eyeIcon={showPassword ? "fas fa-eye-slash" : "fas fa-eye"}
-            inputWrapper="outline-password-input password-input-field"
-            onChange={onModalInputHandler}
-            onEyeClick={() => {
-              setShowPassword((preData) => !preData);
-            }}
-            value={loginInput.password}
-          />
-          <Button
-            btnWrapper="signin-btn"
-            type="submit"
-            label="Sign In"
-            btnClassName="btn primary-btn-md"
-            onClick={onLoginClickFormHandler}
-          />
-          <Button
-            btnWrapper="signin-btn"
-            type="submit"
-            label="Test User"
-            btnClassName="btn primary-outline-btn-md"
-            onClick={onTestButtonClickFormHandler}
-          />
-          <p>
-            Forgot your password? <span>Reset Password</span>
-          </p>
-          <button
-            className="btn primary-text-btn-sm create-account-btn"
-            onClick={() => {
-              setShowLogin(false);
-              setShowSignup(true);
-            }}
-          >
-            <h2>
-              Create New Account <i className="fas fa-angle-right"></i>
-            </h2>
-          </button>
-        </form>
+        <LoginInputForm
+          onLoginSubmitHandler={onLoginSubmitHandler}
+          onModalInputHandler={onModalInputHandler}
+          loginInput={loginInput}
+          showPassword={showPassword}
+          setShowPassword={setShowPassword}
+        />
+        <Button
+          btnWrapper="signin-btn guest-user-btn"
+          label="Guest User"
+          btnClassName="btn primary-outline-btn-md"
+          onClick={guestButtonClickHandler}
+        />
+        <p>
+          Forgot your password? <span>Reset Password</span>
+        </p>
+        <button
+          className="btn primary-text-btn-sm create-account-btn"
+          onClick={() => {
+            setShowLogin(false);
+            setShowSignup(true);
+          }}
+        >
+          <h2>
+            Create New Account <i className="fas fa-angle-right"></i>
+          </h2>
+        </button>
       </div>
     </>
   );

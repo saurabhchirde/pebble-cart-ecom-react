@@ -10,9 +10,6 @@ export const AccountNavBarMobile = () => {
   const activeOrder = pathname.includes("orders")
     ? "active-nav nav-orders"
     : "nav-orders";
-  const activePayment = pathname.includes("payments")
-    ? "active-nav nav-payment-details"
-    : "nav-payment-details";
   const activeAddress = pathname.includes("addresses")
     ? "active-nav nav-addresses"
     : " nav-addresses";
@@ -47,14 +44,6 @@ export const AccountNavBarMobile = () => {
             <div className={activeOrder}>
               <i className="fas fa-box-open"></i>
               <h2 className="nav-menu-title">Your Orders</h2>
-            </div>
-          </NavLink>
-          <NavLink
-            to={pathname.includes("payments") ? "" : "/account/payments"}
-          >
-            <div className={activePayment}>
-              <i className="fas fa-credit-card"></i>
-              <h2 className="nav-menu-title">Payment Details</h2>
             </div>
           </NavLink>
           <NavLink

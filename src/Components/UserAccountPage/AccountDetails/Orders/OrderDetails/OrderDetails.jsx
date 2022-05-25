@@ -16,9 +16,6 @@ export const OrderDetails = ({ order }) => {
         </div>
       </div>
       <div className="order-card-bottom-right">
-        <button className="btn primary-outline-btn-md product-track-order-btn">
-          Track Order
-        </button>
         <div className="order-card-total-price">
           <p>Bill Amount</p>
           <p>Rs.{amountPaid}/-</p>

@@ -17,7 +17,7 @@ export const MobileNavigationBarBottom = () => {
   return (
     <>
       <nav className={mobileBottomBarClass}>
-        <Link to="wishlist">
+        <Link to="/wishlist">
           <BadgeIconButton
             btnWrapper="badge-container"
             btnClassName="btn badge-icon-btn-lg"
@@ -29,7 +29,7 @@ export const MobileNavigationBarBottom = () => {
         <Link to="/">
           <IconButton btnClassName="btn icon-btn-lg" icon="fas fa-house-user" />
         </Link>
-        <Link to="cart">
+        <Link to="/cart">
           <BadgeIconButton
             btnWrapper="badge-container"
             btnClassName="btn badge-icon-btn-lg"

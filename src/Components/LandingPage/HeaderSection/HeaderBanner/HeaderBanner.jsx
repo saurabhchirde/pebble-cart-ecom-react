@@ -13,7 +13,7 @@ export const HeaderBanner = (props) => {
         <div>
           <h1>{props.title}</h1>
           <p>{props.description}</p>
-          <Link to="products">
+          <Link to="/products">
             <Button
               label={props.btnLabel}
               btnClassName="btn primary-text-btn-lg"

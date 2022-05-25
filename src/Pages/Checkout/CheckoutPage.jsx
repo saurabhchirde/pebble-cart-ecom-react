@@ -1,14 +1,25 @@
 import { Link } from "react-router-dom";
-import { CheckoutDetails, OrderSummary, Button } from "Components";
-import { useCart, useTheme } from "Context";
+import {
+  CheckoutDetails,
+  OrderSummary,
+  Button,
+  PaymentConfirmModal,
+} from "Components";
+import { useCart, useModal, useTheme } from "Context";
 import "./CheckoutPage.css";
+import { useState } from "react";
 
 export const CheckoutPage = () => {
   const { darkTheme } = useTheme();
   const { cartState } = useCart();
+  const { showConfirmPayment } = useModal();
+  const [orderDetails, setOrderDetails] = useState({});
 
   return (
     <div className={darkTheme ? "cart" : "cart cart-light"}>
+      {showConfirmPayment && (
+        <PaymentConfirmModal orderDetails={orderDetails} />
+      )}
       <h1 className="title-xl-wt-5 mg-2-bot text-center">Checkout</h1>
       <div className="flex-row flex-justify-space-between">
         {cartState.cart.length < 1 ? (
@@ -30,7 +41,7 @@ export const CheckoutPage = () => {
         ) : (
           <>
             <CheckoutDetails />
-            <OrderSummary />
+            <OrderSummary setOrderDetails={setOrderDetails} />
           </>
         )}
       </div>

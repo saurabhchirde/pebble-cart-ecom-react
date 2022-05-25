@@ -1,4 +1,4 @@
-import { useModal, useTheme } from "Context";
+import { useAuth, useModal, useTheme } from "Context";
 import { AccountNavBarMobile, AccountNavBar, Button } from "Components";
 import "./Settings.css";
 import { Link } from "react-router-dom";
@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 export const Settings = () => {
   const { showNavMenu } = useModal();
   const { darkTheme } = useTheme();
+  const { auth } = useAuth();
 
   return (
     <div className="settings-page-container">
@@ -24,7 +25,9 @@ export const Settings = () => {
             <h2>Name</h2>
           </div>
           <div className="setting-title-content">
-            <h2>Saurabh Chirde</h2>
+            <h2>
+              {auth?.user?.firstName} {auth?.user?.lastName}
+            </h2>
           </div>
         </div>
         <div className="setting-edit-container">
@@ -32,7 +35,7 @@ export const Settings = () => {
             <h2>Email</h2>
           </div>
           <div className="setting-title-content">
-            <h2>hello@saurabhchirde.com</h2>
+            <h2> {auth?.user?.email}</h2>
           </div>
         </div>
         <div className="setting-edit-container">
@@ -58,7 +61,12 @@ export const Settings = () => {
           </div>
         </div>
         <div className="setting-save-buttons">
-          <Button label="Cancel" btnClassName="btn secondary-outline-btn-md" />
+          <Link to="/account">
+            <Button
+              label="Cancel"
+              btnClassName="btn secondary-outline-btn-md"
+            />
+          </Link>
           <Button label="Save" btnClassName="btn primary-btn-md" />
         </div>
       </div>

@@ -6,6 +6,7 @@ import {
   NavbarLoginButton,
   NavbarAvatar,
   IconButton,
+  AlertToast,
 } from "Components";
 import { useCart, useFilter, useAuth, useModal, useTheme } from "Context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -16,7 +17,7 @@ export const DesktopNavigationBar = () => {
     cartState: { cart, wishlist },
   } = useCart();
 
-  const { setShowLogin, setAlertText, setShowAlert } = useModal();
+  const { setShowLogin } = useModal();
   const { filterDispatch, searchInput, setSearchInput } = useFilter();
   const { auth, authDispatch, showProfileMenu, setShowProfileMenu } = useAuth();
   const { darkTheme, setDarkTheme } = useTheme();
@@ -49,8 +50,7 @@ export const DesktopNavigationBar = () => {
 
   const logoutClickHandler = () => {
     authDispatch({ type: "logout" });
-    setAlertText("Logged out successfully");
-    setShowAlert(true);
+    AlertToast("info", "Logged out successfully");
     if (location.pathname.includes("checkout" || "account" || "settings")) {
       navigate("/products");
     }
@@ -71,85 +71,81 @@ export const DesktopNavigationBar = () => {
     : "desktop-navigation-bar";
 
   return (
-    <>
-      <nav className={navBarClass}>
-        <Link to="/">
-          <img
-            className="company-logo"
-            src={darkTheme ? logoLight : logoDark}
-            alt="logo"
-          />
-        </Link>
-        <SearchBar
-          searchWrapper="search-container"
-          micIcon="hide"
-          searchIcon="fas fa-search"
-          placeholder="Search"
-          onChange={onSearchInputHandler}
-          onSubmit={onSearchSubmitHandler}
-          value={searchInput}
+    <nav className={navBarClass}>
+      <Link to="/">
+        <img
+          className="company-logo"
+          src={darkTheme ? logoLight : logoDark}
+          alt="logo"
         />
-        <div className="nav-bar-btns">
-          {!auth.login && (
-            <NavbarLoginButton
-              label={auth.login ? "Logout" : "Login"}
-              btnClassName="btn primary-btn-md"
-            />
-          )}
-          {hideOnCheckout && (
-            <Link to="wishlist">
-              <BadgeIconButton
-                btnWrapper="badge-container"
-                btnClassName="btn badge-icon-btn-lg"
-                icon="far fa-heart"
-                badgeClassName={
-                  wishlist.length !== 0 ? "badge-on-icon" : "hide"
-                }
-                badgeValue={auth.login ? wishlist.length : null}
-                onClick={onWishlistClickHandler}
-              />
-            </Link>
-          )}
-          {hideOnCheckout && (
-            <Link to="cart">
-              <BadgeIconButton
-                btnWrapper="badge-container"
-                btnClassName="btn badge-icon-btn-lg"
-                icon="fas fa-shopping-cart"
-                badgeClassName={cart.length !== 0 ? "badge-on-icon" : "hide"}
-                badgeValue={auth.login ? cart.length : null}
-                onClick={onCartClickHandler}
-              />
-            </Link>
-          )}
-          {auth.login && (
-            <div onClick={toggleProfileMenu}>
-              <NavbarAvatar
-                avatarWrapper="badge-container"
-                avatarClassName="avatar text-avatar-xsm-round"
-                imgDisplay="hide"
-                src={auth.user.dp !== "" ? auth.user.dp.toUpperCase() : ""}
-              />
-              {showProfileMenu && (
-                <div className="profile-hover-menu card-shadow-two">
-                  <Link to="account">
-                    <h2>Profile</h2>
-                  </Link>
-                  <Link to="account/settings">
-                    <h2>Settings</h2>
-                  </Link>
-                  <h2 onClick={logoutClickHandler}>Logout</h2>
-                </div>
-              )}
-            </div>
-          )}
-          <IconButton
-            onClick={onThemeTogglerClick}
-            icon={themeIcon}
-            btnClassName="btn icon-btn-md"
+      </Link>
+      <SearchBar
+        searchWrapper="search-container"
+        micIcon="hide"
+        searchIcon="fas fa-search"
+        placeholder="Search"
+        onChange={onSearchInputHandler}
+        onSubmit={onSearchSubmitHandler}
+        value={searchInput}
+      />
+      <div className="nav-bar-btns">
+        {!auth.login && (
+          <NavbarLoginButton
+            label={auth.login ? "Logout" : "Login"}
+            btnClassName="btn primary-btn-md"
           />
-        </div>
-      </nav>
-    </>
+        )}
+        {hideOnCheckout && (
+          <Link to="/wishlist">
+            <BadgeIconButton
+              btnWrapper="badge-container"
+              btnClassName="btn badge-icon-btn-lg"
+              icon="far fa-heart"
+              badgeClassName={wishlist.length !== 0 ? "badge-on-icon" : "hide"}
+              badgeValue={auth.login ? wishlist.length : null}
+              onClick={onWishlistClickHandler}
+            />
+          </Link>
+        )}
+        {hideOnCheckout && (
+          <Link to="/cart">
+            <BadgeIconButton
+              btnWrapper="badge-container"
+              btnClassName="btn badge-icon-btn-lg"
+              icon="fas fa-shopping-cart"
+              badgeClassName={cart.length !== 0 ? "badge-on-icon" : "hide"}
+              badgeValue={auth.login ? cart.length : null}
+              onClick={onCartClickHandler}
+            />
+          </Link>
+        )}
+        {auth.login && (
+          <div onClick={toggleProfileMenu}>
+            <NavbarAvatar
+              avatarWrapper="badge-container"
+              avatarClassName="avatar text-avatar-xsm-round"
+              imgDisplay="hide"
+              src={auth.user.dp !== "" ? auth.user.dp.toUpperCase() : ""}
+            />
+            {showProfileMenu && (
+              <div className="profile-hover-menu card-shadow-two">
+                <Link to="/account">
+                  <h2>Profile</h2>
+                </Link>
+                <Link to="/account/settings">
+                  <h2>Settings</h2>
+                </Link>
+                <h2 onClick={logoutClickHandler}>Logout</h2>
+              </div>
+            )}
+          </div>
+        )}
+        <IconButton
+          onClick={onThemeTogglerClick}
+          icon={themeIcon}
+          btnClassName="btn icon-btn-md"
+        />
+      </div>
+    </nav>
   );
 };

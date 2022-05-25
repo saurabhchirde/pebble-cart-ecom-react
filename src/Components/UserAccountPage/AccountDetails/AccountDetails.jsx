@@ -11,10 +11,6 @@ export const AccountDetails = () => {
         <i className="fas fa-box-open"></i>
         <h2>Orders</h2>
       </Link>
-      <Link to="payments" className="account-menu-overview">
-        <i className="fas fa-credit-card"></i>
-        <h2>Payment</h2>
-      </Link>
       <Link to="addresses" className="account-menu-overview">
         <i className="fas fa-address-book"></i>
         <h2>Addresses</h2>

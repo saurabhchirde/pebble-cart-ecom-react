@@ -5,28 +5,34 @@ import { useModal } from "../Modal/ModalProvider";
 import { useAuth } from "../Auth/AuthProvider";
 import { useAnimation } from "../Animation/AnimationProvider";
 import { AlertToast } from "Components/Alert/AlertToast";
+import { Login, Signup, SignupAlertModal } from "Components";
 
 const axiosContext = createContext(null);
 
 const AxiosCallProvider = ({ children }) => {
   const { cartDispatch } = useCart();
-  const { setAlertText, setShowAlert, setShowLogin, setShowSignupAlert } =
-    useModal();
+  const {
+    showLogin,
+    showSignup,
+    showSignupAlert,
+    setShowLogin,
+    setShowSignupAlert,
+  } = useModal();
   const { authDispatch, setLoginInput, setShowAddressModal } = useAuth();
   const { showLoader } = useAnimation();
 
   // login
   const userLogin = async (loginConfig) => {
     const { url, data } = loginConfig;
-
     try {
       showLoader();
       const response = await axios.post(url, data);
       if (response.status === 200) {
-        setAlertText(
+        showLoader();
+        AlertToast(
+          "success",
           `Welcome back ${response.data.foundUser.firstName} ${response.data.foundUser.lastName}`
         );
-        showLoader();
         //save login credentials
         authDispatch({
           type: "login",
@@ -37,27 +43,22 @@ const AxiosCallProvider = ({ children }) => {
           type: "authCartInitiate",
           payload: response.data.foundUser,
         });
-        setShowAlert(true);
         setLoginInput({ email: "", password: "" });
         setShowLogin(false);
       }
-
       if (response.status === 201) {
-        setAlertText("Invalid Password, Try Again");
         showLoader();
-        setShowAlert(true);
+        AlertToast("error", "Invalid Password, Try Again");
       }
     } catch (error) {
-      setAlertText(error.response.data.errors);
-      setShowAlert(true);
       showLoader();
+      AlertToast("error", error.response.data.errors[0]);
     }
   };
 
   // signup
   const userSignup = async (signupConfig) => {
     const { url, data } = signupConfig;
-
     try {
       showLoader();
       const response = await axios.post(url, data);
@@ -66,16 +67,14 @@ const AxiosCallProvider = ({ children }) => {
       }
       showLoader();
     } catch (error) {
-      setAlertText(error.response.data.errors);
       showLoader();
-      setShowAlert(true);
+      AlertToast("error", error.response.data.errors[0]);
     }
   };
 
   // add to cart
   const addToCartOnServer = async (cartConfig) => {
     const { url, body, headers } = cartConfig;
-
     try {
       showLoader();
       const response = await axios.post(url, body, headers);
@@ -90,7 +89,6 @@ const AxiosCallProvider = ({ children }) => {
   // remove from cart
   const removeCartItemFromServer = async (cartConfig) => {
     const { url, headers, item } = cartConfig;
-
     try {
       showLoader();
       const response = await axios.delete(`${url}/${item._id}`, headers);
@@ -100,8 +98,8 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      AlertToast("error", error.response.data.errors);
       showLoader();
+      AlertToast("error", error.response.data.errors[0]);
     }
   };
 
@@ -121,8 +119,8 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      AlertToast("error", error.response.data.errors);
       showLoader();
+      AlertToast("error", error.response.data.errors[0]);
     }
   };
 
@@ -142,8 +140,8 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      AlertToast("error", error.response.data.errors);
       showLoader();
+      AlertToast("error", error.response.data.errors[0]);
     }
   };
 
@@ -155,8 +153,8 @@ const AxiosCallProvider = ({ children }) => {
       await axios.delete(url, headers);
       showLoader();
     } catch (error) {
-      AlertToast("error", error.response.data.errors);
       showLoader();
+      AlertToast("error", error.response.data.errors[0]);
     }
   };
 
@@ -172,15 +170,14 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      AlertToast("error", error.response.data.errors);
       showLoader();
+      AlertToast("error", error.response.data.errors[0]);
     }
   };
 
   // remove from wishlit
   const removeWishlistItemFromServer = async (wishlistConfig) => {
     const { url, headers, item } = wishlistConfig;
-
     try {
       showLoader();
       const response = await axios.delete(`${url}/${item._id}`, headers);
@@ -190,15 +187,14 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      AlertToast("error", error.response.data.errors);
       showLoader();
+      AlertToast("error", error.response.data.errors[0]);
     }
   };
 
   // addresses
   const addAddressOnServer = async (addressConfig) => {
     const { url, body, headers } = addressConfig;
-
     try {
       showLoader();
       const response = await axios.post(url, body, headers);
@@ -208,15 +204,14 @@ const AxiosCallProvider = ({ children }) => {
       });
       showLoader();
     } catch (error) {
-      AlertToast("error", error.response.data.errors);
       showLoader();
+      AlertToast("error", error.response.data.errors[0]);
     }
   };
 
   // remove from address
   const removeAddressFromServer = async (addressConfig) => {
     const { url, headers, address } = addressConfig;
-
     try {
       showLoader();
       const response = await axios.delete(`${url}/${address._id}`, headers);
@@ -267,6 +262,9 @@ const AxiosCallProvider = ({ children }) => {
         updateAddressOnServer,
       }}
     >
+      {showLogin && <Login />}
+      {showSignup && <Signup />}
+      {showSignupAlert && <SignupAlertModal />}
       {children}
     </axiosContext.Provider>
   );

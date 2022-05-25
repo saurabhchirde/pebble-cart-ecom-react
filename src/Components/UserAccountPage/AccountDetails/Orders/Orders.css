@@ -18,4 +18,12 @@
   padding: 1rem;
   border-radius: 4px;
   background-color: var(--dark-theme-card-bg);
+  margin: auto;
+}
+
+@media screen and (max-width: 500px) {
+  .order-card-top-section,
+  .order-card-bottom-section {
+    flex-direction: column;
+  }
 }

@@ -3,14 +3,14 @@ import { useAuth, useAxiosCalls, useCart, useModal, useTheme } from "Context";
 import { useCheckout } from "Context/Checkout/CheckoutProvider";
 import "./OrderSummary.css";
 
-export const OrderSummary = () => {
+export const OrderSummary = ({ setOrderDetails }) => {
   const { cartState, cartDispatch } = useCart();
   const { checkoutState, checkoutDispatch } = useCheckout();
-  const { addressOverviewCheck, paymentOverviewCheck } = checkoutState;
+  const { addressOverviewCheck } = checkoutState;
   const { darkTheme } = useTheme();
   const { auth } = useAuth();
   const { emptyAllCartFromServer } = useAxiosCalls();
-  const { setAlertText, setShowAlert } = useModal();
+  const { setShowConfirmPayment } = useModal();
 
   const amountPaid = Math.trunc(cartState.totalPrice - cartState.discount);
   const orderNumber = `258-PEBBLE-49-${Math.random() * 50}`;
@@ -54,10 +54,10 @@ export const OrderSummary = () => {
         description: "Make Payment For Pebble Cart",
 
         handler: async function (response) {
-          setAlertText(
-            `Successfully placed your order, Order number: ${orderNumber} and Payment id is: ${response.razorpay_payment_id}`
-          );
-          setShowAlert(true);
+          setOrderDetails({
+            orderId: orderNumber,
+            paymentId: response.razorpay_payment_id,
+          });
           cartDispatch({
             type: "makePayment",
             payload: {
@@ -66,6 +66,7 @@ export const OrderSummary = () => {
               orderNumber: orderNumber,
             },
           });
+          setShowConfirmPayment(true);
           emptyAllCartFromServer(cartConfig);
           checkoutDispatch({ type: "clearSelections" });
         },

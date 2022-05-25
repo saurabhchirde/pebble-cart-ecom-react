@@ -12,9 +12,8 @@ import {
   AnimateLoader,
   Orders,
   Settings,
-  Payments,
   Addresses,
-  Support,
+  ProtectedRoute,
 } from "Components";
 import {
   LandingPage,
@@ -33,14 +32,12 @@ import {
 import "./App.css";
 import Mockman from "mockman-js";
 import { Routes, Route } from "react-router-dom";
-import { useAnimation, useAuth, useTheme, useModal } from "./Context";
+import { useAnimation, useTheme } from "./Context";
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 
 const App = () => {
-  const { showLogin, showSignup, showSignupAlert, showAlert } = useModal();
   const { loader, loaderCamera } = useAnimation();
-  const { auth } = useAuth();
   const { darkTheme } = useTheme();
 
   useEffect(() => {
@@ -52,12 +49,8 @@ const App = () => {
 
   return (
     <>
-      <ToastContainer className="toast-container"/>
+      <ToastContainer className="toast-container" />
       {loader && <AnimateLoader />}
-      {showLogin && <Login />}
-      {showSignup && <Signup />}
-      {showSignupAlert && <SignupAlertModal />}
-      {showAlert && <AlertModal />}
       {loaderCamera && <AnimateCamera />}
       {!loaderCamera && (
         <div className="app">
@@ -68,7 +61,7 @@ const App = () => {
             <Routes>
               {/* public routes */}
               <Route path="/" element={<LandingPage />} />
-              <Route path="products" element={<ProductListingPage />} />
+              <Route path="/products" element={<ProductListingPage />} />
               <Route path="/products/search" element={<ProductListingPage />} />
               <Route path="/products/camera" element={<Camera />} />
               <Route path="/products/lenses" element={<Lens />} />
@@ -76,24 +69,49 @@ const App = () => {
               <Route path="/products/accessories" element={<Accessories />} />
               <Route path="/products/:productID" element={<SingleProduct />} />
               {/* private routes */}
-              {auth.login && <Route path="account" element={<AccountPage />} />}
-              {auth.login && (
-                <Route path="account/addresses" element={<Addresses />} />
-              )}
-              {auth.login && (
-                <Route path="account/orders" element={<Orders />} />
-              )}
-              {auth.login && (
-                <Route path="account/payments" element={<Payments />} />
-              )}
-              {auth.login && (
-                <Route path="account/settings" element={<Settings />} />
-              )}
-              <Route path="wishlist" element={<WishlistPage />} />
-              <Route path="cart" element={<CartPage />} />
-              {auth.login && (
-                <Route path="cart/checkout" element={<CheckoutPage />} />
-              )}
+              <Route
+                path="/account"
+                element={
+                  <ProtectedRoute>
+                    <AccountPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/account/addresses"
+                element={
+                  <ProtectedRoute>
+                    <Addresses />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/account/orders"
+                element={
+                  <ProtectedRoute>
+                    <Orders />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/account/settings"
+                element={
+                  <ProtectedRoute>
+                    <Settings />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/cart/checkout"
+                element={
+                  <ProtectedRoute>
+                    <CheckoutPage />
+                  </ProtectedRoute>
+                }
+              />
+
+              <Route path="/wishlist" element={<WishlistPage />} />
+              <Route path="/cart" element={<CartPage />} />
               <Route path="mockman" element={<Mockman />} />
               <Route path="*" element={<NotFound />} />
             </Routes>

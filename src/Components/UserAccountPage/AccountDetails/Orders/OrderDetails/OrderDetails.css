@@ -27,12 +27,12 @@
 
 .ordered-product-delivery-details,
 .order-card-total-price {
-  min-width: 11rem;
+  min-width: 10rem;
 }
 
 .order-card-total-price p {
   margin: 5px 0;
-  text-align: right;
+  text-align: left;
 }
 
 .ordered-product-delivery-details p {
