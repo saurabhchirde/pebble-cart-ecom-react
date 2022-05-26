@@ -9,9 +9,9 @@ export { CheckoutProvider, useCheckout } from "./Checkout/CheckoutProvider";
 export { ScrollToTop } from "./ScrollToTop/ScrollToTop";
 export { AuthProvider, useAuth } from "./Auth/AuthProvider";
 export {
-  useSessionStorageGet,
-  useSessionStorageSet,
-} from "../Hooks/useSessionStorage";
+  useLocalStorageGet,
+  useLocalStorageSet,
+} from "../Hooks/useLocalStorage";
 export { AnimationProvider, useAnimation } from "./Animation/AnimationProvider";
 
 export {

@@ -2,7 +2,7 @@ import { InputTypeOne, InputTypePassword, Button } from "Components";
 
 export const LoginInputForm = ({
   onLoginSubmitHandler,
-  onModalInputHandler,
+  debounce,
   loginInput,
   showPassword,
   setShowPassword,
@@ -17,7 +17,7 @@ export const LoginInputForm = ({
         iconWrapper="input-icon"
         icon="far fa-envelope"
         inputWrapper="outline-email-input"
-        onChange={onModalInputHandler}
+        onChange={debounce}
         value={loginInput.email}
       />
       <InputTypePassword
@@ -29,7 +29,7 @@ export const LoginInputForm = ({
         icon="fas fa-key"
         eyeIcon={showPassword ? "fas fa-eye-slash" : "fas fa-eye"}
         inputWrapper="outline-password-input password-input-field"
-        onChange={onModalInputHandler}
+        onChange={debounce}
         onEyeClick={() => {
           setShowPassword((preData) => !preData);
         }}

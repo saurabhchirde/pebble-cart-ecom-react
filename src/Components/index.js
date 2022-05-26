@@ -29,7 +29,6 @@ export { InputTypePassword } from "./UI/Input/InputTypePassword";
 export { InputTypeTwo } from "./UI/Input/InputTypeTwo";
 export { Login } from "./UI/Modal/Login";
 export { Signup } from "./UI/Modal/Signup";
-export { SignupAlertModal } from "./UI/Modal/SignupAlertModal";
 export { DesktopNavigationBar } from "./UI/Navigation/DesktopNavigationBar";
 export { MobileNavigationBar } from "./UI/Navigation/MobileNavigationBar";
 export { MobileNavigationBarBottom } from "./UI/Navigation/MobileNavigationBarBottom";

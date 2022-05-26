@@ -3,6 +3,7 @@ import { AlertToast, Button } from "Components";
 import { useState } from "react";
 import "./Login.css";
 import { LoginInputForm } from "./LoginInputForm/LoginInputForm";
+import { loginInputDebounce } from "Utils/debounce";
 
 export const Login = () => {
   const { loginInput, setLoginInput } = useAuth();
@@ -43,16 +44,7 @@ export const Login = () => {
     onLoginClickFormHandler();
   };
 
-  const onModalInputHandler = (e) => {
-    const value = e.target.value;
-    const name = e.target.name;
-    setLoginInput((preData) => {
-      return {
-        ...preData,
-        [name]: value,
-      };
-    });
-  };
+  const debounce = loginInputDebounce(500, setLoginInput);
 
   const guestButtonClickHandler = () => {
     userLogin(guestLoginConfig);
@@ -79,7 +71,7 @@ export const Login = () => {
         </a>
         <LoginInputForm
           onLoginSubmitHandler={onLoginSubmitHandler}
-          onModalInputHandler={onModalInputHandler}
+          debounce={debounce}
           loginInput={loginInput}
           showPassword={showPassword}
           setShowPassword={setShowPassword}

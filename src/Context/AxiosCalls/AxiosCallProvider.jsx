@@ -5,19 +5,13 @@ import { useModal } from "../Modal/ModalProvider";
 import { useAuth } from "../Auth/AuthProvider";
 import { useAnimation } from "../Animation/AnimationProvider";
 import { AlertToast } from "Components/Alert/AlertToast";
-import { Login, Signup, SignupAlertModal } from "Components";
+import { Login, Signup } from "Components";
 
 const axiosContext = createContext(null);
 
 const AxiosCallProvider = ({ children }) => {
   const { cartDispatch } = useCart();
-  const {
-    showLogin,
-    showSignup,
-    showSignupAlert,
-    setShowLogin,
-    setShowSignupAlert,
-  } = useModal();
+  const { showLogin, showSignup, setShowLogin, setShowSignup } = useModal();
   const { authDispatch, setLoginInput, setShowAddressModal } = useAuth();
   const { showLoader } = useAnimation();
 
@@ -63,7 +57,20 @@ const AxiosCallProvider = ({ children }) => {
       showLoader();
       const response = await axios.post(url, data);
       if (response.status === 201) {
-        setShowSignupAlert(true);
+        authDispatch({
+          type: "signup",
+          payload: response.data,
+        });
+        //set initial data
+        cartDispatch({
+          type: "authCartInitiate",
+          payload: response.data.createdUser,
+        });
+        AlertToast(
+          "success",
+          `${response.data.createdUser.firstName} ${response.data.createdUser.lastName} Your account created successfully`
+        );
+        setShowSignup(false);
       }
       showLoader();
     } catch (error) {
@@ -264,7 +271,6 @@ const AxiosCallProvider = ({ children }) => {
     >
       {showLogin && <Login />}
       {showSignup && <Signup />}
-      {showSignupAlert && <SignupAlertModal />}
       {children}
     </axiosContext.Provider>
   );

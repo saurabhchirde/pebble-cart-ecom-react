@@ -1,26 +1,18 @@
 import "./Signup.css";
 import { useAxiosCalls, useModal } from "Context";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { SignupInputForm } from "./SignupInputForm/SignupInputForm";
 import { AlertToast } from "Components";
 
-const initialSignupState = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: "",
-};
-
 export const Signup = () => {
   const { setShowLogin, setShowSignup } = useModal();
-  const [user, setUser] = useState(initialSignupState);
   const { userSignup } = useAxiosCalls();
-  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const signupConfig = {
-    url: "/api/auth/signup",
-    data: user,
-  };
+  const firstNameRef = useRef("");
+  const lastNameRef = useRef("");
+  const emailRef = useRef("");
+  const passwordRef = useRef("");
+  const confirmRef = useRef("");
 
   const emailValidate =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -29,18 +21,32 @@ export const Signup = () => {
 
   const onSignupFormSubmitHandler = (e) => {
     e.preventDefault();
+
+    const signupConfig = {
+      url: "/api/auth/signup",
+      data: {
+        firstName: firstNameRef.current.value,
+        lastName: lastNameRef.current.value,
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+      },
+    };
+
     if (
-      user.password.match(passwordValidate) &&
-      user.email.match(emailValidate)
+      passwordRef.current.value.match(passwordValidate) &&
+      emailRef.current.value.match(emailValidate)
     ) {
-      if (user.password === confirmPassword) {
+      if (passwordRef.current.value === confirmRef.current.value) {
         userSignup(signupConfig);
         setShowSignup(false);
-        setUser(initialSignupState);
-        setConfirmPassword("");
+        firstNameRef.current.value = "";
+        lastNameRef.current.value = "";
+        emailRef.current.value = "";
+        passwordRef.current.value = "";
+        confirmRef.current.value = "";
       } else {
         AlertToast("error", "Password mismatched");
-        setConfirmPassword("");
+        confirmRef.current.value = "";
       }
     } else {
       AlertToast(
@@ -50,20 +56,24 @@ export const Signup = () => {
     }
   };
 
-  const onInputChangeHandler = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-
-    setUser((oldData) => {
-      return {
-        ...oldData,
-        [name]: value,
-      };
-    });
+  const firstNameChangeHandler = (e) => {
+    firstNameRef.current.value = e.target.value;
   };
 
-  const onConfirmPasswordHandler = (e) => {
-    setConfirmPassword(e.target.value);
+  const lastNameChangeHandler = (e) => {
+    lastNameRef.current.value = e.target.value;
+  };
+
+  const emailChangeHandler = (e) => {
+    emailRef.current.value = e.target.value;
+  };
+
+  const passwordChangeHandler = (e) => {
+    passwordRef.current.value = e.target.value;
+  };
+
+  const confirmChangeHandler = (e) => {
+    confirmRef.current.value = e.target.value;
   };
 
   const onCloseClick = () => {
@@ -87,10 +97,16 @@ export const Signup = () => {
         </a>
         <SignupInputForm
           onSignupFormSubmitHandler={onSignupFormSubmitHandler}
-          onInputChangeHandler={onInputChangeHandler}
-          user={user}
-          onConfirmPasswordHandler={onConfirmPasswordHandler}
-          confirmPassword={confirmPassword}
+          firstNameRef={firstNameRef}
+          lastNameRef={lastNameRef}
+          emailRef={emailRef}
+          passwordRef={passwordRef}
+          confirmRef={confirmRef}
+          firstNameChangeHandler={firstNameChangeHandler}
+          lastNameChangeHandler={lastNameChangeHandler}
+          emailChangeHandler={emailChangeHandler}
+          passwordChangeHandler={passwordChangeHandler}
+          confirmChangeHandler={confirmChangeHandler}
         />
         <div className="existing-account-btn" onClick={onLoginClick}>
           <h2>

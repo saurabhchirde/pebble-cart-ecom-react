@@ -41,7 +41,6 @@ export const Settings = () => {
         <div className="setting-edit-container">
           <div className="setting-title">
             <h2>Phone Number</h2>
-            <Button label="Edit" btnClassName="btn primary-text-btn-md" />
           </div>
           <div className="setting-title-content">
             <h2>8989898989</h2>
