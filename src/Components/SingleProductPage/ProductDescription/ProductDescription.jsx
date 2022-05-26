@@ -12,7 +12,7 @@ export const ProductDescription = ({ item }) => {
     >
       <h2>About this item :</h2>
       <ol className="list-basic list-style-number">
-        {item.description.map((info, index) => {
+        {item?.description?.map((info, index) => {
           return (
             <li className="product-description-text" key={index}>
               {info}

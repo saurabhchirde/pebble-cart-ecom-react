@@ -13,7 +13,7 @@ export const OrderSummary = ({ setOrderDetails }) => {
   const { setShowConfirmPayment } = useModal();
 
   const amountPaid = Math.trunc(cartState.totalPrice - cartState.discount);
-  const orderNumber = `258-PEBBLE-49-${Math.random() * 50}`;
+  const orderNumber = `2022-PEBCART-12${Math.round(Math.random() * 100000)}`;
 
   const cartConfig = {
     url: "/api/user/cart",

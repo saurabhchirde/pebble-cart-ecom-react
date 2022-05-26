@@ -29,7 +29,7 @@ export const ProductDetailSection = ({ item }) => {
 
   const addCartClick = () => {
     if (auth.login) {
-      if (cart.findIndex((el) => el._id === item._id) !== -1) {
+      if (cart.findIndex((el) => el._id === item?._id) !== -1) {
         increaseCartItemQtyOnServer(cartConfig);
         AlertToast("info", "Quantity Updated");
       } else {
@@ -43,7 +43,7 @@ export const ProductDetailSection = ({ item }) => {
 
   const onBuyNowClickHandler = () => {
     if (auth.login) {
-      if (!cart.findIndex((el) => el._id === item._id) !== -1) {
+      if (!cart.findIndex((el) => el._id === item?._id) !== -1) {
         addToCartOnServer(cartConfig);
         AlertToast("success", "Item Added to Cart");
       }
@@ -62,13 +62,13 @@ export const ProductDetailSection = ({ item }) => {
   };
 
   useEffect(() => {
-    if (cart.findIndex((el) => el._id === item._id) !== -1) {
+    if (cart.findIndex((el) => el._id === item?._id) !== -1) {
       setAddButton("Go to Cart");
     } else {
       setAddButton("Add to Cart");
     }
 
-    if (wishlist.findIndex((el) => el._id === item._id) !== -1) {
+    if (wishlist.findIndex((el) => el._id === item?._id) !== -1) {
       setAddWishlist("fas fa-heart");
     } else {
       setAddWishlist("far fa-heart");

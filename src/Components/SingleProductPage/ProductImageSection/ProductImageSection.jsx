@@ -1,5 +1,5 @@
 import { useAuth, useAxiosCalls, useCart, useModal } from "Context";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AlertToast } from "Components";
 
 export const ProductImageSection = ({ item }) => {
@@ -64,6 +64,12 @@ export const ProductImageSection = ({ item }) => {
   const onClick5 = () => {
     setCurrentImg(src5);
   };
+
+  useEffect(() => {
+    if (!currentImg) {
+      setCurrentImg(src1);
+    }
+  }, [currentImg, item]);
 
   return (
     <div className="single-product-image">

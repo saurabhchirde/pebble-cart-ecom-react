@@ -24,6 +24,18 @@
   color: var(--text-dark);
 }
 
+.copied-clipboard {
+  position: absolute;
+  top: -1.5rem;
+  right: 0;
+  font-size: 0.9rem;
+  background-color: var(--primary-bg);
+  border: 1px solid var(--text-light);
+  padding: 8px;
+  border-radius: 5px;
+  z-index: 2;
+}
+
 .bump {
   animation: bump 300ms ease-in-out;
 }

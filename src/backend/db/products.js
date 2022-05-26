@@ -86,7 +86,7 @@ import {
 
 const products = [
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI01",
     category: "camera",
     brand: "sony",
     title: "Sony DSC W830 Cyber-Shot 20.1 MP Point & Shoot Camera",
@@ -110,7 +110,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI02",
     category: "camera",
     brand: "canon",
     title: "Canon EOS 6D DSLR Camera (Kit 24 - 105)  (Black)",
@@ -135,7 +135,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI32",
     category: "lens",
     brand: "canon",
     title: "Canon EF 85mm f1.2L II USM Lens for Canon DSLR Cameras",
@@ -160,7 +160,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI03",
     category: "lens",
     brand: "apexel",
     title: "Apexel 4K HD Mobile Phone 5-in-1 Camera Lens Kit",
@@ -182,7 +182,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI04",
     category: "camera",
     brand: "polaroid",
     title: "Polaroid Originals Now I-Type Instant Camera - (9030)",
@@ -206,7 +206,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI05",
     category: "camera",
     brand: "sony",
     title: "Sony Alpha ILCE-7RM3A Full-Frame 42.4MP Mirrorless Camera Body",
@@ -237,7 +237,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI06",
     category: "camera",
     brand: "canon",
     title: "Canon EOS 1500D 24.1 Digital SLR Camera EF S18-55 is II Lens",
@@ -263,7 +263,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI07",
     category: "camera",
     brand: "gopro",
     title: "GoPro HERO10 Black - Front LCD and Touch Rear Screens,23MP.",
@@ -288,7 +288,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI08",
     category: "tripod",
     brand: "digitek",
     title: "DIGITEK® (DTR 260 GT) Gorilla Tripod/Mini 33 cm (13 Inch) Tripod .",
@@ -311,7 +311,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI09",
     category: "accessories",
     brand: "polaroid",
     title: "Polaroid Instant Color Film for 600 cameras and i-Type cameras",
@@ -336,7 +336,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI010",
     category: "accessories",
     brand: "sandisk",
     title: "SanDisk Extreme Pro SDHC,256GB, U3, C10, UHS-I,",
@@ -363,7 +363,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI011",
     category: "accessories",
     brand: "godox",
     title: "Godox AD200Pro AD200 Pro with PERGEAR Diffuser",
@@ -387,7 +387,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI012",
     category: "accessories",
     brand: "peak design",
     title: "Peak Design Cuff Camera Wrist Strap (Black)",
@@ -408,7 +408,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI013",
     category: "tripod",
     brand: "msg",
     title: "MGS Adjustable Aluminium Alloy Tripod Stand",
@@ -434,7 +434,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI014",
     category: "accessories",
     brand: "sandisk",
     title: "SanDisk 128GB Extreme Pro SDXC UHS-I Card - C10, U3, V30, 4K UHD",
@@ -459,7 +459,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI015",
     category: "tripod",
     brand: "humble",
     title: "HUMBLE® Octopus Tripod Foldable Flexible Tripod",
@@ -482,7 +482,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI016",
     category: "accessories",
     brand: "polaroid",
     title: "Polaroid Now Camera Bag - Blue, Made from soft materials",
@@ -506,7 +506,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI017",
     category: "camera",
     brand: "gopro",
     title: "GoPro HERO10 Black - Front LCD and Touch Rear Screens,23MP.",
@@ -531,7 +531,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI018",
     category: "camera",
     brand: "sony",
     title: "Sony DSC W830 Cyber-Shot 20.1 MP Point & Shoot Camera",
@@ -555,7 +555,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI019",
     category: "camera",
     brand: "canon",
     title: "Canon EOS 6D DSLR Camera (Kit 24 - 105)  (Black)",
@@ -580,7 +580,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI020",
     category: "lens",
     brand: "canon",
     title: "Canon EF 85mm f1.2L II USM Lens for Canon DSLR Cameras",
@@ -605,7 +605,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI021",
     category: "lens",
     brand: "papa",
     title: "Apexel 4K HD Mobile Phone 5-in-1 Camera Lens Kit",
@@ -627,7 +627,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI022",
     category: "camera",
     brand: "polaroid",
     title: "Polaroid Originals Now I-Type Instant Camera - (9030)",
@@ -651,7 +651,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI023",
     category: "camera",
     brand: "sony",
     title: "Sony Alpha ILCE-7RM3A Full-Frame 42.4MP Mirrorless Camera Body",
@@ -682,7 +682,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI024",
     category: "camera",
     brand: "canon",
     title: "Canon EOS 1500D 24.1 Digital SLR Camera EF S18-55 is II Lens",
@@ -708,7 +708,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI025",
     category: "camera",
     brand: "gopro",
     title: "GoPro HERO10 Black - Front LCD and Touch Rear Screens,23MP.",
@@ -733,7 +733,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI026",
     category: "camera",
     brand: "sony",
     title: "Sony DSC W830 Cyber-Shot 20.1 MP Point & Shoot Camera",
@@ -757,7 +757,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI027",
     category: "camera",
     brand: "canon",
     title: "Canon EOS 6D DSLR Camera (Kit 24 - 105)  (Black)",
@@ -782,7 +782,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI028",
     category: "lens",
     brand: "canon",
     title: "Canon EF 85mm f1.2L II USM Lens for Canon DSLR Cameras",
@@ -807,7 +807,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI029",
     category: "lens",
     brand: "papa",
     title: "Apexel 4K HD Mobile Phone 5-in-1 Camera Lens Kit",
@@ -830,7 +830,7 @@ const products = [
   },
 
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI030",
     category: "camera",
     brand: "canon",
     title: "Canon EOS 1500D 24.1 Digital SLR Camera EF S18-55 is II Lens",
@@ -856,7 +856,7 @@ const products = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "2022PEBCART2705PEBUI031",
     category: "camera",
     brand: "gopro",
     title: "GoPro HERO10 Black - Front LCD and Touch Rear Screens,23MP.",

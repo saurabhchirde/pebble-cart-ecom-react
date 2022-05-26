@@ -316,6 +316,12 @@ body.lightTheme {
   object-fit: contain;
 }
 
+.single-product-image .main-image:hover {
+  transform: scale(1.3);
+  transition: 200ms ease-in;
+  cursor: pointer;
+}
+
 .single-product-image-options img {
   width: 4rem;
   margin: 12px;

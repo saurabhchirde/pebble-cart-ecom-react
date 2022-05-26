@@ -1,13 +1,33 @@
+import axios from "axios";
 import {
   ProductDetailSection,
   ProductDescription,
   ProductImageSection,
+  AlertToast,
 } from "Components";
-import { useLocation } from "react-router-dom";
+import { useAnimation } from "Context";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 export const SingleProduct = () => {
-  const location = useLocation();
-  const { item } = location.state ?? null;
+  const { productID } = useParams();
+  const { showLoader } = useAnimation();
+
+  const [item, setItem] = useState({});
+
+  useEffect(() => {
+    (async () => {
+      try {
+        showLoader();
+        const response = await axios.get(`/api/products/${productID}`);
+        showLoader();
+        setItem(response.data.product);
+      } catch (error) {
+        AlertToast("error", error.message);
+        showLoader();
+      }
+    })();
+  }, [productID]);
 
   return (
     <>
