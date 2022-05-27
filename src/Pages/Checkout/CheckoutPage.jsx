@@ -17,7 +17,7 @@ export const CheckoutPage = () => {
 
   return (
     <div className={darkTheme ? "cart" : "cart cart-light"}>
-      {!showConfirmPayment && (
+      {showConfirmPayment && (
         <PaymentConfirmModal orderDetails={orderDetails} />
       )}
       <h1 className="title-xl-wt-5 mg-2-bot text-center">Checkout</h1>

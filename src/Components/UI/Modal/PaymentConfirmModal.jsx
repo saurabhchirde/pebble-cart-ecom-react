@@ -19,48 +19,46 @@ export const PaymentConfirmModal = ({ orderDetails }) => {
 
   return (
     <>
-      <div className="modal-backdrop"></div>
-      {!orderDetails?.orderId ? (
-        <div className={wrapperClass}>
-          <Link to="/products" replace>
+      {orderDetails?.orderId ? (
+        <>
+          <div className="modal-backdrop"></div>
+          <div className={wrapperClass}>
             <IconButton
               onClick={hideConfirmPaymentModal}
               icon="fas fa-times"
               btnClassName="btn icon-btn-md close-icon"
             />
-          </Link>
-          <div className="payment-confirm-container">
-            <PaymentSuccess />
-            <h1 className="payment-confirm-title">
-              Order Placed Successfully!
-            </h1>
-            <h2 className="payment-confirm-message">
-              You will receive an email once it get shipped.
-            </h2>
-            <p className="orderId">
-              Ordrer Id : <strong>{orderDetails?.orderId}</strong>
-            </p>
-            <p className="paymentId">
-              Payment Id : <strong>{orderDetails?.paymentId}</strong>
-            </p>
+            <div className="payment-confirm-container">
+              <PaymentSuccess />
+              <h1 className="payment-confirm-title">
+                Order Placed Successfully!
+              </h1>
+              <h2 className="payment-confirm-message">
+                You will receive an email once it get shipped.
+              </h2>
+              <p className="orderId">Ordrer Id : {orderDetails?.orderId}</p>
+              <p className="paymentId">
+                Payment Id : {orderDetails?.paymentId}
+              </p>
+            </div>
+            <div className="payment-confirm-cta">
+              <Link to="/products" replace>
+                <Button
+                  onClick={hideConfirmPaymentModal}
+                  btnClassName="btn primary-btn-md"
+                  label="Shop More"
+                />
+              </Link>
+              <Link to="/account/orders" replace>
+                <Button
+                  onClick={hideConfirmPaymentModal}
+                  btnClassName="btn primary-outline-btn-md"
+                  label="View Orders"
+                />
+              </Link>
+            </div>
           </div>
-          <div className="payment-confirm-cta">
-            <Link to="/products" replace>
-              <Button
-                onClick={hideConfirmPaymentModal}
-                btnClassName="btn primary-btn-md"
-                label="Shop More"
-              />
-            </Link>
-            <Link to="/account/orders" replace>
-              <Button
-                onClick={hideConfirmPaymentModal}
-                btnClassName="btn primary-outline-btn-md"
-                label="View Orders"
-              />
-            </Link>
-          </div>
-        </div>
+        </>
       ) : null}
     </>
   );

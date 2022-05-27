@@ -16,13 +16,13 @@ code {
 /* Modal */
 
 .modal-backdrop {
-  background-color: rgba(0, 0, 0, 0.447);
-  height: 100%;
-  width: 110vw;
-  left: 50%;
-  top: 50%;
+  background-color: rgba(0, 0, 0, 0.447) !important;
+  height: 100% !important;
+  width: 100% !important;
+  left: 50% !important;
+  top: 50% !important;
   transform: translate(-50%, -50%);
-  position: fixed;
+  position: fixed !important;
   z-index: 4;
 }
 
@@ -41,4 +41,7 @@ code {
 *::-webkit-scrollbar-track {
   background-color: rgb(255, 255, 255);
   width: 10px;
+}
+
+@media screen {
 }

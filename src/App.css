@@ -13,6 +13,7 @@
   --coupon-success: rgba(34, 252, 0, 0.18);
   --available-coupons: rgba(97, 97, 97, 0.139);
   --navbar-shadow: rgba(0, 0, 0, 0.164);
+  --dark-payment-confirm-bg: rgb(57, 57, 57);
 
   /* light mode */
   --light-bg-color: #f1f1f1;
@@ -26,6 +27,7 @@
   --payment-card-hover: rgb(176, 176, 176);
   --banner-square-card-light: rgb(121, 146, 176);
   --order-details-bg: rgb(201, 201, 201);
+  --light-payment-confirm-bg: rgb(255, 255, 255);
 }
 
 body.lightTheme {
@@ -241,8 +243,7 @@ body.lightTheme {
 
 .contact-address-light,
 .payment-method-light,
-.checkout-item-overview-light,
-.payment-confirm-wrapper-light {
+.checkout-item-overview-light {
   background-color: var(--primary-bg);
   color: var(--light-theme-sub-title-color);
 }
@@ -276,6 +277,11 @@ body.lightTheme {
 }
 
 .checkout-item-card .card-light {
+  color: var(--light-theme-sub-title-color);
+}
+
+.payment-confirm-wrapper-light {
+  background-color: var(--light-payment-confirm-bg);
   color: var(--light-theme-sub-title-color);
 }
 
