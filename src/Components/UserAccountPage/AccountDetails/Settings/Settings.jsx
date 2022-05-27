@@ -46,7 +46,7 @@ export const Settings = () => {
             <h2>8989898989</h2>
           </div>
         </div>
-        <div className="setting-edit-container">
+        {/* <div className="setting-edit-container">
           <div className="setting-title">
             <h2>Change Password</h2>
             <Button label="Edit" btnClassName="btn primary-text-btn-md" />
@@ -67,7 +67,7 @@ export const Settings = () => {
             />
           </Link>
           <Button label="Save" btnClassName="btn primary-btn-md" />
-        </div>
+        </div> */}
       </div>
     </div>
   );

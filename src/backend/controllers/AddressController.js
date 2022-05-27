@@ -115,17 +115,15 @@ export const updateAddressHandler = function (schema, request) {
         }
       );
     }
-    const { address } = JSON.parse(request.requestBody);
+    const userAddresses = schema.users.findBy({ _id: userId }).addresses;
     const { addressId } = request.params;
-    const addressIndex = userId.addresses.findIndex(
-      (address) => address._id === addressId
-    );
-    userId.addresses[addressIndex] = {
-      ...userId.addresses[addressIndex],
-      ...address,
-    };
-    this.db.users.update({ _id: userId._id }, userId);
-    return new Response(201, {}, { addresses: userId.addresses });
+    const { address } = JSON.parse(request.requestBody);
+    const updatedAddresses = userAddresses.map((item) => {
+      if (item._id === addressId) return { ...address };
+      return item;
+    });
+    this.db.users.update({ _id: userId }, { addresses: updatedAddresses });
+    return new Response(200, {}, { addresses: updatedAddresses });
   } catch (error) {
     return new Response(
       500,

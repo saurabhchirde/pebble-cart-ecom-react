@@ -51,24 +51,28 @@ export const OrderSummary = ({ setOrderDetails }) => {
         amount: amountPaid * 100,
         currency: "INR",
         name: "Pebble Cart",
-        description: "Make Payment For Pebble Cart",
+        description: "Payment To Pebble Cart",
 
         handler: async function (response) {
-          setOrderDetails({
-            orderId: orderNumber,
-            paymentId: response.razorpay_payment_id,
-          });
-          cartDispatch({
-            type: "makePayment",
-            payload: {
-              productList: cartState.cart,
-              amountPaid: amountPaid,
-              orderNumber: orderNumber,
-            },
-          });
-          setShowConfirmPayment(true);
-          emptyAllCartFromServer(cartConfig);
-          checkoutDispatch({ type: "clearSelections" });
+          if (response.razorpay_payment_id) {
+            setOrderDetails({
+              orderId: orderNumber,
+              paymentId: response.razorpay_payment_id,
+            });
+            cartDispatch({
+              type: "makePayment",
+              payload: {
+                productList: cartState.cart,
+                amountPaid: amountPaid,
+                orderNumber: orderNumber,
+              },
+            });
+            setShowConfirmPayment(true);
+            emptyAllCartFromServer(cartConfig);
+            checkoutDispatch({ type: "clearSelections" });
+          } else {
+            AlertToast("error", "Network issue, please try again");
+          }
         },
         prefill: {
           name: "Pebble Cart",

@@ -1,12 +1,11 @@
 import { useAuth, useTheme } from "Context";
 import "./NewAddress.css";
 import "../SingleAddress/SingleAddress.css";
-import { NewAddressModal, EditAddressModal } from "Components";
+import { NewAddressModal } from "Components";
 
 export const NewAddress = () => {
   const { darkTheme } = useTheme();
-  const { showAddressModal, setShowAddressModal, showEditAddressModal } =
-    useAuth();
+  const { showAddressModal, setShowAddressModal } = useAuth();
 
   const newAddressHandler = () => {
     setShowAddressModal(true);
@@ -14,7 +13,6 @@ export const NewAddress = () => {
 
   return (
     <>
-      {showEditAddressModal && <EditAddressModal />}
       {showAddressModal && <NewAddressModal />}
       <div
         className={darkTheme ? "address-dark" : "address-light"}

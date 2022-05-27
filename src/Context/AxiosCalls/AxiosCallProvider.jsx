@@ -5,14 +5,19 @@ import { useModal } from "../Modal/ModalProvider";
 import { useAuth } from "../Auth/AuthProvider";
 import { useAnimation } from "../Animation/AnimationProvider";
 import { AlertToast } from "Components/Alert/AlertToast";
-import { Login, Signup } from "Components";
+import { EditAddressModal, Login, Signup } from "Components";
 
 const axiosContext = createContext(null);
 
 const AxiosCallProvider = ({ children }) => {
   const { cartDispatch } = useCart();
   const { showLogin, showSignup, setShowLogin, setShowSignup } = useModal();
-  const { authDispatch, setLoginInput, setShowAddressModal } = useAuth();
+  const {
+    authDispatch,
+    setLoginInput,
+    setShowAddressModal,
+    showEditAddressModal,
+  } = useAuth();
   const { showLoader } = useAnimation();
 
   // login
@@ -271,6 +276,7 @@ const AxiosCallProvider = ({ children }) => {
     >
       {showLogin && <Login />}
       {showSignup && <Signup />}
+      {showEditAddressModal && <EditAddressModal />}
       {children}
     </axiosContext.Provider>
   );

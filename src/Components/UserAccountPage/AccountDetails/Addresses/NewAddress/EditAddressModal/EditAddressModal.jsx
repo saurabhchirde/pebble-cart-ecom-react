@@ -1,5 +1,5 @@
 import { useAuth, useAxiosCalls } from "Context";
-import { InputTypeOne, Button } from "Components";
+import { AlertToast, Button } from "Components";
 
 export const EditAddressModal = () => {
   const {
@@ -12,18 +12,34 @@ export const EditAddressModal = () => {
   const { updateAddressOnServer } = useAxiosCalls();
 
   const updateAddressConfig = {
-    url: "/api/addresses",
+    url: "/api/user/addresses",
     body: {
       address: { ...newAddress },
     },
     headers: { headers: { authorization: auth.token } },
   };
 
-  const onSignupFormSubmitHandler = (e) => {
+  const numberValidate = /^(\+\d{1,3}[- ]?)|0?\d{10}$/;
+  const pinValidate = /^[0-9]{6}$/;
+
+  const updateAddressHandler = (e) => {
     e.preventDefault();
-    updateAddressOnServer(updateAddressConfig);
-    setShowEditAddressModal(false);
-    setNewAddress(initialAddressState);
+    if (newAddress.fullName.trim() !== "" || newAddress.address.trim() !== "") {
+      if (newAddress.pinCode.match(pinValidate)) {
+        if (newAddress.mobile.match(numberValidate)) {
+          updateAddressOnServer(updateAddressConfig);
+          setShowEditAddressModal(false);
+          setNewAddress(initialAddressState);
+          AlertToast("success", "Address Updated ");
+        } else {
+          AlertToast("error", "Enter valid Mobile number");
+        }
+      } else {
+        AlertToast("error", "Enter valid Pin code");
+      }
+    } else {
+      AlertToast("error", "Enter valid details");
+    }
   };
 
   const onInputChangeHandler = (e) => {
@@ -58,49 +74,63 @@ export const EditAddressModal = () => {
         >
           <i className="fas fa-times"></i>
         </button>
-        <form onSubmit={onSignupFormSubmitHandler}>
-          <InputTypeOne
-            label="Full Name"
-            type="text"
-            name="fullName"
-            autoComplete="on"
-            placeholder="Enter your name"
-            inputWrapper="outline-text-input"
-            onChange={onInputChangeHandler}
-            value={newAddress.fullName}
-          />
-          <InputTypeOne
-            label="Address"
-            type="address"
-            name="address"
-            autoComplete="on"
-            placeholder="Enter your address"
-            inputWrapper="outline-text-input"
-            onChange={onInputChangeHandler}
-            value={newAddress.address}
-          />
-          <InputTypeOne
-            label="Pin Code"
-            type="number"
-            name="pinCode"
-            required="required"
-            autoComplete="pin"
-            placeholder="Enter your pin code"
-            inputWrapper="outline-number-input"
-            onChange={onInputChangeHandler}
-            value={newAddress.pinCode}
-          />
-          <InputTypeOne
-            label="Mobile"
-            type="tel"
-            name="mobile"
-            required="required"
-            autoComplete="mobile"
-            placeholder="Enter your Mobile"
-            inputWrapper="outline-tel-input"
-            onChange={onInputChangeHandler}
-            value={newAddress.mobile}
-          />
+        <form onSubmit={updateAddressHandler}>
+          <div className="outline-text-input">
+            <label>
+              Full Name
+              <input
+                type="text"
+                name="fullName"
+                required="required"
+                autoComplete="on"
+                placeholder="Enter your name"
+                onChange={onInputChangeHandler}
+                value={newAddress.fullName}
+              />
+            </label>
+          </div>
+          <div className="outline-text-input">
+            <label>
+              Address
+              <input
+                type="address"
+                name="address"
+                required="required"
+                autoComplete="on"
+                placeholder="Enter your address"
+                onChange={onInputChangeHandler}
+                value={newAddress.address}
+              />
+            </label>
+          </div>
+          <div className="outline-number-input">
+            <label>
+              Pin Code
+              <input
+                type="number"
+                name="pinCode"
+                required="required"
+                autoComplete="pin"
+                placeholder="Enter your pin code"
+                onChange={onInputChangeHandler}
+                value={newAddress.pinCode}
+              />
+            </label>
+          </div>
+          <div className="outline-tel-input">
+            <label>
+              Mobile
+              <input
+                type="tel"
+                name="mobile"
+                required="required"
+                autoComplete="mobile"
+                placeholder="Enter your Mobile"
+                onChange={onInputChangeHandler}
+                value={newAddress.mobile}
+              />
+            </label>
+          </div>
           <Button
             btnWrapper="signup-btn"
             type="submit"

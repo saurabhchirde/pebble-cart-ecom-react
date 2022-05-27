@@ -4,3 +4,20 @@
   font-size: 1.2rem;
   font-weight: 500;
 }
+
+.products > div {
+  gap: 1.5rem;
+  margin: 0 1rem;
+}
+
+@media screen and (max-width: 864px) {
+  .products > div {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .products > div {
+    gap: 10px;
+  }
+}

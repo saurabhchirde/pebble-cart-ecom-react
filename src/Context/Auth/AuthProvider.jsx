@@ -19,8 +19,8 @@ const initialAddressState = {
   _id: uuid(),
   fullName: "",
   address: "",
-  pinCode: 0,
-  mobile: 0,
+  pinCode: undefined,
+  mobile: undefined,
   createdAt: "",
   updatedAt: "",
 };
