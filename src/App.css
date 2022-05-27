@@ -349,6 +349,10 @@ body.lightTheme {
 }
 
 @media screen and (max-width: 1050px) {
+  .filter-section {
+    padding-top: 0;
+  }
+
   .single-product-image .main-image {
     width: 15rem;
     height: auto;

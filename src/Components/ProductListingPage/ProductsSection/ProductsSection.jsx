@@ -79,7 +79,14 @@ export const ProductsSection = () => {
 
   return (
     <section className={darkTheme ? "products" : "products products-light"}>
-      <h1>Showing All {categoryName !== null ? categoryName : "Products"}</h1>
+      <h1>
+        Showing All {}
+        {categoryName !== null
+          ? categoryName
+          : searchQuery
+          ? searchQuery[0].toUpperCase() + searchQuery.slice(1)
+          : " Products"}
+      </h1>
       <div className="flex-row flex-wrap">
         {finalFilteredData(productState.products, filterState).length === 0 ? (
           <h1 className="no-product-error">

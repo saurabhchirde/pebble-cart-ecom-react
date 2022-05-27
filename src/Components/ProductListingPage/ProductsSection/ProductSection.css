@@ -5,14 +5,18 @@
   font-weight: 500;
 }
 
+.products {
+  width: 95vw;
+}
+
 .products > div {
   gap: 1.5rem;
   margin: 0 1rem;
 }
 
 @media screen and (max-width: 864px) {
-  .products > div {
-    justify-content: center;
+  .products {
+    width: 100%;
   }
 }
 

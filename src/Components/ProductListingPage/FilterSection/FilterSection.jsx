@@ -10,6 +10,7 @@ import {
   PriceSection,
 } from "Components";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const FilterSection = (props) => {
   const { filterDispatch, setSearchInput } = useFilter();
@@ -51,7 +52,9 @@ export const FilterSection = (props) => {
         {props.camera && props.lens && props.tripod && props.accessories && (
           <div className="filter flex-row flex-justify-space-between">
             <h2>Filter</h2>
-            <Button onClick={clearClickHandler} type="reset" label="Clear" />
+            <Link to="/products" replace>
+              <Button onClick={clearClickHandler} type="reset" label="Clear" />
+            </Link>
           </div>
         )}
         <PriceSection />
