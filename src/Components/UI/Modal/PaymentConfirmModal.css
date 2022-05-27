@@ -1,5 +1,6 @@
-.payment-confirm-wrapper {
-  background-color: aliceblue;
+.payment-confirm-wrapper,
+.payment-confirm-wrapper-light {
+  background-color: var(--dark-theme-card-bg);
   border-radius: 10px;
   padding: 0 3rem 3rem;
   max-width: 35rem;
@@ -7,7 +8,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1;
+  z-index: 4;
 }
 
 .close-icon {
@@ -26,6 +27,7 @@
 .payment-confirm-title {
   font-size: 1.6rem;
   margin: -1.2rem 0 1rem;
+  text-align: center;
 }
 
 .payment-confirm-message {
@@ -55,11 +57,11 @@
 
 @media screen and (max-width: 450px) {
   .payment-confirm-wrapper {
-    padding: 0 1.5rem 2.5rem;
+    padding: 0 1rem 2.5rem;
   }
 
   .payment-confirm-title {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
 
   .payment-confirm-message {

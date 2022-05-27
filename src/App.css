@@ -25,6 +25,7 @@
   --light-theme-sub-title-color: #484848;
   --payment-card-hover: rgb(176, 176, 176);
   --banner-square-card-light: rgb(121, 146, 176);
+  --order-details-bg: rgb(201, 201, 201);
 }
 
 body.lightTheme {
@@ -240,7 +241,8 @@ body.lightTheme {
 
 .contact-address-light,
 .payment-method-light,
-.checkout-item-overview-light {
+.checkout-item-overview-light,
+.payment-confirm-wrapper-light {
   background-color: var(--primary-bg);
   color: var(--light-theme-sub-title-color);
 }
@@ -257,8 +259,20 @@ body.lightTheme {
 
 .checkout-item-overview-light:hover,
 .contact-address-light:hover,
-.payment-method-light:hover {
+.payment-method-light:hover,
+.order-card-top-section:hover,
+.order-card-bottom-section:hover {
   background-color: var(--light-theme-card-hover);
+}
+
+.order-card-top-section-light {
+  background-color: var(--light-theme-card-hover);
+  color: var(--text-dark);
+}
+
+.order-card-bottom-section-light {
+  color: var(--text-dark);
+  background-color: var(--order-details-bg);
 }
 
 .checkout-item-card .card-light {

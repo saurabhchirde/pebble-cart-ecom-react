@@ -2,7 +2,8 @@
   display: flex;
 }
 
-.order-card-top-section img {
+.order-card-top-section img,
+.order-card-top-section-light img {
   width: 7rem;
   height: auto;
   object-fit: contain;
@@ -28,4 +29,25 @@
 .product-reorder-btn {
   margin: 6px 0 0 0;
   padding: 5px 20px;
+}
+
+@media screen and (max-width: 500px) {
+  .order-card-image-description {
+    margin-bottom: 10px;
+  }
+
+  .ordered-product-details {
+    margin-right: 0;
+  }
+
+  .product-reorder-btn {
+    margin: 10px 0;
+  }
+
+  .ordered-product-delivery {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
 }

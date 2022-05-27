@@ -1,10 +1,17 @@
+import { useTheme } from "Context";
 import "./OrderDetails.css";
 
 export const OrderDetails = ({ order }) => {
   const { amountPaid, orderNumber, date } = order;
 
+  const { darkTheme } = useTheme();
+
+  const cardClassBottomSection = darkTheme
+    ? "order-card-bottom-section"
+    : "order-card-bottom-section-light";
+
   return (
-    <div className="order-card-bottom-section">
+    <div className={cardClassBottomSection}>
       <div className="order-card-bottom-left">
         <div className="order-card-date-section">
           <p>Order Date</p>

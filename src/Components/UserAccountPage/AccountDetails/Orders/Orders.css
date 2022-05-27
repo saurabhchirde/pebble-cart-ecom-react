@@ -10,7 +10,9 @@
 }
 
 .order-card-top-section,
-.order-card-bottom-section {
+.order-card-top-section-light,
+.order-card-bottom-section,
+.order-card-bottom-section-light {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -18,12 +20,15 @@
   padding: 1rem;
   border-radius: 4px;
   background-color: var(--dark-theme-card-bg);
+  border-top: 1px solid var(--btn-hover);
   margin: auto;
 }
 
 @media screen and (max-width: 500px) {
   .order-card-top-section,
-  .order-card-bottom-section {
+  .order-card-top-section-light,
+  .order-card-bottom-section,
+  .order-card-bottom-section-light {
     flex-direction: column;
   }
 }

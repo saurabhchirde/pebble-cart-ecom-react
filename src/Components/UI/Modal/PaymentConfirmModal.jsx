@@ -1,5 +1,5 @@
 import { PaymentSuccess } from "Components";
-import { useModal } from "Context";
+import { useModal, useTheme } from "Context";
 import { Link } from "react-router-dom";
 import { Button } from "../Button/Button";
 import { IconButton } from "../Button/IconButton";
@@ -7,15 +7,21 @@ import "./PaymentConfirmModal.css";
 
 export const PaymentConfirmModal = ({ orderDetails }) => {
   const { setShowConfirmPayment } = useModal();
+  const { darkTheme } = useTheme();
 
   const hideConfirmPaymentModal = () => {
     setShowConfirmPayment(false);
   };
 
+  const wrapperClass = darkTheme
+    ? "payment-confirm-wrapper"
+    : "payment-confirm-wrapper-light";
+
   return (
     <>
-      {orderDetails?.orderId ? (
-        <div className="payment-confirm-wrapper">
+      <div className="modal-backdrop"></div>
+      {!orderDetails?.orderId ? (
+        <div className={wrapperClass}>
           <Link to="/products" replace>
             <IconButton
               onClick={hideConfirmPaymentModal}
