@@ -1,4 +1,4 @@
-import { useAuth, useAxiosCalls, useTheme } from "Context";
+import { useAuth, useAxiosCalls, useCheckout, useTheme } from "Context";
 import { AlertToast } from "Components";
 import "./SingleAddress.css";
 
@@ -7,6 +7,7 @@ export const SingleAddress = ({ props }) => {
   const { auth, setNewAddress, setShowEditAddressModal } = useAuth();
   const { removeAddressFromServer } = useAxiosCalls();
   const { darkTheme } = useTheme();
+  const { selectedAddress, setSelectedAddress } = useCheckout();
 
   const addressConfig = {
     url: "/api/user/addresses",
@@ -22,6 +23,9 @@ export const SingleAddress = ({ props }) => {
   const deleteAddressHandler = () => {
     removeAddressFromServer(addressConfig);
     AlertToast("info", "Address Deleted ");
+    if (selectedAddress) {
+      setSelectedAddress(false);
+    }
   };
 
   return (

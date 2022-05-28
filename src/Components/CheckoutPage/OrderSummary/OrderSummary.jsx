@@ -1,12 +1,11 @@
 import { AlertToast } from "Components";
 import { useAuth, useAxiosCalls, useCart, useModal, useTheme } from "Context";
-import { useCheckout } from "Context/Checkout/CheckoutProvider";
+import { useCheckout } from "Context";
 import "./OrderSummary.css";
 
 export const OrderSummary = ({ setOrderDetails }) => {
   const { cartState, cartDispatch } = useCart();
-  const { checkoutState, checkoutDispatch } = useCheckout();
-  const { addressOverviewCheck } = checkoutState;
+  const { selectedAddress } = useCheckout();
   const { darkTheme } = useTheme();
   const { auth } = useAuth();
   const { emptyAllCartFromServer } = useAxiosCalls();
@@ -69,7 +68,6 @@ export const OrderSummary = ({ setOrderDetails }) => {
             });
             setShowConfirmPayment(true);
             emptyAllCartFromServer(cartConfig);
-            checkoutDispatch({ type: "clearSelections" });
           } else {
             AlertToast("error", "Network issue, please try again");
           }
@@ -114,7 +112,7 @@ export const OrderSummary = ({ setOrderDetails }) => {
       </div>
       <hr className="break-line" />
       <div className="payment-btn">
-        {addressOverviewCheck && (
+        {selectedAddress && (
           <button
             onClick={makePaymentClickHandler}
             className="btn primary-btn-md"

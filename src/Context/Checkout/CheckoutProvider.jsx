@@ -1,21 +1,12 @@
-import { createContext, useContext, useReducer } from "react";
-import checkoutReducer from "./checkoutReducer";
+import { createContext, useContext, useState } from "react";
 
-const checkoutInitialState = {
-  addressOverviewCheck: false,
-  paymentOverviewCheck: false,
-};
-
-const checkoutContext = createContext(checkoutInitialState);
+const checkoutContext = createContext(null);
 
 const CheckoutProvider = ({ children }) => {
-  const [checkoutState, checkoutDispatch] = useReducer(
-    checkoutReducer,
-    checkoutInitialState
-  );
+  const [selectedAddress, setSelectedAddress] = useState(false);
 
   return (
-    <checkoutContext.Provider value={{ checkoutState, checkoutDispatch }}>
+    <checkoutContext.Provider value={{ selectedAddress, setSelectedAddress }}>
       {children}
     </checkoutContext.Provider>
   );

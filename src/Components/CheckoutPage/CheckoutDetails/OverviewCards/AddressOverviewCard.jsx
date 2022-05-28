@@ -1,39 +1,56 @@
-import { useAuth, useTheme } from "Context";
-import { useCheckout } from "Context";
+import { useAuth, useAxiosCalls, useCheckout, useTheme } from "Context";
 import { SingleAddress, NewAddressModal } from "Components";
 import "./AddressOverViewCard.css";
 import { useEffect } from "react";
+import { v4 as uuid } from "uuid";
 
 export const AddressOverviewCard = () => {
-  const { checkoutState, checkoutDispatch } = useCheckout();
-  const { addressOverviewCheck } = checkoutState;
   const {
     auth: {
+      token,
       user: { addresses },
     },
     showAddressModal,
     setShowAddressModal,
   } = useAuth();
   const { darkTheme } = useTheme();
-
-  const onSelectingAddress = () => {
-    checkoutDispatch({ type: "addressSelected" });
-  };
+  const { addAddressOnServer } = useAxiosCalls();
+  const { selectedAddress, setSelectedAddress } = useCheckout();
 
   const addNewAddressHandler = () => {
     setShowAddressModal(true);
   };
 
+  const addDemoAddressHandler = () => {
+    const demoAddress = {
+      _id: uuid(),
+      fullName: "Guest User",
+      address: "58, Sunderban Apartment, Sector 7, Airoli, Navi Mumbai",
+      pinCode: 400708,
+      mobile: 8989898989,
+    };
+
+    const addressConfig = {
+      url: "/api/user/addresses",
+      body: {
+        address: { ...demoAddress },
+      },
+      headers: { headers: { authorization: token } },
+    };
+
+    addAddressOnServer(addressConfig);
+  };
+
   const checkIconStatus =
     addresses.length > 0
-      ? `${
-          addressOverviewCheck ? "fas fa-check-circle" : "far fa-check-circle"
-        }`
+      ? selectedAddress
+        ? "fas fa-check-circle"
+        : "far fa-check-circle"
       : "far fa-check-circle";
 
   useEffect(() => {
     if (addresses.length < 1) {
-      checkoutDispatch({ type: "addressDeSelected" });
+      setSelectedAddress(false);
     }
   }, [addresses.length]);
 
@@ -57,14 +74,18 @@ export const AddressOverviewCard = () => {
               <div className="checkout-address-container">
                 {addresses.map((address) => {
                   return (
-                    <label
-                      key={address._id}
-                      htmlFor="address-select"
-                      onClick={onSelectingAddress}
-                    >
+                    <label key={address._id} htmlFor={address._id}>
                       <div className="checkout-address-section">
-                        <input type="radio" name="radio" id="address-select" />
-                        <SingleAddress props={address} />
+                        <input
+                          type="radio"
+                          name="radio"
+                          id={address._id}
+                          onChange={() => setSelectedAddress(true)}
+                        />
+                        <SingleAddress
+                          props={address}
+                          selectedAddressId={address._id}
+                        />
                       </div>
                     </label>
                   );
@@ -77,12 +98,20 @@ export const AddressOverviewCard = () => {
             )}
           </div>
         </div>
-        <button
-          onClick={addNewAddressHandler}
-          className="btn primary-text-btn-md new-address-button"
-        >
-          Add new address
-        </button>
+        <div>
+          <button
+            onClick={addNewAddressHandler}
+            className="btn primary-text-btn-md new-address-button"
+          >
+            Add New Address
+          </button>
+          <button
+            onClick={addDemoAddressHandler}
+            className="btn primary-text-btn-md new-address-button"
+          >
+            Add Demo Address
+          </button>
+        </div>
       </details>
     </div>
   );

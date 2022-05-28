@@ -6,8 +6,9 @@
   display: flex;
 }
 
-.address label {
+.checkout-address-section {
   position: relative;
+  cursor: pointer;
 }
 
 .address input {

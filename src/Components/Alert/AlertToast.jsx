@@ -3,7 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 export const AlertToast = (type = "", message) => {
   toast(message, {
-    position: "top-right",
+    position: "bottom-right",
     autoClose: 3500,
     hideProgressBar: false,
     closeOnClick: true,
