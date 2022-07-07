@@ -34,8 +34,8 @@
 }
 
 .payment-confirm-message {
-  font-size: 1.2rem;
-  font-weight: 500;
+  font-size: 1.1rem;
+  font-weight: 400;
   margin-bottom: 1rem;
   text-align: center;
 }
@@ -43,7 +43,7 @@
 .orderId,
 .paymentId {
   margin: 5px 0;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .payment-confirm-cta {
