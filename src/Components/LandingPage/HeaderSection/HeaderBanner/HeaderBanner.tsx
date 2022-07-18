@@ -2,7 +2,14 @@ import { Button } from "Components";
 import { Link } from "react-router-dom";
 import { useTheme } from "Context";
 
-export const HeaderBanner = (props) => {
+interface HeaderBannerProps {
+  imgSrc: string;
+  title: string;
+  description: string;
+  btnLabel: string;
+}
+
+export const HeaderBanner = (props: HeaderBannerProps) => {
   const { darkTheme } = useTheme();
 
   return (

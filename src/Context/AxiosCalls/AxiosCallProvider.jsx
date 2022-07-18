@@ -7,7 +7,7 @@ import { useAnimation } from "../Animation/AnimationProvider";
 import { AlertToast } from "Components/Alert/AlertToast";
 import { EditAddressModal, Login, Signup } from "Components";
 
-const axiosContext = createContext(null);
+const axiosContext = createContext();
 
 const AxiosCallProvider = ({ children }) => {
   const { cartDispatch } = useCart();

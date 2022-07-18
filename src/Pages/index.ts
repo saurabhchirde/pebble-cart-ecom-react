@@ -1,5 +1,5 @@
 export { WishlistPage } from "./Wishlist/WishlistPage";
-export { SingleProduct } from "./SingleProduct/SingleProduct";
+export { SingleProduct } from "./SingleProduct/SingleProduct.jsx";
 export { ProductListingPage } from "./ProductListing/ProductListingPage";
 export { NotFound } from "./NotFound/NotFound";
 export { LandingPage } from "./Landing/LandingPage";

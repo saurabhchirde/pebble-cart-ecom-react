@@ -90,7 +90,7 @@ const authReducer = (auth, action) => {
   }
 };
 
-const authContext = createContext(null);
+const authContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [auth, authDispatch] = useReducer(

@@ -21,7 +21,7 @@ const initialCartState = {
   coupon: "",
 };
 
-const cartContext = createContext({});
+const cartContext = createContext();
 
 const CartProvider = ({ children }) => {
   const [cartState, cartDispatch] = useReducer(cartReducer, initialCartState);

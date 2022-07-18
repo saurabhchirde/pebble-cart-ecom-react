@@ -12,7 +12,14 @@ import {
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-export const FilterSection = (props) => {
+interface FilterSectionProps {
+  camera: boolean;
+  lens: boolean;
+  tripod: boolean;
+  accessories: boolean;
+}
+
+export const FilterSection = (props: FilterSectionProps) => {
   const { filterDispatch, setSearchInput } = useFilter();
   const [showFilter, setShowFilter] = useState(false);
   const { darkTheme } = useTheme();

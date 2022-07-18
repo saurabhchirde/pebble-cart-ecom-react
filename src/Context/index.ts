@@ -19,3 +19,7 @@ export {
   useAxiosCalls,
 } from "./AxiosCalls/AxiosCallProvider";
 export { ThemeProvider, useTheme } from "./ThemeProvider/ThemeProvider";
+
+export interface ChildrenComponentProps {
+  children: React.ReactNode;
+}

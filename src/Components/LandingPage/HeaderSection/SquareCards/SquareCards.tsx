@@ -1,6 +1,11 @@
 import { useTheme } from "Context";
 
-export const SquareCards = (props) => {
+interface SquareCardsProps {
+  imgSrc: string;
+  title: string;
+}
+
+export const SquareCards = (props: SquareCardsProps) => {
   const { darkTheme } = useTheme();
 
   const squareCardClass = darkTheme

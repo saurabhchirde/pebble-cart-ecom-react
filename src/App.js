@@ -1,13 +1,9 @@
 import {
   DesktopNavigationBar,
-  Login,
-  Signup,
   MobileNavigationBar,
   MobileNavigationBarBottom,
   Footer,
   BodyWrapper,
-  SignupAlertModal,
-  AlertModal,
   AnimateCamera,
   AnimateLoader,
   Orders,
@@ -16,7 +12,6 @@ import {
   ProtectedRoute,
 } from "Components";
 import {
-  LandingPage,
   ProductListingPage,
   WishlistPage,
   CartPage,
@@ -28,6 +23,7 @@ import {
   Camera,
   Lens,
   Tripod,
+  LandingPage,
 } from "Pages";
 import "./App.css";
 import Mockman from "mockman-js";

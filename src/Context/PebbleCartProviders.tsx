@@ -11,8 +11,13 @@ import {
   ThemeProvider,
 } from "./index";
 import { BrowserRouter } from "react-router-dom";
+import React from "react";
 
-const PebbleCartProviders = ({ children }) => {
+interface PebbleCartProvidersProps {
+  children: React.ReactNode;
+}
+
+const PebbleCartProviders = ({ children }: PebbleCartProvidersProps) => {
   return (
     <BrowserRouter>
       <ThemeProvider>

@@ -2,7 +2,7 @@ import axios from "axios";
 import { AlertToast } from "Components";
 import { createContext, useContext, useEffect, useReducer } from "react";
 
-const productContext = createContext([]);
+const productContext = createContext();
 
 const productsReducer = (productState, action) => {
   switch (action.type) {

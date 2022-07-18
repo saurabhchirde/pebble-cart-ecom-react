@@ -2,7 +2,23 @@ import { useState } from "react";
 import { IconButton } from "Components";
 import "./CreditCard.css";
 
-export const CreditCard = ({ details }) => {
+interface CreditCardProps {
+  details: {
+    color1: string;
+    color2: string;
+    color3: string;
+    gradientAngle: string;
+    card: string;
+    type: string;
+    bank: string;
+    holderName: string;
+    cardNumber: string;
+    expDate: string;
+    expYear: string;
+  };
+}
+
+export const CreditCard = ({ details }: CreditCardProps) => {
   const {
     color1,
     color2,
