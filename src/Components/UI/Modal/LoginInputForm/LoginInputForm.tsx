@@ -1,4 +1,5 @@
 import { InputTypeOne, InputTypePassword, Button } from "Components";
+import { LoginInputFormProps } from "../modal-types";
 
 export const LoginInputForm = ({
   onLoginSubmitHandler,
@@ -6,24 +7,24 @@ export const LoginInputForm = ({
   loginInput,
   showPassword,
   setShowPassword,
-}) => {
+}: LoginInputFormProps) => {
   return (
     <form onSubmit={onLoginSubmitHandler}>
       <InputTypeOne
         type="email"
         name="email"
-        required="required"
+        required
         placeholder="Enter your email *"
         iconWrapper="input-icon"
         icon="far fa-envelope"
         inputWrapper="outline-email-input"
         onChange={debounce}
-        value={loginInput.email}
+        label={""}
       />
       <InputTypePassword
         type={showPassword ? "text" : "password"}
         name="password"
-        required="required"
+        required
         placeholder="Enter your password *"
         iconWrapper="input-icon"
         icon="fas fa-key"
@@ -33,7 +34,7 @@ export const LoginInputForm = ({
         onEyeClick={() => {
           setShowPassword((preData) => !preData);
         }}
-        value={loginInput.password}
+        label={""}
       />
       <Button
         btnWrapper="signin-btn"
@@ -43,4 +44,11 @@ export const LoginInputForm = ({
       />
     </form>
   );
+};
+
+LoginInputForm.defaultProps = {
+  onLoginSubmitHandler: null,
+  debounce: null,
+  loginInput: { email: "", password: "" },
+  showPassword: false,
 };

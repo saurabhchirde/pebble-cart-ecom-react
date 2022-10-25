@@ -1,4 +1,6 @@
-export const InputTypeOne = (props) => {
+import { InputTypePasswordProps } from "./input-types";
+
+export const InputTypePassword = (props: InputTypePasswordProps) => {
   return (
     <div className={props.inputWrapper}>
       <label>
@@ -13,8 +15,20 @@ export const InputTypeOne = (props) => {
             placeholder={props.placeholder}
             onChange={props.onChange}
           />
+          <i onClick={props.onEyeClick} className={props.eyeIcon}></i>
         </div>
       </label>
     </div>
   );
+};
+
+InputTypePassword.defaultProps = {
+  onClick: null,
+  className: "",
+  type: "text",
+  name: "",
+  required: false,
+  autoComplete: false,
+  placeholder: "",
+  onChange: null,
 };

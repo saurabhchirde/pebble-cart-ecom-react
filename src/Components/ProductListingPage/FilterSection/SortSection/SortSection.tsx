@@ -17,6 +17,8 @@ export const SortSection = () => {
         onChange={() => {
           filterDispatch({ type: "Newest", payload: "Newest" });
         }}
+        iconWrapper={""}
+        icon={""}
       />
       <InputTypeTwo
         inputWrapper="radio-input"
@@ -27,6 +29,8 @@ export const SortSection = () => {
         onChange={() => {
           filterDispatch({ type: "LowToHigh", payload: "LowToHigh" });
         }}
+        iconWrapper={""}
+        icon={""}
       />
       <InputTypeTwo
         inputWrapper="radio-input"
@@ -37,6 +41,8 @@ export const SortSection = () => {
         onChange={() => {
           filterDispatch({ type: "HighToLow", payload: "HighToLow" });
         }}
+        iconWrapper={""}
+        icon={""}
       />
     </div>
   );

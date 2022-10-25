@@ -60,7 +60,13 @@ export const FilterSection = (props: FilterSectionProps) => {
           <div className="filter flex-row flex-justify-space-between">
             <h2>Filter</h2>
             <Link to="/products" replace>
-              <Button onClick={clearClickHandler} type="reset" label="Clear" />
+              <Button
+                onClick={clearClickHandler}
+                type="reset"
+                label="Clear"
+                btnClassName={""}
+                btnWrapper={""}
+              />
             </Link>
           </div>
         )}

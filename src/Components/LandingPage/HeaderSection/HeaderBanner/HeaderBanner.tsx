@@ -24,6 +24,8 @@ export const HeaderBanner = (props: HeaderBannerProps) => {
             <Button
               label={props.btnLabel}
               btnClassName="btn primary-text-btn-lg"
+              type={undefined}
+              btnWrapper={""}
             />
           </Link>
         </div>

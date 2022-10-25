@@ -19,6 +19,8 @@ export const BrandSection = () => {
           onChange={() => {
             filterDispatch({ type: "Canon", payload: "Canon" });
           }}
+          icon={""}
+          iconWrapper={""}
         />
         <InputTypeTwo
           inputWrapper="checkbox-input"
@@ -29,6 +31,8 @@ export const BrandSection = () => {
           onChange={() => {
             filterDispatch({ type: "Nikon", payload: "Nikon" });
           }}
+          icon={""}
+          iconWrapper={""}
         />
         <InputTypeTwo
           inputWrapper="checkbox-input"
@@ -39,6 +43,8 @@ export const BrandSection = () => {
           onChange={() => {
             filterDispatch({ type: "Sony", payload: "Sony" });
           }}
+          icon={""}
+          iconWrapper={""}
         />
       </div>
     </div>

@@ -1,7 +1,10 @@
-export const InputTypeTwo = (props) => {
+import { InputTypeOneProps } from "./input-types";
+
+export const InputTypeOne = (props: InputTypeOneProps) => {
   return (
-    <label>
-      <div onClick={props.onClick} className={props.inputWrapper}>
+    <div className={props.inputWrapper}>
+      <label>
+        {props.label}
         <div className={props.iconWrapper}>
           <i className={props.icon}></i>
           <input
@@ -11,11 +14,19 @@ export const InputTypeTwo = (props) => {
             autoComplete={props.autoComplete}
             placeholder={props.placeholder}
             onChange={props.onChange}
-            checked={props.checked}
           />
         </div>
-        {props.label}
-      </div>
-    </label>
+      </label>
+    </div>
   );
+};
+
+InputTypeOne.defaultProps = {
+  className: "",
+  type: "text",
+  name: "",
+  required: false,
+  autoComplete: false,
+  placeholder: "",
+  onChange: null,
 };

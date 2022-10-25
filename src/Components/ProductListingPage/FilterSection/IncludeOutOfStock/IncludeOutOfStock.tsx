@@ -21,6 +21,8 @@ export const IncludeOutOfStock = () => {
             payload: "IncludeOutOfStock",
           });
         }}
+        iconWrapper={""}
+        icon={""}
       />
     </div>
   );

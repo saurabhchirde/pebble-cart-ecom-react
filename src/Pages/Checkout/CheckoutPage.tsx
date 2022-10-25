@@ -29,7 +29,12 @@ export const CheckoutPage = () => {
             </h2>
             <div className="flex-row-center">
               <Link to="/products">
-                <Button label="Show Now" btnClassName="btn primary-btn-lg" />
+                <Button
+                  label="Show Now"
+                  btnClassName="btn primary-btn-lg"
+                  type={undefined}
+                  btnWrapper={""}
+                />
               </Link>
               <Link to="/account/orders">
                 <button className="btn primary-outline-btn-lg">
