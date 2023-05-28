@@ -19,7 +19,6 @@ export const LoginInputForm: React.FC<LoginInputFormProps> = ({
         icon="far fa-envelope"
         inputWrapper="outline-email-input"
         onChange={debounce}
-        value={loginInput.email}
       />
       <InputTypePassword
         type={showPassword ? "text" : "password"}
@@ -34,7 +33,6 @@ export const LoginInputForm: React.FC<LoginInputFormProps> = ({
         onEyeClick={() => {
           setShowPassword((preData) => !preData);
         }}
-        value={loginInput.password}
       />
       <Button
         btnWrapper="signin-btn"
