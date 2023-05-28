@@ -72,7 +72,6 @@ export const Login = () => {
         <LoginInputForm
           onLoginSubmitHandler={onLoginSubmitHandler}
           debounce={debounce}
-          loginInput={loginInput}
           showPassword={showPassword}
           setShowPassword={setShowPassword}
         />

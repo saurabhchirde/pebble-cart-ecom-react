@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 
-const animationContext = createContext(null);
+const animationContext = createContext();
 
 const AnimationProvider = ({ children }) => {
   const [loader, setLoader] = useState(false);

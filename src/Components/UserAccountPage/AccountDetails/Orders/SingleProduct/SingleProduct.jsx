@@ -41,7 +41,7 @@ export const SingleProduct = ({ product }) => {
   return (
     <div className={cardClassTopSection}>
       <div className="order-card-image-description">
-        <img src={src1} />
+        <img src={src1} alt="product img" />
         <div className="ordered-product-details">
           <p>{title}</p>
           <Button
