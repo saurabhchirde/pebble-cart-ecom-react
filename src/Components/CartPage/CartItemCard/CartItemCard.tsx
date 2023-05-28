@@ -2,8 +2,13 @@ import { useAuth, useAxiosCalls, useCart, useTheme } from "Context";
 import { couponCheck } from "Utils/couponCheck";
 import { AlertToast } from "Components";
 import { useEffect } from "react";
+import { ProductProps } from "Components/types";
 
-export const CartItemCard = ({ item }) => {
+interface CartItemCardProps {
+  item: ProductProps;
+}
+
+export const CartItemCard: React.FC<CartItemCardProps> = ({ item }) => {
   const { title, price, src1 } = item;
   const {
     cartState: { totalPrice, coupon },

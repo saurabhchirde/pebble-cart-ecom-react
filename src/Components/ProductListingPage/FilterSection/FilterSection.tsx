@@ -19,7 +19,7 @@ interface FilterSectionProps {
   accessories: boolean;
 }
 
-export const FilterSection = (props: FilterSectionProps) => {
+export const FilterSection: React.FC<FilterSectionProps> = (props) => {
   const { filterDispatch, setSearchInput } = useFilter();
   const [showFilter, setShowFilter] = useState(false);
   const { darkTheme } = useTheme();
@@ -60,13 +60,7 @@ export const FilterSection = (props: FilterSectionProps) => {
           <div className="filter flex-row flex-justify-space-between">
             <h2>Filter</h2>
             <Link to="/products" replace>
-              <Button
-                onClick={clearClickHandler}
-                type="reset"
-                label="Clear"
-                btnClassName={""}
-                btnWrapper={""}
-              />
+              <Button onClick={clearClickHandler} type="reset" label="Clear" />
             </Link>
           </div>
         )}

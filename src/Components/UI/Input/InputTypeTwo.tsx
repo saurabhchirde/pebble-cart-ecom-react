@@ -1,6 +1,6 @@
 import { InputTypeTwoProps } from "./input-types";
 
-export const InputTypeTwo = (props: InputTypeTwoProps) => {
+export const InputTypeTwo: React.FC<InputTypeTwoProps> = (props) => {
   return (
     <label>
       <div onClick={props.onClick} className={props.inputWrapper}>
@@ -14,6 +14,7 @@ export const InputTypeTwo = (props: InputTypeTwoProps) => {
             placeholder={props.placeholder}
             onChange={props.onChange}
             checked={props.checked}
+            value={props.value}
           />
         </div>
         {props.label}
@@ -23,13 +24,14 @@ export const InputTypeTwo = (props: InputTypeTwoProps) => {
 };
 
 InputTypeTwo.defaultProps = {
-  onClick: null,
-  className: "",
+  onClick: () => {},
   type: "text",
   name: "",
   required: false,
-  autoComplete: false,
   placeholder: "",
-  onChange: null,
+  onChange: () => {},
   checked: false,
+  icon: "",
+  iconWrapper: "",
+  label: "",
 };

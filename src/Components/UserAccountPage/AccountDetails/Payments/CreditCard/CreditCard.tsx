@@ -18,7 +18,7 @@ interface CreditCardProps {
   };
 }
 
-export const CreditCard = ({ details }: CreditCardProps) => {
+export const CreditCard: React.FC<CreditCardProps> = ({ details }) => {
   const {
     color1,
     color2,

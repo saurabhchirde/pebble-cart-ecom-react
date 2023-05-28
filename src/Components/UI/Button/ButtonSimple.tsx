@@ -1,19 +1,18 @@
 import React from "react";
 import { ButtonSimpleProps } from "./button-types";
 
-export const ButtonSimple = (props: ButtonSimpleProps) => {
+export const ButtonSimple: React.FC<ButtonSimpleProps> = (props) => {
   return (
     <>
-      <button
-        onClick={props.onClick || null}
-        className={props.btnClassName || ""}
-      >
-        {props.label || ""}
+      <button onClick={props.onClick} className={props.btnClassName}>
+        {props.label}
       </button>
     </>
   );
 };
 
 ButtonSimple.defaultProps = {
-  onClick: null,
+  onClick: () => {},
+  btnClassName: "",
+  label: "",
 };

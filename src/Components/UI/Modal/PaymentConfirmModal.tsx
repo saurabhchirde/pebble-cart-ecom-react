@@ -5,7 +5,13 @@ import { Button } from "../Button/Button";
 import { IconButton } from "../Button/IconButton";
 import "./PaymentConfirmModal.css";
 
-export const PaymentConfirmModal = ({ orderDetails }) => {
+interface PaymentConfirmModalProps {
+  orderDetails: { orderId: string; paymentId: string };
+}
+
+export const PaymentConfirmModal: React.FC<PaymentConfirmModalProps> = ({
+  orderDetails,
+}) => {
   const { setShowConfirmPayment } = useModal();
   const { darkTheme } = useTheme();
 

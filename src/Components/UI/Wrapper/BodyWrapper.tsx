@@ -1,7 +1,11 @@
 import { useAuth, useModal } from "Context";
 import "./BodyWrapper.css";
 
-export const BodyWrapper = ({ children }) => {
+interface BodyWrapperProps {
+  children: React.ReactNode;
+}
+
+export const BodyWrapper: React.FC<BodyWrapperProps> = ({ children }) => {
   const { setShowProfileMenu } = useAuth();
   const { setShowNavMenu } = useModal();
   return (

@@ -1,6 +1,7 @@
 import "./SearchBar.css";
+import { SearchBarProps } from "./types";
 
-export const SearchBar = (props) => {
+export const SearchBar: React.FC<SearchBarProps> = (props) => {
   return (
     <>
       <form onSubmit={props.onSubmit} className={props.searchWrapper}>

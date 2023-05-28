@@ -8,23 +8,23 @@ export interface BadgeIconButtonProps {
   btnClassName: string;
   icon: string;
   badgeClassName: string;
-  badgeValue: number;
+  badgeValue?: number;
   onClick: () => void;
   label: string;
 }
 
 export interface ButtonProps {
   label: string;
-  btnClassName: string;
-  onClick: () => void;
-  type: any;
-  btnWrapper: string;
+  btnClassName?: string;
+  onClick?: () => void;
+  type?: any;
+  btnWrapper?: string;
 }
 
 export interface ButtonSimpleProps {
   label: string;
   btnClassName: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export interface IconButtonProps {

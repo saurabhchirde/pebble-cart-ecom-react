@@ -9,7 +9,15 @@ import {
 } from "Context";
 import { canon6dCamera } from "Data/Img/Products/ProductImages";
 
-export const RecommendedBanner = (props) => {
+interface RecommendedBannerProps {
+  subTitle: string;
+  title: string;
+  description: string;
+  btnLabel: string;
+  readMoreLabel: string;
+}
+
+export const RecommendedBanner: React.FC<RecommendedBannerProps> = (props) => {
   const { productState } = useProductProvider();
   const { auth } = useAuth();
   const navigate = useNavigate();

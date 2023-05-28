@@ -1,4 +1,13 @@
-export const NavbarAvatar = (props) => {
+interface NavbarAvatarProps {
+  avatarWrapper: string;
+  onClick: () => void;
+  avatarClassName: string;
+  src: string;
+  imgDisplay: string;
+  statusBadge: string;
+}
+
+export const NavbarAvatar: React.FC<NavbarAvatarProps> = (props) => {
   return (
     <>
       <div className={props.avatarWrapper} onClick={props.onClick}>

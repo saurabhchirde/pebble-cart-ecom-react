@@ -1,13 +1,10 @@
 import { IconButtonProps } from "./button-types";
 
-export const IconButton = (props: IconButtonProps) => {
+export const IconButton: React.FC<IconButtonProps> = (props) => {
   return (
     <>
-      <button
-        onClick={props.onClick || null}
-        className={props.btnClassName || ""}
-      >
-        <i className={props.icon || ""}></i>
+      <button onClick={props.onClick} className={props.btnClassName}>
+        <i className={props.icon}></i>
       </button>
     </>
   );
@@ -16,5 +13,5 @@ export const IconButton = (props: IconButtonProps) => {
 IconButton.defaultProps = {
   icon: "",
   btnClassName: "",
-  onClick: null,
+  onClick: () => {},
 };

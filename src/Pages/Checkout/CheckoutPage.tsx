@@ -13,7 +13,10 @@ export const CheckoutPage = () => {
   const { darkTheme } = useTheme();
   const { cartState } = useCart();
   const { showConfirmPayment } = useModal();
-  const [orderDetails, setOrderDetails] = useState({});
+  const [orderDetails, setOrderDetails] = useState({
+    orderId: "",
+    paymentId: "",
+  });
 
   return (
     <div className={darkTheme ? "cart" : "cart cart-light"}>
@@ -29,12 +32,7 @@ export const CheckoutPage = () => {
             </h2>
             <div className="flex-row-center">
               <Link to="/products">
-                <Button
-                  label="Show Now"
-                  btnClassName="btn primary-btn-lg"
-                  type={undefined}
-                  btnWrapper={""}
-                />
+                <Button label="Show Now" btnClassName="btn primary-btn-lg" />
               </Link>
               <Link to="/account/orders">
                 <button className="btn primary-outline-btn-lg">

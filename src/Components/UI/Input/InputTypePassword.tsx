@@ -1,6 +1,6 @@
 import { InputTypePasswordProps } from "./input-types";
 
-export const InputTypePassword = (props: InputTypePasswordProps) => {
+export const InputTypePassword: React.FC<InputTypePasswordProps> = (props) => {
   return (
     <div className={props.inputWrapper}>
       <label>
@@ -8,6 +8,7 @@ export const InputTypePassword = (props: InputTypePasswordProps) => {
         <div className={props.iconWrapper}>
           <i className={props.icon}></i>
           <input
+            value={props.value}
             type={props.type}
             name={props.name}
             required={props.required}
@@ -23,12 +24,11 @@ export const InputTypePassword = (props: InputTypePasswordProps) => {
 };
 
 InputTypePassword.defaultProps = {
-  onClick: null,
-  className: "",
+  onEyeClick: () => {},
   type: "text",
   name: "",
   required: false,
-  autoComplete: false,
   placeholder: "",
-  onChange: null,
+  onChange: () => {},
+  label: "",
 };

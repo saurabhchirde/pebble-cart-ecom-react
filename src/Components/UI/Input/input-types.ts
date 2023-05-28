@@ -1,42 +1,45 @@
 export interface InputTypeOneProps {
-  inputWrapper: string;
-  label: string;
-  iconWrapper: string;
-  icon: string;
-  type: string;
-  name: string;
+  inputWrapper?: string;
+  label?: string;
+  iconWrapper?: string;
+  icon?: string;
+  type?: string;
+  name?: string;
   required: boolean;
-  autoComplete: string;
+  autoComplete?: string | undefined;
   placeholder: string;
-  onChange: () => void;
+  onChange?: () => void;
+  value?: string;
 }
 
 export interface InputTypePasswordProps {
-  inputWrapper: string;
-  label: string;
-  iconWrapper: string;
-  icon: string;
-  type: string;
-  name: string;
+  inputWrapper?: string;
+  label?: string;
+  iconWrapper?: string;
+  icon?: string;
+  type?: string;
+  name?: string;
   required: boolean;
-  autoComplete: string;
-  placeholder: string;
+  autoComplete?: string | undefined;
+  placeholder?: string;
   onChange: () => void;
   onEyeClick: () => void;
-  eyeIcon: string;
+  eyeIcon?: string;
+  value?: string;
 }
 
 export interface InputTypeTwoProps {
-  onClick: () => void;
-  inputWrapper: string;
-  label: string;
-  iconWrapper: string;
-  icon: string;
-  type: string;
-  name: string;
-  required: boolean;
-  autoComplete: string;
-  placeholder: string;
-  onChange: () => void;
-  checked: boolean;
+  onClick?: () => void;
+  inputWrapper?: string;
+  label?: string;
+  iconWrapper?: string;
+  icon?: string;
+  type?: string;
+  name?: string;
+  required?: boolean;
+  autoComplete?: string | undefined;
+  placeholder?: string;
+  onChange?: () => void;
+  checked?: boolean;
+  value?: string;
 }

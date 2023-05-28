@@ -9,7 +9,7 @@ interface HeaderBannerProps {
   btnLabel: string;
 }
 
-export const HeaderBanner = (props: HeaderBannerProps) => {
+export const HeaderBanner: React.FC<HeaderBannerProps> = (props) => {
   const { darkTheme } = useTheme();
 
   return (
@@ -24,8 +24,6 @@ export const HeaderBanner = (props: HeaderBannerProps) => {
             <Button
               label={props.btnLabel}
               btnClassName="btn primary-text-btn-lg"
-              type={undefined}
-              btnWrapper={""}
             />
           </Link>
         </div>

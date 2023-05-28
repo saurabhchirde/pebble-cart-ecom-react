@@ -27,6 +27,7 @@ export const SingleProduct = () => {
         showLoader();
       }
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productID]);
 
   return (

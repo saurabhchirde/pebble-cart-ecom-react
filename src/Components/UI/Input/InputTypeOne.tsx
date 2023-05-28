@@ -1,6 +1,6 @@
 import { InputTypeOneProps } from "./input-types";
 
-export const InputTypeOne = (props: InputTypeOneProps) => {
+export const InputTypeOne: React.FC<InputTypeOneProps> = (props) => {
   return (
     <div className={props.inputWrapper}>
       <label>
@@ -14,6 +14,7 @@ export const InputTypeOne = (props: InputTypeOneProps) => {
             autoComplete={props.autoComplete}
             placeholder={props.placeholder}
             onChange={props.onChange}
+            value={props.value}
           />
         </div>
       </label>
@@ -22,11 +23,9 @@ export const InputTypeOne = (props: InputTypeOneProps) => {
 };
 
 InputTypeOne.defaultProps = {
-  className: "",
   type: "text",
   name: "",
   required: false,
-  autoComplete: false,
   placeholder: "",
-  onChange: null,
+  onChange: () => {},
 };

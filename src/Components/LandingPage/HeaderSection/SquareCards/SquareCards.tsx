@@ -5,7 +5,7 @@ interface SquareCardsProps {
   title: string;
 }
 
-export const SquareCards = (props: SquareCardsProps) => {
+export const SquareCards: React.FC<SquareCardsProps> = (props) => {
   const { darkTheme } = useTheme();
 
   const squareCardClass = darkTheme

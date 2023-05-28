@@ -1,11 +1,8 @@
 import { Link } from "react-router-dom";
 import { ButtonSimple } from "Components";
-import { useAuth } from "Context";
 import "./NotFound.css";
 
 export const NotFound = () => {
-  const { auth } = useAuth();
-
   return (
     <div className="page-not-found">
       <div className="error-number">

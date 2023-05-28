@@ -1,5 +1,5 @@
 import { useAuth, useModal, useTheme } from "Context";
-import { AccountNavBarMobile, AccountNavBar, Button } from "Components";
+import { AccountNavBarMobile, AccountNavBar } from "Components";
 import "./Settings.css";
 import { Link } from "react-router-dom";
 

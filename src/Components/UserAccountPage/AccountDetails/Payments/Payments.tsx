@@ -33,8 +33,6 @@ export const Payments = () => {
               <Button
                 label="Add New"
                 btnClassName="btn primary-outline-btn-md"
-                type={undefined}
-                btnWrapper={""}
               />
             </div>
           </div>
@@ -51,23 +49,11 @@ export const Payments = () => {
               <Button
                 label="Add New"
                 btnClassName="btn primary-outline-btn-md"
-                type={undefined}
-                btnWrapper={""}
               />
             </div>
             <div>
-              <Button
-                label="Edit"
-                btnClassName="btn primary-text-btn-md"
-                type={undefined}
-                btnWrapper={""}
-              />
-              <Button
-                label="Delete"
-                btnClassName="btn secondary-text-btn-md"
-                type={undefined}
-                btnWrapper={""}
-              />
+              <Button label="Edit" btnClassName="btn primary-text-btn-md" />
+              <Button label="Delete" btnClassName="btn secondary-text-btn-md" />
             </div>
           </div>
           <ol className="list-basic list-style-number payment-upi-detail">

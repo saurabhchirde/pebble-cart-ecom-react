@@ -1,19 +1,15 @@
 import { BadgeIconButtonProps } from "./button-types";
 
-export const BadgeIconButton = (props: BadgeIconButtonProps) => {
+export const BadgeIconButton: React.FC<BadgeIconButtonProps> = (props) => {
   return (
     <>
-      <div className={props.btnWrapper || ""}>
-        <button
-          onClick={props.onClick || null}
-          className={props.btnClassName || ""}
-        >
+      <div className={props.btnWrapper}>
+        <button onClick={props.onClick || null} className={props.btnClassName}>
           <i className={props.icon}>
-            <span className={props.badgeClassName || ""}>
-              {props.badgeValue || ""}
-            </span>
-          </i>{" "}
-          {props.label || ""}
+            <span className={props.badgeClassName}>{props.badgeValue}</span>
+          </i>
+
+          {props.label}
         </button>
       </div>
     </>
@@ -21,6 +17,9 @@ export const BadgeIconButton = (props: BadgeIconButtonProps) => {
 };
 
 BadgeIconButton.defaultProps = {
-  className: "",
-  onClick: null,
+  onClick: () => {},
+  btnWrapper: "",
+  btnClassName: "",
+  badgeClassName: "",
+  label: "",
 };

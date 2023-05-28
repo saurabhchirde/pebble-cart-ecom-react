@@ -1,6 +1,12 @@
 import { useTheme } from "Context";
 
-export const HotProductCard = (props) => {
+interface HotProductCardProps {
+  onClick?: () => void;
+  imgSrc: string;
+  title: string;
+}
+
+export const HotProductCard: React.FC<HotProductCardProps> = (props) => {
   const { darkTheme } = useTheme();
 
   return (

@@ -1,13 +1,13 @@
 import { InputTypeOne, InputTypePassword, Button } from "Components";
 import { LoginInputFormProps } from "../modal-types";
 
-export const LoginInputForm = ({
+export const LoginInputForm: React.FC<LoginInputFormProps> = ({
   onLoginSubmitHandler,
   debounce,
   loginInput,
   showPassword,
   setShowPassword,
-}: LoginInputFormProps) => {
+}) => {
   return (
     <form onSubmit={onLoginSubmitHandler}>
       <InputTypeOne
@@ -19,7 +19,7 @@ export const LoginInputForm = ({
         icon="far fa-envelope"
         inputWrapper="outline-email-input"
         onChange={debounce}
-        label={""}
+        value={loginInput.email}
       />
       <InputTypePassword
         type={showPassword ? "text" : "password"}
@@ -34,7 +34,7 @@ export const LoginInputForm = ({
         onEyeClick={() => {
           setShowPassword((preData) => !preData);
         }}
-        label={""}
+        value={loginInput.password}
       />
       <Button
         btnWrapper="signin-btn"
@@ -47,8 +47,8 @@ export const LoginInputForm = ({
 };
 
 LoginInputForm.defaultProps = {
-  onLoginSubmitHandler: null,
-  debounce: null,
+  onLoginSubmitHandler: () => {},
+  debounce: () => {},
   loginInput: { email: "", password: "" },
   showPassword: false,
 };
