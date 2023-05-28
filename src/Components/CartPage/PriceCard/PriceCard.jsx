@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useCart, useTheme } from "../../../Context";
-import { couponCheck } from "../../../Utils/couponCheck";
+import { useCart, useTheme } from "Context";
+import { couponCheck } from "Utils/couponCheck";
+import { AlertToast } from "Components";
 import "./PriceCard.css";
 
-const PriceCard = () => {
+export const PriceCard = () => {
   const { cartState, cartDispatch } = useCart();
   const { totalQty, totalPrice, coupon, discount, discountPercentage } =
     cartState;
   const [errorCoupon, setErrorCoupon] = useState(false);
-  const [successCoupon, setSuccessCoupon] = useState(false);
   const { darkTheme } = useTheme();
 
   const onCouponInputHHandler = (e) => {
@@ -28,10 +28,9 @@ const PriceCard = () => {
   const onCouponApplyHandler = () => {
     if (coupon === "PEBBLE" || coupon === "SAURABH") {
       setErrorCoupon(false);
-      setSuccessCoupon(true);
+      AlertToast("success", "Coupon Applied Successfully");
     } else {
       setErrorCoupon(true);
-      setSuccessCoupon(false);
     }
     const updatePrice = couponCheck(totalPrice, coupon);
     cartDispatch({
@@ -55,9 +54,6 @@ const PriceCard = () => {
       type: "updateCartOnServer",
       payload: updatedPriceDetails,
     });
-    return () => {
-      // to unmount useEffect
-    };
   }, [cartState.cart, cartDispatch]);
 
   // to update total price after changing qty
@@ -66,9 +62,6 @@ const PriceCard = () => {
       type: "updatedDiscount",
       payload: discount === 0 ? 0 : (totalPrice * discountPercentage) / 100,
     });
-    return () => {
-      // to unmount useEffect
-    };
   }, [cartState.totalQty, cartDispatch]);
 
   const cartPriceTableClass = darkTheme
@@ -116,9 +109,6 @@ const PriceCard = () => {
         </div>
       </div>
       <hr className="break-line" />
-      {successCoupon && (
-        <p className="coupon-success">Coupon applied successfully.</p>
-      )}
       {errorCoupon && <p className="coupon-error">Enter a valid coupon.</p>}
       <div className="cart-btns">
         <Link to="/products" className="edit-cart-link">
@@ -138,5 +128,3 @@ const PriceCard = () => {
     </div>
   );
 };
-
-export default PriceCard;

@@ -1,11 +1,10 @@
-import Button from "../../Button/Button";
-import { useAuth, useModal } from "../../../../Context";
+import { AlertToast, Button } from "Components";
+import { useAuth, useModal } from "Context";
 import { useNavigate } from "react-router-dom";
 
-const NavbarLoginButton = (props) => {
+export const NavbarLoginButton = (props) => {
   const { auth, authDispatch } = useAuth();
-  const { setShowLogin, setShowSignup, setAlertText, setShowAlert } =
-    useModal();
+  const { setShowLogin, setShowSignup } = useModal();
   const navigate = useNavigate();
 
   const onNavbarLoginClickHandler = () => {
@@ -13,8 +12,7 @@ const NavbarLoginButton = (props) => {
       setShowLogin(true);
       setShowSignup(false);
     } else {
-      setAlertText(`Logged out successfully`);
-      setShowAlert(true);
+      AlertToast("info", "Logged out successfully");
       authDispatch({ type: "logout" });
       navigate("/products");
       setShowLogin(false);
@@ -23,15 +21,11 @@ const NavbarLoginButton = (props) => {
   };
 
   return (
-    <>
-      <Button
-        btnWrapper="signin"
-        label={props.label}
-        btnClassName={props.btnClassName}
-        onClick={onNavbarLoginClickHandler}
-      />
-    </>
+    <Button
+      btnWrapper="signin"
+      label={props.label}
+      btnClassName={props.btnClassName}
+      onClick={onNavbarLoginClickHandler}
+    />
   );
 };
-
-export default NavbarLoginButton;

@@ -1,3 +1,55 @@
 .settings-page-container {
   display: flex;
 }
+
+.setting-edit-container,
+.setting-save-buttons {
+  width: 95%;
+  border-radius: 4px;
+  padding: 1rem 1rem 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.setting-save-buttons {
+  flex-direction: row !important;
+  justify-content: flex-end !important;
+}
+
+.setting-save-buttons button {
+  margin: 0 10px;
+}
+
+.all-address-dark .setting-edit-container {
+  background-color: var(--dark-theme-card-hover);
+}
+
+.all-address-light .setting-edit-container {
+  background-color: var(--light-theme-card-hover);
+}
+
+.setting-title {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 98%;
+}
+
+.setting-edit-container h2 {
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: left;
+  margin: 5px 0;
+}
+
+.setting-edit-container .no-outline-password-input {
+  width: 20rem;
+  margin-left: 0;
+}
+
+.setting-title-content {
+  width: 98%;
+  display: flex;
+}

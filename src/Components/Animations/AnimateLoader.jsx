@@ -1,17 +1,14 @@
 import "./Animation.css";
 import { useEffect } from "react";
-import loader from "../../Data/Img/Animation/loader.json";
+import loader from "Data/Img/Animation/loader.json";
 import lottie from "lottie-web";
 
-const AnimateLoader = () => {
+export const AnimateLoader = () => {
   useEffect(() => {
     lottie.loadAnimation({
       container: document.querySelector("#loader"),
       animationData: loader,
     });
-    return () => {
-      // to unmount useEffect
-    };
   }, []);
 
   return (
@@ -20,5 +17,3 @@ const AnimateLoader = () => {
     </div>
   );
 };
-
-export default AnimateLoader;

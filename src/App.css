@@ -12,10 +12,12 @@
   --coupon-error: rgba(252, 0, 0, 0.18);
   --coupon-success: rgba(34, 252, 0, 0.18);
   --available-coupons: rgba(97, 97, 97, 0.139);
+  --navbar-shadow: rgba(0, 0, 0, 0.164);
+  --dark-payment-confirm-bg: rgb(57, 57, 57);
 
   /* light mode */
   --light-bg-color: #f1f1f1;
-  --secondary-light-bg: #eeeeee;
+  --secondary-light-bg: #e9e9e9;
   --item-overview-light-bg: #f0f0f0;
   --light-theme-category-card: #24242454;
   --light-theme-card-bg: #f2f2f2;
@@ -23,6 +25,9 @@
   --light-theme-title-color: #252525;
   --light-theme-sub-title-color: #484848;
   --payment-card-hover: rgb(176, 176, 176);
+  --banner-square-card-light: rgb(121, 146, 176);
+  --order-details-bg: rgb(201, 201, 201);
+  --light-payment-confirm-bg: rgb(255, 255, 255);
 }
 
 body.lightTheme {
@@ -132,18 +137,19 @@ body.lightTheme {
 }
 
 .hero-section-light .card-vertical-info-light {
-  background-color: var(--light-theme-category-card);
+  background-color: var(--banner-square-card-light);
 }
 
 .hero-section-light .card-vertical-info-light:hover {
-  background-color: var(--primary-color);
+  background-color: var(--dark-theme-card-hover);
 }
 
 .hero-categories-light > a > div:hover {
   background-color: var(--light-theme-card-hover);
 }
 
-.hot-new-products-light {
+.hot-new-products-light,
+.footer-light {
   background-color: var(--secondary-light-bg);
 }
 
@@ -190,7 +196,8 @@ body.lightTheme {
 
 .cart-light > h1,
 .wishlist-light > h1,
-.similar-products-light > h1 {
+.similar-products-light > h1,
+.copyright-text-light {
   color: var(--light-theme-title-color);
 }
 
@@ -249,21 +256,34 @@ body.lightTheme {
 
 .checkout-item-overview-light:hover,
 .contact-address-light:hover,
-.payment-method-light:hover {
+.payment-method-light:hover,
+.order-card-top-section:hover,
+.order-card-bottom-section:hover {
   background-color: var(--light-theme-card-hover);
+}
+
+.order-card-top-section-light {
+  background-color: var(--light-theme-card-hover);
+  color: var(--text-dark);
+}
+
+.order-card-bottom-section-light {
+  color: var(--text-dark);
+  background-color: var(--order-details-bg);
 }
 
 .checkout-item-card .card-light {
   color: var(--light-theme-sub-title-color);
 }
 
+.payment-confirm-wrapper-light {
+  background-color: var(--light-payment-confirm-bg);
+  color: var(--light-theme-sub-title-color);
+}
+
 .break-line-light,
 .section-break-line-light {
   border-bottom: 1px solid var(--text-dark);
-}
-
-footer .footer-light {
-  background-color: var(--secondary-light-bg);
 }
 
 .footer-light .footer-main-area,
@@ -312,6 +332,12 @@ footer .footer-light {
   object-fit: contain;
 }
 
+.single-product-image .main-image:hover {
+  transform: scale(1.3);
+  transition: 200ms ease-in;
+  cursor: pointer;
+}
+
 .single-product-image-options img {
   width: 4rem;
   margin: 12px;
@@ -319,6 +345,10 @@ footer .footer-light {
 }
 
 @media screen and (max-width: 1050px) {
+  .filter-section {
+    padding-top: 0;
+  }
+
   .single-product-image .main-image {
     width: 15rem;
     height: auto;

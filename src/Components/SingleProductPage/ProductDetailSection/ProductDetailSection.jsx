@@ -1,17 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import {
-  useAlert,
-  useAuth,
-  useAxiosCalls,
-  useCart,
-  useModal,
-  useTheme,
-} from "../../../Context";
-import { ratingStarCheck } from "../../../Utils/FilterFunctions/ratingStarCheck";
+import { useAuth, useAxiosCalls, useCart, useModal, useTheme } from "Context";
+import { ratingStarCheck } from "Utils/FilterFunctions/ratingStarCheck";
+import { AlertToast } from "Components";
 import { useEffect } from "react";
-import Alert from "../../Alert/Alert";
 
-const ProductDetailSection = ({ item }) => {
+export const ProductDetailSection = ({ item }) => {
   const {
     cartState: { cart, wishlist },
     addButton,
@@ -23,9 +16,6 @@ const ProductDetailSection = ({ item }) => {
   const navigate = useNavigate();
   const { setShowLogin } = useModal();
   const { addToCartOnServer, increaseCartItemQtyOnServer } = useAxiosCalls();
-  const {
-    alertState: { addToCartAlert },
-  } = useAlert();
   const { darkTheme } = useTheme();
 
   const cartConfig = {
@@ -39,10 +29,12 @@ const ProductDetailSection = ({ item }) => {
 
   const addCartClick = () => {
     if (auth.login) {
-      if (cart.findIndex((el) => el._id === item._id) !== -1) {
+      if (cart.findIndex((el) => el._id === item?._id) !== -1) {
         increaseCartItemQtyOnServer(cartConfig);
+        AlertToast("info", "Quantity Updated");
       } else {
         addToCartOnServer(cartConfig);
+        AlertToast("success", "Item Added to Cart");
       }
     } else {
       setShowLogin(true);
@@ -51,8 +43,9 @@ const ProductDetailSection = ({ item }) => {
 
   const onBuyNowClickHandler = () => {
     if (auth.login) {
-      if (!cart.findIndex((el) => el._id === item._id) !== -1) {
+      if (!cart.findIndex((el) => el._id === item?._id) !== -1) {
         addToCartOnServer(cartConfig);
+        AlertToast("success", "Item Added to Cart");
       }
       navigate("/cart");
     } else {
@@ -69,13 +62,13 @@ const ProductDetailSection = ({ item }) => {
   };
 
   useEffect(() => {
-    if (cart.findIndex((el) => el._id === item._id) !== -1) {
+    if (cart.findIndex((el) => el._id === item?._id) !== -1) {
       setAddButton("Go to Cart");
     } else {
       setAddButton("Add to Cart");
     }
 
-    if (wishlist.findIndex((el) => el._id === item._id) !== -1) {
+    if (wishlist.findIndex((el) => el._id === item?._id) !== -1) {
       setAddWishlist("fas fa-heart");
     } else {
       setAddWishlist("far fa-heart");
@@ -84,14 +77,6 @@ const ProductDetailSection = ({ item }) => {
 
   return (
     <>
-      {addToCartAlert && (
-        <Alert
-          alert="alert-success"
-          icon="fas fa-check-circle alert-icon"
-          text="Item Added to Cart"
-          dispatchType="hideAddToCartAlert"
-        />
-      )}
       <div className="single-product-detail">
         <div
           className={
@@ -198,5 +183,3 @@ const ProductDetailSection = ({ item }) => {
     </>
   );
 };
-
-export default ProductDetailSection;

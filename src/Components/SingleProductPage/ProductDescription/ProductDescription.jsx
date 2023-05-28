@@ -1,6 +1,6 @@
-import { useTheme } from "../../../Context";
+import { useTheme } from "Context";
 
-const ProductDescription = ({ item }) => {
+export const ProductDescription = ({ item }) => {
   const { darkTheme } = useTheme();
   return (
     <div
@@ -12,7 +12,7 @@ const ProductDescription = ({ item }) => {
     >
       <h2>About this item :</h2>
       <ol className="list-basic list-style-number">
-        {item.description.map((info, index) => {
+        {item?.description?.map((info, index) => {
           return (
             <li className="product-description-text" key={index}>
               {info}
@@ -23,5 +23,3 @@ const ProductDescription = ({ item }) => {
     </div>
   );
 };
-
-export default ProductDescription;

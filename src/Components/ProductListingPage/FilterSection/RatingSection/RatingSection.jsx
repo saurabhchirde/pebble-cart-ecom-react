@@ -1,8 +1,8 @@
 import React from "react";
-import { useFilter } from "../../../../Context";
+import { useFilter } from "Context";
 import "./RatingSection.css";
 
-const RatingSection = () => {
+export const RatingSection = () => {
   const {
     filterState: { byRating },
     filterDispatch,
@@ -47,4 +47,3 @@ const RatingSection = () => {
     </div>
   );
 };
-export default RatingSection;

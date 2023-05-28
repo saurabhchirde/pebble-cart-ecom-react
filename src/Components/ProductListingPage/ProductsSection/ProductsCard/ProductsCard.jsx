@@ -1,17 +1,11 @@
-import {
-  useAuth,
-  useCart,
-  useModal,
-  useAxiosCalls,
-  useAlert,
-  useTheme,
-} from "../../../../Context";
+import { useAuth, useCart, useModal, useAxiosCalls, useTheme } from "Context";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./ProductsCard.css";
 import { useEffect, useState } from "react";
+import { AlertToast } from "Components";
 
-const ProductsCard = ({ item }) => {
+export const ProductsCard = ({ item }) => {
   const { title, price, rating, totalRating, src1, newestArrival, inStock } =
     item;
   const {
@@ -26,17 +20,29 @@ const ProductsCard = ({ item }) => {
     addToWishlistOnServer,
     removeWishlistItemFromServer,
   } = useAxiosCalls();
-  const { alertDispatch } = useAlert();
   const [addButton, setAddButton] = useState("Add to Cart");
   const [addWishlist, setAddWishlist] = useState("far fa-heart");
   const { darkTheme } = useTheme();
+
+  const [showCopied, setShowCopied] = useState(false);
+
+  // copy URLto clipboard
+  const urlClickHandler = () => {
+    navigator.clipboard.writeText(
+      `https://cart.pebbleui.com/products/${item?._id}`
+    );
+    setShowCopied(true);
+    setTimeout(() => {
+      setShowCopied(false);
+    }, 2000);
+  };
 
   const cartConfig = {
     url: "/api/user/cart",
     body: {
       product: { ...item },
     },
-    headers: { headers: { authorization: auth.token } },
+    headers: { headers: { authorization: auth?.token } },
     item: item,
   };
 
@@ -45,16 +51,18 @@ const ProductsCard = ({ item }) => {
     body: {
       product: { ...item },
     },
-    headers: { headers: { authorization: auth.token } },
+    headers: { headers: { authorization: auth?.token } },
     item: item,
   };
 
   const addCartClick = () => {
     if (auth.login) {
-      if (cart.findIndex((el) => el._id === item._id) !== -1) {
+      if (cart.findIndex((el) => el._id === item?._id) !== -1) {
         increaseCartItemQtyOnServer(cartConfig);
+        AlertToast("info", "Quantity Updated");
       } else {
         addToCartOnServer(cartConfig);
+        AlertToast("success", "Item Added to Cart");
       }
     } else {
       setShowLogin(true);
@@ -62,26 +70,24 @@ const ProductsCard = ({ item }) => {
   };
 
   const addWishlistClick = () => {
-    if (auth.login) {
-      if (wishlist.findIndex((el) => el._id === item._id) !== -1) {
-        alertDispatch({ type: "alreadyInWishlist" });
-      } else {
-        addToWishlistOnServer(wishlistConfig);
-      }
+    if (auth?.login) {
+      addToWishlistOnServer(wishlistConfig);
+      AlertToast("success", "Added to Wishlist");
     } else {
       setShowLogin(true);
     }
   };
 
   const removeFromWishlist = () => {
-    if (auth.login) {
+    if (auth?.login) {
       setAddWishlist("far fa-heart");
       removeWishlistItemFromServer(wishlistConfig);
+      AlertToast("info", "Item Removed from Wishlist");
     }
   };
 
   const goToCart = () => {
-    auth.login && navigate("/cart");
+    auth?.login && navigate("/cart");
   };
 
   const cartButtonStatus = () => {
@@ -97,13 +103,13 @@ const ProductsCard = ({ item }) => {
   };
 
   useEffect(() => {
-    if (cart.findIndex((el) => el._id === item._id) !== -1) {
+    if (cart.findIndex((el) => el._id === item?._id) !== -1) {
       setAddButton("Go to Cart");
     } else {
       setAddButton("Add to Cart");
     }
 
-    if (wishlist.findIndex((el) => el._id === item._id) !== -1) {
+    if (wishlist.findIndex((el) => el._id === item?._id) !== -1) {
       setAddWishlist("fas fa-heart");
     } else {
       setAddWishlist("far fa-heart");
@@ -117,7 +123,11 @@ const ProductsCard = ({ item }) => {
   return (
     <>
       <div className={productCardClass}>
-        <button className="btn primary-text-btn-sm icon-md ">
+        {showCopied && <p className="copied-clipboard">Copied!</p>}
+        <button
+          className="btn primary-text-btn-sm icon-md"
+          onClick={urlClickHandler}
+        >
           <i className="fas fa-share-alt"></i>
         </button>
         {newestArrival && (
@@ -125,13 +135,13 @@ const ProductsCard = ({ item }) => {
             <h2>New Arrival</h2>
           </div>
         )}
-        <Link to={`/products/${item._id}`} state={{ item: item }}>
+        <Link to={`/products/${item?._id}`}>
           <div className="card-img-container">
             <img src={src1} alt="product" loading="lazy" />
           </div>
         </Link>
         <div className="card-body">
-          <Link to={`/products/${item._id}`} state={{ item: item }}>
+          <Link to={`/products/${item?._id}`}>
             <div className="card-text">
               <h1 className="card-title">{title}</h1>
               <div className="card-price-rating">
@@ -179,4 +189,3 @@ const ProductsCard = ({ item }) => {
     </>
   );
 };
-export default ProductsCard;

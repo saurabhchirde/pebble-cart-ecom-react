@@ -4,6 +4,34 @@
 
 .checkout-address-section {
   display: flex;
-  align-items: center;
-  margin: 10px 0;
+}
+
+.checkout-address-section {
+  position: relative;
+  cursor: pointer;
+}
+
+.address input {
+  position: absolute;
+  right: -1rem;
+  top: 1rem;
+}
+
+.address {
+  align-items: flex-start;
+}
+
+.checkout-address-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.contact-address .address-dark,
+.contact-address .address-light {
+  width: 18rem;
+  margin: 10px;
+}
+
+.new-address-button {
+  margin-left: 10px !important;
 }

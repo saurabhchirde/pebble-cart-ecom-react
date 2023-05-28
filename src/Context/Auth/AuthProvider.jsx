@@ -1,10 +1,7 @@
 import { createContext, useContext, useReducer, useState } from "react";
 import { v4 as uuid } from "uuid";
 
-import {
-  useSessionStorageGet,
-  useSessionStorageSet,
-} from "../../Hooks/useSessionStorage";
+import { useLocalStorageGet, useLocalStorageSet } from "Hooks/useLocalStorage";
 
 const initialAuthState = {
   login: false,
@@ -13,6 +10,7 @@ const initialAuthState = {
     firstName: "",
     lastName: "",
     dp: "",
+    email: "",
     addresses: [],
   },
 };
@@ -21,8 +19,8 @@ const initialAddressState = {
   _id: uuid(),
   fullName: "",
   address: "",
-  pinCode: 0,
-  mobile: 0,
+  pinCode: undefined,
+  mobile: undefined,
   createdAt: "",
   updatedAt: "",
 };
@@ -40,7 +38,24 @@ const authReducer = (auth, action) => {
           dp:
             action.payload.foundUser.firstName.slice(0, 1) +
             action.payload.foundUser.lastName.slice(0, 1),
+          email: action.payload.foundUser.email,
           addresses: action.payload.foundUser.addresses,
+        },
+      };
+
+    case "signup":
+      return {
+        ...auth,
+        login: true,
+        token: action.payload.encodedToken,
+        user: {
+          firstName: action.payload.createdUser.firstName,
+          lastName: action.payload.createdUser.lastName,
+          dp:
+            action.payload.createdUser.firstName.slice(0, 1) +
+            action.payload.createdUser.lastName.slice(0, 1),
+          email: action.payload.createdUser.email,
+          addresses: action.payload.createdUser.addresses,
         },
       };
 
@@ -56,12 +71,6 @@ const authReducer = (auth, action) => {
         user: { ...auth.user, addresses: action.payload },
       };
 
-    case "addDemoAddress":
-      return {
-        ...auth,
-        user: { addresses: [...action.payload] },
-      };
-
     case "removeAddressFromServer":
       return {
         ...auth,
@@ -75,28 +84,18 @@ const authReducer = (auth, action) => {
       };
 
     case "logout":
-      return {
-        login: false,
-        token: "",
-        user: {
-          firstName: "",
-          lastName: "",
-          dp: "",
-          addresses: [],
-        },
-      };
-
+      return initialAuthState;
     default:
       return auth;
   }
 };
 
-const authContext = createContext(initialAuthState);
+const authContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [auth, authDispatch] = useReducer(
     authReducer,
-    useSessionStorageGet("authState") ?? initialAuthState
+    useLocalStorageGet("authState") ?? initialAuthState
   );
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [newAddress, setNewAddress] = useState(initialAddressState);
@@ -104,7 +103,7 @@ const AuthProvider = ({ children }) => {
   const [loginInput, setLoginInput] = useState({ email: "", password: "" });
   const [showEditAddressModal, setShowEditAddressModal] = useState(false);
 
-  useSessionStorageSet("authState", auth);
+  useLocalStorageSet("authState", auth);
   return (
     <authContext.Provider
       value={{

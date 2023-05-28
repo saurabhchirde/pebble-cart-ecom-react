@@ -1,10 +1,9 @@
-import { useAuth, useCart, useTheme } from "../../../Context";
-import BadgeIconButton from "../Button/BadgeIconButton";
-import IconButton from "../Button/IconButton";
+import { useAuth, useCart, useTheme } from "Context";
+import { BadgeIconButton, IconButton } from "Components";
 import "./MobileNavigationBarBottom.css";
 import { Link } from "react-router-dom";
 
-const MobileNavigationBarBottom = () => {
+export const MobileNavigationBarBottom = () => {
   const {
     cartState: { cart, wishlist },
   } = useCart();
@@ -18,7 +17,7 @@ const MobileNavigationBarBottom = () => {
   return (
     <>
       <nav className={mobileBottomBarClass}>
-        <Link to="wishlist">
+        <Link to="/wishlist">
           <BadgeIconButton
             btnWrapper="badge-container"
             btnClassName="btn badge-icon-btn-lg"
@@ -30,7 +29,7 @@ const MobileNavigationBarBottom = () => {
         <Link to="/">
           <IconButton btnClassName="btn icon-btn-lg" icon="fas fa-house-user" />
         </Link>
-        <Link to="cart">
+        <Link to="/cart">
           <BadgeIconButton
             btnWrapper="badge-container"
             btnClassName="btn badge-icon-btn-lg"
@@ -43,5 +42,3 @@ const MobileNavigationBarBottom = () => {
     </>
   );
 };
-
-export default MobileNavigationBarBottom;

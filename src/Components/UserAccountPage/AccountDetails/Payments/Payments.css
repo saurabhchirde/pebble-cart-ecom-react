@@ -1,3 +1,86 @@
 .payment-page-container {
   display: flex;
 }
+
+.payment-page-light > div {
+  background-color: var(--light-theme-card-bg);
+  color: var(--text-dark);
+}
+
+.payment-cards-detail {
+  color: var(--text-white);
+}
+
+.all-address-dark .payment-cards-container,
+.all-address-dark .payment-upi-container {
+  background-color: var(--dark-theme-card-hover);
+}
+
+.all-address-light .payment-cards-container,
+.all-address-light .payment-upi-container {
+  background-color: var(--light-theme-card-hover);
+}
+
+.payment-cards-container,
+.payment-upi-container {
+  width: 95%;
+  border-radius: 4px;
+  padding: 1rem 1rem 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-upi-container {
+  padding: 1rem 2rem 10px;
+}
+
+.payment-cards-title,
+.payment-upi-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 98%;
+}
+
+.payment-cards-title div,
+.payment-upi-title div {
+  display: flex;
+  align-items: center;
+}
+
+.payment-cards-title h2,
+.payment-upi-title h2 {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.payment-cards-title button,
+.payment-upi-title button {
+  margin-left: 1rem;
+}
+
+.payment-cards-detail {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem auto 1rem 0;
+  overflow-x: scroll;
+}
+
+.payment-cards-detail::-webkit-scrollbar {
+  display: none;
+}
+
+.payment-upi-detail {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  width: 98%;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.payment-upi-detail li {
+  margin: 6px 0;
+}

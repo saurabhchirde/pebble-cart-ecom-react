@@ -1,11 +1,34 @@
-import ProductDetailSection from "../../Components/SingleProductPage/ProductDetailSection/ProductDetailSection";
-import ProductDescription from "../../Components/SingleProductPage/ProductDescription/ProductDescription";
-import ProductImageSection from "../../Components/SingleProductPage/ProductImageSection/ProductImageSection";
-import { useLocation } from "react-router-dom";
+import axios from "axios";
+import {
+  ProductDetailSection,
+  ProductDescription,
+  ProductImageSection,
+  AlertToast,
+} from "Components";
+import { useAnimation } from "Context";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-const SingleProduct = () => {
-  const location = useLocation();
-  const { item } = location.state ?? null;
+export const SingleProduct = () => {
+  const { productID } = useParams();
+  const { showLoader } = useAnimation();
+
+  const [item, setItem] = useState({});
+
+  useEffect(() => {
+    (async () => {
+      try {
+        showLoader();
+        const response = await axios.get(`/api/products/${productID}`);
+        showLoader();
+        setItem(response.data.product);
+      } catch (error) {
+        AlertToast("error", error.message);
+        showLoader();
+      }
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [productID]);
 
   return (
     <>
@@ -19,5 +42,3 @@ const SingleProduct = () => {
     </>
   );
 };
-
-export default SingleProduct;

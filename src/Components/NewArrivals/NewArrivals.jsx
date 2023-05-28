@@ -1,7 +1,7 @@
-import { useProductProvider, useTheme } from "../../Context";
-import ProductsCard from "../ProductListingPage/ProductsSection/ProductsCard/ProductsCard";
+import { useProductProvider, useTheme } from "Context";
+import { ProductsCard } from "Components";
 
-const NewArrivals = () => {
+export const NewArrivals = () => {
   const { productState } = useProductProvider();
   const { darkTheme } = useTheme();
   return (
@@ -26,5 +26,3 @@ const NewArrivals = () => {
     </div>
   );
 };
-
-export default NewArrivals;

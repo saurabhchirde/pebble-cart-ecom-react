@@ -1,16 +1,18 @@
-import { useCart, useModal, useTheme } from "../../../../Context";
-import { AccountNavBarMobile } from "../../AccountNavBarMobile/AccountNavBarMobile";
-import { AccountNavBar } from "../../AccountNavBar/AccountNavBar";
+import { useCart, useModal, useTheme } from "Context";
+import {
+  AccountNavBarMobile,
+  AccountNavBar,
+  SingleProduct,
+  OrderDetails,
+} from "Components";
 import "./Orders.css";
-import SingleProduct from "./SingleProduct/SingleProduct";
+import { Link } from "react-router-dom";
 
-const Orders = () => {
+export const Orders = () => {
   const { showNavMenu } = useModal();
   const { darkTheme } = useTheme();
   const {
-    cartState: {
-      orderedProduct: { productList, amountPaid, orderNumber, date },
-    },
+    cartState: { orderedProduct },
   } = useCart();
 
   return (
@@ -19,42 +21,30 @@ const Orders = () => {
       <AccountNavBar />
       <div className={darkTheme ? "all-address-dark" : "all-address-light"}>
         <div className="address-title">
-          <h2>My Account</h2>
-          <h2>Your Orders</h2>
+          <Link to="/account">
+            <h2>My Account</h2>
+          </Link>
+          {" > "}
+          <h2 className="mg-point6-lt">Your Orders</h2>
         </div>
-        <div className="ordered-product-container">
-          {productList.map((product) => (
-            <SingleProduct key={product._id} product={product} />
-          ))}
-          {productList.length > 0 ? (
-            <div className="order-card-bottom-section">
-              <div className="order-card-bottom-left">
-                <div className="order-card-date-section">
-                  <p>Order Date</p>
-                  <p>{date}</p>
-                </div>
-                <div className="order-card-details-section">
-                  <p>Order details</p>
-                  <p>{orderNumber}</p>
-                </div>
-              </div>
-              <div className="order-card-bottom-right">
-                <button className="btn primary-outline-btn-md product-track-order-btn">
-                  Track Order
-                </button>
-                <div className="order-card-total-price">
-                  <p>Bill Amount</p>
-                  <p>Rs.{amountPaid}/-</p>
-                </div>
-              </div>
+        {orderedProduct?.length > 0 ? (
+          orderedProduct.map((order) => (
+            <div className="ordered-product-container" key={order.orderNumber}>
+              {order.productList.map((product) => (
+                <SingleProduct key={product._id} product={product} />
+              ))}
+              {<OrderDetails order={order} />}
             </div>
-          ) : (
-            <h2 className="title-lg-wt-5 mg-2-top">No Orders</h2>
-          )}
-        </div>
+          ))
+        ) : (
+          <div className="flex-row-center">
+            <h2 className="title-lg-wt-5 text-center mg-2-tb">No Orders</h2>
+            <Link to="/products">
+              <button className="btn primary-btn-md">Shop Now</button>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
 };
-
-export default Orders;

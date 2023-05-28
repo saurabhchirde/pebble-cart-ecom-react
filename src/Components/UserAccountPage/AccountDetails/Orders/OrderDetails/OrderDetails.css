@@ -1,0 +1,51 @@
+.order-card-bottom-section {
+  background-color: var(--dark-theme-card-hover);
+  padding: 10px 1rem;
+}
+
+.product-track-order-btn {
+  margin: 0 1rem 0 0;
+  height: 2.8rem;
+}
+
+.order-card-bottom-left,
+.order-card-bottom-right {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.order-card-date-section {
+  width: 6rem;
+  margin-right: 2rem;
+}
+
+.order-card-date-section p,
+.order-card-details-section p {
+  margin: 5px 0;
+}
+
+.ordered-product-delivery-details,
+.order-card-total-price {
+  min-width: 10rem;
+}
+
+.order-card-total-price p {
+  margin: 5px 0;
+  text-align: left;
+}
+
+.ordered-product-delivery-details p {
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 500px) {
+  .order-card-bottom-left {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .order-card-date-section {
+    margin-right: 0;
+  }
+}

@@ -49,7 +49,6 @@
 
 .nav-menu {
   margin-top: 2rem;
-  margin-left: 10px;
 }
 
 .nav-menu-title {
@@ -75,6 +74,7 @@
   width: 95%;
   padding: 0.7rem 1rem;
   margin: 10px;
+  margin-left: 8px;
 }
 
 .nav-orders i,

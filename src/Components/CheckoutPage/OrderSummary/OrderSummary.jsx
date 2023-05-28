@@ -1,33 +1,92 @@
-import { useAnimation, useCart, useModal, useTheme } from "../../../Context";
-import { useCheckout } from "../../../Context/Checkout/CheckoutProvider";
+import { AlertToast } from "Components";
+import { useAuth, useAxiosCalls, useCart, useModal, useTheme } from "Context";
+import { useCheckout } from "Context";
 import "./OrderSummary.css";
 
-const OrderSummary = () => {
+export const OrderSummary = ({ setOrderDetails }) => {
   const { cartState, cartDispatch } = useCart();
-  const { checkoutState } = useCheckout();
-  const { addressOverviewCheck, paymentOverviewCheck } = checkoutState;
+  const { selectedAddress } = useCheckout();
   const { darkTheme } = useTheme();
-  const { setAlertText, setShowAlert } = useModal();
-  const { showLoader } = useAnimation();
+  const { auth } = useAuth();
+  const { emptyAllCartFromServer } = useAxiosCalls();
+  const { setShowConfirmPayment } = useModal();
 
   const amountPaid = Math.trunc(cartState.totalPrice - cartState.discount);
-  const orderNumber = `258-487489-${Math.random() * 50}`;
+  const orderNumber = `2022-PEBCART-12${Math.round(Math.random() * 100000)}`;
 
-  const makePaymentClickHandler = () => {
-    showLoader();
-    setTimeout(() => {
-      showLoader();
-      setAlertText("Successfully placed your order");
-      setShowAlert(true);
-      cartDispatch({
-        type: "makePayment",
-        payload: {
-          productList: cartState.cart,
-          amountPaid: amountPaid,
-          orderNumber: orderNumber,
+  const cartConfig = {
+    url: "/api/user/cart",
+    body: {},
+    headers: { headers: { authorization: auth.token } },
+  };
+
+  const loadScript = (src) => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
+    });
+  };
+
+  const makePaymentClickHandler = async () => {
+    try {
+      const res = await loadScript(
+        "https://checkout.razorpay.com/v1/checkout.js"
+      );
+
+      if (!res) {
+        alert("You are offline!, please check your internet");
+        return;
+      }
+
+      const options = {
+        key: process.env.REACT_APP_RAZORPAY_API,
+        amount: amountPaid * 100,
+        currency: "INR",
+        name: "Pebble Cart",
+        description: "Payment To Pebble Cart",
+
+        handler: async function (response) {
+          if (response.razorpay_payment_id) {
+            setOrderDetails({
+              orderId: orderNumber,
+              paymentId: response.razorpay_payment_id,
+            });
+            cartDispatch({
+              type: "makePayment",
+              payload: {
+                productList: cartState.cart,
+                amountPaid: amountPaid,
+                orderNumber: orderNumber,
+              },
+            });
+            setShowConfirmPayment(true);
+            emptyAllCartFromServer(cartConfig);
+          } else {
+            AlertToast("error", "Network issue, please try again");
+          }
         },
-      });
-    }, 4000);
+        prefill: {
+          name: "Pebble Cart",
+          email: "buy@pebblecart.com",
+          contact: "9999999999",
+        },
+        notes: {
+          address: "Pebble Cart Office",
+        },
+      };
+
+      const paymentObject = new window.Razorpay(options);
+      paymentObject.open();
+    } catch (error) {
+      AlertToast("error", error);
+    }
   };
 
   const overviewSummaryClass = darkTheme
@@ -53,7 +112,7 @@ const OrderSummary = () => {
       </div>
       <hr className="break-line" />
       <div className="payment-btn">
-        {addressOverviewCheck && paymentOverviewCheck && (
+        {selectedAddress && (
           <button
             onClick={makePaymentClickHandler}
             className="btn primary-btn-md"
@@ -62,11 +121,7 @@ const OrderSummary = () => {
           </button>
         )}
       </div>
-      <p className="text-center">
-        Select delivery address and Payment method to continue checking out.
-      </p>
+      <p className="text-center">Select delivery address to make payment.</p>
     </div>
   );
 };
-
-export default OrderSummary;

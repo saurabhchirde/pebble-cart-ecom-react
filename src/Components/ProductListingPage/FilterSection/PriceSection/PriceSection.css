@@ -1,0 +1,31 @@
+.price-slider-title span {
+  font-size: 0.9rem;
+}
+
+.price-slider-label-dark,
+.price-slider-label-light {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: auto;
+  justify-content: space-around;
+  margin-top: 1rem;
+}
+
+.price-range-input input {
+  width: 12rem;
+  margin: 10px auto;
+  display: flex;
+}
+
+.price-range {
+  margin: 10px auto 0;
+}
+
+.price-slider-label-dark .price-range {
+  color: var(--title-color);
+}
+
+.price-slider-label-light .price-range {
+  color: var(--light-theme-title-color);
+}

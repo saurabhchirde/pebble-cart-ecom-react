@@ -1,15 +1,10 @@
-import AddressOverviewCard from "./OverviewCards/AddressOverviewCard";
-import PaymentOverviewCard from "./OverviewCards/PaymentOverviewCard";
-import ProductOverviewCard from "./OverviewCards/ProductOverviewCard";
+import { AddressOverviewCard, ProductOverviewCard } from "Components";
 
-const CheckoutDetails = () => {
+export const CheckoutDetails = () => {
   return (
     <div className="checkout-form">
       <ProductOverviewCard />
       <AddressOverviewCard />
-      <PaymentOverviewCard />
     </div>
   );
 };
-
-export default CheckoutDetails;

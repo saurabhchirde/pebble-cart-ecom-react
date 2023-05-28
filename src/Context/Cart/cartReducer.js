@@ -28,13 +28,17 @@ const cartReducer = (cartState, action) => {
     case "makePayment":
       return {
         ...cartState,
-        orderedProduct: {
+        discount: 0,
+        coupon: "",
+        orderedProduct: [
+          {
+            productList: action.payload.productList,
+            amountPaid: action.payload.amountPaid,
+            orderNumber: action.payload.orderNumber,
+            date: new Date().toLocaleDateString(),
+          },
           ...cartState.orderedProduct,
-          productList: action.payload.productList,
-          amountPaid: action.payload.amountPaid,
-          orderNumber: action.payload.orderNumber,
-          date: new Date().toLocaleDateString(),
-        },
+        ],
         cart: [],
       };
 
@@ -66,7 +70,6 @@ const cartReducer = (cartState, action) => {
       return { ...cartState, cart: [], wishlist: [], orderedProduct: [] };
 
     //client side
-
     case "couponCode":
       return {
         ...cartState,

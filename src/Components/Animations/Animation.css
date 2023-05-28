@@ -21,6 +21,11 @@
   z-index: 5;
 }
 
+.payment-success-animation {
+  position: relative;
+  width: 10rem;
+}
+
 .loader-animation > div {
   width: 40rem;
   margin: auto;
@@ -56,5 +61,12 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .payment-success-animation {
+    position: relative;
+    width: 10rem;
   }
 }

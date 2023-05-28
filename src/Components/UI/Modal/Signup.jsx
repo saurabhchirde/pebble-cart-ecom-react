@@ -1,26 +1,18 @@
-import Button from "../Button/Button";
 import "./Signup.css";
-import InputTypeOne from "../Input/InputTypeOne";
-import { useAxiosCalls, useModal } from "../../../Context";
-import { useState } from "react";
+import { useAxiosCalls, useModal } from "Context";
+import { useRef } from "react";
+import { SignupInputForm } from "./SignupInputForm/SignupInputForm";
+import { AlertToast, IconButton } from "Components";
 
-const initialSignupState = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: "",
-};
-
-const Signup = () => {
-  const { setShowLogin, setShowSignup, setAlertText, setShowAlert } =
-    useModal();
-  const [user, setUser] = useState(initialSignupState);
+export const Signup = () => {
+  const { setShowLogin, setShowSignup } = useModal();
   const { userSignup } = useAxiosCalls();
 
-  const signupConfig = {
-    url: "/api/auth/signup",
-    data: user,
-  };
+  const firstNameRef = useRef("");
+  const lastNameRef = useRef("");
+  const emailRef = useRef("");
+  const passwordRef = useRef("");
+  const confirmRef = useRef("");
 
   const emailValidate =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -29,31 +21,59 @@ const Signup = () => {
 
   const onSignupFormSubmitHandler = (e) => {
     e.preventDefault();
+
+    const signupConfig = {
+      url: "/api/auth/signup",
+      data: {
+        firstName: firstNameRef.current.value,
+        lastName: lastNameRef.current.value,
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+      },
+    };
+
     if (
-      user.password.match(passwordValidate) &&
-      user.email.match(emailValidate)
+      passwordRef.current.value.match(passwordValidate) &&
+      emailRef.current.value.match(emailValidate)
     ) {
-      userSignup(signupConfig);
-      setShowSignup(false);
-      setUser(initialSignupState);
+      if (passwordRef.current.value === confirmRef.current.value) {
+        userSignup(signupConfig);
+        setShowSignup(false);
+        firstNameRef.current.value = "";
+        lastNameRef.current.value = "";
+        emailRef.current.value = "";
+        passwordRef.current.value = "";
+        confirmRef.current.value = "";
+      } else {
+        AlertToast("error", "Password mismatched");
+        confirmRef.current.value = "";
+      }
     } else {
-      setAlertText(
+      AlertToast(
+        "error",
         "Minimum 8 char, 1 Uppercase, 1 Lowercase, 1 number & 1 Special Character required"
       );
-      setShowAlert(true);
     }
   };
 
-  const onInputChangeHandler = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
+  const firstNameChangeHandler = (e) => {
+    firstNameRef.current.value = e.target.value;
+  };
 
-    setUser((oldData) => {
-      return {
-        ...oldData,
-        [name]: value,
-      };
-    });
+  const lastNameChangeHandler = (e) => {
+    lastNameRef.current.value = e.target.value;
+  };
+
+  const emailChangeHandler = (e) => {
+    emailRef.current.value = e.target.value;
+  };
+
+  const passwordChangeHandler = (e) => {
+    passwordRef.current.value = e.target.value;
+  };
+
+  const confirmChangeHandler = (e) => {
+    confirmRef.current.value = e.target.value;
   };
 
   const onCloseClick = () => {
@@ -75,70 +95,27 @@ const Signup = () => {
         <a onClick={onCloseClick}>
           <i className="fas fa-times"></i>
         </a>
-        <form onSubmit={onSignupFormSubmitHandler}>
-          <InputTypeOne
-            label="First Name"
-            type="text"
-            name="firstName"
-            autoComplete="on"
-            placeholder="Enter your first name"
-            inputWrapper="outline-text-input"
-            onChange={onInputChangeHandler}
-            value={user.firstName}
-          />
-          <InputTypeOne
-            label="Last Name"
-            type="text"
-            name="lastName"
-            autoComplete="on"
-            placeholder="Enter your last name"
-            inputWrapper="outline-text-input"
-            onChange={onInputChangeHandler}
-            value={user.lastName}
-          />
-          <InputTypeOne
-            label="Email *"
-            type="email"
-            name="email"
-            required="required"
-            autoComplete="email"
-            placeholder="Enter your email *"
-            inputWrapper="outline-email-input"
-            onChange={onInputChangeHandler}
-            value={user.email}
-          />
-          <InputTypeOne
-            label="Password *"
-            type="text"
-            name="password"
-            required="required"
-            autoComplete="current-password"
-            placeholder="Enter your password"
-            inputWrapper="outline-password-input"
-            onChange={onInputChangeHandler}
-            value={user.password}
-          />
-          <p>
-            By continuing you agree to our Terms of Service and
-            <span> Privacy Policy</span>
-          </p>
-          <Button
-            btnWrapper="signup-btn"
-            type="submit"
-            btnClassName="btn primary-btn-md"
-            label=" Sign Up"
-          />
-          <div className="existing-account-btn" onClick={onLoginClick}>
-            <h2>
-              already have an account
-              <span>Login</span>
-              <i className="fas fa-angle-right"></i>
-            </h2>
-          </div>
-        </form>
+        <SignupInputForm
+          onSignupFormSubmitHandler={onSignupFormSubmitHandler}
+          firstNameRef={firstNameRef}
+          lastNameRef={lastNameRef}
+          emailRef={emailRef}
+          passwordRef={passwordRef}
+          confirmRef={confirmRef}
+          firstNameChangeHandler={firstNameChangeHandler}
+          lastNameChangeHandler={lastNameChangeHandler}
+          emailChangeHandler={emailChangeHandler}
+          passwordChangeHandler={passwordChangeHandler}
+          confirmChangeHandler={confirmChangeHandler}
+        />
+        <div className="existing-account-btn" onClick={onLoginClick}>
+          <h2>
+            already have an account
+            <span>Login</span>
+            <i className="fas fa-angle-right"></i>
+          </h2>
+        </div>
       </div>
     </>
   );
 };
-
-export default Signup;

@@ -1,17 +1,20 @@
-import NavbarLoginButton from "./NavbarLoginButton/NavbarLoginButton";
-import SearchBar from "./SearchBar/SearchBar";
-import logoIcon from "../../../Data/logo/icon.svg";
-import NavbarAvatar from "./Avatar/NavbarAvatar";
-import { useAuth, useFilter, useModal, useTheme } from "../../../Context";
+import {
+  NavbarLoginButton,
+  SearchBar,
+  NavbarAvatar,
+  IconButton,
+  AlertToast,
+} from "Components";
+import logoIcon from "Data/logo/icon.svg";
+import { useAuth, useFilter, useModal, useTheme } from "Context";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import IconButton from "../Button/IconButton";
 
-const MobileNavigationBar = () => {
+export const MobileNavigationBar = () => {
   const { auth, authDispatch, showProfileMenu, setShowProfileMenu } = useAuth();
   const { filterDispatch, searchInput, setSearchInput } = useFilter();
   const location = useLocation();
   const navigate = useNavigate();
-  const { setAlertText, setShowAlert, setShowNavMenu } = useModal();
+  const { setShowNavMenu } = useModal();
   const { darkTheme, setDarkTheme } = useTheme();
 
   const onSearchSubmitHandler = (e) => {
@@ -27,8 +30,7 @@ const MobileNavigationBar = () => {
 
   const logoutClickHandler = () => {
     authDispatch({ type: "logout" });
-    setAlertText("Logged out successfully");
-    setShowAlert(true);
+    AlertToast("info", "Logged out successfully");
     if (
       location.pathname.includes(
         "checkout" || "user" || "profile" || "settings"
@@ -98,13 +100,10 @@ const MobileNavigationBar = () => {
               />
               {showProfileMenu && (
                 <div className="profile-hover-menu card-shadow-two">
-                  <Link to="account">
+                  <Link to="/account">
                     <h2>Profile</h2>
                   </Link>
-                  <Link to="account/support">
-                    <h2>Support</h2>
-                  </Link>
-                  <Link to="account/settings">
+                  <Link to="/account/settings">
                     <h2>Settings</h2>
                   </Link>
                   <h2 onClick={logoutClickHandler}>Logout</h2>
@@ -122,5 +121,3 @@ const MobileNavigationBar = () => {
     </>
   );
 };
-
-export default MobileNavigationBar;

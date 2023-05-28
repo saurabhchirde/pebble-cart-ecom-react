@@ -3,6 +3,7 @@ import { filterReducer } from "./filterReducer";
 
 const filterInitialState = {
   sort: "",
+  byPrice: "",
   bySort: { newest: true, lowTohHigh: false, highToLow: false },
   byStock: false,
   byRating: {
@@ -23,7 +24,7 @@ const filterInitialState = {
   byBrand: { allBrand: true, canon: false, nikon: false, sony: false },
 };
 
-const filterContext = createContext(filterInitialState);
+const filterContext = createContext();
 
 const FilterProvider = ({ children }) => {
   const [filterState, filterDispatch] = useReducer(

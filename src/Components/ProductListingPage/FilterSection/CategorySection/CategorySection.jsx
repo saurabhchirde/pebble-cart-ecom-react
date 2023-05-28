@@ -1,8 +1,8 @@
 import React from "react";
-import { useFilter } from "../../../../Context";
-import InputTypeTwo from "../../../UI/Input/InputTypeTwo";
+import { useFilter } from "Context";
+import { InputTypeTwo } from "Components";
 
-const CategorySection = ({ props }) => {
+export const CategorySection = ({ props }) => {
   const { filterState, filterDispatch } = useFilter();
   const { camera, lenses, tripod, accessories } = filterState.byCategory;
 
@@ -59,4 +59,3 @@ const CategorySection = ({ props }) => {
     )
   );
 };
-export default CategorySection;

@@ -2,7 +2,6 @@ const filterByCategory = (filteredArray, state) => {
   let withoutFiltered = [...filteredArray];
   let tempArray = [];
 
-  // sort by category
   if (
     state.byCategory.allCategory === false &&
     state.byCategory.camera === false &&

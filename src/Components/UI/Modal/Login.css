@@ -14,7 +14,45 @@
   text-align: center;
 }
 
+.remember-me {
+  display: grid;
+  grid-template-columns: 2rem 6rem;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  margin: 10px 0;
+}
+
+.remember-me input,
+.remember-me label {
+  cursor: pointer;
+}
+
+.remember-me input {
+  height: 1rem;
+}
+
 .signin-modal form p span {
   color: var(--primary-color);
   margin-left: 1rem;
+}
+
+.signin-modal .password-reset span {
+  cursor: pointer;
+}
+
+.password-input-field i:nth-child(3) {
+  left: 100%;
+  transform: translate(-100%, 0);
+  cursor: pointer;
+}
+
+.guest-user-btn {
+  width: 100%;
+}
+
+.guest-user-btn button {
+  margin: 0 0 10px;
+  width: 100%;
 }

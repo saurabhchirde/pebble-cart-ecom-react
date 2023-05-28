@@ -8,13 +8,14 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 0.8rem 0;
+  padding: 1rem 0;
   cursor: pointer;
 }
 
 .new-address i {
   margin-right: 1rem;
   font-size: 1.2rem;
+  color: var(--primary-color);
 }
 
 .address-modal {

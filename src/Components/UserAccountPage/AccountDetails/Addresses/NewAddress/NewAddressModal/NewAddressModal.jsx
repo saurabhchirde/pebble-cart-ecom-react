@@ -1,8 +1,7 @@
-import { useAuth, useAxiosCalls } from "../../../../../../Context";
-import InputTypeOne from "../../../../../UI/Input/InputTypeOne";
-import Button from "../../../../../UI/Button/Button";
+import { useAuth, useAxiosCalls } from "Context";
+import { InputTypeOne, Button, AlertToast } from "Components";
 
-const NewAddressModal = () => {
+export const NewAddressModal = () => {
   const {
     auth,
     newAddress,
@@ -20,11 +19,27 @@ const NewAddressModal = () => {
     headers: { headers: { authorization: auth.token } },
   };
 
+  const numberValidate = /^(\+\d{1,3}[- ]?)|0?\d{10}$/;
+  const pinValidate = /^[0-9]{6}$/;
+
   const onSignupFormSubmitHandler = (e) => {
     e.preventDefault();
-    addAddressOnServer(addressConfig);
-    setShowAddressModal(false);
-    setNewAddress(initialAddressState);
+    if (newAddress.fullName.trim() !== "" || newAddress.address.trim() !== "") {
+      if (newAddress.pinCode.match(pinValidate)) {
+        if (newAddress.mobile.match(numberValidate)) {
+          addAddressOnServer(addressConfig);
+          AlertToast("success", "New Address Added ");
+          setShowAddressModal(false);
+          setNewAddress(initialAddressState);
+        } else {
+          AlertToast("error", "Enter valid Mobile number");
+        }
+      } else {
+        AlertToast("error", "Enter valid Pin code");
+      }
+    } else {
+      AlertToast("error", "Enter valid details");
+    }
   };
 
   const onInputChangeHandler = (e) => {
@@ -64,6 +79,7 @@ const NewAddressModal = () => {
             label="Full Name"
             type="text"
             name="fullName"
+            required="required"
             autoComplete="on"
             placeholder="Enter your name"
             inputWrapper="outline-text-input"
@@ -74,6 +90,7 @@ const NewAddressModal = () => {
             label="Address"
             type="address"
             name="address"
+            required="required"
             autoComplete="on"
             placeholder="Enter your address"
             inputWrapper="outline-text-input"
@@ -113,5 +130,3 @@ const NewAddressModal = () => {
     </>
   );
 };
-
-export default NewAddressModal;
