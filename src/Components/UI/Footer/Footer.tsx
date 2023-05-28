@@ -46,7 +46,7 @@ export const Footer = () => {
           <h3>
             Designed & Develop by
             <a
-              href="https://twitter.com/SaurabhChirde"
+              href="https://saurabhchirde.com"
               target="_blank"
               className={darkTheme ? "copyright-text" : "copyright-text-light"}
             >
