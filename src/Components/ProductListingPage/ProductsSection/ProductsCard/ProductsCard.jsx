@@ -29,7 +29,7 @@ export const ProductsCard = ({ item }) => {
   // copy URLto clipboard
   const urlClickHandler = () => {
     navigator.clipboard.writeText(
-      `https://cart.pebbleui.com/products/${item?._id}`
+      `https://cart.saurabhchirde.com/products/${item?._id}`
     );
     setShowCopied(true);
     setTimeout(() => {
